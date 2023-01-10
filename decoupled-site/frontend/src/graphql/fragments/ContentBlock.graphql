@@ -1,0 +1,6 @@
+fragment ContentBlock on ContentBlock {
+    Title
+    Image
+    ImageAlignment
+    Content
+}
