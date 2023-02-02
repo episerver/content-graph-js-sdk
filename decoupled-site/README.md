@@ -56,8 +56,9 @@ This project uses:
     - `...`
 
 ### Database connection string
-
-* Update database connection string at [Startup.cs](./backend/Startup.cs) file. The backend is quite the same with the backend of the [content-delivery-js-sk](https://github.com/episerver/content-delivery-js-sdk/tree/master/samples/music-festival-vue-decoupled) except using Content Graph `services.AddContentGraph(_configuration, OpenIDConnectOptionsDefaults.AuthenticationScheme);`.
+* backend/startup.cs is designed so that the site can start right away on both Windows and MacOS.
+* You can also update your database connection string in backend/appsettings.json.
+* The backend is quite the same with the backend of the [content-delivery-js-sk](https://github.com/episerver/content-delivery-js-sdk/tree/master/samples/music-festival-vue-decoupled) except using Content Graph `services.AddContentGraph(_configuration, OpenIDConnectOptionsDefaults.AuthenticationScheme);`.
 
 ### On-Page Editing
 
