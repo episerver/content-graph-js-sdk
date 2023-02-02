@@ -912,48 +912,6 @@ export type ContentAreaItemModelOrderByInput = {
   Tag?: InputMaybe<OrderBy>;
 };
 
-export type ContentAreaItemModelSearch = {
-  __typename?: 'ContentAreaItemModelSearch';
-  ContentLink?: Maybe<ContentModelReferenceSearch>;
-  DisplayOption?: Maybe<Scalars['String']>;
-  Tag?: Maybe<Scalars['String']>;
-};
-
-export type ContentAreaItemModelSearchFacet = {
-  __typename?: 'ContentAreaItemModelSearchFacet';
-  ContentLink?: Maybe<ContentModelReferenceSearchFacet>;
-  DisplayOption?: Maybe<Array<Maybe<StringFacet>>>;
-  Tag?: Maybe<Array<Maybe<StringFacet>>>;
-};
-
-
-export type ContentAreaItemModelSearchFacetDisplayOptionArgs = {
-  filters?: InputMaybe<Array<Scalars['String']>>;
-  limit?: Scalars['Int'];
-  orderBy?: InputMaybe<OrderBy>;
-  orderType?: InputMaybe<OrderByFacetType>;
-};
-
-
-export type ContentAreaItemModelSearchFacetTagArgs = {
-  filters?: InputMaybe<Array<Scalars['String']>>;
-  limit?: Scalars['Int'];
-  orderBy?: InputMaybe<OrderBy>;
-  orderType?: InputMaybe<OrderByFacetType>;
-};
-
-export type ContentAreaItemModelSearchOrderByInput = {
-  ContentLink?: InputMaybe<ContentModelReferenceSearchOrderByInput>;
-  DisplayOption?: InputMaybe<OrderBy>;
-  Tag?: InputMaybe<OrderBy>;
-};
-
-export type ContentAreaItemModelSearchWhereInput = {
-  ContentLink?: InputMaybe<ContentModelReferenceSearchWhereInput>;
-  DisplayOption?: InputMaybe<SearchableStringFilterInput>;
-  Tag?: InputMaybe<SearchableStringFilterInput>;
-};
-
 export type ContentAreaItemModelWhereInput = {
   ContentLink?: InputMaybe<ContentModelReferenceWhereInput>;
   DisplayOption?: InputMaybe<StringFilterInput>;
@@ -1369,56 +1327,6 @@ export type ContentLanguageModelOrderByInput = {
   Name?: InputMaybe<OrderBy>;
 };
 
-export type ContentLanguageModelSearch = {
-  __typename?: 'ContentLanguageModelSearch';
-  DisplayName?: Maybe<Scalars['String']>;
-  Link?: Maybe<Scalars['String']>;
-  Name?: Maybe<Scalars['String']>;
-};
-
-export type ContentLanguageModelSearchFacet = {
-  __typename?: 'ContentLanguageModelSearchFacet';
-  DisplayName?: Maybe<Array<Maybe<StringFacet>>>;
-  Link?: Maybe<Array<Maybe<StringFacet>>>;
-  Name?: Maybe<Array<Maybe<StringFacet>>>;
-};
-
-
-export type ContentLanguageModelSearchFacetDisplayNameArgs = {
-  filters?: InputMaybe<Array<Scalars['String']>>;
-  limit?: Scalars['Int'];
-  orderBy?: InputMaybe<OrderBy>;
-  orderType?: InputMaybe<OrderByFacetType>;
-};
-
-
-export type ContentLanguageModelSearchFacetLinkArgs = {
-  filters?: InputMaybe<Array<Scalars['String']>>;
-  limit?: Scalars['Int'];
-  orderBy?: InputMaybe<OrderBy>;
-  orderType?: InputMaybe<OrderByFacetType>;
-};
-
-
-export type ContentLanguageModelSearchFacetNameArgs = {
-  filters?: InputMaybe<Array<Scalars['String']>>;
-  limit?: Scalars['Int'];
-  orderBy?: InputMaybe<OrderBy>;
-  orderType?: InputMaybe<OrderByFacetType>;
-};
-
-export type ContentLanguageModelSearchOrderByInput = {
-  DisplayName?: InputMaybe<OrderBy>;
-  Link?: InputMaybe<OrderBy>;
-  Name?: InputMaybe<OrderBy>;
-};
-
-export type ContentLanguageModelSearchWhereInput = {
-  DisplayName?: InputMaybe<SearchableStringFilterInput>;
-  Link?: InputMaybe<SearchableStringFilterInput>;
-  Name?: InputMaybe<SearchableStringFilterInput>;
-};
-
 export type ContentLanguageModelWhereInput = {
   DisplayName?: InputMaybe<StringFilterInput>;
   Link?: InputMaybe<StringFilterInput>;
@@ -1487,79 +1395,6 @@ export type ContentModelReferenceOrderByInput = {
   ProviderName?: InputMaybe<OrderBy>;
   Url?: InputMaybe<OrderBy>;
   WorkId?: InputMaybe<OrderBy>;
-};
-
-export type ContentModelReferenceSearch = {
-  __typename?: 'ContentModelReferenceSearch';
-  Expanded?: Maybe<IContent>;
-  GuidValue?: Maybe<Scalars['String']>;
-  Id?: Maybe<Scalars['Int']>;
-  Language?: Maybe<ContentLanguageModelSearch>;
-  ProviderName?: Maybe<Scalars['String']>;
-  Url?: Maybe<Scalars['String']>;
-  WorkId?: Maybe<Scalars['Int']>;
-};
-
-export type ContentModelReferenceSearchFacet = {
-  __typename?: 'ContentModelReferenceSearchFacet';
-  GuidValue?: Maybe<Array<Maybe<StringFacet>>>;
-  Id?: Maybe<Array<Maybe<NumberFacet>>>;
-  Language?: Maybe<ContentLanguageModelSearchFacet>;
-  ProviderName?: Maybe<Array<Maybe<StringFacet>>>;
-  Url?: Maybe<Array<Maybe<StringFacet>>>;
-  WorkId?: Maybe<Array<Maybe<NumberFacet>>>;
-};
-
-
-export type ContentModelReferenceSearchFacetGuidValueArgs = {
-  filters?: InputMaybe<Array<Scalars['String']>>;
-  limit?: Scalars['Int'];
-  orderBy?: InputMaybe<OrderBy>;
-  orderType?: InputMaybe<OrderByFacetType>;
-};
-
-
-export type ContentModelReferenceSearchFacetIdArgs = {
-  ranges?: InputMaybe<Array<InputMaybe<RangeFacetsInput>>>;
-};
-
-
-export type ContentModelReferenceSearchFacetProviderNameArgs = {
-  filters?: InputMaybe<Array<Scalars['String']>>;
-  limit?: Scalars['Int'];
-  orderBy?: InputMaybe<OrderBy>;
-  orderType?: InputMaybe<OrderByFacetType>;
-};
-
-
-export type ContentModelReferenceSearchFacetUrlArgs = {
-  filters?: InputMaybe<Array<Scalars['String']>>;
-  limit?: Scalars['Int'];
-  orderBy?: InputMaybe<OrderBy>;
-  orderType?: InputMaybe<OrderByFacetType>;
-};
-
-
-export type ContentModelReferenceSearchFacetWorkIdArgs = {
-  ranges?: InputMaybe<Array<InputMaybe<RangeFacetsInput>>>;
-};
-
-export type ContentModelReferenceSearchOrderByInput = {
-  GuidValue?: InputMaybe<OrderBy>;
-  Id?: InputMaybe<OrderBy>;
-  Language?: InputMaybe<ContentLanguageModelSearchOrderByInput>;
-  ProviderName?: InputMaybe<OrderBy>;
-  Url?: InputMaybe<OrderBy>;
-  WorkId?: InputMaybe<OrderBy>;
-};
-
-export type ContentModelReferenceSearchWhereInput = {
-  GuidValue?: InputMaybe<StringFilterInput>;
-  Id?: InputMaybe<IntFilterInput>;
-  Language?: InputMaybe<ContentLanguageModelSearchWhereInput>;
-  ProviderName?: InputMaybe<SearchableStringFilterInput>;
-  Url?: InputMaybe<SearchableStringFilterInput>;
-  WorkId?: InputMaybe<IntFilterInput>;
 };
 
 export type ContentModelReferenceWhereInput = {
@@ -2271,7 +2106,7 @@ export type LandingPage = IContent & {
   HeroImage?: Maybe<Scalars['String']>;
   IsCommonDraft?: Maybe<Scalars['Bool']>;
   Language?: Maybe<ContentLanguageModel>;
-  MainContentArea?: Maybe<Array<Maybe<ContentAreaItemModelSearch>>>;
+  MainContentArea?: Maybe<Array<Maybe<ContentAreaItemModel>>>;
   MasterLanguage?: Maybe<ContentLanguageModel>;
   Name?: Maybe<Scalars['String']>;
   ParentLink?: Maybe<ContentModelReference>;
@@ -2342,7 +2177,7 @@ export type LandingPageFacet = {
   HeroImage?: Maybe<Array<Maybe<StringFacet>>>;
   IsCommonDraft?: Maybe<Array<Maybe<StringFacet>>>;
   Language?: Maybe<ContentLanguageModelFacet>;
-  MainContentArea?: Maybe<ContentAreaItemModelSearchFacet>;
+  MainContentArea?: Maybe<ContentAreaItemModelFacet>;
   MasterLanguage?: Maybe<ContentLanguageModelFacet>;
   Name?: Maybe<Array<Maybe<StringFacet>>>;
   ParentLink?: Maybe<ContentModelReferenceFacet>;
@@ -2489,7 +2324,7 @@ export type LandingPageOrderByInput = {
   HeroImage?: InputMaybe<OrderBy>;
   IsCommonDraft?: InputMaybe<OrderBy>;
   Language?: InputMaybe<ContentLanguageModelOrderByInput>;
-  MainContentArea?: InputMaybe<ContentAreaItemModelSearchOrderByInput>;
+  MainContentArea?: InputMaybe<ContentAreaItemModelOrderByInput>;
   MasterLanguage?: InputMaybe<ContentLanguageModelOrderByInput>;
   Name?: InputMaybe<OrderBy>;
   ParentLink?: InputMaybe<ContentModelReferenceOrderByInput>;
@@ -2527,7 +2362,7 @@ export type LandingPageWhereInput = {
   HeroImage?: InputMaybe<StringFilterInput>;
   IsCommonDraft?: InputMaybe<BoolFilterInput>;
   Language?: InputMaybe<ContentLanguageModelWhereInput>;
-  MainContentArea?: InputMaybe<ContentAreaItemModelSearchWhereInput>;
+  MainContentArea?: InputMaybe<ContentAreaItemModelWhereInput>;
   MasterLanguage?: InputMaybe<ContentLanguageModelWhereInput>;
   Name?: InputMaybe<SearchableStringFilterInput>;
   ParentLink?: InputMaybe<ContentModelReferenceWhereInput>;
@@ -2547,75 +2382,9 @@ export type LandingPageWhereInput = {
   _or?: InputMaybe<Array<InputMaybe<LandingPageWhereInput>>>;
 };
 
-export enum Locale {
-  /** Arabic */
-  Ar = 'AR',
-  /** Bulgarian */
-  Bg = 'BG',
-  /** Brazilian */
-  Br = 'BR',
-  /** Catalan */
-  Ca = 'CA',
-  /** chinese/korean/chinese. Note: cjk should be used for traditional Chinese */
-  Cjk = 'CJK',
-  /** Danish */
-  Da = 'DA',
-  /** German */
-  De = 'DE',
-  /** Greek */
-  El = 'EL',
-  /** English */
-  En = 'EN',
-  /** Spanish */
-  Es = 'ES',
-  /** Basque */
-  Eu = 'EU',
-  /** Farsi */
-  Fa = 'FA',
-  /** Finnish */
-  Fi = 'FI',
-  /** French */
-  Fr = 'FR',
-  /** Galician */
-  Gl = 'GL',
-  /** Hindi */
-  Hi = 'HI',
-  /** Hungarian */
-  Hu = 'HU',
-  /** Armenian */
-  Hy = 'HY',
-  /** Indonesian */
-  Id = 'ID',
-  /** Italian */
-  It = 'IT',
-  /** Japanese */
-  Ja = 'JA',
-  /** Korean */
-  Ko = 'KO',
-  /** Kurdish */
-  Ku = 'KU',
-  /** Latvian */
-  Lv = 'LV',
-  /** Dutch */
-  Nl = 'NL',
-  /** Norwegian */
-  No = 'NO',
-  /** Polish */
-  Pl = 'PL',
-  /** Romanian */
-  Ro = 'RO',
-  /** Russian */
-  Ru = 'RU',
-  /** Swedish */
-  Sv = 'SV',
-  /** Thai */
-  Th = 'TH',
-  /** Turkish */
-  Tr = 'TR',
-  /** Ukrainian */
-  Uk = 'UK',
-  /** Chinese (simplified) */
-  Zh = 'ZH'
+export enum Locales {
+  En = 'en',
+  Sv = 'sv'
 }
 
 export type NumberFacet = {
@@ -2652,7 +2421,7 @@ export type QueryArtistContainerPageArgs = {
   cursor?: InputMaybe<Scalars['String']>;
   ids?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
   limit?: InputMaybe<Scalars['Int']>;
-  locale?: InputMaybe<Array<InputMaybe<Locale>>>;
+  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<ArtistContainerPageOrderByInput>;
   skip?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<ArtistContainerPageWhereInput>;
@@ -2663,7 +2432,7 @@ export type QueryArtistDetailsPageArgs = {
   cursor?: InputMaybe<Scalars['String']>;
   ids?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
   limit?: InputMaybe<Scalars['Int']>;
-  locale?: InputMaybe<Array<InputMaybe<Locale>>>;
+  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<ArtistDetailsPageOrderByInput>;
   skip?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<ArtistDetailsPageWhereInput>;
@@ -2674,7 +2443,7 @@ export type QueryBuyTicketBlockArgs = {
   cursor?: InputMaybe<Scalars['String']>;
   ids?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
   limit?: InputMaybe<Scalars['Int']>;
-  locale?: InputMaybe<Array<InputMaybe<Locale>>>;
+  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<BuyTicketBlockOrderByInput>;
   skip?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<BuyTicketBlockWhereInput>;
@@ -2685,7 +2454,7 @@ export type QueryContentArgs = {
   cursor?: InputMaybe<Scalars['String']>;
   ids?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
   limit?: InputMaybe<Scalars['Int']>;
-  locale?: InputMaybe<Array<InputMaybe<Locale>>>;
+  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<ContentOrderByInput>;
   skip?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<ContentWhereInput>;
@@ -2696,7 +2465,7 @@ export type QueryContentBlockArgs = {
   cursor?: InputMaybe<Scalars['String']>;
   ids?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
   limit?: InputMaybe<Scalars['Int']>;
-  locale?: InputMaybe<Array<InputMaybe<Locale>>>;
+  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<ContentBlockOrderByInput>;
   skip?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<ContentBlockWhereInput>;
@@ -2707,7 +2476,7 @@ export type QueryImageFileArgs = {
   cursor?: InputMaybe<Scalars['String']>;
   ids?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
   limit?: InputMaybe<Scalars['Int']>;
-  locale?: InputMaybe<Array<InputMaybe<Locale>>>;
+  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<ImageFileOrderByInput>;
   skip?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<ImageFileWhereInput>;
@@ -2718,7 +2487,7 @@ export type QueryImagePageArgs = {
   cursor?: InputMaybe<Scalars['String']>;
   ids?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
   limit?: InputMaybe<Scalars['Int']>;
-  locale?: InputMaybe<Array<InputMaybe<Locale>>>;
+  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<ImagePageOrderByInput>;
   skip?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<ImagePageWhereInput>;
@@ -2729,7 +2498,7 @@ export type QueryLandingPageArgs = {
   cursor?: InputMaybe<Scalars['String']>;
   ids?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
   limit?: InputMaybe<Scalars['Int']>;
-  locale?: InputMaybe<Array<InputMaybe<Locale>>>;
+  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<LandingPageOrderByInput>;
   skip?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<LandingPageWhereInput>;
@@ -2740,7 +2509,7 @@ export type QuerySiteDefinitionArgs = {
   cursor?: InputMaybe<Scalars['String']>;
   ids?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
   limit?: InputMaybe<Scalars['Int']>;
-  locale?: InputMaybe<Array<InputMaybe<Locale>>>;
+  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<SiteDefinitionOrderByInput>;
   skip?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<SiteDefinitionWhereInput>;
@@ -2764,7 +2533,7 @@ export type QueryRefArtistContainerPageArgs = {
   cursor?: InputMaybe<Scalars['String']>;
   ids?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
   limit?: InputMaybe<Scalars['Int']>;
-  locale?: InputMaybe<Array<InputMaybe<Locale>>>;
+  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<ArtistContainerPageOrderByInput>;
   skip?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<ArtistContainerPageWhereInput>;
@@ -2775,7 +2544,7 @@ export type QueryRefArtistDetailsPageArgs = {
   cursor?: InputMaybe<Scalars['String']>;
   ids?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
   limit?: InputMaybe<Scalars['Int']>;
-  locale?: InputMaybe<Array<InputMaybe<Locale>>>;
+  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<ArtistDetailsPageOrderByInput>;
   skip?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<ArtistDetailsPageWhereInput>;
@@ -2786,7 +2555,7 @@ export type QueryRefBuyTicketBlockArgs = {
   cursor?: InputMaybe<Scalars['String']>;
   ids?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
   limit?: InputMaybe<Scalars['Int']>;
-  locale?: InputMaybe<Array<InputMaybe<Locale>>>;
+  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<BuyTicketBlockOrderByInput>;
   skip?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<BuyTicketBlockWhereInput>;
@@ -2797,7 +2566,7 @@ export type QueryRefContentArgs = {
   cursor?: InputMaybe<Scalars['String']>;
   ids?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
   limit?: InputMaybe<Scalars['Int']>;
-  locale?: InputMaybe<Array<InputMaybe<Locale>>>;
+  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<ContentOrderByInput>;
   skip?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<ContentWhereInput>;
@@ -2808,7 +2577,7 @@ export type QueryRefContentBlockArgs = {
   cursor?: InputMaybe<Scalars['String']>;
   ids?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
   limit?: InputMaybe<Scalars['Int']>;
-  locale?: InputMaybe<Array<InputMaybe<Locale>>>;
+  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<ContentBlockOrderByInput>;
   skip?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<ContentBlockWhereInput>;
@@ -2819,7 +2588,7 @@ export type QueryRefImageFileArgs = {
   cursor?: InputMaybe<Scalars['String']>;
   ids?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
   limit?: InputMaybe<Scalars['Int']>;
-  locale?: InputMaybe<Array<InputMaybe<Locale>>>;
+  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<ImageFileOrderByInput>;
   skip?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<ImageFileWhereInput>;
@@ -2830,7 +2599,7 @@ export type QueryRefImagePageArgs = {
   cursor?: InputMaybe<Scalars['String']>;
   ids?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
   limit?: InputMaybe<Scalars['Int']>;
-  locale?: InputMaybe<Array<InputMaybe<Locale>>>;
+  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<ImagePageOrderByInput>;
   skip?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<ImagePageWhereInput>;
@@ -2841,7 +2610,7 @@ export type QueryRefLandingPageArgs = {
   cursor?: InputMaybe<Scalars['String']>;
   ids?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
   limit?: InputMaybe<Scalars['Int']>;
-  locale?: InputMaybe<Array<InputMaybe<Locale>>>;
+  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<LandingPageOrderByInput>;
   skip?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<LandingPageWhereInput>;
@@ -2852,7 +2621,7 @@ export type QueryRefSiteDefinitionArgs = {
   cursor?: InputMaybe<Scalars['String']>;
   ids?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
   limit?: InputMaybe<Scalars['Int']>;
-  locale?: InputMaybe<Array<InputMaybe<Locale>>>;
+  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<SiteDefinitionOrderByInput>;
   skip?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<SiteDefinitionWhereInput>;
@@ -3118,7 +2887,7 @@ export enum SynonymSlot {
 
 export type StartQueryVariables = Exact<{
   relativePath?: InputMaybe<Scalars['String']>;
-  locale?: InputMaybe<Locale>;
+  locales?: InputMaybe<Locales>;
   language?: InputMaybe<Scalars['String']>;
   stageName?: InputMaybe<Scalars['String']>;
   artistGenre?: InputMaybe<Scalars['String']>;
@@ -3129,7 +2898,7 @@ export type StartQueryVariables = Exact<{
 }>;
 
 
-export type StartQuery = { __typename?: 'Query', Content?: { __typename?: 'ContentOutput', items?: Array<{ __typename: 'ArtistContainerPage', Name?: string | null, RelativePath?: string | null, Url?: string | null, artists?: { __typename?: 'QueryRef', ArtistDetailsPage?: { __typename?: 'ArtistDetailsPageOutput', items?: Array<{ __typename?: 'ArtistDetailsPage', PerformanceStartTime?: any | null, PerformanceEndTime?: any | null, StageName?: string | null, ArtistName?: string | null, ArtistPhoto?: string | null, ArtistGenre?: string | null, ArtistDescription?: string | null, ArtistIsHeadliner?: any | null, Name?: string | null, RelativePath?: string | null, ParentLink?: { __typename?: 'ContentModelReference', Url?: string | null } | null } | null> | null, facets?: { __typename?: 'ArtistDetailsPageFacet', ArtistGenre?: Array<{ __typename?: 'StringFacet', name?: string | null, count?: number | null } | null> | null, StageName?: Array<{ __typename?: 'StringFacet', name?: string | null, count?: number | null } | null> | null } | null } | null } | null, ParentLink?: { __typename?: 'ContentModelReference', Url?: string | null } | null } | { __typename: 'ArtistDetailsPage', Name?: string | null, Url?: string | null, RelativePath?: string | null, PerformanceStartTime?: any | null, PerformanceEndTime?: any | null, StageName?: string | null, ArtistName?: string | null, ArtistPhoto?: string | null, ArtistGenre?: string | null, ArtistDescription?: string | null, ArtistIsHeadliner?: any | null, ParentLink?: { __typename?: 'ContentModelReference', Url?: string | null } | null } | { __typename: 'BuyTicketBlock', Name?: string | null, Url?: string | null, RelativePath?: string | null, ParentLink?: { __typename?: 'ContentModelReference', Url?: string | null } | null } | { __typename: 'Content', Name?: string | null, Url?: string | null, RelativePath?: string | null, ParentLink?: { __typename?: 'ContentModelReference', Url?: string | null } | null } | { __typename: 'ContentBlock', Title?: string | null, Image?: string | null, ImageAlignment?: string | null, Content?: string | null, Name?: string | null, Url?: string | null, RelativePath?: string | null, ParentLink?: { __typename?: 'ContentModelReference', Url?: string | null } | null } | { __typename: 'ImageFile', Name?: string | null, Url?: string | null, RelativePath?: string | null, ParentLink?: { __typename?: 'ContentModelReference', Url?: string | null } | null } | { __typename: 'ImagePage', Name?: string | null, Url?: string | null, RelativePath?: string | null, ParentLink?: { __typename?: 'ContentModelReference', Url?: string | null } | null } | { __typename: 'LandingPage', Name?: string | null, Url?: string | null, RelativePath?: string | null, Title?: string | null, Subtitle?: string | null, HeroImage?: string | null, _children?: { __typename?: 'QueryRef', ArtistContainerPage?: { __typename?: 'ArtistContainerPageOutput', items?: Array<{ __typename?: 'ArtistContainerPage', Name?: string | null, RelativePath?: string | null, headlines?: { __typename?: 'QueryRef', ArtistDetailsPage?: { __typename?: 'ArtistDetailsPageOutput', items?: Array<{ __typename?: 'ArtistDetailsPage', PerformanceStartTime?: any | null, PerformanceEndTime?: any | null, StageName?: string | null, ArtistName?: string | null, ArtistPhoto?: string | null, ArtistGenre?: string | null, ArtistDescription?: string | null, ArtistIsHeadliner?: any | null, Name?: string | null, RelativePath?: string | null, ParentLink?: { __typename?: 'ContentModelReference', Url?: string | null } | null } | null> | null } | null } | null } | null> | null } | null } | null, ParentLink?: { __typename?: 'ContentModelReference', Url?: string | null } | null, BuyTicketBlock?: { __typename?: 'LandingPageBlockData', Heading?: string | null, Message?: string | null } | null, ArtistsLink?: { __typename?: 'ContentModelReference', Expanded?: { __typename?: 'ArtistContainerPage', Name?: string | null, RelativePath?: string | null } | { __typename?: 'ArtistDetailsPage', Name?: string | null, RelativePath?: string | null } | { __typename?: 'BuyTicketBlock', Name?: string | null, RelativePath?: string | null } | { __typename?: 'Content', Name?: string | null, RelativePath?: string | null } | { __typename?: 'ContentBlock', Name?: string | null, RelativePath?: string | null } | { __typename?: 'ImageFile', Name?: string | null, RelativePath?: string | null } | { __typename?: 'ImagePage', Name?: string | null, RelativePath?: string | null } | { __typename?: 'LandingPage', Name?: string | null, RelativePath?: string | null } | null } | null, MainContentArea?: Array<{ __typename?: 'ContentAreaItemModelSearch', ContentLink?: { __typename?: 'ContentModelReferenceSearch', Expanded?: { __typename: 'ArtistContainerPage' } | { __typename: 'ArtistDetailsPage' } | { __typename: 'BuyTicketBlock' } | { __typename: 'Content' } | { __typename: 'ContentBlock', Title?: string | null, Image?: string | null, ImageAlignment?: string | null, Content?: string | null } | { __typename: 'ImageFile', Content?: string | null, Url?: string | null, Thumbnail?: { __typename?: 'BlobModel', Url?: string | null } | null } | { __typename: 'ImagePage' } | { __typename: 'LandingPage' } | null } | null } | null> | null, FooterContentArea?: Array<{ __typename?: 'ContentAreaItemModel', ContentLink?: { __typename?: 'ContentModelReference', Expanded?: { __typename: 'ArtistContainerPage' } | { __typename: 'ArtistDetailsPage' } | { __typename: 'BuyTicketBlock' } | { __typename: 'Content' } | { __typename: 'ContentBlock', Title?: string | null, Image?: string | null, ImageAlignment?: string | null, Content?: string | null } | { __typename: 'ImageFile', Content?: string | null, Url?: string | null, Thumbnail?: { __typename?: 'BlobModel', Url?: string | null } | null } | { __typename: 'ImagePage' } | { __typename: 'LandingPage' } | null } | null } | null> | null } | null> | null } | null };
+export type StartQuery = { __typename?: 'Query', Content?: { __typename?: 'ContentOutput', items?: Array<{ __typename: 'ArtistContainerPage', Name?: string | null, RelativePath?: string | null, Url?: string | null, artists?: { __typename?: 'QueryRef', ArtistDetailsPage?: { __typename?: 'ArtistDetailsPageOutput', items?: Array<{ __typename?: 'ArtistDetailsPage', PerformanceStartTime?: any | null, PerformanceEndTime?: any | null, StageName?: string | null, ArtistName?: string | null, ArtistPhoto?: string | null, ArtistGenre?: string | null, ArtistDescription?: string | null, ArtistIsHeadliner?: any | null, Name?: string | null, RelativePath?: string | null, ParentLink?: { __typename?: 'ContentModelReference', Url?: string | null } | null } | null> | null, facets?: { __typename?: 'ArtistDetailsPageFacet', ArtistGenre?: Array<{ __typename?: 'StringFacet', name?: string | null, count?: number | null } | null> | null, StageName?: Array<{ __typename?: 'StringFacet', name?: string | null, count?: number | null } | null> | null } | null } | null } | null, ParentLink?: { __typename?: 'ContentModelReference', Url?: string | null } | null } | { __typename: 'ArtistDetailsPage', Name?: string | null, Url?: string | null, RelativePath?: string | null, PerformanceStartTime?: any | null, PerformanceEndTime?: any | null, StageName?: string | null, ArtistName?: string | null, ArtistPhoto?: string | null, ArtistGenre?: string | null, ArtistDescription?: string | null, ArtistIsHeadliner?: any | null, ParentLink?: { __typename?: 'ContentModelReference', Url?: string | null } | null } | { __typename: 'BuyTicketBlock', Name?: string | null, Url?: string | null, RelativePath?: string | null, ParentLink?: { __typename?: 'ContentModelReference', Url?: string | null } | null } | { __typename: 'Content', Name?: string | null, Url?: string | null, RelativePath?: string | null, ParentLink?: { __typename?: 'ContentModelReference', Url?: string | null } | null } | { __typename: 'ContentBlock', Title?: string | null, Image?: string | null, ImageAlignment?: string | null, Content?: string | null, Name?: string | null, Url?: string | null, RelativePath?: string | null, ParentLink?: { __typename?: 'ContentModelReference', Url?: string | null } | null } | { __typename: 'ImageFile', Name?: string | null, Url?: string | null, RelativePath?: string | null, ParentLink?: { __typename?: 'ContentModelReference', Url?: string | null } | null } | { __typename: 'ImagePage', Name?: string | null, Url?: string | null, RelativePath?: string | null, ParentLink?: { __typename?: 'ContentModelReference', Url?: string | null } | null } | { __typename: 'LandingPage', Name?: string | null, Url?: string | null, RelativePath?: string | null, Title?: string | null, Subtitle?: string | null, HeroImage?: string | null, _children?: { __typename?: 'QueryRef', ArtistContainerPage?: { __typename?: 'ArtistContainerPageOutput', items?: Array<{ __typename?: 'ArtistContainerPage', Name?: string | null, RelativePath?: string | null, headlines?: { __typename?: 'QueryRef', ArtistDetailsPage?: { __typename?: 'ArtistDetailsPageOutput', items?: Array<{ __typename?: 'ArtistDetailsPage', PerformanceStartTime?: any | null, PerformanceEndTime?: any | null, StageName?: string | null, ArtistName?: string | null, ArtistPhoto?: string | null, ArtistGenre?: string | null, ArtistDescription?: string | null, ArtistIsHeadliner?: any | null, Name?: string | null, RelativePath?: string | null, ParentLink?: { __typename?: 'ContentModelReference', Url?: string | null } | null } | null> | null } | null } | null } | null> | null } | null } | null, ParentLink?: { __typename?: 'ContentModelReference', Url?: string | null } | null, BuyTicketBlock?: { __typename?: 'LandingPageBlockData', Heading?: string | null, Message?: string | null } | null, ArtistsLink?: { __typename?: 'ContentModelReference', Expanded?: { __typename?: 'ArtistContainerPage', Name?: string | null, RelativePath?: string | null } | { __typename?: 'ArtistDetailsPage', Name?: string | null, RelativePath?: string | null } | { __typename?: 'BuyTicketBlock', Name?: string | null, RelativePath?: string | null } | { __typename?: 'Content', Name?: string | null, RelativePath?: string | null } | { __typename?: 'ContentBlock', Name?: string | null, RelativePath?: string | null } | { __typename?: 'ImageFile', Name?: string | null, RelativePath?: string | null } | { __typename?: 'ImagePage', Name?: string | null, RelativePath?: string | null } | { __typename?: 'LandingPage', Name?: string | null, RelativePath?: string | null } | null } | null, MainContentArea?: Array<{ __typename?: 'ContentAreaItemModel', ContentLink?: { __typename?: 'ContentModelReference', Expanded?: { __typename: 'ArtistContainerPage' } | { __typename: 'ArtistDetailsPage' } | { __typename: 'BuyTicketBlock' } | { __typename: 'Content' } | { __typename: 'ContentBlock', Title?: string | null, Image?: string | null, ImageAlignment?: string | null, Content?: string | null } | { __typename: 'ImageFile', Content?: string | null, Url?: string | null, Thumbnail?: { __typename?: 'BlobModel', Url?: string | null } | null } | { __typename: 'ImagePage' } | { __typename: 'LandingPage' } | null } | null } | null> | null, FooterContentArea?: Array<{ __typename?: 'ContentAreaItemModel', ContentLink?: { __typename?: 'ContentModelReference', Expanded?: { __typename: 'ArtistContainerPage' } | { __typename: 'ArtistDetailsPage' } | { __typename: 'BuyTicketBlock' } | { __typename: 'Content' } | { __typename: 'ContentBlock', Title?: string | null, Image?: string | null, ImageAlignment?: string | null, Content?: string | null } | { __typename: 'ImageFile', Content?: string | null, Url?: string | null, Thumbnail?: { __typename?: 'BlobModel', Url?: string | null } | null } | { __typename: 'ImagePage' } | { __typename: 'LandingPage' } | null } | null } | null> | null } | null> | null } | null };
 
 export type ArtistDetailsPageFragment = { __typename?: 'ArtistDetailsPage', PerformanceStartTime?: any | null, PerformanceEndTime?: any | null, StageName?: string | null, ArtistName?: string | null, ArtistPhoto?: string | null, ArtistGenre?: string | null, ArtistDescription?: string | null, ArtistIsHeadliner?: any | null, Name?: string | null, RelativePath?: string | null, ParentLink?: { __typename?: 'ContentModelReference', Url?: string | null } | null };
 
@@ -3155,7 +2924,7 @@ type ItemsInContentArea_LandingPage_Fragment = { __typename: 'LandingPage' };
 
 export type ItemsInContentAreaFragment = ItemsInContentArea_ArtistContainerPage_Fragment | ItemsInContentArea_ArtistDetailsPage_Fragment | ItemsInContentArea_BuyTicketBlock_Fragment | ItemsInContentArea_Content_Fragment | ItemsInContentArea_ContentBlock_Fragment | ItemsInContentArea_ImageFile_Fragment | ItemsInContentArea_ImagePage_Fragment | ItemsInContentArea_LandingPage_Fragment;
 
-export type LandingPageFragment = { __typename?: 'LandingPage', Title?: string | null, Subtitle?: string | null, HeroImage?: string | null, BuyTicketBlock?: { __typename?: 'LandingPageBlockData', Heading?: string | null, Message?: string | null } | null, ArtistsLink?: { __typename?: 'ContentModelReference', Expanded?: { __typename?: 'ArtistContainerPage', Name?: string | null, RelativePath?: string | null } | { __typename?: 'ArtistDetailsPage', Name?: string | null, RelativePath?: string | null } | { __typename?: 'BuyTicketBlock', Name?: string | null, RelativePath?: string | null } | { __typename?: 'Content', Name?: string | null, RelativePath?: string | null } | { __typename?: 'ContentBlock', Name?: string | null, RelativePath?: string | null } | { __typename?: 'ImageFile', Name?: string | null, RelativePath?: string | null } | { __typename?: 'ImagePage', Name?: string | null, RelativePath?: string | null } | { __typename?: 'LandingPage', Name?: string | null, RelativePath?: string | null } | null } | null, MainContentArea?: Array<{ __typename?: 'ContentAreaItemModelSearch', ContentLink?: { __typename?: 'ContentModelReferenceSearch', Expanded?: { __typename: 'ArtistContainerPage' } | { __typename: 'ArtistDetailsPage' } | { __typename: 'BuyTicketBlock' } | { __typename: 'Content' } | { __typename: 'ContentBlock', Title?: string | null, Image?: string | null, ImageAlignment?: string | null, Content?: string | null } | { __typename: 'ImageFile', Content?: string | null, Url?: string | null, Thumbnail?: { __typename?: 'BlobModel', Url?: string | null } | null } | { __typename: 'ImagePage' } | { __typename: 'LandingPage' } | null } | null } | null> | null, FooterContentArea?: Array<{ __typename?: 'ContentAreaItemModel', ContentLink?: { __typename?: 'ContentModelReference', Expanded?: { __typename: 'ArtistContainerPage' } | { __typename: 'ArtistDetailsPage' } | { __typename: 'BuyTicketBlock' } | { __typename: 'Content' } | { __typename: 'ContentBlock', Title?: string | null, Image?: string | null, ImageAlignment?: string | null, Content?: string | null } | { __typename: 'ImageFile', Content?: string | null, Url?: string | null, Thumbnail?: { __typename?: 'BlobModel', Url?: string | null } | null } | { __typename: 'ImagePage' } | { __typename: 'LandingPage' } | null } | null } | null> | null };
+export type LandingPageFragment = { __typename?: 'LandingPage', Title?: string | null, Subtitle?: string | null, HeroImage?: string | null, BuyTicketBlock?: { __typename?: 'LandingPageBlockData', Heading?: string | null, Message?: string | null } | null, ArtistsLink?: { __typename?: 'ContentModelReference', Expanded?: { __typename?: 'ArtistContainerPage', Name?: string | null, RelativePath?: string | null } | { __typename?: 'ArtistDetailsPage', Name?: string | null, RelativePath?: string | null } | { __typename?: 'BuyTicketBlock', Name?: string | null, RelativePath?: string | null } | { __typename?: 'Content', Name?: string | null, RelativePath?: string | null } | { __typename?: 'ContentBlock', Name?: string | null, RelativePath?: string | null } | { __typename?: 'ImageFile', Name?: string | null, RelativePath?: string | null } | { __typename?: 'ImagePage', Name?: string | null, RelativePath?: string | null } | { __typename?: 'LandingPage', Name?: string | null, RelativePath?: string | null } | null } | null, MainContentArea?: Array<{ __typename?: 'ContentAreaItemModel', ContentLink?: { __typename?: 'ContentModelReference', Expanded?: { __typename: 'ArtistContainerPage' } | { __typename: 'ArtistDetailsPage' } | { __typename: 'BuyTicketBlock' } | { __typename: 'Content' } | { __typename: 'ContentBlock', Title?: string | null, Image?: string | null, ImageAlignment?: string | null, Content?: string | null } | { __typename: 'ImageFile', Content?: string | null, Url?: string | null, Thumbnail?: { __typename?: 'BlobModel', Url?: string | null } | null } | { __typename: 'ImagePage' } | { __typename: 'LandingPage' } | null } | null } | null> | null, FooterContentArea?: Array<{ __typename?: 'ContentAreaItemModel', ContentLink?: { __typename?: 'ContentModelReference', Expanded?: { __typename: 'ArtistContainerPage' } | { __typename: 'ArtistDetailsPage' } | { __typename: 'BuyTicketBlock' } | { __typename: 'Content' } | { __typename: 'ContentBlock', Title?: string | null, Image?: string | null, ImageAlignment?: string | null, Content?: string | null } | { __typename: 'ImageFile', Content?: string | null, Url?: string | null, Thumbnail?: { __typename?: 'BlobModel', Url?: string | null } | null } | { __typename: 'ImagePage' } | { __typename: 'LandingPage' } | null } | null } | null> | null };
 
 export type LandingPageBlockDataFragment = { __typename?: 'LandingPageBlockData', Heading?: string | null, Message?: string | null };
 
@@ -3243,9 +3012,9 @@ export const LandingPageFragmentDoc = `
     ${LandingPageBlockDataFragmentDoc}
 ${ItemsInContentAreaFragmentDoc}`;
 export const StartDocument = `
-    query Start($relativePath: String, $locale: Locale, $language: String, $stageName: String, $artistGenre: String, $contentId: Int, $workId: Int, $statusEqual: String, $isCommonDraft: Boolean) {
+    query Start($relativePath: String, $locales: Locales, $language: String, $stageName: String, $artistGenre: String, $contentId: Int, $workId: Int, $statusEqual: String, $isCommonDraft: Boolean) {
   Content(
-    locale: [$locale]
+    locale: [$locales]
     where: {ContentLink: {WorkId: {eq: $workId}, Id: {eq: $contentId}}, RelativePath: {eq: $relativePath}, Language: {Name: {eq: $language}}, Status: {eq: $statusEqual}, IsCommonDraft: {eq: $isCommonDraft}}
     orderBy: {Saved: DESC}
     limit: 1

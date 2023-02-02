@@ -42,9 +42,9 @@ const extractParams = (urlPath: string) => {
     }
 
     const urlSegments = relativePath.split('/')
-    const language = urlSegments.length ? urlSegments.find(s => s.length === 2)?.toUpperCase() : "EN"
+    const language = urlSegments.length ? urlSegments.find(s => s.length === 2) : "en"
 
-    return { relativePath, locale: language, language, contentId, workId }
+    return { relativePath, locales: language, language, contentId, workId }
 }
 
 export { isEditMode, extractParams, getImageUrl }

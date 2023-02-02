@@ -1,13 +1,15 @@
 import { QueryClient } from "@tanstack/react-query";
-import { Locale, StartQuery } from "../generated";
+import { Locales, StartQuery } from "../generated";
 import { ContentSavedMessage } from "../models/ContentSavedMessage";
 import { extractParams, isEditMode } from "./urlHelper";
 
 const generateGQLQueryVars = (token: string, pathname: string): any => {
-    const { relativePath, locale, language, contentId, workId } = extractParams(pathname)
-    let variables: any = { relativePath, locale: locale as Locale, language, statusEqual: "Published" };
+    const { relativePath, locales, language, contentId, workId } = extractParams(pathname)
+    let variables: any = { relativePath, locales: locales as Locales, language, statusEqual: "Published" };
     if (isEditMode() && token) {
-        variables = workId === undefined ? { contentId, isCommonDraft: true, locale: locale as Locale, language } : { contentId, workId, locale: locale as Locale, language };
+        variables = workId === undefined 
+                    ? { contentId, isCommonDraft: true, locales: locales as Locales, language } 
+                    : { contentId, workId, locales: locales as Locales, language };
     }
 
     return variables

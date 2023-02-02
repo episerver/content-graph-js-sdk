@@ -1,6 +1,6 @@
 query Start(
     $relativePath: String
-    $locale: Locale
+    $locales: Locales
     $language: String
     $stageName: String
     $artistGenre: String
@@ -10,7 +10,7 @@ query Start(
     $isCommonDraft: Boolean
 ) {
     Content(
-        locale: [$locale]
+        locale: [$locales]
         where: {
             ContentLink: {WorkId: {eq: $workId}, Id: {eq: $contentId}}
             RelativePath: {
