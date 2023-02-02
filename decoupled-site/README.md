@@ -66,5 +66,15 @@ This project uses:
 ### Create database on MacOS using Azure SQL Edge on Docker
 
 * Run `docker cp db.mdf azuresqledge:/var/opt/mssql/data/musicfestival.mdf` at `backend/App_Data` folder
+* Update the file permission in the container  
+Run a terminal inside the AzureSQLEdge container
+```
+    docker exec -it --user root <container-id of AzureSQLEdge> bash
+```
+
+Then in the shell, change the file owner user and group
+```
+    chown mssql:root /var/opt/mssql/data/musicfestival.mdf
+```
 * Use [Azure Data Studio](https://learn.microsoft.com/en-us/sql/azure-data-studio/download-azure-data-studio?view=sql-server-ver16#download-azure-data-studio) to connect to database and execute the query below to create database  
 `CREATE DATABASE MusicFestival  ON (FILENAME = '/var/opt/mssql/data/musicfestival.mdf') FOR ATTACH;`
