@@ -15,12 +15,12 @@ This project uses:
 ## Setup and Run
 
 1. Run `setup.cmd`. You can re-run `setup.cmd` at any time to reset the backend with a fresh database.
-2. Config the Content Graph keys:  
-    > Skip this step if you don't have new keys. You still can see the site with existed data but can't index the updating on the site.
+2. Config the Content Graph keys:   
     * ./backend/appsettings.json
     * ./frontend/.env
     * ./frontend/codegen.yaml
-2. Open terminal for `./backend` and run `dotnet run`.
+
+3. Open terminal for `./backend` and run `dotnet run`.
     * Navigate to http://localhost:8082/.
     * Create an admin user. If the UI is not displayed automatically, navigate to http://localhost:8082/util/register.
     * Add the following config site if it doesn't exist
@@ -34,7 +34,7 @@ This project uses:
         ```
     * Run the job `Content Graph content synchronization job` to index whole contents into the Content Graph for the first time  
     
-3. Open terminal for `./frontend` and run `npm install` (only needed first run).
+4. Open terminal for `./frontend` and run `npm install` (only needed first run).
     * Run `npm start`.
     * Navigate to http://localhost:3000/.
 

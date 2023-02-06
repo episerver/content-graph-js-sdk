@@ -1,4 +1,4 @@
-schema: https://cg.optimizely.com/content/v2?experimental=true&auth=XoXsOl2bScWZzguDUylvaaZ5PEAAH5tg5qme0NebCHzEpyO4
+schema: https://cg.optimizely.com/content/v2?experimental=true&auth=INPUT_SINGLE_KEY_HERE
 documents: './src/**/*.graphql'
 generates:
   ./src/generated.ts:
