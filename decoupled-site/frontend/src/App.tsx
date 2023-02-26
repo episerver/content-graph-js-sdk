@@ -5,7 +5,7 @@ import ArtistContainerPage from './pages/ArtistContainerPage';
 import ArtistDetailsPage from './pages/ArtistDetailsPage';
 import authService from './authService';
 import { useState } from 'react';
-import { isEditMode } from './helpers/urlHelper'
+import { isEditOrPreviewMode } from './helpers/urlHelper'
 import './App.css';
 import Footer from './components/Footer';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
@@ -25,7 +25,7 @@ const App = () => {
     let variables: any
     let headers = {}
     let url = singleKeyUrl
-    const modeEdit = isEditMode()
+    const modeEdit = isEditOrPreviewMode()
 
     const { mutate } = useMutation((obj: any) => obj, {
         onSuccess: (message: ContentSavedMessage) => {
