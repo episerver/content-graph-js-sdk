@@ -1,12 +1,12 @@
 import { QueryClient } from "@tanstack/react-query";
 import { Locales, StartQuery } from "../generated";
 import { ContentSavedMessage } from "../models/ContentSavedMessage";
-import { extractParams, isEditMode } from "./urlHelper";
+import { extractParams, isEditOrPreviewMode } from "./urlHelper";
 
 const generateGQLQueryVars = (token: string, pathname: string): any => {
     const { relativePath, locales, language, contentId, workId } = extractParams(pathname)
     let variables: any = { relativePath, locales: locales as Locales, language, statusEqual: "Published" };
-    if (isEditMode() && token) {
+    if (isEditOrPreviewMode() && token) {
         variables = workId === undefined 
                     ? { contentId, isCommonDraft: true, locales: locales as Locales, language } 
                     : { contentId, workId, locales: locales as Locales, language };
@@ -37,7 +37,10 @@ function updateStartQueryData(data: StartQuery, message: ContentSavedMessage) {
 function updateContentProperty(content: any, propName: string, propValue: any) {
     // we need remove the prefix icontent_ because some special properties like Name are returned with the prefix.
     propName = propName.toLowerCase()
-    propName = propName.startsWith("icontent_") ? propName.substring("icontent_".length) : propName
+    const prefixesToRemove = ["icontent_", "ichangetrackable_", "iversionable_", "iroutable_"]
+    prefixesToRemove.forEach(prefix => {
+        propName = propName.startsWith(prefix) ? propName.substring(prefix.length) : propName
+    })
 
     const matchedKey = Object.keys(content).find((key) => key.toLowerCase() === propName);
     if (!matchedKey) { return; }

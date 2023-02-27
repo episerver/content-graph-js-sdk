@@ -1,6 +1,6 @@
-const isEditMode = () => {
+const isEditOrPreviewMode = () => {
     const params = window.location.search.split(/[&?]+/);
-    return params.includes("epieditmode=true");
+    return params.includes("epieditmode=true") || params.includes("epieditmode=false");
 }
 
 const getImageUrl = (path = "") => {
@@ -47,4 +47,4 @@ const extractParams = (urlPath: string) => {
     return { relativePath, locales: language, language, contentId, workId }
 }
 
-export { isEditMode, extractParams, getImageUrl }
+export { isEditOrPreviewMode, extractParams, getImageUrl }

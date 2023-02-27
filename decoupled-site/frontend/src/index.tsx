@@ -10,14 +10,14 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import LoginCallbackPage from './pages/LoginCallbackPage';
-import { isEditMode } from './helpers/urlHelper';
+import { isEditOrPreviewMode } from './helpers/urlHelper';
 
 const queryClient = new QueryClient();
 const backendUrl = process.env.REACT_APP_LOGIN_AUTHORITY as string
 
 export default function WrapApp() {
   useEffect(() => {
-    if(isEditMode()) {
+    if(isEditOrPreviewMode()) {
       const communicationScript = document.createElement('script');
       communicationScript.src = `${backendUrl}/episerver/cms/latest/clientresources/communicationinjector.js`;
       document.body.appendChild(communicationScript);
