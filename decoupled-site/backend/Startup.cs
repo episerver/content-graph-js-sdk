@@ -118,8 +118,6 @@ public class Startup
             app.UseDeveloperExceptionPage();
         }
 
-        app.UsePing();
-
         app.UseStaticFiles();
         app.UseRouting();
 
