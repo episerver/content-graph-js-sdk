@@ -36,7 +36,7 @@ public class Startup
         var macOsConnString = @"Data Source=localhost,1433;Initial Catalog=musicfestival;
                                 User=sa;Password=Admin123!;
                                 Trust Server Certificate=True;Connect Timeout=30";
-        var connectionstring = _configuration.GetConnectionString("EPiServerDB") 
+        var connectionstring = _configuration.GetConnectionString("EPiServerDB")
                                 ?? (isMacOs? macOsConnString: localDBConnString);
         services.Configure<DataAccessOptions>(o =>
         {
@@ -117,6 +117,8 @@ public class Startup
         {
             app.UseDeveloperExceptionPage();
         }
+
+        app.UsePing();
 
         app.UseStaticFiles();
         app.UseRouting();
