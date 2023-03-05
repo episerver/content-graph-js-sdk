@@ -123,7 +123,7 @@ public class Startup
         app.UseRouting();
 
         app.UseCors(b => b
-            .WithOrigins(new[] { "http://localhost:3000"})
+            .WithOrigins(new[] { $"{_frontendUri}"})
             .WithExposedContentDeliveryApiHeaders()
             .WithExposedContentDefinitionApiHeaders()
             .WithHeaders("Authorization")
