@@ -17,13 +17,14 @@ namespace MusicFestival.Backend;
 public class Startup
 {
     private readonly IWebHostEnvironment _webHostingEnvironment;
-    private readonly Uri _frontendUri = new("http://localhost:3000");
+    private readonly Uri _frontendUri;
     private readonly IConfiguration _configuration;
 
     public Startup(IWebHostEnvironment webHostingEnvironment, IConfiguration configuration)
     {
         _webHostingEnvironment = webHostingEnvironment;
         _configuration = configuration;
+        _frontendUri = new(_configuration["FRONT_END_URI"]);
     }
 
     public void ConfigureServices(IServiceCollection services)
