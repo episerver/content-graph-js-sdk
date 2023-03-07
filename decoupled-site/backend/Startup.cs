@@ -10,6 +10,7 @@ using EPiServer.DependencyInjection;
 using EPiServer.OpenIDConnect;
 using EPiServer.Web;
 using EPiServer.Web.Routing;
+
 // using Optimizely.ContentGraph.Cms.NetCore.ProxyUtils;
 
 namespace MusicFestival.Backend;
