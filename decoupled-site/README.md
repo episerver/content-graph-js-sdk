@@ -81,10 +81,16 @@ Then in the shell, change the file owner user and group
 `CREATE DATABASE MusicFestival  ON (FILENAME = '/var/opt/mssql/data/musicfestival.mdf') FOR ATTACH;`
 
 ### Use Content Definitions
-We obviously use Content Definitions JS SDK to pull / push manifest.json as usual. The changes would be synced automatically into Content Graph. We already added 2 convenient commands (in `package.json`) to work with the SDK. To use more options of the SDK, please click [here](https://www.npmjs.com/package/@episerver/content-definitions).
+We can use Content Definitions JS SDK to pull / push manifest.json as usual. The changes would be synced automatically into ContentGraph.  
+Use two convenient commands (in `package.json`) to work with the SDK.  
 * Pulling manifest: `npm run content-definitions:pull`
 * Push manifest: `npm run content-definitions:push`
 
->>*Note: When running the commands, please update the folder permission if you face with Permission denied issue on folder `[RootPath]/decoupled-site/frontend/node_modules/.bin/content-definitions`*  
+To use more options of the SDK, please click [here](https://www.npmjs.com/package/@episerver/content-definitions).  
 
-After updating contentTypes, we need to wait until the contentTypes would be synced into Content Graph (By checking schema at the [address](http://localhost:8082/EPiServer/ContentGraph/GraphiQL)). After that, we need to update graphql queries (at `graphql/` folder) matching with the changes then run `npm run generate:local` at `frontend` root folder to re-generate types in file `generated.ts`. Finally, we could update the DOM to match with the changes on `.tsx` files.
+>*Note: When running the commands, please update the folder permission if you face with Permission denied issue on folder `[RootPath]/decoupled-site/frontend/node_modules/.bin/content-definitions`*  
+
+After updating contentTypes, we need to 
+1. Wait until the contentTypes would be synced into Content Graph (By checking schema at the [address](http://localhost:8082/EPiServer/ContentGraph/GraphiQL)). 2. Update graphql queries (at `graphql/` folder) matching with the changes we made to content types, as neccessary.  
+3. Run `npm run generate:local` at `frontend` root folder to re-generate types in file `generated.ts`. 
+4. Finally, we could update the views in `.tsx` files to match with the changes to the schema.  
