@@ -94,6 +94,10 @@ public class Startup
 
         services.AddOpenIDConnectUI();
 
+        // No encrypt the token so it's easier to debug, not recommend for production.
+        services.AddOpenIddict()
+            .AddServer(options => options.DisableAccessTokenEncryption());
+
         services.AddContentDefinitionsApi(OpenIDConnectOptionsDefaults.AuthenticationScheme);
 
         services.AddContentDeliveryApi(OpenIDConnectOptionsDefaults.AuthenticationScheme);
