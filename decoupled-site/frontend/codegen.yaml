@@ -1,4 +1,4 @@
-schema: https://cg.optimizely.com/content/v2?experimental=true&auth=INPUT_SINGLE_KEY_HERE
+schema: ${CONTENT_GRAPH_GATEWAY_URL}
 documents: './src/**/*.graphql'
 generates:
   ./src/generated.ts:

@@ -33,7 +33,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "generate": "graphql-codegen"
+    "generate": "graphql-codegen",
+    "generate:local": "DOTENV_CONFIG_PATH=./.env yarn generate -r dotenv/config"   
   },
   "eslintConfig": {
     "extends": [

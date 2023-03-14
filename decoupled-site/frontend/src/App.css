@@ -179,7 +179,7 @@ textarea {
   font-family: inherit;
   border: 2px solid #ccc;
   border-radius: 4px;
-  padding: 1.25em / 2;
+  padding: 0.6em;
   box-sizing: border-box;
 }
 
@@ -284,11 +284,12 @@ label {
 /**
 * Form Validation
 */
+
 /* stylelint-disable selector-class-pattern  */
 .field-validation-valid,
 .field-validation-error {
   display: block;
-  margin-top: 1.25em / 1.5;
+  margin-top: 0.83em;
   font-size: 0.875em;
 }
 
@@ -302,12 +303,13 @@ label {
 }
 
 /* stylelint-enable */
+
 /**
 * Print styles.
 * Inlined to avoid required HTTP connection.
 */
 @media print {
-  @page {
+  @page page {
     margin: 0.5cm;
   }
 
@@ -442,7 +444,7 @@ label {
   display: none;
 }
 
-/*! normalize.css v3.0.2 | MIT License | git.io/normalize */
+/*! normalize.css v3.0.2 | MIT License | git.io\/normalize */
 /**
 * 1. Set default font family to sans-serif.
 * 2. Prevent iOS text size adjust after orientation change, without disabling
@@ -467,8 +469,8 @@ body {
 /* HTML5 display definitions
     ========================================================================== */
 /**
-* Correct `block` display not defined for any HTML5 element in IE 8/9.
-* Correct `block` display not defined for `details` or `summary` in IE 10/11
+* Correct `block` display not defined for any HTML5 element in IE 8\/9.
+* Correct `block` display not defined for `details` or `summary` in IE 10\/11
 * and Firefox.
 * Correct `block` display not defined for `main` in IE 11.
 */
@@ -512,8 +514,8 @@ audio:not([controls]) {
 }
 
 /**
-* Address `[hidden]` styling not present in IE 8/9/10.
-* Hide the `template` element in IE 8/9/11, Safari, and Firefox < 22.
+* Address `[hidden]` styling not present in IE 8\/9\/10.
+* Hide the `template` element in IE 8\/9\/11, Safari, and Firefox < 22.
 */
 [hidden],
 template {
@@ -540,7 +542,7 @@ a:hover {
 /* Text-level semantics
     ========================================================================== */
 /**
-* Address styling not present in IE 8/9/10/11, Safari, and Chrome.
+* Address styling not present in IE 8\/9\/10\/11, Safari, and Chrome.
 */
 abbr[title] {
   border-bottom: 1px dotted;
@@ -571,7 +573,7 @@ h1 {
 }
 
 /**
-* Address styling not present in IE 8/9.
+* Address styling not present in IE 8\/9.
 */
 mark {
   background: #ff0;
@@ -607,14 +609,14 @@ sub {
 /* Embedded content
     ========================================================================== */
 /**
-* Remove border when inside `a` element in IE 8/9/10.
+* Remove border when inside `a` element in IE 8\/9\/10.
 */
 img {
   border: 0;
 }
 
 /**
-* Correct overflow not hidden in IE 9/10/11.
+* Correct overflow not hidden in IE 9\/10\/11.
 */
 svg:not(:root) {
   overflow: hidden;
@@ -628,7 +630,7 @@ svg {
 /* Grouping content
     ========================================================================== */
 /**
-* Address margin not present in IE 8/9 and Safari.
+* Address margin not present in IE 8\/9 and Safari.
 */
 figure {
   margin: 1em 40px;
@@ -686,7 +688,7 @@ textarea {
 }
 
 /**
-* Address `overflow` set to `hidden` in IE 8/9/10/11.
+* Address `overflow` set to `hidden` in IE 8\/9\/10\/11.
 */
 button {
   overflow: visible;
@@ -695,7 +697,7 @@ button {
 /**
 * Address inconsistent `text-transform` inheritance for `button` and `select`.
 * All other form control elements do not inherit `text-transform` values.
-* Correct `button` style inheritance in Firefox, IE 8/9/10/11, and Opera.
+* Correct `button` style inheritance in Firefox, IE 8\/9\/10\/11, and Opera.
 * Correct `select` style inheritance in Firefox.
 */
 button,
@@ -714,6 +716,7 @@ button,
 html input[type="button"],
 input[type="reset"],
 input[type="submit"] {
+  appearance: button;
   -webkit-appearance: button;
   /* 2 */
   cursor: pointer;
@@ -749,8 +752,8 @@ input {
 * It's recommended that you don't attempt to style these elements.
 * Firefox's implementation doesn't respect box-sizing, padding, or width.
 *
-* 1. Address box sizing set to `content-box` in IE 8/9/10.
-* 2. Remove excess padding in IE 8/9/10.
+* 1. Address box sizing set to `content-box` in IE 8\/9\/10.
+* 2. Remove excess padding in IE 8\/9\/10.
 */
 input[type="checkbox"],
 input[type="radio"] {
@@ -776,6 +779,8 @@ input[type="number"]::-webkit-outer-spin-button {
 *    (include `-moz` to future-proof).
 */
 input[type="search"] {
+
+  appearance: textfield;
   -webkit-appearance: textfield;
   /* 1 */
   /* 2 */
@@ -802,7 +807,7 @@ fieldset {
 }
 
 /**
-* 1. Correct `color` not being inherited in IE 8/9/10/11.
+* 1. Correct `color` not being inherited in IE 8\/9\/10\/11.
 * 2. Remove padding so people aren't caught out if they zero out fieldsets.
 */
 legend {
@@ -813,7 +818,7 @@ legend {
 }
 
 /**
-* Remove default vertical scrollbar in IE 8/9/10/11.
+* Remove default vertical scrollbar in IE 8\/9\/10\/11.
 */
 textarea {
   overflow: auto;
@@ -1459,7 +1464,7 @@ print {
 }
 
 /**
-* Pins to all corners by default. But when a width and/or height are
+* Pins to all corners by default. But when a width and\/or height are
 * provided, the element will be centered in its nearest relatively-positioned
 * ancestor.
 */
@@ -1547,8 +1552,8 @@ print {
     * Intentional redundancy build into each set of unit classes.
     * Supports: 2, 3, 4, 5, 6, 8, 10, 12 part
     *
-    * 1. Use `flex-basis: auto` with a width to avoid box-sizing bug in IE10/11
-    *    http://git.io/vllMD
+    * 1. Use `flex-basis: auto` with a width to avoid box-sizing bug in IE10\/11
+    *    http:\/\/git.io\/vllMD
     */
   [class*="u-xsm-size"] {
     flex-basis: auto !important;
@@ -1705,8 +1710,8 @@ print {
     * Intentional redundancy build into each set of unit classes.
     * Supports: 2, 3, 4, 5, 6, 8, 10, 12 part
     *
-    * 1. Use `flex-basis: auto` with a width to avoid box-sizing bug in IE10/11
-    *    http://git.io/vllMD
+    * 1. Use `flex-basis: auto` with a width to avoid box-sizing bug in IE10\/11
+    *    http:\/\/git.io\/vllMD
     */
   [class*="u-sm-size"] {
     flex-basis: auto !important;
@@ -1864,7 +1869,7 @@ print {
     * Supports: 2, 3, 4, 5, 6, 8, 10, 12 part
     *
     * 1. Use `flex-basis: auto` with a width to avoid box-sizing bug in IE10/11
-    *    http://git.io/vllMD
+    *    http:\/\/git.io\/vllMD
     */
   [class*="u-md-size"] {
     flex-basis: auto !important;
@@ -2022,7 +2027,7 @@ print {
     * Supports: 2, 3, 4, 5, 6, 8, 10, 12 part
     *
     * 1. Use `flex-basis: auto` with a width to avoid box-sizing bug in IE10/11
-    *    http://git.io/vllMD
+    *    http:\/\/git.io\/vllMD
     */
   [class*="u-lg-size"] {
     flex-basis: auto !important;
@@ -2194,7 +2199,7 @@ th.u-isShown {
   display: table-cell !important;
 }
 
-/* Show/hide depending on current breakpoint */
+/* Show\/hide depending on current breakpoint */
 .u-xsm-isShown,
 .u-xsm-isShownInline,
 .u-xsm-isShownInlineBlock,
@@ -2462,7 +2467,7 @@ print {
 *
 * 1. Ensure that the node has a maximum width after which truncation can
 *    occur.
-* 2. Fix for IE 8/9 if `word-wrap: break-word` is in effect on ancestor
+* 2. Fix for IE 8\/9 if `word-wrap: break-word` is in effect on ancestor
 *    nodes.
 */
 .u-textTruncate {
@@ -2763,7 +2768,7 @@ print {
 /*#
 
 The button classes are best applied to links and buttons.
-These components can be used in forms, as calls to action, or as part of the general UI of the site/app.
+These components can be used in forms, as calls to action, or as part of the general UI of the site\/app.
 */
 .Button,
 button {
@@ -2933,11 +2938,11 @@ print {
 
 Icon component displaying icons using an Icomoon.io generated icon web font.
 
-To add or remove icons navigate to https://icomoon.io/app/ and import "selection.json" from the Styles/Fonts/Icons folder.
+To add or remove icons navigate to https:\/\/icomoon.io\/app\/ and import "selection.json" from the Styles\/Fonts\/Icons folder.
 
 **Usage**
 To use an icon in a different component start by importing the Icon.less file:
-@import (reference) "../Atoms/Icon.less";
+@import (reference) "..\/Atoms\/Icon.less";
 
 Then extend the CSS rule with .Icon and set "content" to the icon you're looking for:
 .MyComponent {
@@ -2950,8 +2955,8 @@ Then extend the CSS rule with .Icon and set "content" to the icon you're looking
 Examples:
 
 <div>
-    <span class="Icon Icon--checkmark"></span>
-</div>
+    <span class="Icon Icon--checkmark"><\/span>
+<\/div>
 
 */
 .Link--skipLink {
@@ -3216,15 +3221,6 @@ widths and offsets should be applied to child grid cells.
 *	  l  = large
 *	  xl = xlarge
 */
-.Grid {
-  /**
-    * Horizontal gutters (left & right)
-    */
-  /**
-    * Vertical gutters (top & bottom)
-    */
-}
-
 .Grid.Grid--gutterH,
 .Grid.Grid--gutterA {
   margin-left: -15px;
@@ -3789,12 +3785,12 @@ h3 {
   text-align: center;
   position: absolute;
   width: 100%;
-} */
+}
 .ArtistDetailsPage .top h1 {
   position: relative;
   font-size: 1em;
   top: -2.5em;
-} */
+}
 .ArtistDetailsPage .artist-information p {
   margin: 0.55em 0;
   font: 12px "barlow-bold";
