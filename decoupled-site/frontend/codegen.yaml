@@ -1,4 +1,4 @@
-schema: ${CONTEN_GRAPH_GATEWAY_URL}
+schema: ${CONTENT_GRAPH_GATEWAY_URL}
 documents: './src/**/*.graphql'
 generates:
   ./src/generated.ts:
