@@ -1,0 +1,14 @@
+.container {
+}
+
+.content p {
+  margin: 10px;
+}
+
+.content .alignleft {
+  float: left;
+}
+
+.content .alignright {
+  float: right;
+}

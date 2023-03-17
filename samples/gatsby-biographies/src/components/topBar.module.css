@@ -1,0 +1,22 @@
+.container {
+  height: 70px;
+  align-items: center;
+  justify-content: flex-end;
+  display: flex;
+  background-color: rgba(0, 0, 0, .6);
+  margin-bottom: 5px;
+}
+
+.link {
+  color: #fff;
+  font-size: large;
+  font-weight: 500;
+  text-decoration: none;
+  display: inline-block;
+  padding: 3px 3px;
+  margin: 0 3px;
+}
+
+.link:hover {
+  background-color: rgba(0, 0, 0, .3);
+}
