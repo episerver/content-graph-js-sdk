@@ -3,8 +3,8 @@ require("dotenv").config({
   path: `.env.${NODE_ENV}`,
 })
 
-const { OPTIQ_URL, OPTIQ_AUTH } = process.env
-console.log({ NODE_ENV, OPTIQ_URL, OPTIQ_AUTH })
+const { CONTENT_GRAPH_URL, CONTENT_GRAPH_AUTH } = process.env
+console.log({ NODE_ENV, CONTENT_GRAPH_URL, CONTENT_GRAPH_AUTH })
 
 module.exports = {
   siteMetadata: {
@@ -23,9 +23,9 @@ module.exports = {
       options: {
         typeName: "Optimizely",
         fieldName: "optimizely",
-        url: `${OPTIQ_URL}/content/v2`,
+        url: `${CONTENT_GRAPH_URL}/content/v2`,
         headers: {
-          Authorization: `epi-single ${OPTIQ_AUTH}`,
+          Authorization: `epi-single ${CONTENT_GRAPH_AUTH}`,
         },
       },
     },

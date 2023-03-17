@@ -53,7 +53,7 @@ function loadData() {
 }
 
 function generateHmacHeader(url: string, init: RequestInit) {
-  const { OPTIQ_APPKEY: appKey, OPTIQ_SECRET: secret } = process.env
+  const { CONTENT_GRAPH_APPKEY: appKey, CONTENT_GRAPH_SECRET: secret } = process.env
 
   const method = (init.method || "").toUpperCase()
   const { pathname, search } = new URL(url)
@@ -72,8 +72,8 @@ function generateHmacHeader(url: string, init: RequestInit) {
 }
 
 async function sendOptiqReq(method: "GET" | "POST", path: string, data?: any, _url?: string) {
-  const { OPTIQ_URL } = process.env
-  const url = `${_url || OPTIQ_URL}/${path}`
+  const { CONTENT_GRAPH_URL } = process.env
+  const url = `${_url || CONTENT_GRAPH_URL}/${path}`
   const isJson = typeof data === "object"
   const body = isJson ? JSON.stringify(data) : data
   const init: RequestInit = { method, body }
