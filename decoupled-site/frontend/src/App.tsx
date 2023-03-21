@@ -15,7 +15,7 @@ import { generateGQLQueryVars, updateStartQueryCache } from './helpers/queryCach
 import { BlockPage } from './pages/BlockPage';
 
 let previousSavedMessage: any = null;
-const singleKeyUrl = process.env.CONTENT_GRAPH_GATEWAY_URL as string
+const singleKeyUrl = process.env.REACT_APP_CONTENT_GRAPH_GATEWAY_URL as string
 const hmacKeyUrl = process.env.REACT_APP_CG_PROXY_URL as string
 
 const App = () => {
