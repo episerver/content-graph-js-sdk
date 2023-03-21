@@ -18,7 +18,6 @@ This project uses:
 2. Config the Content Graph keys:   
     * ./backend/appsettings.json
     * ./frontend/.env
-    * ./frontend/codegen.yaml
 
 3. Open terminal for `./backend` and run `dotnet run`.
     * Navigate to http://localhost:8082/.
