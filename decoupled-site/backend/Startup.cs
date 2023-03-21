@@ -10,6 +10,7 @@ using EPiServer.DependencyInjection;
 using EPiServer.OpenIDConnect;
 using EPiServer.Web;
 using EPiServer.Web.Routing;
+
 // using Optimizely.ContentGraph.Cms.NetCore.ProxyUtils;
 
 namespace MusicFestival.Backend;
@@ -17,13 +18,14 @@ namespace MusicFestival.Backend;
 public class Startup
 {
     private readonly IWebHostEnvironment _webHostingEnvironment;
-    private readonly Uri _frontendUri = new("http://localhost:3000");
+    private readonly Uri _frontendUri;
     private readonly IConfiguration _configuration;
 
     public Startup(IWebHostEnvironment webHostingEnvironment, IConfiguration configuration)
     {
         _webHostingEnvironment = webHostingEnvironment;
         _configuration = configuration;
+        _frontendUri = new(_configuration["FRONT_END_URI"]);
     }
 
     public void ConfigureServices(IServiceCollection services)
@@ -36,7 +38,7 @@ public class Startup
         var macOsConnString = @"Data Source=localhost,1433;Initial Catalog=musicfestival;
                                 User=sa;Password=Admin123!;
                                 Trust Server Certificate=True;Connect Timeout=30";
-        var connectionstring = _configuration.GetConnectionString("EPiServerDB") 
+        var connectionstring = _configuration.GetConnectionString("EPiServerDB")
                                 ?? (isMacOs? macOsConnString: localDBConnString);
         services.Configure<DataAccessOptions>(o =>
         {
@@ -92,6 +94,10 @@ public class Startup
 
         services.AddOpenIDConnectUI();
 
+        // No encrypt the token so it's easier to debug, not recommend for production.
+        services.AddOpenIddict()
+            .AddServer(options => options.DisableAccessTokenEncryption());
+
         services.AddContentDefinitionsApi(OpenIDConnectOptionsDefaults.AuthenticationScheme);
 
         services.AddContentDeliveryApi(OpenIDConnectOptionsDefaults.AuthenticationScheme);
@@ -122,7 +128,7 @@ public class Startup
         app.UseRouting();
 
         app.UseCors(b => b
-            .WithOrigins(new[] { "http://localhost:3000"})
+            .WithOrigins(new[] { $"{_frontendUri}"})
             .WithExposedContentDeliveryApiHeaders()
             .WithExposedContentDefinitionApiHeaders()
             .WithHeaders("Authorization")

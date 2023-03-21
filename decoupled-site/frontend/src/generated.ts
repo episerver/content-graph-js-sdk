@@ -209,6 +209,11 @@ export type ArtistContainerPageOutput = {
   total?: Maybe<Scalars['Int']>;
 };
 
+
+export type ArtistContainerPageOutputTotalArgs = {
+  all?: InputMaybe<Scalars['Boolean']>;
+};
+
 export type ArtistContainerPageWhereInput = {
   Ancestors?: InputMaybe<StringFilterInput>;
   Category?: InputMaybe<CategoryModelWhereInput>;
@@ -495,6 +500,11 @@ export type ArtistDetailsPageOutput = {
   total?: Maybe<Scalars['Int']>;
 };
 
+
+export type ArtistDetailsPageOutputTotalArgs = {
+  all?: InputMaybe<Scalars['Boolean']>;
+};
+
 export type ArtistDetailsPageWhereInput = {
   Ancestors?: InputMaybe<StringFilterInput>;
   ArtistDescription?: InputMaybe<StringFilterInput>;
@@ -773,6 +783,11 @@ export type BuyTicketBlockOutput = {
   facets?: Maybe<BuyTicketBlockFacet>;
   items?: Maybe<Array<Maybe<BuyTicketBlock>>>;
   total?: Maybe<Scalars['Int']>;
+};
+
+
+export type BuyTicketBlockOutputTotalArgs = {
+  all?: InputMaybe<Scalars['Boolean']>;
 };
 
 export type BuyTicketBlockWhereInput = {
@@ -1136,6 +1151,11 @@ export type ContentBlockOutput = {
   total?: Maybe<Scalars['Int']>;
 };
 
+
+export type ContentBlockOutputTotalArgs = {
+  all?: InputMaybe<Scalars['Boolean']>;
+};
+
 export type ContentBlockWhereInput = {
   Ancestors?: InputMaybe<StringFilterInput>;
   Category?: InputMaybe<CategoryModelWhereInput>;
@@ -1434,6 +1454,11 @@ export type ContentOutput = {
   facets?: Maybe<ContentFacet>;
   items?: Maybe<Array<Maybe<IContent>>>;
   total?: Maybe<Scalars['Int']>;
+};
+
+
+export type ContentOutputTotalArgs = {
+  all?: InputMaybe<Scalars['Boolean']>;
 };
 
 export type ContentRootsModel = {
@@ -1797,6 +1822,11 @@ export type ImageFileOutput = {
   total?: Maybe<Scalars['Int']>;
 };
 
+
+export type ImageFileOutputTotalArgs = {
+  all?: InputMaybe<Scalars['Boolean']>;
+};
+
 export type ImageFileWhereInput = {
   Ancestors?: InputMaybe<StringFilterInput>;
   Category?: InputMaybe<CategoryModelWhereInput>;
@@ -2035,6 +2065,11 @@ export type ImagePageOutput = {
   facets?: Maybe<ImagePageFacet>;
   items?: Maybe<Array<Maybe<ImagePage>>>;
   total?: Maybe<Scalars['Int']>;
+};
+
+
+export type ImagePageOutputTotalArgs = {
+  all?: InputMaybe<Scalars['Boolean']>;
 };
 
 export type ImagePageWhereInput = {
@@ -2346,6 +2381,11 @@ export type LandingPageOutput = {
   facets?: Maybe<LandingPageFacet>;
   items?: Maybe<Array<Maybe<LandingPage>>>;
   total?: Maybe<Scalars['Int']>;
+};
+
+
+export type LandingPageOutputTotalArgs = {
+  all?: InputMaybe<Scalars['Boolean']>;
 };
 
 export type LandingPageWhereInput = {
@@ -2830,6 +2870,11 @@ export type SiteDefinitionOutput = {
   facets?: Maybe<SiteDefinitionFacet>;
   items?: Maybe<Array<Maybe<SiteDefinition>>>;
   total?: Maybe<Scalars['Int']>;
+};
+
+
+export type SiteDefinitionOutputTotalArgs = {
+  all?: InputMaybe<Scalars['Boolean']>;
 };
 
 export type SiteDefinitionWhereInput = {

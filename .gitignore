@@ -1,5 +1,5 @@
-decoupled-site/backend/bin
-decoupled-site/backend/modules
-decoupled-site/backend/obj
-decoupled-site/frontend/node_modules
-decoupled-site/backend/App_Data/blobs
+**/*/bin
+**/*/modules
+**/*/obj
+**/*/node_modules
+**/*/App_Data/blobs
