@@ -1,0 +1,4 @@
+fragment LandingPageBlockData on LandingPageBlockData {
+    Heading
+    Message
+}
