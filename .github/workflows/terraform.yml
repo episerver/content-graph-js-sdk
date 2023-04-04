@@ -65,6 +65,8 @@ jobs:
       #   uses: azure/login@v1
       #   with:
       #     creds: ${{ secrets.AZURE_CREDENTIALS }}
+      - name: check directory
+        run: ls -al .
 
       - name: Terraform init
         uses: hashicorp/setup-terraform@v1
