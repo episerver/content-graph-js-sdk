@@ -4,6 +4,11 @@ name: Terraform
 #   push:
 #     branches:
 #       - main
+on: 
+  workflow_dispatch:
+    inputs:
+      tags:
+        description: 'Test scenario tags' 
 
 jobs:
   create-backend:
@@ -22,14 +27,10 @@ jobs:
           echo "::set-output name=backend-exists::$(az storage account show -n example -g example --query 'name' -o tsv 2>/dev/null || echo false)"
         env:
           AZURE_LOGIN_METHOD: service-principal
-          AZURE_USERNAME: 3f5ce012-10c3-4019-94ff-ebc6572a8361
-          AZURE_PASSWORD: gC38Q~oHwcLH6jRhImpSjNI8EKHf3EY64cNjicM5
-          AZURE_TENANT: 7c4a1b79-4b8e-4ac7-b7e1-c5c3c5a4c139
-          ARM_SUBSCRIPTION_ID: d93e1cd9-bcd2-4585-9c36-74c5af960478
-          # AZURE_USERNAME: ${{ secrets.AZURE_CLIENT_ID }}
-          # AZURE_PASSWORD: ${{ secrets.AZURE_CLIENT_SECRET }}
-          # AZURE_TENANT: ${{ secrets.AZURE_TENANT_ID }}
-          # ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+          AZURE_USERNAME: ${{ secrets.AZURE_CLIENT_ID }}
+          AZURE_PASSWORD: ${{ secrets.AZURE_CLIENT_SECRET }}
+          AZURE_TENANT: ${{ secrets.AZURE_TENANT_ID }}
+          ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
 
       - name: Create backend
         if: ${{ steps.backend-check.outputs.backend-exists == 'false' }}
