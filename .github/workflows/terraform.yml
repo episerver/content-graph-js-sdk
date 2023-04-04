@@ -1,0 +1,103 @@
+name: Terraform
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  create-backend:
+    runs-on: ubuntu-latest
+    if: >
+      github.event_name == 'push' &&
+      github.ref == 'refs/heads/main' &&
+      !contains(github.event.head_commit.message, '[skip create-backend]')
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Check backend state
+        id: backend-check
+        run: |
+          echo "::set-output name=backend-exists::$(az storage account show -n example -g example --query 'name' -o tsv 2>/dev/null || echo false)"
+        env:
+          AZURE_LOGIN_METHOD: service-principal
+          AZURE_USERNAME: ${{ secrets.AZURE_CLIENT_ID }}
+          AZURE_PASSWORD: ${{ secrets.AZURE_CLIENT_SECRET }}
+          AZURE_TENANT: ${{ secrets.AZURE_TENANT_ID }}
+          ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+
+      - name: Create backend
+        if: ${{ steps.backend-check.outputs.backend-exists == 'false' }}
+        uses: hashicorp/setup-terraform@v1
+        with:
+          backend-config: |
+            storage_account_name = "example"
+            container_name       = "terraform-state"
+            key                  = "example.terraform.tfstate"
+            resource_group_name  = "example"
+
+      - name: Save backend file
+        if: ${{ steps.backend-check.outputs.backend-exists == 'false' }}
+        run: |
+          mkdir -p backend
+          terraform output > backend/backend.tf
+        env:
+          ARM_ACCESS_KEY: ${{ secrets.ARM_ACCESS_KEY }}
+
+      - name: Save state file
+        if: ${{ steps.backend-check.outputs.backend-exists == 'false' }}
+        uses: actions/upload-artifact@v2
+        with:
+          name: terraform-state
+          path: backend
+
+  terraform-init-plan:
+    runs-on: ubuntu-latest
+    needs: create-backend
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Configure Azure credentials
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: Terraform init
+        uses: hashicorp/setup-terraform@v1
+        with:
+          cli_config_credentials_token: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: Terraform plan
+        run: |
+          terraform init
+          terraform plan -out=tfplan
+        env:
+          ARM_ACCESS_KEY: ${{ secrets.ARM_ACCESS_KEY }}
+
+      - name: Save Terraform plan
+        uses: actions/upload-artifact@v2
+        with:
+          name: terraform-plan
+          path: tfplan
+
+  terraform-apply:
+    runs-on: ubuntu-latest
+    needs: terraform-init-plan
+    permissions:
+      approvals: 2
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Configure Azure credentials
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: Terraform apply
+        run: |
+          terraform apply -auto-approve tfplan
+        env:
+          ARM_ACCESS_KEY: ${{ secrets.ARM_ACCESS_KEY }}
