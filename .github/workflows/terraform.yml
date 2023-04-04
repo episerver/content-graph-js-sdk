@@ -4,11 +4,7 @@ name: Terraform
 #   push:
 #     branches:
 #       - main
-on: 
-  workflow_dispatch:
-    inputs:
-      tags:
-        description: 'Test scenario tags' 
+on: workflow_dispatch
 
 jobs:
   create-backend:
