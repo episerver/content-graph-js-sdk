@@ -59,7 +59,7 @@ jobs:
     needs: create-backend
     defaults:
       run:
-        working-directory: ./github/workflows
+        working-directory: .github/workflows
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
