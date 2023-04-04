@@ -80,8 +80,11 @@ jobs:
         run: |
           terraform init
           terraform plan -out=tfplan
-        # env:
-        #   ARM_ACCESS_KEY: ${{ secrets.ARM_ACCESS_KEY }}
+        env:
+          TF_VAR_subscription_id: ${{ secrets.TF_VAR_subscription_id }}
+          TF_VAR_client_id: ${{ secrets.TF_VAR_client_id }}
+          TF_VAR_client_secret: ${{ secrets.TF_VAR_client_secret }}
+          TF_VAR_tenant_id: ${{ secrets.TF_VAR_tenant_id }}
 
       - name: Save Terraform plan
         uses: actions/upload-artifact@v2
@@ -94,6 +97,9 @@ jobs:
     needs: terraform-init-plan
     # permissions:
     #   approvals: 2
+    defaults:
+      run:
+        working-directory: .github/workflows
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -106,5 +112,8 @@ jobs:
       - name: Terraform apply
         run: |
           terraform apply -auto-approve tfplan
-        # env:
-        #   ARM_ACCESS_KEY: ${{ secrets.ARM_ACCESS_KEY }}
+        env:
+          TF_VAR_subscription_id: ${{ secrets.TF_VAR_subscription_id }}
+          TF_VAR_client_id: ${{ secrets.TF_VAR_client_id }}
+          TF_VAR_client_secret: ${{ secrets.TF_VAR_client_secret }}
+          TF_VAR_tenant_id: ${{ secrets.TF_VAR_tenant_id }}
