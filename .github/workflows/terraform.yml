@@ -10,10 +10,10 @@ on:
 jobs:
   create-backend:
     runs-on: ubuntu-latest
-    if: >
-      github.event_name == 'push' &&
-      github.ref == 'refs/heads/main' &&
-      !contains(github.event.head_commit.message, '[skip create-backend]')
+    # if: >
+    #   github.event_name == 'push' &&
+    #   github.ref == 'refs/heads/main' &&
+    #   !contains(github.event.head_commit.message, '[skip create-backend]')
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
