@@ -10,10 +10,10 @@ on:
 jobs:
   create-backend:
     runs-on: ubuntu-latest
-    # if: >
-    #   github.event_name == 'push' &&
-    #   github.ref == 'refs/heads/main' &&
-    #   !contains(github.event.head_commit.message, '[skip create-backend]')
+    if: >
+      github.event_name == 'push' &&
+      github.ref == 'refs/heads/main' &&
+      !contains(github.event.head_commit.message, '[skip create-backend]')
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -61,22 +61,22 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Configure Azure credentials
-        uses: azure/login@v1
-        with:
-          creds: ${{ secrets.AZURE_CREDENTIALS }}
+      # - name: Configure Azure credentials
+      #   uses: azure/login@v1
+      #   with:
+      #     creds: ${{ secrets.AZURE_CREDENTIALS }}
 
       - name: Terraform init
         uses: hashicorp/setup-terraform@v1
-        with:
-          cli_config_credentials_token: ${{ secrets.AZURE_CREDENTIALS }}
+        # with:
+        #   cli_config_credentials_token: ${{ secrets.AZURE_CREDENTIALS }}
 
       - name: Terraform plan
         run: |
           terraform init
           terraform plan -out=tfplan
-        env:
-          ARM_ACCESS_KEY: ${{ secrets.ARM_ACCESS_KEY }}
+        # env:
+        #   ARM_ACCESS_KEY: ${{ secrets.ARM_ACCESS_KEY }}
 
       - name: Save Terraform plan
         uses: actions/upload-artifact@v2
@@ -93,13 +93,13 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Configure Azure credentials
-        uses: azure/login@v1
-        with:
-          creds: ${{ secrets.AZURE_CREDENTIALS }}
+      # - name: Configure Azure credentials
+      #   uses: azure/login@v1
+      #   with:
+      #     creds: ${{ secrets.AZURE_CREDENTIALS }}
 
       - name: Terraform apply
         run: |
           terraform apply -auto-approve tfplan
-        env:
-          ARM_ACCESS_KEY: ${{ secrets.ARM_ACCESS_KEY }}
+        # env:
+        #   ARM_ACCESS_KEY: ${{ secrets.ARM_ACCESS_KEY }}
