@@ -57,6 +57,9 @@ jobs:
   terraform-init-plan:
     runs-on: ubuntu-latest
     needs: create-backend
+    defaults:
+      run:
+        working-directory: ./github/workflows
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
