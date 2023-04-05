@@ -10,9 +10,9 @@ on:
 jobs:
   create-backend:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: .github/workflows
+    # defaults:
+    #   run:
+    #     working-directory: .github/workflows
     # if: >
     #   github.event_name == 'push' &&
     #   github.ref == 'refs/heads/main' &&
@@ -35,6 +35,7 @@ jobs:
       - name: Create backend
         if: ${{ steps.backend-check.outputs.backend-exists == 'false' }}
         uses: hashicorp/setup-terraform@v1
+        working-directory: .github/workflow
         with:
           backend-config: |
             storage_account_name = "example"
@@ -50,6 +51,7 @@ jobs:
 
       - name: Save backend file
         if: ${{ steps.backend-check.outputs.backend-exists == 'false' }}
+        working-directory: .github/workflow
         run: |
           mkdir -p backend
           terraform output > backend/backend.tf
@@ -63,6 +65,7 @@ jobs:
       - name: Save state file
         if: ${{ steps.backend-check.outputs.backend-exists == 'false' }}
         uses: actions/upload-artifact@v3
+        working-directory: .github/workflow
         with:
           name: terraform-state
           path: backend
@@ -70,9 +73,9 @@ jobs:
   terraform-init-plan:
     runs-on: ubuntu-latest
     needs: create-backend
-    defaults:
-      run:
-        working-directory: .github/workflows
+    # defaults:
+    #   run:
+    #     working-directory: .github/workflows
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -84,6 +87,7 @@ jobs:
         run: |
           terraform init
           terraform plan -out=tfplan
+        working-directory: .github/workflow
         env:
           TF_VAR_subscription_id: ${{ secrets.TF_VAR_subscription_id }}
           TF_VAR_client_id: ${{ secrets.TF_VAR_client_id }}
@@ -92,6 +96,7 @@ jobs:
 
       - name: Save Terraform plan
         uses: actions/upload-artifact@v3
+        working-directory: .github/workflow
         with:
           name: terraform-plan
           path: tfplan
@@ -104,22 +109,25 @@ jobs:
     needs: terraform-init-plan
     # permissions:
     #   approvals: 2
-    defaults:
-      run:
-        working-directory: .github/workflows
+    # defaults:
+    #   run:
+    #     working-directory: .github/workflows
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
 
       - name: Download Terraform plan artifact
         uses: actions/download-artifact@v3
+        working-directory: .github/workflow
         with:
           name: terraform-plan
 
       - name: check directory
+        working-directory: .github/workflow
         run: ls -al .
 
       - name: Terraform apply
+      working-directory: .github/workflow
         run: |
           terraform apply -auto-approve tfplan
         env:
