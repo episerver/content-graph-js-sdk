@@ -114,14 +114,17 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Download Terraform plan artifact
-        working-directory: .github/workflows
+        # working-directory: .github/workflows
         uses: actions/download-artifact@v3
         with:
           name: terraform-plan
 
-      - name: check directory
+      - name: check directory .github/workflows
         working-directory: .github/workflows
         run: ls -al .
+
+      - name: check directory root
+        run: ls -al 
 
       - name: Terraform apply
         working-directory: .github/workflows
