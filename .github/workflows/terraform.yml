@@ -35,7 +35,6 @@ jobs:
       - name: Create backend
         if: ${{ steps.backend-check.outputs.backend-exists == 'false' }}
         uses: hashicorp/setup-terraform@v1
-        working-directory: .github/workflow
         with:
           backend-config: |
             storage_account_name = "example"
