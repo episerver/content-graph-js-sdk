@@ -77,9 +77,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: check directory
-        run: ls -al .
-
       - name: Terraform init
         uses: hashicorp/setup-terraform@v1
 
@@ -98,6 +95,9 @@ jobs:
         with:
           name: terraform-plan
           path: tfplan
+      
+      - name: check directory
+        run: ls -al .
 
   terraform-apply:
     runs-on: ubuntu-latest
