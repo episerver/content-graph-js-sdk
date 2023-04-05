@@ -10,6 +10,9 @@ on:
 jobs:
   create-backend:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: .github/workflows
     # if: >
     #   github.event_name == 'push' &&
     #   github.ref == 'refs/heads/main' &&
@@ -38,6 +41,12 @@ jobs:
             container_name       = "terraform-state"
             key                  = "example.terraform.tfstate"
             resource_group_name  = "example"
+        env:
+          AZURE_LOGIN_METHOD: service-principal
+          AZURE_USERNAME: ${{ secrets.AZURE_CLIENT_ID }}
+          AZURE_PASSWORD: ${{ secrets.AZURE_CLIENT_SECRET }}
+          AZURE_TENANT: ${{ secrets.AZURE_TENANT_ID }}
+          ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
 
       - name: Save backend file
         if: ${{ steps.backend-check.outputs.backend-exists == 'false' }}
@@ -45,7 +54,11 @@ jobs:
           mkdir -p backend
           terraform output > backend/backend.tf
         env:
-          ARM_ACCESS_KEY: ${{ secrets.ARM_ACCESS_KEY }}
+          AZURE_LOGIN_METHOD: service-principal
+          AZURE_USERNAME: ${{ secrets.AZURE_CLIENT_ID }}
+          AZURE_PASSWORD: ${{ secrets.AZURE_CLIENT_SECRET }}
+          AZURE_TENANT: ${{ secrets.AZURE_TENANT_ID }}
+          ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
 
       - name: Save state file
         if: ${{ steps.backend-check.outputs.backend-exists == 'false' }}
@@ -64,17 +77,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      # - name: Configure Azure credentials
-      #   uses: azure/login@v1
-      #   with:
-      #     creds: ${{ secrets.AZURE_CREDENTIALS }}
       - name: check directory
         run: ls -al .
 
       - name: Terraform init
         uses: hashicorp/setup-terraform@v1
-        # with:
-        #   cli_config_credentials_token: ${{ secrets.AZURE_CREDENTIALS }}
 
       - name: Terraform plan
         run: |
@@ -104,10 +111,10 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      # - name: Configure Azure credentials
-      #   uses: azure/login@v1
-      #   with:
-      #     creds: ${{ secrets.AZURE_CREDENTIALS }}
+      - name: Download Terraform plan artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: terraform-plan
 
       - name: Terraform apply
         run: |
