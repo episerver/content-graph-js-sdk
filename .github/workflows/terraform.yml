@@ -82,7 +82,7 @@ jobs:
         uses: hashicorp/setup-terraform@v1
 
       - name: Terraform plan
-        working-directory: /.github/workflow
+        working-directory: .github/workflows
         run: |
           terraform init
           terraform plan -out=tfplan
@@ -96,7 +96,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: terraform-plan
-          path: .github/workflow/tfplan
+          path: .github/workflows/tfplan
       
       - name: check directory
         run: ls -al .
@@ -120,11 +120,11 @@ jobs:
           name: terraform-plan
 
       - name: check directory
-        working-directory: .github/workflow
+        working-directory: .github/workflows
         run: ls -al .
 
       - name: Terraform apply
-        working-directory: .github/workflow
+        working-directory: .github/workflows
         run: |
           terraform apply -auto-approve tfplan
         env:
