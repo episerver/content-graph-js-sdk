@@ -84,7 +84,7 @@ jobs:
       - name: Terraform plan
         working-directory: .github/workflows
         run: |
-          terraform init
+          terraform init -upgrade
           terraform plan -out=tfplan
         env:
           TF_VAR_subscription_id: ${{ secrets.TF_VAR_subscription_id }}
