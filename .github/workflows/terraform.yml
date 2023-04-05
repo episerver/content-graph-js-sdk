@@ -127,7 +127,7 @@ jobs:
         run: ls -al 
 
       - name: Terraform apply
-        working-directory: .github/workflows
+        # working-directory: .github/workflows
         run: |
           terraform apply -auto-approve tfplan
         env:
