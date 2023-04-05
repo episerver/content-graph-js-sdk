@@ -123,11 +123,11 @@ jobs:
         working-directory: .github/workflows
         run: ls -al .
 
-      - name: check directory root
-        run: ls -al 
+      - name: move to workflow
+        run: mv tfplan .github/workflows/tfplan 
 
       - name: Terraform apply
-        # working-directory: .github/workflows
+        working-directory: .github/workflows
         run: |
           terraform apply -auto-approve tfplan
         env:
