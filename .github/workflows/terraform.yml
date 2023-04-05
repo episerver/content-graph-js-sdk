@@ -19,7 +19,7 @@ jobs:
     #   !contains(github.event.head_commit.message, '[skip create-backend]')
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Check backend state
         id: backend-check
@@ -62,7 +62,7 @@ jobs:
 
       - name: Save state file
         if: ${{ steps.backend-check.outputs.backend-exists == 'false' }}
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: terraform-state
           path: backend
@@ -75,7 +75,7 @@ jobs:
         working-directory: .github/workflows
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Terraform init
         uses: hashicorp/setup-terraform@v1
@@ -91,7 +91,7 @@ jobs:
           TF_VAR_tenant_id: ${{ secrets.TF_VAR_tenant_id }}
 
       - name: Save Terraform plan
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: terraform-plan
           path: tfplan
@@ -109,12 +109,15 @@ jobs:
         working-directory: .github/workflows
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Download Terraform plan artifact
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v3
         with:
           name: terraform-plan
+
+      - name: check directory
+        run: ls -al .
 
       - name: Terraform apply
         run: |
