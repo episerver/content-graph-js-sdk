@@ -64,7 +64,6 @@ jobs:
       - name: Save state file
         if: ${{ steps.backend-check.outputs.backend-exists == 'false' }}
         uses: actions/upload-artifact@v3
-        working-directory: .github/workflow
         with:
           name: terraform-state
           path: backend
@@ -95,10 +94,9 @@ jobs:
 
       - name: Save Terraform plan
         uses: actions/upload-artifact@v3
-        working-directory: .github/workflow
         with:
           name: terraform-plan
-          path: tfplan
+          path: .github/workflow/tfplan
       
       - name: check directory
         run: ls -al .
@@ -117,7 +115,7 @@ jobs:
 
       - name: Download Terraform plan artifact
         uses: actions/download-artifact@v3
-        working-directory: .github/workflow
+        # working-directory: .github/workflow
         with:
           name: terraform-plan
 
