@@ -50,7 +50,7 @@ jobs:
 
       - name: Save backend file
         if: ${{ steps.backend-check.outputs.backend-exists == 'false' }}
-        working-directory: .github/workflow
+        # working-directory: .github/workflow
         run: |
           mkdir -p backend
           terraform output > backend/backend.tf
