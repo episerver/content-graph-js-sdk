@@ -85,7 +85,7 @@ jobs:
         run: |
           terraform init
           terraform plan -out=tfplan
-        working-directory: .github/workflow
+        # working-directory: .github/workflow
         env:
           TF_VAR_subscription_id: ${{ secrets.TF_VAR_subscription_id }}
           TF_VAR_client_id: ${{ secrets.TF_VAR_client_id }}
