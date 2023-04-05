@@ -82,7 +82,7 @@ jobs:
         uses: hashicorp/setup-terraform@v1
 
       - name: Terraform plan
-        working-directory: .github/workflow
+        working-directory: /.github/workflow
         run: |
           terraform init
           terraform plan -out=tfplan
