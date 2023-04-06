@@ -1,19 +1,12 @@
-name: Docker Image CI
+name: Deploy Backend Docker Image
 
-# on:
-#   push:
-#     branches:
-#       - main
-on: 
-    workflow_dispatch:
+on:
+  workflow_call:
 
 jobs:
 
   build:
     runs-on: ubuntu-latest
-    # defaults:
-    #   run:
-    #     working-directory: decoupled-site/backend
     
     steps:
     - name: Checkout code
