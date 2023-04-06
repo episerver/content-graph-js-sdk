@@ -32,7 +32,7 @@ resource "azurerm_container_registry" "musicfestival" {
 }
 
 resource "azurerm_storage_account" "musicfestival" {
-  name                     = "backendstorage"
+  name                     = "mfbackendstorage"
   resource_group_name      = azurerm_resource_group.musicfestival.name
   location                 = azurerm_resource_group.musicfestival.location
   account_tier             = "Standard"
@@ -63,7 +63,7 @@ resource "azurerm_service_plan" "musicfestival" {
 }
 
 resource "azurerm_linux_web_app" "musicfestival" {
-  name                = "backendappservice"
+  name                = "mfappservice"
   location            = azurerm_resource_group.musicfestival.location
   resource_group_name = azurerm_resource_group.musicfestival.name
   service_plan_id     = azurerm_service_plan.musicfestival.id
