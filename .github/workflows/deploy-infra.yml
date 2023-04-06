@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  create-backend:
+  create-infra:
     runs-on: ubuntu-latest
     # needs: create-backend
     # defaults:
@@ -41,7 +41,7 @@ jobs:
           TF_VAR_client_secret: ${{ secrets.TF_VAR_client_secret }}
           TF_VAR_tenant_id: ${{ secrets.TF_VAR_tenant_id }}
   
-  deploy-backend-image:
-    needs: [create-backend]
+  deploy-backend:
+    needs: [create-infra]
     secrets: inherit
     uses: ./.github/workflows/deploy-backend.yml
