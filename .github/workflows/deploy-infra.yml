@@ -30,6 +30,10 @@ jobs:
           TF_VAR_client_id: ${{ secrets.TF_VAR_client_id }}
           TF_VAR_client_secret: ${{ secrets.TF_VAR_client_secret }}
           TF_VAR_tenant_id: ${{ secrets.TF_VAR_tenant_id }}
+          TF_VAR_gateway: ${{secrets.TF_VAR_gateway}}
+          TF_VAR_app_key: ${{secrets.TF_VAR_app_key}}
+          TF_VAR_secret: ${{secrets.TF_VAR_secret}}
+          TF_VAR_single_key: ${{secrets.TF_VAR_single_key}}
 
       - name: Terraform apply
         working-directory: .github/workflows
@@ -40,6 +44,10 @@ jobs:
           TF_VAR_client_id: ${{ secrets.TF_VAR_client_id }}
           TF_VAR_client_secret: ${{ secrets.TF_VAR_client_secret }}
           TF_VAR_tenant_id: ${{ secrets.TF_VAR_tenant_id }}
+          TF_VAR_gateway: ${{secrets.TF_VAR_gateway}}
+          TF_VAR_app_key: ${{secrets.TF_VAR_app_key}}
+          TF_VAR_secret: ${{secrets.TF_VAR_secret}}
+          TF_VAR_single_key: ${{secrets.TF_VAR_single_key}}
   
   deploy-backend:
     needs: [create-infra]

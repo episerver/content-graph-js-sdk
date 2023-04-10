@@ -81,6 +81,14 @@ resource "azurerm_linux_web_app" "musicfestival" {
     "DOCKER_REGISTRY_SERVER_URL"         = "https://${azurerm_container_registry.musicfestival.login_server}"
     "DOCKER_REGISTRY_SERVER_USERNAME"    = azurerm_container_registry.musicfestival.admin_username
     "DOCKER_REGISTRY_SERVER_PASSWORD"    = azurerm_container_registry.musicfestival.admin_password
+    "ConnectionStrings__EPiServerDB"     = azurerm_mssql_database.musicfestival.connection_string
+    "Optimizely__ContentGraph__AllowSendingLog"       = true
+    "Optimizely__ContentGraph__AllowSyncDraftContent" = true
+    "Optimizely__ContentGraph__Experimental"          = true
+    "Optimizely__ContentGraph__GatewayAddress"        = "${var.gateway}"
+    "Optimizely__ContentGraph__AppKey"                = "${var.app_key}"
+    "Optimizely__ContentGraph__Secret"                = "${var.secret}"
+    "Optimizely__ContentGraph__SingleKey"             = "${var.single_key}"
   }
 }
 
