@@ -48,6 +48,13 @@ resource "azurerm_mssql_server" "musicfestival" {
   administrator_login_password = "P@ssw0rd1234"
 }
 
+resource "azurerm_mssql_firewall_rule" "internal" {
+  name             = "internal"
+  server_id        = azurerm_mssql_server.musicfestival.id
+  start_ip_address = "0.0.0.0"
+  end_ip_address   = "0.0.0.0"
+}
+
 resource "azurerm_mssql_database" "musicfestival" {
   name                = "musicfestivaldb"
   server_id           = azurerm_mssql_server.musicfestival.id
