@@ -32,7 +32,7 @@ resource "azurerm_container_registry" "musicfestival" {
 }
 
 resource "azurerm_storage_account" "musicfestival" {
-  name                     = "mfbackendstorage"
+  name                     = "musicfestivalsa"
   resource_group_name      = azurerm_resource_group.musicfestival.name
   location                 = azurerm_resource_group.musicfestival.location
   account_tier             = "Standard"
@@ -45,7 +45,7 @@ resource "azurerm_mssql_server" "musicfestival" {
   location                     = azurerm_resource_group.musicfestival.location
   version                      = "12.0"
   administrator_login          = "sqladmin"
-  administrator_login_password = "P@ssw0rd1234"
+  administrator_login_password = "${var.sql_password}"
 }
 
 resource "azurerm_mssql_firewall_rule" "internal" {
@@ -70,7 +70,7 @@ resource "azurerm_service_plan" "musicfestival" {
 }
 
 resource "azurerm_linux_web_app" "musicfestival" {
-  name                = "mfappservice"
+  name                = "musicfestival-app"
   location            = azurerm_resource_group.musicfestival.location
   resource_group_name = azurerm_resource_group.musicfestival.name
   service_plan_id     = azurerm_service_plan.musicfestival.id

@@ -14,7 +14,7 @@ jobs:
 
     - name: Build the Docker image
       working-directory: decoupled-site/backend
-      run: docker build . --file Dockerfile --tag musicfestivalimage:latest
+      run: docker build . --file Dockerfile --tag musicfestival:latest
 
     - name: Login to ACR
       id: ecr
@@ -24,12 +24,12 @@ jobs:
         service_principal_password: ${{ secrets.TF_VAR_client_secret }}
         tenant: ${{ secrets.TF_VAR_tenant_id }}
         registry: musicfestivalacr.azurecr.io
-        repository: musicfestivalimage
+        repository: musicfestival
 
     - name: Publish to Registry
       uses: elgohr/Publish-Docker-Github-Action@master
       with:
-        name: musicfestivalimage
+        name: musicfestival
         username: ${{ steps.ecr.outputs.username }}
         password: ${{ steps.ecr.outputs.password }}
         registry: musicfestivalacr.azurecr.io

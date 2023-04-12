@@ -34,6 +34,7 @@ jobs:
           TF_VAR_app_key: ${{secrets.TF_VAR_app_key}}
           TF_VAR_secret: ${{secrets.TF_VAR_secret}}
           TF_VAR_single_key: ${{secrets.TF_VAR_single_key}}
+          TF_VAR_sql_password: ${{secrets.TF_VAR_sql_password}}
 
       - name: Terraform apply
         working-directory: .github/workflows
@@ -48,6 +49,7 @@ jobs:
           TF_VAR_app_key: ${{secrets.TF_VAR_app_key}}
           TF_VAR_secret: ${{secrets.TF_VAR_secret}}
           TF_VAR_single_key: ${{secrets.TF_VAR_single_key}}
+          TF_VAR_sql_password: ${{secrets.TF_VAR_sql_password}}
   
   deploy-backend:
     needs: [create-infra]
