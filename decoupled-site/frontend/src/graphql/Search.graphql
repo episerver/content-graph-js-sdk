@@ -1,0 +1,23 @@
+query Search($searchParam: String, $locales: Locales) {
+  Content(
+    locale: [$locales]
+    orderBy: { Saved: DESC }
+    where: { _or: [
+      { Name: { contains: $searchParam } }, 
+      { Name: { startsWith: $searchParam } }] }
+  ) {
+    items {
+      Name
+      ParentLink {
+        Url
+      }
+      Url
+      __typename
+      RelativePath
+      ... on ArtistDetailsPage {
+        ArtistPhoto
+        ArtistDescription
+      }
+    }
+  }
+}
