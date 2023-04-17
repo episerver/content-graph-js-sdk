@@ -3888,8 +3888,12 @@ footer .ContentArea.Grid--gutterA {
   margin-top: 1em;
 }
 
-.buy-ticket-button {
+.buy-ticket-button, .search-button {
   margin-top: 11px;
+}
+
+.search-button{
+  text-transform: none;
 }
 
 main {
@@ -3937,4 +3941,61 @@ main {
   margin: 0.55em 0;
   font: 12px "barlow-bold";
   text-transform: uppercase;
+}
+
+.nav-table{
+  width: 100%; 
+  display: table;
+}
+
+.nav-table-row{
+  display: table-row;
+  float: left;
+}
+
+.nav-table-cell{
+  display: table-cell;
+  padding-right: 10px;
+}
+
+.search-container{
+  padding: 50px;
+}
+
+.search-panel{
+  width: 15%;
+}
+
+.search-description h5{
+  text-transform: none;
+}
+
+.search-term{
+  font-style: italic;
+}
+
+.search-results{
+  margin-top: 30px;
+}
+
+.result{
+  border-bottom: #fff solid;
+  border: 20%;
+  width: 40%;
+  padding-top: 10px;
+}
+
+.result-name{
+  font-weight: bold;
+  font-style: italic;
+  color: #41FFF5;
+}
+
+.back-button{
+  margin-bottom: 30px;
+}
+
+.home-link{
+  font-weight: 600;
+  color: #41FFF5;
 }
