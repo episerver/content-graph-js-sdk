@@ -1,0 +1,16 @@
+.container {
+    border: 1px solid rgba(255, 255, 255, 0.9);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-content: space-between;
+}
+
+.item {
+    /* border: 1px solid #000; */
+    border-radius: 3px;
+    display: inline-block;
+    width: 25%;
+    text-align: center;
+    background-color: #fff;
+}

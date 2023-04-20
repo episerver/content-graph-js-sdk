@@ -1,0 +1,313 @@
+contentTypes:
+  languages: []
+  customPropertyTypes: []
+  contentTypes:
+    - name: "BiographyPage"
+      base: "Page"
+      contentType: ["Page", "BiographyPage"]
+      properties:
+        - name: Name
+          type: String
+        - name: Born
+          type: Date
+        - name: Die
+          type: Date
+        - name: RouteSegment
+          type: String
+        - name: FamousQuote
+          type: String
+        - name: MainBody
+          type: String
+docs:
+  - Name: Alan Turing
+    Born: "1854-06-06T17:17:56Z"
+    Die: "1912-06-22T17:17:56Z"
+    RouteSegment: alan-turing
+    FamousQuote: "The idea behind digital computers may be explained by saying that these machines are intended to carry out any operations which could be done by a human computer."
+    MainBody: |
+      <p>Alan Turing (1912-1954) was a brilliant mathematician and pioneer of computer science. During the Second World War, he was part of a top secret group of codebreakers who helped to break the German Enigma machine. This codebreaking work significantly helped the Allies to win the war – especially the naval war in the Atlantic. Due to the top-secret nature of his work, Turing gained little outer recognition for his work, (though he did get an OBE in 1948). In 1952, he was arrested for gross indecency and a year later died from cyanide poisoning. Posthumously Turing was granted an official public apology in 2009 and a posthumous pardon in 2013.</p>
+      <h4>Early life</h4>
+      <p>Turning was born in London on 23 June 1912. His father served in the Indian civil service, and along with his brother, John, they spent some time in Hastings, where they were brought up by a retired Army couple.</p>
+      <div id="attachment_17416" class="wp-caption alignright"><br>
+      <p id="caption-attachment-17416" class="wp-caption-text">Turing aged 16</p>
+      </div>
+      <p>Turing was a precious student, showing exceptional talent in mathematics and science. He was bored by the classical subjects such as Latin and Greek and often pursued his own studies, such as solving mathematical problems. From the age of 13, he studied at Sherborne public school in Dorset. The first day of school coincided with the 1926 General Strike, but Turing was so keen to attend, he cycled the 60 miles to school on his own. Turing was also a good distance runner and kept up running throughout his life.</p>
+      <p>At school, his mathematical genius and eccentric ways made it difficult for him to fit in, and he was something of a loner. He made a very close friendship with a boy called Christopher Morcom. They shared an interest in maths, astronomy and science. Morcom’s death in 1930 from bovine tuberculosis hit Turing hard because he was his only close friend. During his teenage years, Turing read&nbsp;<a href="https://www.biographyonline.net/scientists/albert-einstein.html">Albert Einstein</a>‘s theory of relativity, and his notes display a profound understanding.</p>
+      <p>After Sherborne, Turing studied mathematics at King’s College, Cambridge (1931-34). He received first class honours, and within a year of graduating, Turing wrote a dissertation on Central Limit Theorem – which is a component of probability theory. This led him to be elected at an unusually young age to be a fellow at King’s College.</p>
+      <p>After the more narrow confines of an English public school, Cambridge was an intellectually liberating experience for Turing. He became involved in the anti-war movement of 1933 but rejected both Marxism and pacificism. He was close to liberal Cambridge intellectuals like John M Keynes and A.C. Pigou. At university, he enjoyed rowing and running. Turing was a keen runner and often was seen running along the river; he was known to run all the way to London for a meeting.</p>
+      <p>In 1936, he published another seminal paper “On Computable Numbers with an Application to the Entscheidungsproblem” (decision problem) It included the notion of a Universal machine which was a machine that would be able to solve any mathematical problem with the right algorithm. This is a central concept to modern computing.</p>
+      <p>From 1936 to 1938, he spent time in the US at Princeton studying mathematics and cryptology, obtaining his PhD Turing had an opportunity to stay in the US with John Von Neumann but chose to return to Cambridge. Back in Cambridge, he attended philosophical lectures of Ludwig Wittgenstein, with whom he debated about the philosophical importance of maths.</p>
+      <p>From September 1938, Turing began working part-time with the British codebreaking organisation (GC&amp;CS). From July 1939, Turing became involved in searching for better ways to decode Enigma messages. Turing developed a machine (called Bomb) using crib-based decryption which sought for the rotor order and settings of Enigma. When the machine recognised a failed setting, it electronically moved on to the next combination. Turing developed a weighting of evidence, which enabled him to skip certain combinations, making it much quicker. Turing stated he used a combination of intuition and reasoning.</p>
+      <blockquote>
+      <p>“Mathematical reasoning may be regarded rather schematically as the exercise of a combination of two facilities, which we may call intuition and ingenuity. The activity of the intuition consists in making spontaneous judgements which are not the result of conscious trains of reasoning.” Alan Turing, “<em>Systems of Logic Based on Ordinals,” section 11: The purpose of ordinal logics</em>&nbsp;(1938)</p>
+      </blockquote>
+      <p>The Germans believed Enigma was unbreakable because of the huge number of possible combinations (10 to the power of 19). However, by 1940, the electromechanical machine was able to intercept and decode enigma messages. He also used statistical analysis to optimise the different possibility in the code-breaking process. Turing’s work was deemed so important to national security it was classified for 70 years.</p>
+      <div id="attachment_17415" class="wp-caption aligncenter"><picture class="wp-image-17415 size-full" aria-describedby="caption-attachment-17415"><source srcset="https://www.biographyonline.net/wp-content/uploads/2018/09/Bombe-rebuild.jpg.webp 600w, https://www.biographyonline.net/wp-content/uploads/2018/09/Bombe-rebuild-535x391.jpg.webp 535w" type="image/webp" sizes="(max-width: 600px) 100vw, 600px"><img class="lazyloaded" src="https://www.biographyonline.net/wp-content/uploads/2018/09/Bombe-rebuild.jpg" sizes="(max-width: 600px) 100vw, 600px" srcset="https://www.biographyonline.net/wp-content/uploads/2018/09/Bombe-rebuild.jpg 600w, https://www.biographyonline.net/wp-content/uploads/2018/09/Bombe-rebuild-150x110.jpg 150w, https://www.biographyonline.net/wp-content/uploads/2018/09/Bombe-rebuild-500x366.jpg 500w, https://www.biographyonline.net/wp-content/uploads/2018/09/Bombe-rebuild-535x391.jpg 535w" alt="Bombe-rebuild" width="600" height="439" aria-describedby="caption-attachment-17415" data-ll-status="loaded"></picture>
+      <p id="caption-attachment-17415" class="wp-caption-text">Replica of Turing’s Bombe decryption machine</p>
+      </div>
+      <p>The machine was a considerable success and gave the Allies warning about German military operations. This was particularly vital for the Atlantic War, giving warnings of u-boat attacks on convoys. Despite the vital work, Turing’s team in Hut 8 at Bletchley Park felt frustrated they had insufficient resources. In October 1941, they wrote to Winston Churchill asking for more resources. Churchill immediately acted on their request, and they became much better resourced. By the end of the war, there were 200 Turing machines (bombs) in operation.</p>
+      <p>Turing had little interest in the practical aspects of running a department; he preferred to work alone, choosing the most difficult aspects of code-breaking – often aspects that others thought impossible. Hugh Alexander was the de facto leader of Turing’s Hut 8, but he was keen to reflect on Turing’s indispensable role.</p>
+      <blockquote>
+      <p>“There should be no question in anyone’s mind that Turing’s work was the biggest factor in Hut 8’s success. In the early days, he was the only cryptographer who thought the problem worth tackling and not only was he primarily responsible for the main theoretical work within the Hut, but he also shared with Welchman and Keen the chief credit for the invention of the bombe… many of us in Hut 8 felt that the magnitude of Turing’s contribution was never fully realised by the outside world”</p>
+      </blockquote>
+      <p>Even after the war, the British security services wanted to keep secret the way that supposedly impregnable code machines could be broken.</p>
+      <p>Turing had a reputation for eccentricity. He dressed shabbily without a tie, giving the impression of being permanently absorbed in his mathematical puzzles and code-breaking. He could be awkward in personal relations and blunt – especially towards those he considered charlatans or status-seekers. Amongst his colleagues, he was known as ‘Prof’, and his eccentricities included wearing his gas mask while cycling to avoid hay fever.</p>
+      <p>In 1942, Turing travelled to the US, where he became involved in pioneering attempts at the electronic enciphering of speech in telephones. Back in the UK, Turing helped to develop a portable secure voice communicator name, named Delilah. They successfully encrypted a speech of Churchill, but it was too late for use in the war.</p>
+      <p>After the war, he began work on a new generation of computers, which included the Automatic computing engine (ACE) and a design for the first stored-program computer. The full version of ACE was not built until after Turing’s death, but it was a major step-stone for the modern computer, and later pioneering computers relied on aspects of ACE’s new ideas.</p>
+      <p>In 1948, he had a trial for the British Olympic marathon team. Despite injury, he managed a time of 2 hours 44 minutes and just missed out.</p>
+      <p>In 1948, Turing moved to Manchester, where he was made deputy director of the Computing Laboratory at the University of Manchester. Here he developed software for an early computer ‘Manchester Mark I’. He also became interested in the philosophical and practical concept of artificial intelligence. Turing is considered the father of artificial intelligence as he developed a test to see whether a computer could be considered intelligent. An important work was “Computing Machinery and Intelligence.” (1950) He devised “The Imitation Game” now known as the Turing test; the test stated a computer could be considered to ‘think’ if a human could not distinguish between the reply of a computer and a human.</p>
+      <blockquote>
+      <p>“The idea behind digital computers may be explained by saying that these machines are intended to carry out any operations which could be done by a human computer.”</p>
+      </blockquote>
+      <p>Turing, Alan.&nbsp;<em>Computing Machinery and Intelligence</em>&nbsp;(1950)</p>
+      <p>Turing also developed one of the very first computer chess games.</p>
+      <p>In 1951, he also turned his attention to mathematical biology – fascinated with why plant structures exhibited Fibonacci numbers (every number after the first two is the sum of the two preceding ones 1,1,2,3,5,8,13)</p>
+      <p>In 1952, he was elected to a fellowship of the Royal Society.</p>
+      <p>During the war, Turing proposed to Joan Clark, a fellow mathematician at Hut 8. Clark accepted, however, the engagement was short-lived and Turing broke it off. Turing felt he was not being sincere and he admitted he was a homosexual. (which at the time was illegal in the UK)</p>
+      <p>In 1952, Turing began an affair with an unemployed man in Manchester. On 23 January, his home was burgled and the police investigated the burglary. Turing’s war record would not have been available to the police as it would have been covered by the Official Secrets Act. In the course of their investigation, Murray admitted that he and Turing were involved in a homosexual relationship. Murray was also responsible for the burglary. Turing admitted guilt and accepted the sentence of chemical castration (rather than a prison term). The drug was a form of synthetic oestrogen.</p>
+      <p>Turing lost his official clearances, though he retained his job.</p>
+      <p>On 8 June 1954, he was found dead in his rented room. An inquest returned a verdict of suicide from cyanide poisoning. It is possible that it was not suicide but accidental ingestion from an experiment of electroplating gold onto spoons.</p>
+      <p>In 2013, a bill was passed offering statutory pardon to Turing for offences under section 11 of the Criminal Law Amendment Act 1885. In 2016, the law (known as Turing’s law) was widened to retroactively pardon all men who were convicted under the historical legislation of gross indecency.</p>
+      <p>Citation:&nbsp;<a href="https://www.biographyonline.net/contact.html">Pettinger, Tejvan</a>. “Biography of Alan Turing”, Oxford, UK.&nbsp;<a href="https://www.biographyonline.net/"><em>www.biographyonline.net</em></a>&nbsp;Published 18 September 2018.</p></div>
+
+  - Name: Charlie Chaplin
+    Born: "1889-04-15T17:17:56Z"
+    Die: "1977-12-24T17:00:00Z"
+    RouteSegment: charlie-chaplin
+    FamousQuote: Life is a tragedy when seen in close-up, but a comedy in long-shot
+    MainBody: |
+      <p>– Charlie Chaplin</p>
+      <h4>Short bio Charlie Chaplin</h4>
+      <p>Chaplin was born in London, 16 April 1889, to parents who worked in the entertainment industry. At an early age, his alcoholic father passed away, and later his mother had a breakdown and was taken to an asylum. This left Charlie and his brother to fend for themselves. Following in their parent’s footsteps, they were drawn to the musical hall, and Charlie gained a prominent reputation as a performer.</p>
+      <p>In 1910, Charlie travelled to America and gained experience in the fledgeling film industry. It was here in America that he was to develop his first famous characters such as the Tramp – the trademark Charlie Chaplin character of a bowler hat, moustache and ill-fitting clothes. Charlie Chaplin became the great star of the silent era, and his popularity spread throughout the globe.</p>
+      <p>Charlie Chaplin had tremendous intensity. He would finance, write and direct all his films himself. He was a great perfectionist and would make his actors perform scenes up to 100 times to get it just right. Yet he also liked to improvise much of his performances and would not stick rigidly to a script.</p>
+      <p><picture id="" class="alignleft" title="Charlie Chaplin"><source srcset="https://www.biographyonline.net/wp-content/uploads/2014/05/Charles-chaplin_19201.jpg.webp" type="image/webp"><img class="lazyloaded" src="https://www.biographyonline.net/wp-content/uploads/2014/05/Charles-chaplin_19201.jpg" alt="Charlie Chaplin" width="225" height="332" name="" data-ll-status="loaded"></picture>Some of his most famous films include –&nbsp;<em>City Lights</em>&nbsp;(1931) and&nbsp;<em>The Great Dictator</em>&nbsp;(1940).&nbsp;<em>The Great Dictator</em>&nbsp;was a satire on the totalitarian dictators of&nbsp;<a href="https://www.biographyonline.net/military/adolf-hitler.html">Hitler</a>&nbsp;and Mussolini. Chaplin himself played two roles – a Jewish barber, who was discriminated against. He also played the role of the&nbsp; “Adenoid Hynkel – dictator of Tomania a clear parody of Adolf Hitler.</p>
+      <p>The film was made one year before the US entered the war against Germany, and was controversial at a time when anti-Semitism was rife in America. Despite his parody of Hitler in this film, Chaplin refused to publicly endorse the war effort in 1942 – causing the authorities to become suspicious of his political leanings.</p>
+      <blockquote>
+      <p>“Wars, conflict, it’s all business. One murder makes a villain. Millions a hero. Numbers sanctify.”</p>
+      </blockquote>
+      <p>Monsieur Verdoux (1947);</p>
+      <p><picture id="" class="alignleft" title="Charlie Chaplin"><source srcset="https://www.biographyonline.net/wp-content/uploads/2014/05/Charlie_Chaplin-dictator1.jpg.webp" type="image/webp"><img class="lazyloaded" src="https://www.biographyonline.net/wp-content/uploads/2014/05/Charlie_Chaplin-dictator1.jpg" alt="Charlie Chaplin" width="350" height="296" name="" data-ll-status="loaded"></picture>In the post-war period, the FBI under J Edgar Hoover kept close tabs on Chaplin because of his perceived left-wing ‘ Communist views’ Eventually, the US authorities decided to revoke his entry visa into the US and Chaplin was forced to live in Switzerland.</p>
+      <blockquote>
+      <p>“Since the end of the last world war, I have been the object of lies and propaganda by powerful reactionary groups who, by their influence and by the aid of America’s yellow press, have created an unhealthy atmosphere in which liberal-minded individuals can be singled out and persecuted. Under these conditions I find it virtually impossible to continue my motion-picture work, and I have therefore given up my residence in the United States.”</p>
+      </blockquote>
+      <p>Charlie Chaplin</p>
+      <p>Charlie Chaplin later said he was not a Communist but refused to condemn Communists because he disliked the nature of the McCarthy era.</p>
+      <blockquote>
+      <p>“Friends have asked how I came to engender this American antagonism. My prodigious sin was, and still is, being a non-conformist. Although I am not a Communist I refused to fall in line by hating them.</p>
+      <p>Secondly, I was opposed to the Committee on Un-American Activities a dishonest phrase to begin with, elastic enough to wrap around the throat and strangle the voice of any American citizen whose honest opinion is a minority of one.”</p>
+      <p>– My Autobiography (1964)</p>
+      </blockquote>
+      <p>Chaplin had great comic talent; this was a talent that shone through in his silent films but also in later years.</p>
+      <blockquote>
+      <p>“I remain just one thing, and one thing only — and that is a clown. It places me on a far higher plane than any politician.”</p>
+      </blockquote>
+      <p>Charlie Chaplin, as quoted in The Observer (17 June 1960)</p>
+      <p>Chaplin was put forward for a knighthood in 1956, but, it was blocked by the Conservative cabinet who feared a backlash from the American government.</p>
+      <p>Chaplin was eventually knighted in 1975. He also was awarded an Oscar in 1972 for his music score in the 1952 film&nbsp;<em>Limelight</em>. He was also awarded an honorary award in 1972 for “the incalculable effect he has had in making motion pictures the art form of this century.”</p>
+      <p>He came out of exile to receive the award and the longest standing ovation in the history of the Oscars.</p>
+      <p>Charlie Chaplin had a turbulent personal life. He had 11 children with three different women and had several other girlfriends and marriages.</p>
+      <p>He died in his sleep in Vevey, Switzerland on Christmas Day 1977.</p>
+      <p>Citation: Pettinger, Tejvan. “Biography of Charlie Chaplin”, Oxford, UK.&nbsp;<a href="https://www.biographyonline.net/actors/">www.biographyonline.net</a>, 30th Nov. 2009. Last updated 16 February 2018.</p>
+
+  - Name: Vincent Van Gogh
+    Born: "1853-03-29T17:17:56Z"
+    Die: "1890-07-28T17:17:56Z"
+    RouteSegment: vincent-van-gogh
+    FamousQuote: What am I in the eyes of most people — a nonentity, an eccentric, or an unpleasant person — somebody who has no position in society and will never have; in short, the lowest of the low. All right, then — even if that were absolutely true, then I should one day like to show by my work what such an eccentric, such a nobody, has in his heart. That is my ambition, based less on resentment than on love in spite of everything, based more on a feeling of serenity than on passion.
+    MainBody: |
+      <h3>Short Biography Vincent Van Gogh</h3>
+      <p>He was born in Groot-Zundert, a small town in Holland in March 1853. His father was a Protestant pastor and he had three uncles who were art dealers.</p>
+      <p>His early life seems generally to be unhappy, after a period of working in his uncle’s art dealership, he became frustrated and so became a Protestant minister. He became a preacher in the poor agricultural districts of Brabant. He empathised with the poverty of the inhabitants and began to share their poverty and rough living conditions. Despite trying to live according to the gospel message of poverty, the church authorities were displeased that Van Gogh seemed to be undermining the ‘dignity of the priesthood.’ He was relieved of his post and Van Gogh turned to art.</p>
+      <p>Despite disliking formal training, he studied art in both Brussels and Paris. His first attempts at art were not indicative of his later talent. In the beginning, he was a clumsy drawer and, when studying at one art academy, he was put back a year because of his perceived lack of ability to draw. His early pictures appear rather basic and do not show any sign of his later art. However, he worked hard and sought to improve his technique. Yet these early difficulties always stayed with Van Gogh and throughout his life, he was bothered with a sense of inadequacy. In a letter to his brother, he described his early efforts as mere ‘scribbles.’</p>
+      <p>He became absorbed in art and would prioritise it over more mundane matters. Van Gogh struggled to hold down a regular job. For example, he lost his position as an art dealer after quarrelling with a customer. He also had short-lived jobs as a supply teacher and priest. Not holding a regular job, he relied on financial help from his close brother Theo. Theo was generous to his brother throughout his life – often sending money and painting materials.</p>
+      <p>With his brothers financial backing, in 1888 Van Gogh travelled to Arles in the south of France, where he continued his painting – often outside – another feature of the impressionist movement. This was a prolific period for Van Gogh; he could paint up to five paintings per week and he enjoyed walking in the countryside and getting inspiration from nature – such as the corn harvest. He drew everything from nature, portraits of friends, everyday objects and the vast night sky.</p>
+      <div id="attachment_19944" class="wp-caption aligncenter"><picture class="size-full wp-image-19944" aria-describedby="caption-attachment-19944"><source srcset="https://www.biographyonline.net/wp-content/uploads/2020/02/Vincent-Van-Gogh-Straw-Harvest-Oil-Painting-Free-I-6608.jpg.webp 596w, https://www.biographyonline.net/wp-content/uploads/2020/02/Vincent-Van-Gogh-Straw-Harvest-Oil-Painting-Free-I-6608-535x441.jpg.webp 535w" type="image/webp" sizes="(max-width: 596px) 100vw, 596px"><img class="lazyloaded" src="https://www.biographyonline.net/wp-content/uploads/2020/02/Vincent-Van-Gogh-Straw-Harvest-Oil-Painting-Free-I-6608.jpg" sizes="(max-width: 596px) 100vw, 596px" srcset="https://www.biographyonline.net/wp-content/uploads/2020/02/Vincent-Van-Gogh-Straw-Harvest-Oil-Painting-Free-I-6608.jpg 596w, https://www.biographyonline.net/wp-content/uploads/2020/02/Vincent-Van-Gogh-Straw-Harvest-Oil-Painting-Free-I-6608-300x247.jpg 300w, https://www.biographyonline.net/wp-content/uploads/2020/02/Vincent-Van-Gogh-Straw-Harvest-Oil-Painting-Free-I-6608-150x124.jpg 150w, https://www.biographyonline.net/wp-content/uploads/2020/02/Vincent-Van-Gogh-Straw-Harvest-Oil-Painting-Free-I-6608-535x441.jpg 535w" alt="Vincent-Van-Gogh-Straw-Harvest-Oil-Painting-Free-I-6608" width="596" height="491" aria-describedby="caption-attachment-19944" data-ll-status="loaded"></picture>
+      <p id="caption-attachment-19944" class="wp-caption-text">Straw Harvest</p>
+      </div>
+      <p>Living in Paris (1886-88) he had been influenced by the new impressionist painters, such as&nbsp;<a href="https://www.biographyonline.net/artists/claude-monet.html">Monet and</a>&nbsp;<a href="https://www.biographyonline.net/artists/august-renoir.html">Renoir,</a>&nbsp;and their interest in light. However, he soon developed his own unique style of powerful, brush strokes – often using warm reds, oranges and yellows. Simple brush strokes which created strong and arresting images.</p>
+      <p>Van Gogh was driven by an inner urge to express the art he felt within. He wrote that he felt an artistic power within, which moved him to work very hard.</p>
+      <blockquote>
+      <p>“Believe me, I work, I drudge, I grind all day long and I do so with pleasure, but I should get very much discouraged if I could not go on working as hard or even harder.. .I feel, Theo, that there is a power within me, and I do what I can to bring it out and free it.”</p>
+      </blockquote>
+      <p>– Van Gogh, (Letter to Theo 1982)</p>
+      <p>Van Gogh lived from moment to moment and was never financially secure. He put his whole life into art and neglected other aspects of his life – such as his health, appearance and financial security. During his lifetime, he sold only one painting – ironic since now Van Gogh’s paintings are some of the most expensive in the world.</p>
+      <blockquote>
+      <p>“What is true is that I have at times earned my own crust of bread, and at other times a friend has given it to me out of the goodness of his heart. I have lived whatever way I could, for better or for worse, taking things just as they came.”</p>
+      </blockquote>
+      <p>– Van Gogh, Letter to Theo (<span id="Letter_to_Theo_(Cuesmes,_July_1880)" class="mw-headline">July 1880</span>)</p>
+      <p align="center"><picture><source srcset="https://www.biographyonline.net/wp-content/uploads/2014/05/Van_Gogh_starry-night1.jpg.webp" type="image/webp"><img class="lazyloaded" src="https://www.biographyonline.net/wp-content/uploads/2014/05/Van_Gogh_starry-night1.jpg" alt="starry-night" width="400" height="502" data-ll-status="loaded"></picture></p>
+      <p align="center"><em>Cafe Terrace at Night</em>&nbsp;1888 ( Kröller-Müller Museum)</p>
+      <blockquote>
+      <p>“When I have a terrible need of — shall I say the word — religion. Then I go out and paint the stars.”</p>
+      </blockquote>
+      <p>– Vincent Van Gogh</p>
+      <p>In Arles, he had a brief, if unsuccessful, period of time with the artist&nbsp;<a href="https://www.biographyonline.net/artists/paul-guaguin.html">Gauguin.</a>&nbsp;Van Gogh’s intensity and mental imbalance made him difficult to live with. At the end of the two weeks, Van Gogh approached Gauguin with a razor blade. Gauguin fled back to Paris, and Van Gogh later cut off the lower part of his ear with the blade.</p>
+      <p>This action was symptomatic of his increasing mental imbalance. He was later committed to a lunatic asylum where he would spend time on and off until his death in 1890. At the best of times, Van Gogh had an emotional intensity that flipped between madness and genius. He himself wrote:</p>
+      <blockquote>
+      <p>“Sometimes moods of indescribable anguish, sometimes moments when the veil of time and fatality of circumstances seemed to be torn apart for an instant.”</p>
+      </blockquote>
+      <p>– Vincent Van Gogh</p>
+      <p align="center"><picture><source srcset="https://www.biographyonline.net/wp-content/uploads/2014/05/Van_Gogh_sunflowers1.jpg.webp" type="image/webp"><img class="lazyloaded" src="https://www.biographyonline.net/wp-content/uploads/2014/05/Van_Gogh_sunflowers1.jpg" alt="sunflowers" width="400" height="500" data-ll-status="loaded"></picture></p>
+      <p align="center"><em>Vase with 12 Sunflowers,</em>&nbsp;1888</p>
+      <p>It was during these last two years of his life that Van Gogh was at his most productive as a painter. He developed a style of painting that was quick and rapid – leaving no time for contemplation and thought. He painted with quick movements of the brush and drew increasingly avant-garde style shapes – foreshadowing modern art and its abstract style. He felt an overwhelming need and desire to paint.</p>
+      <blockquote>
+      <p>“The work is an absolute necessity for me<strong>.</strong>&nbsp;I can’t put it off, I don’t care for anything but the work; that is to say, the pleasure in something else ceases at once and I become melancholy when I can’t go on with my work. Then I feel like a weaver who sees that his threads are tangled, and the pattern he had on the loom is gone to hell, and all his thought and exertion is lost.”</p>
+      </blockquote>
+      <p>– Vincent Van Gogh</p>
+      <p>In 1890, a series of bad news affected his mental equilibrium and one day in July, whilst painting, he shot himself in the chest. He died two days later from his wound.</p>
+      <p align="center"><picture><source srcset="https://www.biographyonline.net/wp-content/uploads/2014/05/Van_Gogh_Yellow_House1.jpg.webp" type="image/webp"><img class="lazyloaded" src="https://www.biographyonline.net/wp-content/uploads/2014/05/Van_Gogh_Yellow_House1.jpg" alt="yellow-house" width="450" height="357" data-ll-status="loaded"></picture></p>
+      <p align="center"><em>Yellow House</em></p>
+      <h3>The religion of Vincent Van Gogh</h3>
+      <p>Van Gogh was critical of formalised religion and was often scathing of clerics in the Christian church, but he denied he was an atheist, believing in God and love.</p>
+      <blockquote>
+      <p>“That God of the clergymen, He is for me as dead as a doornail. But am I an atheist for all that? The clergymen consider me as such — be it so; but I love, and how could I feel love if I did not live, and if others did not live, and then, if we live, there is something mysterious in that.”</p>
+      </blockquote>
+      <p>– Van Gogh</p>
+      <p>Van Gogh saw his painting as a spiritual pursuit. He wrote of great paintings, that the artist had hidden an aspect of God in the painting.</p>
+      <blockquote>
+      <p>“Try to grasp the essence of what the great artists, the serious masters, say in their masterpieces, and you will again find God in them. One man has written or said it in a book, another in a painting.”</p>
+      </blockquote>
+      <p>– Van Gogh</p>
+      <blockquote>
+      <p>“I think that everything that is really good and beautiful, the inner, moral, spiritual and sublime beauty in men and their works, comes from God, and everything that is bad and evil in the works of men and in men is not from God, and God does not approve of it. But I cannot help thinking that the best way of knowing God is to love many things.”</p>
+      </blockquote>
+      <p>– Vincent Van Gogh</p>
+
+  - Name: Donald Trump
+    Born: "1946-06-13T17:00:00Z"
+    Die:
+    RouteSegment: donald-trump
+    FamousQuote: I don’t do it for the money. I’ve got enough, much more than I’ll ever need. I do it to do it. Deals are my art form. Other people paint beautifully on canvas or write wonderful poetry. I like making deals, preferably big deals. That’s how I get my kicks.
+    MainBody: |
+      <p>Donald Trump (1946 – ) is the 45th President of the US. For many years he was chairman and president of the Trump Organisation, which has a diverse range of business and real estate businesses. Trump also rose to prominence through his appearance in The Apprentice (U.S.) a reality tv show where contestants bid for the opportunity to head one of Trump’s companies.</p>
+      <p>Early life</p>
+      <p>Donald Trump was born 14 June 1946, in Queens, New York to German immigrant parents. His father Fred Trump was a successful real estate developer. It is estimated Donald inherited at least $413 million from his father between the age of 3 and 58. A&nbsp;<a href="https://www.nytimes.com/interactive/2018/10/02/us/politics/donald-trump-tax-schemes-fred-trump.html">NYTimes</a>&nbsp;investigation suggested this involve tax avoidance schemes.</p>
+      <p>Donald attended the private Kew-Forest School, Fordham University and then the Wharton School of Business at the University of Pennsylvania, graduating in 1968 with a degree in economics. He was eligible for the Vietnam draft but received deferments for being a student, and later a medical deferment, attributed to heel spurs in both feet.</p>
+      <p>After leaving university, he worked with his father in real estate development in Brooklyn, Queens and Staten Island. In the 1970s, with help from his father, he then moved to Manhattan, where Trump created the Trump Organisation.</p>
+      <blockquote>
+      <p>“It was good for me,” Donald later commented. “You know, being the son of somebody, it could have been competition to me. This way, I got Manhattan all to myself.”</p>
+      </blockquote>
+      <p>His business interests expanded, taking in hotels, casinos, Trump Shuttle airline and a mega-yacht. For Trump, the key attraction of his work was often in negotiating a deal.</p>
+      <blockquote>
+      <p>“I don’t do it for the money. I’ve got enough, much more than I’ll ever need. I do it to do it. Deals are my art form. Other people paint beautifully on canvas or write wonderful poetry. I like making deals, preferably big deals. That’s how I get my kicks.”</p>
+      </blockquote>
+      <p>– Donald Trump,&nbsp;<em>The Art of the Deal</em>&nbsp;(1987)</p>
+      <p>In 1991, losses from the Taj Mahal Casino forced Trump into bankruptcy, but he sold off parts of his business and was able to continue in business.</p>
+      <p>A distinctive feature of Trump’s business and real estate ventures has been the prominent use of his own name. For example, Trump World Tower, Trump Place and Trump clothing ranges. Trump is also a keen golfer and has brought many golf courses across the world, including Ireland and Scotland.</p>
+      <p>Many real estate property dealers and businesses have paid to license the Trump brand name. However, since his presidential election campaign of 2015 and 2016, many have sought to distance themselves from Trump’s controversial political views on Mexicans, women and Muslims. Retailers, such as Macy’s have dropped Trump-branded products.</p>
+      <h3>Net Worth of Donald Trump</h3>
+      <p>In 2012, Trump declared his own net worth at around $7 billion. In 2015, Forbes estimated his net worth at $4 billion. When running for Presidential candidate in 2015, Trump claimed a net worth in excess of ten billion dollars, though he said it can fluctuate with markets.</p>
+      <p>Trump was given $40 million from his father in 1974 (<a href="http://www.bloombergview.com/articles/2015-09-03/should-donald-trump-have-indexed-">1</a>)</p>
+      <p>Before the 2016 Presidential election, he refused to release his income tax returns – breaking with tradition. The New York Times released a tax return from 1995 which&nbsp;<a class="u-underline" href="https://www.nytimes.com/2016/10/02/us/politics/donald-trump-taxes.html" data-link-name="in body link">showed that Trump lost $916m in a single year</a>&nbsp;and as a result could use tax laws to avoid paying federal taxes for 18 years, a charge he did not deny.</p>
+      <h4>Other interests</h4>
+      <p>From 1996 to 2015, Trump owned part of Miss Universe beauty pageants. Though Trump sold his interests in 2015, after a dispute over his presidential address on Mexican immigrants.</p>
+      <h4>Television</h4>
+      <p>In 2003, Trump became the executive producer of the NBC programme – The Apprentice. It was one of the most popular tv programmes, with Trump selecting a candidate to gain a job in his business. During the series, Trump would fire the unsuccessful candidates with the catchphrase “You’re fired”</p>
+      <h3>Politics</h3>
+      <p><picture class="alignright size-full wp-image-14156"><source srcset="https://www.biographyonline.net/wp-content/uploads/2014/05/Donald_Trump.jpg.webp" type="image/webp"><img class="lazyloaded" src="https://www.biographyonline.net/wp-content/uploads/2014/05/Donald_Trump.jpg" alt="donald_trump" width="150" height="179" data-ll-status="loaded"></picture>Trump has had mixed political affiliations. He has been both a registered Democrat and Republican. He has given money to both Republican and Democratic presidential candidates. He was critical of both George Bush presidencies and said Bill Clinton was one of the best modern presidents. Since 2012, he has been in the Republican party and in 2015 announced his intention to seek the Republican candidacy.</p>
+      <p>During the 2016 primaries, his outsider persona made him an unexpected front-runner – dismaying the Republican establishment. Through the campaign, Trump projected a populist appeal. He has focused on dealing with the electorate’s fears over immigrants and terrorism. His campaign slogan is “We are going to make our country great again.”</p>
+      <p>He also projected himself as a Washington outsider – from the private business sector rather than the political establishment, and a willingness to “tell it like it is” – with a willingness to be politically incorrect.</p>
+      <p>Trump’s controversial policies include the suggested deportation of illegal immigrants in the US and the building of a wall between Mexico and the US. He has called for a ban on Muslims entering the US, and greater surveillance of mosques.</p>
+      <p>His pledge to ban Muslims coming into the US has been criticised by many world figures and the US Pentagon. It would include banning many Muslims who are allies in the fight against terrorism. However, this has been controversial both home and abroad. The Pentagon issued a statement that “anything that bolsters ISIL’s narrative and pits the United States against the Muslim faith is certainly not only contrary to our values but contrary to our national security.”</p>
+      <p>On social issues he is conservative, declaring himself pro-life. He also is opposed to gun control and favours replacing the Affordable Care Act with a free market plan.</p>
+      <p>He has called global warming a “total hoax created by the Chinese to make US manufacturing non-competitive.” He supports increased fracking and is opposed to wind power.</p>
+      <p>Throughout his campaign, Trump’s controversial statements seemed to attract more popular support. As Trump himself stated on 23 January 2016</p>
+      <blockquote>
+      <p>“They say I have the most loyal people — did you ever see that? Where I could stand in the middle of 5th Avenue and shoot somebody, and I wouldn’t lose any voters. It’s like incredible.”</p>
+      </blockquote>
+      <p>Trump has been married three times. He has five children. Three with Zelnickova, and one with Maples and Knauss.</p>
+      <p>Trump is a Presbyterian Protestant, though his church says he is not an active member. Trump has received the backing of many religious leaders in his presidential campaign.</p>
+      <p>He has a high sense of self-esteem, which some have called ego-mania.</p>
+      <blockquote>
+      <p>“My IQ is one of the highest — and you all know it! Please don’t feel so stupid or insecure; it’s not your fault.”</p>
+      </blockquote>
+      <p>– Donald Trump</p>
+      <blockquote>
+      <p>“I think the only difference between me and the other candidates is that I’m more honest and my women are more beautiful.”</p>
+      </blockquote>
+      <p>– Donald Trump</p>
+      <p><strong>2016 election</strong></p>
+      <p>Despite losing the popular vote by nearly 3 million, Trump won the electoral college 306 – 232, after securing the swing states, such as Florida, Michigan, Ohio and Pennsylvania.</p>
+      <p><strong>Total votes</strong></p>
+      <p>Clinton 65,844,610 – 48.20%<br>Trump 62,979,636 – 46.10%<br>Others 7,804,213 – 5.70%</p>
+      <p><strong>2017 Presidential office</strong></p>
+      <p>Trump took office on January 20, 2017. Among his first executive orders were an order to ban immigrants from Muslim countries, such as Syria and Iraq. He also sought to, unsuccessfully, repeal Obama Health Care and build a wall between US and Mexico.</p>
+      <p>Trump has courted controversy for supporting far-right organisations and appearing to be sympathetic to white supremacist groups. He has also frequently been accused of lying or giving misleading statements. (<a href="http://www.politifact.com/personalities/donald-trump/statements/?list=speaker">Politico fact</a>)</p>
+      <p>On foreign policy, he withdrew the US from the Paris Accord on global warming.</p>
+
+  - Name: Abraham Lincoln
+    Born: "1809-02-11T17:17:56Z"
+    Die: "1865-04-14T17:17:56Z"
+    RouteSegment: abraham-lincoln
+    FamousQuote: With malice toward none; with charity for all; with firmness in the right, as God gives us to see the right, let us strive on to finish the work we are in; to bind up the nation’s wounds….
+    MainBody: |
+      <p>Abraham Lincoln was born Feb 12, 1809, in a single-room log cabin, Hardin County, Kentucky. His family upbringing was modest; his parents from Virginia were neither wealthy or well known. At an early age, the young&nbsp;Abraham lost his mother, and his father moved away to Indiana. Abraham had to work hard splitting logs and other manual labour. But, he also had a thirst for knowledge and worked very hard to excel in his studies. This led him to become self-trained as a lawyer. He spent eight years working on the Illinois court circuit; his ambition, drive, and capacity for hard work were evident to all around him. Lincoln became respected on the legal circuit and he gained the nickname ‘Honest Abe.’ He often encouraged neighbours to mediate their own conflicts rather than pursue full legal litigation. Lincoln also had a good sense of humour and was deprecating about his looks.</p>
+      <p><em>“If I were two-faced, would I be wearing this one?”</em></p>
+      <p>Work colleagues and friends noted that Lincoln had a capacity to defuse tense and argumentative situations, though the use of humour and his capacity to take an optimistic view of human nature. He loved to tell stories to illustrate a serious point through the use of humour and parables.</p>
+      <p>Lincoln was shy around women but after a difficult courtship, he married Mary Todd in 1842. Mary Todd shared many of her husband’s political thinking but they also had different temperaments – with Mary more prone to swings in her emotions. They had four children, who Lincoln was devoted to. Although three died before reaching maturity – which caused much grief to both parents.</p>
+      <p>As a lawyer, Abraham developed a capacity for quick thinking and oratory. His interest in public issues encouraged him to stand for public office. In 1847, he was elected to the House of Representatives for Illinois and served from 1847-49. During his period in Congress, Lincoln criticised President Folk’s handling of the American-Mexican War, arguing Polk used patriotism and military glory to defend the unjust action of taking Mexican territory. However, Lincoln’s stance was politically unpopular and he was not re-elected.</p>
+      <p><strong>Lawyer</strong></p>
+      <p><picture class="alignright wp-image-14781"><source srcset="https://www.biographyonline.net/wp-content/uploads/2014/05/330px-Abraham_Lincoln_by_Byers_1858_-_crop.jpg.webp 330w" type="image/webp" sizes="(max-width: 250px) 100vw, 250px"><img class="lazyloaded" src="https://www.biographyonline.net/wp-content/uploads/2014/05/330px-Abraham_Lincoln_by_Byers_1858_-_crop.jpg" sizes="(max-width: 250px) 100vw, 250px" srcset="https://www.biographyonline.net/wp-content/uploads/2014/05/330px-Abraham_Lincoln_by_Byers_1858_-_crop.jpg 330w, https://www.biographyonline.net/wp-content/uploads/2014/05/330px-Abraham_Lincoln_by_Byers_1858_-_crop-150x198.jpg 150w" alt="braham_Lincoln_by_Byers" width="250" height="330" data-ll-status="loaded"></picture>After his political career appeared to be over, he returned to working as a lawyer in Illinois. However, the 1850s saw the slavery question re-emerge as a prominent divisive national issue. Lincoln abhorred slavery and from a political perspective wished to prevent slavery being extended and ultimately be phased out.</p>
+      <p>He gave influential speeches, which drew on the Declaration of Independence to prove the Founding Fathers had intended to stop the spread of slavery. In particular, Lincoln used a novel argument that although society was a long way from equality, America should aspire towards the lofty statement in the Declaration of Independence.</p>
+      <blockquote>
+      <p>“We hold these truths to be self-evident: That all men are created equal”</p>
+      </blockquote>
+      <p>Lincoln had a strong capacity for empathy. He would try to see problems from everyone’s point of view – including southern slaveholders. He used this concept of empathy to speak against slavery.</p>
+      <blockquote>
+      <p>“I have always thought that all men should be free; but if any should be slaves, it should be first those who desire it for themselves, and secondly, those who desire it for others. When I hear anyone arguing for slavery, I feel a strong impulse to see it tried on him personally.”</p>
+      </blockquote>
+      <p>Lincoln’s speeches were notable because they drew on both legal precedents but also easy to understand parables, which struck a chord with the public.</p>
+      <p>In 1858, Lincoln was nominated as Republican candidate for the Senate. He undertook a series of high-profile debates with the Democratic incumbent Stephen Douglass. Douglass was in favour of allowing the extension of slavery – if citizens voted for it. Lincoln opposed the extension of slavery. During this campaign, he gave one of his best-remembered speeches, which reflected on the divisive nature of America.</p>
+      <blockquote>
+      <p>“A house divided against itself cannot stand. I believe this government cannot endure, permanently, half slave and half free. I do not expect the Union to be dissolved — I do not expect the house to fall — but I do expect it will cease to be divided. It will become all one thing or all the other. ” (<a href="http://www.ushistory.org/documents/housedivided.htm">House Divided</a>)</p>
+      </blockquote>
+      <p>In this&nbsp;<em>House Divided</em>&nbsp;speech, Lincoln gave a prophetic utterance to the potential for slavery to divide the nation.</p>
+      <p>Although he lost this 1858 Senate election, his debating skills and oratory caused him to become well known within the Republican party.</p>
+      <p>On February 27, 1860. Lincoln was also invited to give a notable address at Cooper Union in New York. The East Coast was relatively new territory for Lincoln; many in the audience thought his appearance awkward and even ugly, but his calls for moral clarity over the wrongness of slavery struck a chord with his East coast audience.</p>
+      <blockquote>
+      <p>“Let us have faith that right makes might, and in that faith, let us, to the end, dare to do our duty as we understand it.” (Cooper Union address)</p>
+      </blockquote>
+      <p>The reputation he gained on the campaign trail and speeches on the East coast caused him to be put forward as a candidate for the Republican nominee for President in 1860. Lincoln was an outsider because he had much less experience than other leading candidates such as Steward, Bates and Chase, but after finishing second on the first ballot he went on to become unexpectedly nominated.</p>
+      <p>After a hard-fought, divisive campaign of 1860, Lincoln was elected the first Republican President of the United States. Lincoln’s support came entirely from the North and West of the country. The south strongly disagreed with Lincoln’s position on slavery</p>
+      <p>The election of Lincoln as President in 1861, sparked the South to secede from the North. Southern independence sentiment had been growing for many years, and the election of a president opposed to slavery was the final straw. However, Lincoln resolutely opposed the breakaway of the South, and this led to the American civil war with Lincoln committed to preserving the Union.</p>
+      <p>Lincoln surprised many by including in his cabinet the main rivals from the 1860 Republican campaign. It demonstrated Lincoln’s willingness and ability to work with people of different political and personal approaches. This helped to keep the Republican party together.</p>
+      <p><picture class="alignright wp-image-15139"><source srcset="https://www.biographyonline.net/wp-content/uploads/2017/03/Abraham-lincon-PinkertonLincolnMcClernand.jpg.webp 429w" type="image/webp" sizes="(max-width: 300px) 100vw, 300px"><img class="lazyloaded" src="https://www.biographyonline.net/wp-content/uploads/2017/03/Abraham-lincon-PinkertonLincolnMcClernand.jpg" sizes="(max-width: 300px) 100vw, 300px" srcset="https://www.biographyonline.net/wp-content/uploads/2017/03/Abraham-lincon-PinkertonLincolnMcClernand.jpg 429w, https://www.biographyonline.net/wp-content/uploads/2017/03/Abraham-lincon-PinkertonLincolnMcClernand-150x174.jpg 150w" alt="Abraham-lincon" width="300" height="349" data-ll-status="loaded"></picture>The Civil War was much more costly than many people anticipated and at times Lincoln appeared to be losing the support of the general population. But, Lincoln’s patient leadership, and willingness to work with unionist Democrats held the country together. Lincoln oversaw many of the military aspects of the war and promoted the general Ulysses S Grant to command the northern forces.</p>
+      <p>Initially, the war was primarily about the secession of southern states and the survival of the Union, but as the war progressed, Lincoln increasingly made the issue of ending slavery paramount.</p>
+      <p>On September 22, 1862, Lincoln issued the Emancipation Proclamation that declared the freedom of slaves within the Confederacy.</p>
+      <blockquote>
+      <p>“… all persons held as slaves within any State or designated part of a State, the people whereof shall then be in rebellion against the United States, shall be then, thenceforward, and forever free” (<a href="http://www.nps.gov/ncro/anti/emancipation.html">Emancipation Proclamation</a>)</p>
+      </blockquote>
+      <p>The Proclamation came into force on January 1, 1863. Towards the end of the year, many black regiments were raised to help the Union army.</p>
+      <p><strong>Gettysburg address</strong></p>
+      <p><picture class="alignleft wp-image-15141"><source srcset="https://www.biographyonline.net/wp-content/uploads/2017/03/Lincoln-at-gettysburg.jpg.webp 300w" type="image/webp" sizes="(max-width: 250px) 100vw, 250px"><img class="lazyloaded" src="https://www.biographyonline.net/wp-content/uploads/2017/03/Lincoln-at-gettysburg.jpg" sizes="(max-width: 250px) 100vw, 250px" srcset="https://www.biographyonline.net/wp-content/uploads/2017/03/Lincoln-at-gettysburg.jpg 300w, https://www.biographyonline.net/wp-content/uploads/2017/03/Lincoln-at-gettysburg-150x165.jpg 150w" alt="Lincoln-at-gettysburg" width="250" height="274" data-ll-status="loaded"></picture></p>
+      <p>After a difficult opening two years, by 1863, the tide of war started to swing towards the Union forces – helped by the victory at the Battle of Gettysburg in July 1863. Lincoln felt able to redefine the goals of the civil war to include the ending of slavery.</p>
+      <p>Dedicating the ceremony at Gettysburg on November 19, 1863, Lincoln declared:</p>
+      <blockquote>
+      <p>“Four score and seven years ago our fathers brought forth on this continent, a new nation, conceived in Liberty, and dedicated to the proposition that all men are created equal.</p>
+      <p>…</p>
+      <p>that we here highly resolve that these dead shall not have died in vain — that this nation, under God, shall have a new birth of freedom — and that government of the people, by the people, for the people, shall not perish from the earth.”</p>
+      </blockquote>
+      <p>Abraham Lincoln,&nbsp;<a href="https://www.biographyonline.net/speeches/gettysburg-address.html">Gettysburg Address</a>&nbsp;November 19, 1863</p>
+      <p>Eventually, after four years of attrition, the Federal forces secured the surrender of the defeated south. The union had been saved and the issue of slavery had been brought to a head.</p>
+      <h3>After the Civil War</h3>
+      <div id="attachment_15140" class="wp-caption alignright"><picture class="wp-image-15140" aria-describedby="caption-attachment-15140"><source srcset="https://www.biographyonline.net/wp-content/uploads/2017/03/Lincoln_O-60_by_Brady_1862.jpg.webp 300w" type="image/webp" sizes="(max-width: 250px) 100vw, 250px"><img class="lazyloaded" src="https://www.biographyonline.net/wp-content/uploads/2017/03/Lincoln_O-60_by_Brady_1862.jpg" sizes="(max-width: 250px) 100vw, 250px" srcset="https://www.biographyonline.net/wp-content/uploads/2017/03/Lincoln_O-60_by_Brady_1862.jpg 300w, https://www.biographyonline.net/wp-content/uploads/2017/03/Lincoln_O-60_by_Brady_1862-150x195.jpg 150w" alt="Lincoln_O-60_by_Brady,_1862" width="250" height="324" aria-describedby="caption-attachment-15140" data-ll-status="loaded"></picture>
+      <p id="caption-attachment-15140" class="wp-caption-text">Lincoln 1862</p>
+      </div>
+      <p>In the aftermath of the civil war, Lincoln sought to reunite the country – offering a generous settlement to the south. When asked how to deal with the southern states, Lincoln replied. “Let ’em up easy.” Lincoln was opposed by more radical factions who wanted greater activism in the south to ensure civil rights for freed slaves.</p>
+      <p>On January 31, 1865, Lincoln helped pass through Congress a bill to outlaw slavery. The Thirteenth Amendment to the United States Constitution was officially signed into law on&nbsp;December 6, 1865.</p>
+      <p>Some northern abolitionists and Republicans wanted Lincoln to go further and implement full racial equality on issues of education and voting rights. Lincoln was unwilling to do this (it was a minority political view for the time)&nbsp;<a href="https://www.biographyonline.net/writers/frederick-douglass.html">Frederick Douglass</a>, a leading black activist (who had escaped from slavery) didn’t always agree with the policies of Lincoln but after meeting Lincoln, he said enthusiastically of the President.</p>
+      <blockquote>
+      <p>“He treated me as a man; he did not let me feel for a moment that there was any difference in the color of our skins! The President is a most remarkable man. I am satisfied now that he is doing all that circumstances will permit him to do.”</p>
+      </blockquote>
+      <p><strong>Assassination</strong></p>
+      <p>Five days after the surrender of Robert E. Lee and the Confederate Army, Lincoln was assassinated by John Wilkes Booth while visiting Ford’s Theatre. Lincoln’s death was widely mourned across the country.</p>
+      <p><strong>Posterity</strong></p>
+      <p>Lincoln is widely regarded as one of America’s most influential and important presidents. As well as saving the Union and promoting Republican values, Lincoln was viewed as embodying the ideals of honesty and integrity.</p>
+      <blockquote>
+      <p>“Posterity will call you the great emancipator, a more enviable title than any crown could be, and greater than any merely mundane treasure.”</p>
+      </blockquote>
+      <p><a href="https://www.biographyonline.net/politicians/europe/giuseppe-garibaldi.html">– Giuseppe Garibaldi</a>, 6 August 1863.</p>
+      <blockquote>
+      <p>“Five score years ago, a great American, in whose symbolic shadow we stand today, signed the Emancipation Proclamation. This momentous decree came as a great beacon light of hope to millions of Negro slaves who had been seared in the flames of withering injustice. It came as a joyous daybreak to end the long night of their captivity.”</p>
+      </blockquote>
