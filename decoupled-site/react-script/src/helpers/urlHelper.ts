@@ -13,7 +13,7 @@ const getImageUrl = (path = "") => {
 }
 
 const extractParams = (urlPath: string) => {
-    let relativePath = urlPath.length > 1 ? urlPath : '/en'
+    let relativePath = (urlPath.length > 1 && urlPath != "/search") ? urlPath : '/en'
     let contentId
     let workId = undefined
 

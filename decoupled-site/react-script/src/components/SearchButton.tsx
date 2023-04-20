@@ -1,21 +1,32 @@
-import SearchPage from "../pages/SearchPage";
+import { useState } from "react";
+import { useSearchParams } from "react-router-dom";
 
-function SearchButton() {
-    let searchValue: string;
+type CustomString = string | number | readonly string[] | undefined
 
-    function search(event: any){
-        if (event.charCode === 13) {
+function SearchButton(): JSX.Element {
+    const [searchParams] = useSearchParams()
+    const [searchValue, setSearchValue] = useState<CustomString>(searchParams.get("q")?.toString())
+    
+    function search(event: any, action: string){
+        if ((action == "keypress" && event.charCode === 13) || action == "buttonclick") {
             window.location.href = `${window.location.origin}/search?q=${searchValue}`
-        }      
+        }
     }
 
     function onValueChange(event: any){
-        searchValue = event.target.value;
+        setSearchValue(event.target.value);
     }
 
     return (
-        <input className="Button search-button search-input" type="text" id="search-input" placeholder="Search" 
-            onKeyPress={search} onChange={onValueChange}/>
+        <div>
+            <div className="nav-table-cell">
+                <input className="search-input" type="text" id="search-input" placeholder="Search for Artists" 
+                    onKeyPress={(event) => {search(event, 'keypress')}} value={searchValue} onChange={onValueChange} />
+            </div>
+            <div className="nav-table-cell">
+                <button className="Button search-button" onClick={(event) => {search(event, 'buttonclick')}}><i className="fa fa-search"></i></button>
+            </div>
+        </div>
     );
 }
 

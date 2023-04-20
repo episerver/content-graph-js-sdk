@@ -1,23 +1,23 @@
-query Search($searchParam: String, $locales: Locales) {
-  Content(
+query Search($searchParam: String, $locales: Locales, $order: OrderBy) {
+  ArtistDetailsPage(
     locale: [$locales]
-    orderBy: { Saved: DESC }
-    where: { _or: [
-      { Name: { contains: $searchParam } }, 
-      { Name: { startsWith: $searchParam } }] }
+    orderBy: { ArtistName: $order }
+    where: { _or: [{ Name: { contains: $searchParam, boost: 10 } }, { Name: { startsWith: $searchParam, boost: 10 } }, { StageName: { startsWith: $searchParam } }] }
   ) {
     items {
-      Name
+      PerformanceStartTime
+      PerformanceEndTime
+      StageName
+      ArtistName
+      ArtistPhoto
+      ArtistGenre
+      ArtistDescription
+      ArtistIsHeadliner
+      RelativePath
       ParentLink {
         Url
       }
-      Url
-      __typename
-      RelativePath
-      ... on ArtistDetailsPage {
-        ArtistPhoto
-        ArtistDescription
-      }
+      _fulltext
     }
   }
 }

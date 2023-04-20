@@ -3688,10 +3688,11 @@ export enum SynonymSlot {
 export type SearchQueryVariables = Exact<{
   searchParam?: InputMaybe<Scalars['String']>;
   locales?: InputMaybe<Locales>;
+  order?: InputMaybe<OrderBy>;
 }>;
 
 
-export type SearchQuery = { __typename?: 'Query', Content?: { __typename?: 'ContentOutput', items?: Array<{ __typename: 'ArtistContainerPage', Name?: string | null, Url?: string | null, RelativePath?: string | null, ParentLink?: { __typename?: 'ContentModelReference', Url?: string | null } | null } | { __typename: 'ArtistDetailsPage', ArtistPhoto?: string | null, ArtistDescription?: string | null, Name?: string | null, Url?: string | null, RelativePath?: string | null, ParentLink?: { __typename?: 'ContentModelReference', Url?: string | null } | null } | { __typename: 'BuyTicketBlock', Name?: string | null, Url?: string | null, RelativePath?: string | null, ParentLink?: { __typename?: 'ContentModelReference', Url?: string | null } | null } | { __typename: 'Content', Name?: string | null, Url?: string | null, RelativePath?: string | null, ParentLink?: { __typename?: 'ContentModelReference', Url?: string | null } | null } | { __typename: 'ContentBlock', Name?: string | null, Url?: string | null, RelativePath?: string | null, ParentLink?: { __typename?: 'ContentModelReference', Url?: string | null } | null } | { __typename: 'ImageFile', Name?: string | null, Url?: string | null, RelativePath?: string | null, ParentLink?: { __typename?: 'ContentModelReference', Url?: string | null } | null } | { __typename: 'ImagePage', Name?: string | null, Url?: string | null, RelativePath?: string | null, ParentLink?: { __typename?: 'ContentModelReference', Url?: string | null } | null } | { __typename: 'LandingPage', Name?: string | null, Url?: string | null, RelativePath?: string | null, ParentLink?: { __typename?: 'ContentModelReference', Url?: string | null } | null } | null> | null } | null };
+export type SearchQuery = { __typename?: 'Query', ArtistDetailsPage?: { __typename?: 'ArtistDetailsPageOutput', items?: Array<{ __typename?: 'ArtistDetailsPage', PerformanceStartTime?: any | null, PerformanceEndTime?: any | null, StageName?: string | null, ArtistName?: string | null, ArtistPhoto?: string | null, ArtistGenre?: string | null, ArtistDescription?: string | null, ArtistIsHeadliner?: any | null, RelativePath?: string | null, _fulltext?: Array<string | null> | null, ParentLink?: { __typename?: 'ContentModelReference', Url?: string | null } | null } | null> | null } | null };
 
 export type StartQueryVariables = Exact<{
   relativePath?: InputMaybe<Scalars['String']>;
@@ -3820,24 +3821,26 @@ export const LandingPageFragmentDoc = `
     ${LandingPageBlockDataFragmentDoc}
 ${ItemsInContentAreaFragmentDoc}`;
 export const SearchDocument = `
-    query Search($searchParam: String, $locales: Locales) {
-  Content(
+    query Search($searchParam: String, $locales: Locales, $order: OrderBy) {
+  ArtistDetailsPage(
     locale: [$locales]
-    orderBy: {Saved: DESC}
-    where: {_or: [{Name: {contains: $searchParam}}, {Name: {startsWith: $searchParam}}]}
+    orderBy: {ArtistName: $order}
+    where: {_or: [{Name: {contains: $searchParam, boost: 10}}, {Name: {startsWith: $searchParam, boost: 10}}, {StageName: {startsWith: $searchParam}}]}
   ) {
     items {
-      Name
+      PerformanceStartTime
+      PerformanceEndTime
+      StageName
+      ArtistName
+      ArtistPhoto
+      ArtistGenre
+      ArtistDescription
+      ArtistIsHeadliner
+      RelativePath
       ParentLink {
         Url
       }
-      Url
-      __typename
-      RelativePath
-      ... on ArtistDetailsPage {
-        ArtistPhoto
-        ArtistDescription
-      }
+      _fulltext
     }
   }
 }

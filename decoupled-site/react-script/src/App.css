@@ -1,4 +1,5 @@
 @import url(https://fonts.googleapis.com/css?family=Barlow:400,700|Ubuntu:400,700);
+@import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css);
 
 .LoginBar {
   position: absolute;
@@ -3958,16 +3959,32 @@ main {
   padding-right: 10px;
 }
 
+input.search-input{
+  background-color: #41FFF5;
+  color: #1A237E;
+}
+
+input.search-input::placeholder {
+  color: #1A237E;
+  opacity: 1;
+}
+
+.search-button-block{
+  padding-left: 30px;
+}
+
 .search-container{
   padding: 50px;
+  height: 100%;
 }
 
 .search-panel{
   width: 15%;
 }
 
-.search-description h5{
+.search-description h6{
   text-transform: none;
+  margin-top: 20px;
 }
 
 .search-term{
@@ -3978,17 +3995,32 @@ main {
   margin-top: 30px;
 }
 
+.search-sorting{
+  color:#000;
+  float: right;
+}
+
 .result{
-  border-bottom: #fff solid;
+  border-bottom: #fff solid 0.5px;
   border: 20%;
   width: 40%;
-  padding-top: 10px;
+  padding-top: 20px;
+}
+
+.result .card{
+  padding: 0;
 }
 
 .result-name{
-  font-weight: bold;
-  font-style: italic;
   color: #41FFF5;
+}
+
+.result-description{
+  width: 80%;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  font: 14px/20px "barlow";
 }
 
 .back-button{

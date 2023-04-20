@@ -1,4 +1,3 @@
-import ContentBlock from '../components/blocks/ContentBlock'
 import SearchButton from '../components/SearchButton'
 import { getImageUrl } from '../helpers/urlHelper'
 import { GetBlockComponent } from './BlockPage'
@@ -17,11 +16,11 @@ function LandingPage({ content }: LandingPageProps) {
                         <div className="nav-table-cell">
                             <button className="Button buy-ticket-button">{content?.BuyTicketBlock?.Heading}</button>
                         </div>
-                        <div className="nav-table-cell">
+                        <div className="nav-table-cell search-button-block">
                             <SearchButton />
                         </div>
                     </div>
-                </div>                 
+                </div>               
             </nav>
             <section className="Hero">
                 <div className="Hero-content Page-container">
