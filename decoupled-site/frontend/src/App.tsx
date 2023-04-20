@@ -13,7 +13,6 @@ import { ContentSavedMessage } from './models/ContentSavedMessage';
 import { subcribeContentSavedEvent } from './helpers/contentSavedEvent';
 import { generateGQLQueryVars, updateStartQueryCache } from './helpers/queryCacheHelper';
 import { BlockPage } from './pages/BlockPage';
-import SearchPage from './pages/SearchPage';
 
 let previousSavedMessage: any = null;
 const singleKeyUrl = process.env.REACT_APP_CONTENT_GRAPH_GATEWAY_URL as string

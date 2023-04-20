@@ -1,94 +1,89 @@
-import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
 import { useSearchParams } from "react-router-dom";
+import Footer from "../components/Footer";
+import Header from "../components/Header";
 import SearchButton from "../components/SearchButton";
 import { SearchQuery, useSearchQuery } from "../generated";
-import { subcribeContentSavedEvent } from "../helpers/contentSavedEvent";
-import { isEditOrPreviewMode } from "../helpers/urlHelper";
-import { ContentSavedMessage } from "../models/ContentSavedMessage";
+import { generateGQLSearchQueryVars } from "../helpers/queryCacheHelper";
+import { getImageUrl, isEditOrPreviewMode } from "../helpers/urlHelper";
 
-let previousSavedMessage: any = null;
 const singleKeyUrl = process.env.REACT_APP_CONTENT_GRAPH_GATEWAY_URL as string
-const hmacKeyUrl = process.env.REACT_APP_CG_PROXY_URL as string
-
-type SearchContainerPageProps = {
-    content: any
-}
 
 function SearchPage() {
-    const queryClient = useQueryClient();
     const [token, setToken] = useState("")
-    let data: SearchQuery | undefined = undefined
-    const [searchParams, setSearchParams] = useSearchParams();
-    let queryString = searchParams.get("q")
-    let variables: any = {"locales": "en", "searchParam": queryString}
-    let headers = {}
-    let url = singleKeyUrl
+    const [searchParams] = useSearchParams()
     const modeEdit = isEditOrPreviewMode()
+    let data: SearchQuery | undefined = undefined
+    let sortOption: string = "ASC"
+    let queryString: string | null
     let resultNumber : number | undefined
+    let variables: any
+    let options: {value: string; key: string}[] = [
+        {value: "ASC", key: "ASC"},
+        {value: "DESC", key: "DESC"}
+    ]
 
-    const { mutate } = useMutation((obj: any) => obj, {
-        onSuccess: (message: ContentSavedMessage) => {
-            if (previousSavedMessage !== message) {
-                previousSavedMessage = message;
-            }
-        }
-    });
+    queryString = searchParams.get("q")
+    variables = generateGQLSearchQueryVars(token, window.location.pathname, queryString, sortOption);
 
-    if (modeEdit) {
-        if (token) {
-            headers = { 'Authorization': 'Bearer ' + token };
-        }
-        url = hmacKeyUrl
-        subcribeContentSavedEvent((message: any) => mutate(message))
-    }
-
-    const { data : searchQueryData } = useSearchQuery({ endpoint: url, fetchParams: { headers: headers } }, variables, { staleTime: 2000, enabled: !modeEdit || !!token });
+    const { data : searchQueryData } = useSearchQuery({ endpoint: singleKeyUrl }, variables, { staleTime: 2000, enabled: !modeEdit || !!token });
     data = searchQueryData
-    resultNumber = data?.Content?.items?.length ?? 0
+    resultNumber = data?.ArtistDetailsPage?.items?.length ?? 0
 
     return (
-        <div className="search-container">
-            <div className="back-button">
-                <a href={window.location.origin} className="home-link">
-                    <span>Back to Landing page</span>
-                </a>
-            </div>
-            <div className="search-panel">
-                <SearchButton />
-            </div>
-            <div className="search-description">
-                <h5>Your search for <span className="search-term">{queryString}</span> resulted in <span className="search-term">{resultNumber}</span> hits</h5>
-            </div>
-            <div className="search-results">
-                {
-                    data?.Content?.items?.map((content, idx) => {
-                        if(content?.__typename === "ArtistDetailsPage"){
+        <div>
+            <Header />
+            <div className="search-container">
+                <div className="back-button">
+                    <a href={window.location.origin} className="home-link">
+                        <span>Back to Landing page</span>
+                    </a>
+                </div>
+                <div className="search-panel">
+                    <SearchButton />
+                </div>
+                <div className="search-description">
+                    <h6>Your search for <span className="search-term">{queryString}</span> resulted in <span className="search-term">{resultNumber}</span> hits</h6>
+                </div>
+                {/* <div className="search-sorting">
+                    <span></span>
+                    <select onChange={e => handleChange(e)} className="Button">
+                        {
+                            options.map((option) => {
+                                return (
+                                    <option key={option.key} value={option.key}>{option.value}</option>
+                                )
+                            })
+                        }
+                    </select>
+                </div> */}
+                <div className="search-results">
+                    {
+                        data?.ArtistDetailsPage?.items?.map((content, idx) => {
                             return (
                                 <div className="result" key={idx}>
-                                    <a href={content?.RelativePath ?? ''} className="EPiLink">
-                                        <div className="result-name">
-                                            <p>{content?.Name}</p>
+                                    <div className="card">
+                                        <div className="round">
+                                            <img className="ConditionalImage"
+                                                src={getImageUrl(content?.ArtistPhoto ?? '')}
+                                                alt={content?.ArtistName ?? ''} />
                                         </div>
-                                    </a>
+                                        <div className="info">
+                                            <a href={content?.RelativePath ?? ''} className="EPiLink">
+                                                <p className="result-name">{content?.ArtistName}</p>
+                                            </a>
+                                        </div>
+                                    </div>                             
                                     <div>
-                                        <p>{content?.ArtistDescription}</p>
+                                        <p className="result-description">{content?.ArtistDescription}</p>
                                     </div>
                                 </div>
                             )
-                        }
-                        return (
-                            <div className="result" key={idx}>
-                                <a href={content?.RelativePath ?? ''} className="EPiLink">
-                                    <div className="result-name">
-                                        <p>{content?.Name}</p>
-                                    </div>
-                                </a>
-                            </div>
-                        )
-                    })
-                }
+                        })
+                    }
+                </div>
             </div>
+            <Footer content={null}/>
         </div>
     );
 }
