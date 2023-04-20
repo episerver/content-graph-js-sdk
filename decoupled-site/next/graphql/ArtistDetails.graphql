@@ -1,0 +1,41 @@
+query ArtistDetails(
+    $locales: Locales
+    $stageName: String
+    $artistGenre: String
+) {
+    ArtistDetailsPage (
+        locale: [$locales]
+        where: {
+            StageName: {
+                eq: $stageName
+            }
+            ArtistGenre: {
+                eq: $artistGenre
+            }
+            Status: {
+                eq: "Published"
+            }
+        },
+        orderBy: {
+            Name: ASC,
+            ArtistIsHeadliner: ASC,
+            PerformanceStartTime: ASC,
+            StageName: ASC
+        },
+        limit: 100
+    ) {
+        items {
+            ...ArtistDetailsPage
+        }
+        facets {
+            ArtistGenre(orderType: VALUE, orderBy: ASC, limit: 10) {
+                name
+                count
+            }
+            StageName(orderType: VALUE, orderBy: ASC, limit: 10) {
+                name
+                count
+            }
+        }
+    }
+}
