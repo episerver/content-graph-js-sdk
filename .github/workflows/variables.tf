@@ -3,8 +3,7 @@ variable "subscription_id" {
 }
 
 variable "client_id" {
-    defau
-    lt = ""
+    default = ""
 }
 variable "client_secret" {
     default = ""
