@@ -76,7 +76,7 @@ resource "azurerm_linux_web_app" "musicfestival" {
     "DOCKER_REGISTRY_SERVER_URL"         = "https://${azurerm_container_registry.musicfestival.login_server}"
     "DOCKER_REGISTRY_SERVER_USERNAME"    = azurerm_container_registry.musicfestival.admin_username
     "DOCKER_REGISTRY_SERVER_PASSWORD"    = azurerm_container_registry.musicfestival.admin_password
-    "ConnectionStrings__EPiServerDB"     = azurerm_mssql_database.musicfestival.connection_string
+    "ConnectionStrings__EPiServerDB"     = "Server=tcp:${azurerm_mssql_server.musicfestival.name}.database.windows.net,1433;Initial Catalog=${azurerm_mssql_database.musicfestival.name};Persist Security Info=False;User ID=${azurerm_mssql_server.musicfestival.administrator_login};Password=${azurerm_mssql_server.musicfestival.administrator_login_password};MultipleActiveResultSets=True;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"
     "Optimizely__ContentGraph__AllowSendingLog"       = true
     "Optimizely__ContentGraph__AllowSyncDraftContent" = true
     "Optimizely__ContentGraph__Experimental"          = true
