@@ -18,14 +18,14 @@ namespace MusicFestival.Backend;
 public class Startup
 {
     private readonly IWebHostEnvironment _webHostingEnvironment;
-    private readonly Uri _frontendUri;
+    private readonly string _frontendUri;
     private readonly IConfiguration _configuration;
 
     public Startup(IWebHostEnvironment webHostingEnvironment, IConfiguration configuration)
     {
         _webHostingEnvironment = webHostingEnvironment;
         _configuration = configuration;
-        _frontendUri = new(_configuration["FRONT_END_URI"]);
+        _frontendUri = _configuration["FRONT_END_URI"];
     }
 
     public void ConfigureServices(IServiceCollection services)
@@ -70,17 +70,18 @@ public class Startup
             createSchema: true,
             options =>
             {
+                var baseUri = new Uri(_frontendUri);
                 options.RequireHttps = !_webHostingEnvironment.IsDevelopment();
 
                 options.Applications.Add(new OpenIDConnectApplication
                 {
                     ClientId = "frontend",
                     Scopes = { "openid", "offline_access", "profile", "email", "roles", ContentDeliveryApiOptionsDefaults.Scope },
-                    PostLogoutRedirectUris = { _frontendUri },
+                    PostLogoutRedirectUris = { baseUri },
                     RedirectUris =
                     {
-                        new Uri(_frontendUri, "/login-callback"),
-                        new Uri(_frontendUri, "/login-renewal"),
+                        new Uri(baseUri, "/login-callback"),
+                        new Uri(baseUri, "/login-renewal"),
                     },
                 });
 
@@ -126,7 +127,6 @@ public class Startup
 
         app.UseStaticFiles();
         app.UseRouting();
-
         app.UseCors(b => b
             .WithOrigins(new[] { $"{_frontendUri}"})
             .WithExposedContentDeliveryApiHeaders()

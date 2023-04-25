@@ -34,7 +34,9 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "generate": "graphql-codegen",
-    "generate:local": "DOTENV_CONFIG_PATH=./.env yarn generate -r dotenv/config"   
+    "generate:local": "DOTENV_CONFIG_PATH=./.env yarn generate -r dotenv/config",
+    "content-definitions:push": "content-definitions push manifest.json -s http://localhost:8082 --authority http://localhost:8082 --client-id cli --client-secret cli --allowed-upgrades major",
+    "content-definitions:pull": "content-definitions pull manifest.json -s http://localhost:8082 --authority http://localhost:8082 --client-id cli --client-secret cli"
   },
   "eslintConfig": {
     "extends": [
@@ -55,6 +57,7 @@
     ]
   },
   "devDependencies": {
+    "@episerver/content-definitions": "^1.1.0",
     "css-loader": "^6.7.2",
     "less": "^4.1.3",
     "less-loader": "^11.1.0",
