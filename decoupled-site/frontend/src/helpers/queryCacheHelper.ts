@@ -15,6 +15,16 @@ const generateGQLQueryVars = (token: string, pathname: string): any => {
     return variables
 }
 
+const generateGQLSearchQueryVars = (token: string, pathname: string, searchParam: string | null, sortOption: string): any => {
+    const { locales } = extractParams(pathname)
+    let variables: any = { locales: locales as Locales, searchParam: searchParam, order: sortOption };
+    if (isEditOrPreviewMode() && token) {
+        variables = { locales: locales as Locales, searchParam, sortOption };
+    }
+
+    return variables
+}
+
 const updateStartQueryCache = (queryClient: QueryClient, data: StartQuery | undefined, variables: any, message: ContentSavedMessage) => {
     const hasComplexProperty = message.properties.find(p => !isSimpleProperty(p.value)) !== undefined
     if (hasComplexProperty) {
@@ -57,4 +67,4 @@ function isSimpleProperty(propValue: any) {
 }
 
 
-export { generateGQLQueryVars, updateStartQueryCache }
+export { generateGQLQueryVars, updateStartQueryCache, generateGQLSearchQueryVars }
