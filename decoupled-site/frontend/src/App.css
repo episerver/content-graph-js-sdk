@@ -3969,9 +3969,9 @@ input.search-input::placeholder {
   opacity: 1;
 }
 
-.search-button-block{
+/* .search-button-block{
   padding-left: 30px;
-}
+} */
 
 .search-container{
   padding: 50px;
@@ -3980,6 +3980,17 @@ input.search-input::placeholder {
 
 .search-panel{
   width: 15%;
+}
+
+.search-icon{
+  position: relative;
+  bottom: 43px;
+  left: 80%;
+  color: #1A237E;
+}
+
+.search-icon:hover{
+  cursor: pointer;
 }
 
 .search-description h6{

@@ -20,12 +20,15 @@ function SearchButton(): JSX.Element {
     return (
         <div>
             <div className="nav-table-cell">
-                <input className="search-input" type="text" id="search-input" placeholder="Search for Artists" 
+                <input className="search-input" type="text" id="search-input" placeholder="Search" 
                     onKeyPress={(event) => {search(event, 'keypress')}} value={searchValue} onChange={onValueChange} />
+                    <a className="search-icon" onClick={(event) => {search(event, 'buttonclick')}}>
+                        <i className="fa fa-search"></i>
+                    </a>
             </div>
-            <div className="nav-table-cell">
+            {/* <div className="nav-table-cell">
                 <button className="Button search-button" onClick={(event) => {search(event, 'buttonclick')}}><i className="fa fa-search"></i></button>
-            </div>
+            </div> */}
         </div>
     );
 }
