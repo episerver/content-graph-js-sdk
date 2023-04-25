@@ -65,7 +65,7 @@ resource "azurerm_linux_web_app" "musicfestival" {
 
   site_config {
       application_stack {
-          docker_image     = "${azurerm_container_registry.musicfestival.login_server}/musicfestivalimage"
+          docker_image     = "${azurerm_container_registry.musicfestival.login_server}/musicfestival"
           docker_image_tag = "latest"
       }
     always_on        = true
