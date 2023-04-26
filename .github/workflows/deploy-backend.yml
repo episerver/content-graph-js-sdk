@@ -1,0 +1,36 @@
+name: Deploy Backend Docker Image
+
+on:
+  workflow_call:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Build the Docker image
+      working-directory: decoupled-site/backend
+      run: docker build . --file Dockerfile --tag musicfestival:latest
+
+    - name: Login to ACR
+      id: ecr
+      uses: elgohr/acr-login-action@master
+      with:
+        service_principal: ${{ secrets.TF_VAR_client_id }}
+        service_principal_password: ${{ secrets.TF_VAR_client_secret }}
+        tenant: ${{ secrets.TF_VAR_tenant_id }}
+        registry: musicfestivalacr.azurecr.io
+        repository: musicfestival
+
+    - name: Publish to Registry
+      uses: elgohr/Publish-Docker-Github-Action@master
+      with:
+        name: musicfestival
+        username: ${{ steps.ecr.outputs.username }}
+        password: ${{ steps.ecr.outputs.password }}
+        registry: musicfestivalacr.azurecr.io
+        workdir: decoupled-site/backend
+        tags: "latest"
