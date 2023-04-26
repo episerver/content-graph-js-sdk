@@ -1,31 +1,41 @@
-query ArtistDetails(
+#import "./fragments/ArtistDetailsPage.graphql"
+
+query ArtistDetailsPage(
     $locales: Locales
-    $stageName: String
-    $artistGenre: String
+    $relativePath: String
 ) {
-    ArtistDetailsPage (
+    ArtistDetailsPage(
         locale: [$locales]
         where: {
-            StageName: {
-                eq: $stageName
-            }
-            ArtistGenre: {
-                eq: $artistGenre
+            RelativePath: {
+                eq: $relativePath
             }
             Status: {
                 eq: "Published"
             }
-        },
+        }
         orderBy: {
             Name: ASC,
             ArtistIsHeadliner: ASC,
             PerformanceStartTime: ASC,
             StageName: ASC
-        },
-        limit: 100
+        }
+        limit: 1
     ) {
         items {
-            ...ArtistDetailsPage
+            PerformanceStartTime
+            PerformanceEndTime
+            StageName
+            ArtistName
+            ArtistPhoto
+            ArtistGenre
+            ArtistDescription
+            ArtistIsHeadliner
+            Name
+            RelativePath
+            ParentLink {
+                Url
+            }
         }
         facets {
             ArtistGenre(orderType: VALUE, orderBy: ASC, limit: 10) {

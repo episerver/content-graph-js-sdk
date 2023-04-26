@@ -1,4 +1,4 @@
-import { GetBlockComponent } from '../pages/BlockPage'
+import { GetBlockComponent } from './PageComponent/BlockPageComponent'
 
 type FooterProps = {
     content: any

@@ -61,6 +61,58 @@ export type ArtistContainerPage = IContent & {
   _score?: Maybe<Scalars['Float']>;
 };
 
+export type ArtistContainerPageAutocomplete = {
+  __typename?: 'ArtistContainerPageAutocomplete';
+  Ancestors?: Maybe<Array<Maybe<Scalars['String']>>>;
+  Category?: Maybe<CategoryModelAutocomplete>;
+  ContentLink?: Maybe<ContentModelReferenceAutocomplete>;
+  ContentType?: Maybe<Array<Maybe<Scalars['String']>>>;
+  ExistingLanguages?: Maybe<ContentLanguageModelAutocomplete>;
+  Language?: Maybe<ContentLanguageModelAutocomplete>;
+  MasterLanguage?: Maybe<ContentLanguageModelAutocomplete>;
+  ParentLink?: Maybe<ContentModelReferenceAutocomplete>;
+  RelativePath?: Maybe<Array<Maybe<Scalars['String']>>>;
+  RouteSegment?: Maybe<Array<Maybe<Scalars['String']>>>;
+  Status?: Maybe<Array<Maybe<Scalars['String']>>>;
+  Url?: Maybe<Array<Maybe<Scalars['String']>>>;
+};
+
+
+export type ArtistContainerPageAutocompleteAncestorsArgs = {
+  limit?: Scalars['Int'];
+  value: Scalars['String'];
+};
+
+
+export type ArtistContainerPageAutocompleteContentTypeArgs = {
+  limit?: Scalars['Int'];
+  value: Scalars['String'];
+};
+
+
+export type ArtistContainerPageAutocompleteRelativePathArgs = {
+  limit?: Scalars['Int'];
+  value: Scalars['String'];
+};
+
+
+export type ArtistContainerPageAutocompleteRouteSegmentArgs = {
+  limit?: Scalars['Int'];
+  value: Scalars['String'];
+};
+
+
+export type ArtistContainerPageAutocompleteStatusArgs = {
+  limit?: Scalars['Int'];
+  value: Scalars['String'];
+};
+
+
+export type ArtistContainerPageAutocompleteUrlArgs = {
+  limit?: Scalars['Int'];
+  value: Scalars['String'];
+};
+
 export type ArtistContainerPageFacet = {
   __typename?: 'ArtistContainerPageFacet';
   Ancestors?: Maybe<Array<Maybe<StringFacet>>>;
@@ -203,6 +255,7 @@ export type ArtistContainerPageOrderByInput = {
 
 export type ArtistContainerPageOutput = {
   __typename?: 'ArtistContainerPageOutput';
+  autocomplete?: Maybe<ArtistContainerPageAutocomplete>;
   cursor?: Maybe<Scalars['String']>;
   facets?: Maybe<ArtistContainerPageFacet>;
   items?: Maybe<Array<Maybe<ArtistContainerPage>>>;
@@ -274,6 +327,93 @@ export type ArtistDetailsPage = IContent & {
   _children?: Maybe<QueryRef>;
   _fulltext?: Maybe<Array<Maybe<Scalars['String']>>>;
   _score?: Maybe<Scalars['Float']>;
+};
+
+export type ArtistDetailsPageAutocomplete = {
+  __typename?: 'ArtistDetailsPageAutocomplete';
+  Ancestors?: Maybe<Array<Maybe<Scalars['String']>>>;
+  ArtistDescription?: Maybe<Array<Maybe<Scalars['String']>>>;
+  ArtistGenre?: Maybe<Array<Maybe<Scalars['String']>>>;
+  ArtistName?: Maybe<Array<Maybe<Scalars['String']>>>;
+  ArtistPhoto?: Maybe<Array<Maybe<Scalars['String']>>>;
+  Category?: Maybe<CategoryModelAutocomplete>;
+  ContentLink?: Maybe<ContentModelReferenceAutocomplete>;
+  ContentType?: Maybe<Array<Maybe<Scalars['String']>>>;
+  ExistingLanguages?: Maybe<ContentLanguageModelAutocomplete>;
+  Language?: Maybe<ContentLanguageModelAutocomplete>;
+  MasterLanguage?: Maybe<ContentLanguageModelAutocomplete>;
+  ParentLink?: Maybe<ContentModelReferenceAutocomplete>;
+  RelativePath?: Maybe<Array<Maybe<Scalars['String']>>>;
+  RouteSegment?: Maybe<Array<Maybe<Scalars['String']>>>;
+  StageName?: Maybe<Array<Maybe<Scalars['String']>>>;
+  Status?: Maybe<Array<Maybe<Scalars['String']>>>;
+  Url?: Maybe<Array<Maybe<Scalars['String']>>>;
+};
+
+
+export type ArtistDetailsPageAutocompleteAncestorsArgs = {
+  limit?: Scalars['Int'];
+  value: Scalars['String'];
+};
+
+
+export type ArtistDetailsPageAutocompleteArtistDescriptionArgs = {
+  limit?: Scalars['Int'];
+  value: Scalars['String'];
+};
+
+
+export type ArtistDetailsPageAutocompleteArtistGenreArgs = {
+  limit?: Scalars['Int'];
+  value: Scalars['String'];
+};
+
+
+export type ArtistDetailsPageAutocompleteArtistNameArgs = {
+  limit?: Scalars['Int'];
+  value: Scalars['String'];
+};
+
+
+export type ArtistDetailsPageAutocompleteArtistPhotoArgs = {
+  limit?: Scalars['Int'];
+  value: Scalars['String'];
+};
+
+
+export type ArtistDetailsPageAutocompleteContentTypeArgs = {
+  limit?: Scalars['Int'];
+  value: Scalars['String'];
+};
+
+
+export type ArtistDetailsPageAutocompleteRelativePathArgs = {
+  limit?: Scalars['Int'];
+  value: Scalars['String'];
+};
+
+
+export type ArtistDetailsPageAutocompleteRouteSegmentArgs = {
+  limit?: Scalars['Int'];
+  value: Scalars['String'];
+};
+
+
+export type ArtistDetailsPageAutocompleteStageNameArgs = {
+  limit?: Scalars['Int'];
+  value: Scalars['String'];
+};
+
+
+export type ArtistDetailsPageAutocompleteStatusArgs = {
+  limit?: Scalars['Int'];
+  value: Scalars['String'];
+};
+
+
+export type ArtistDetailsPageAutocompleteUrlArgs = {
+  limit?: Scalars['Int'];
+  value: Scalars['String'];
 };
 
 export type ArtistDetailsPageFacet = {
@@ -494,6 +634,7 @@ export type ArtistDetailsPageOrderByInput = {
 
 export type ArtistDetailsPageOutput = {
   __typename?: 'ArtistDetailsPageOutput';
+  autocomplete?: Maybe<ArtistDetailsPageAutocomplete>;
   cursor?: Maybe<Scalars['String']>;
   facets?: Maybe<ArtistDetailsPageFacet>;
   items?: Maybe<Array<Maybe<ArtistDetailsPage>>>;
@@ -544,6 +685,24 @@ export type BlobModel = {
   __typename?: 'BlobModel';
   Id?: Maybe<Scalars['String']>;
   Url?: Maybe<Scalars['String']>;
+};
+
+export type BlobModelAutocomplete = {
+  __typename?: 'BlobModelAutocomplete';
+  Id?: Maybe<Array<Maybe<Scalars['String']>>>;
+  Url?: Maybe<Array<Maybe<Scalars['String']>>>;
+};
+
+
+export type BlobModelAutocompleteIdArgs = {
+  limit?: Scalars['Int'];
+  value: Scalars['String'];
+};
+
+
+export type BlobModelAutocompleteUrlArgs = {
+  limit?: Scalars['Int'];
+  value: Scalars['String'];
 };
 
 export type BlobModelFacet = {
@@ -615,6 +774,72 @@ export type BuyTicketBlock = IContent & {
   _children?: Maybe<QueryRef>;
   _fulltext?: Maybe<Array<Maybe<Scalars['String']>>>;
   _score?: Maybe<Scalars['Float']>;
+};
+
+export type BuyTicketBlockAutocomplete = {
+  __typename?: 'BuyTicketBlockAutocomplete';
+  Ancestors?: Maybe<Array<Maybe<Scalars['String']>>>;
+  Category?: Maybe<CategoryModelAutocomplete>;
+  ContentLink?: Maybe<ContentModelReferenceAutocomplete>;
+  ContentType?: Maybe<Array<Maybe<Scalars['String']>>>;
+  ExistingLanguages?: Maybe<ContentLanguageModelAutocomplete>;
+  Heading?: Maybe<Array<Maybe<Scalars['String']>>>;
+  Language?: Maybe<ContentLanguageModelAutocomplete>;
+  MasterLanguage?: Maybe<ContentLanguageModelAutocomplete>;
+  Message?: Maybe<Array<Maybe<Scalars['String']>>>;
+  ParentLink?: Maybe<ContentModelReferenceAutocomplete>;
+  RelativePath?: Maybe<Array<Maybe<Scalars['String']>>>;
+  RouteSegment?: Maybe<Array<Maybe<Scalars['String']>>>;
+  Status?: Maybe<Array<Maybe<Scalars['String']>>>;
+  Url?: Maybe<Array<Maybe<Scalars['String']>>>;
+};
+
+
+export type BuyTicketBlockAutocompleteAncestorsArgs = {
+  limit?: Scalars['Int'];
+  value: Scalars['String'];
+};
+
+
+export type BuyTicketBlockAutocompleteContentTypeArgs = {
+  limit?: Scalars['Int'];
+  value: Scalars['String'];
+};
+
+
+export type BuyTicketBlockAutocompleteHeadingArgs = {
+  limit?: Scalars['Int'];
+  value: Scalars['String'];
+};
+
+
+export type BuyTicketBlockAutocompleteMessageArgs = {
+  limit?: Scalars['Int'];
+  value: Scalars['String'];
+};
+
+
+export type BuyTicketBlockAutocompleteRelativePathArgs = {
+  limit?: Scalars['Int'];
+  value: Scalars['String'];
+};
+
+
+export type BuyTicketBlockAutocompleteRouteSegmentArgs = {
+  limit?: Scalars['Int'];
+  value: Scalars['String'];
+};
+
+
+export type BuyTicketBlockAutocompleteStatusArgs = {
+  limit?: Scalars['Int'];
+  value: Scalars['String'];
+};
+
+
+export type BuyTicketBlockAutocompleteUrlArgs = {
+  limit?: Scalars['Int'];
+  value: Scalars['String'];
 };
 
 export type BuyTicketBlockFacet = {
@@ -779,6 +1004,7 @@ export type BuyTicketBlockOrderByInput = {
 
 export type BuyTicketBlockOutput = {
   __typename?: 'BuyTicketBlockOutput';
+  autocomplete?: Maybe<BuyTicketBlockAutocomplete>;
   cursor?: Maybe<Scalars['String']>;
   facets?: Maybe<BuyTicketBlockFacet>;
   items?: Maybe<Array<Maybe<BuyTicketBlock>>>;
@@ -824,6 +1050,24 @@ export type CategoryModel = {
   Description?: Maybe<Scalars['String']>;
   Id?: Maybe<Scalars['Int']>;
   Name?: Maybe<Scalars['String']>;
+};
+
+export type CategoryModelAutocomplete = {
+  __typename?: 'CategoryModelAutocomplete';
+  Description?: Maybe<Array<Maybe<Scalars['String']>>>;
+  Name?: Maybe<Array<Maybe<Scalars['String']>>>;
+};
+
+
+export type CategoryModelAutocompleteDescriptionArgs = {
+  limit?: Scalars['Int'];
+  value: Scalars['String'];
+};
+
+
+export type CategoryModelAutocompleteNameArgs = {
+  limit?: Scalars['Int'];
+  value: Scalars['String'];
 };
 
 export type CategoryModelFacet = {
@@ -898,6 +1142,25 @@ export type ContentAreaItemModel = {
   Tag?: Maybe<Scalars['String']>;
 };
 
+export type ContentAreaItemModelAutocomplete = {
+  __typename?: 'ContentAreaItemModelAutocomplete';
+  ContentLink?: Maybe<ContentModelReferenceAutocomplete>;
+  DisplayOption?: Maybe<Array<Maybe<Scalars['String']>>>;
+  Tag?: Maybe<Array<Maybe<Scalars['String']>>>;
+};
+
+
+export type ContentAreaItemModelAutocompleteDisplayOptionArgs = {
+  limit?: Scalars['Int'];
+  value: Scalars['String'];
+};
+
+
+export type ContentAreaItemModelAutocompleteTagArgs = {
+  limit?: Scalars['Int'];
+  value: Scalars['String'];
+};
+
 export type ContentAreaItemModelFacet = {
   __typename?: 'ContentAreaItemModelFacet';
   ContentLink?: Maybe<ContentModelReferenceFacet>;
@@ -933,6 +1196,57 @@ export type ContentAreaItemModelWhereInput = {
   Tag?: InputMaybe<StringFilterInput>;
 };
 
+export type ContentAutocomplete = {
+  __typename?: 'ContentAutocomplete';
+  Ancestors?: Maybe<Array<Maybe<Scalars['String']>>>;
+  ContentLink?: Maybe<ContentModelReferenceAutocomplete>;
+  ContentType?: Maybe<Array<Maybe<Scalars['String']>>>;
+  ExistingLanguages?: Maybe<ContentLanguageModelAutocomplete>;
+  Language?: Maybe<ContentLanguageModelAutocomplete>;
+  MasterLanguage?: Maybe<ContentLanguageModelAutocomplete>;
+  ParentLink?: Maybe<ContentModelReferenceAutocomplete>;
+  RelativePath?: Maybe<Array<Maybe<Scalars['String']>>>;
+  RouteSegment?: Maybe<Array<Maybe<Scalars['String']>>>;
+  Status?: Maybe<Array<Maybe<Scalars['String']>>>;
+  Url?: Maybe<Array<Maybe<Scalars['String']>>>;
+};
+
+
+export type ContentAutocompleteAncestorsArgs = {
+  limit?: Scalars['Int'];
+  value: Scalars['String'];
+};
+
+
+export type ContentAutocompleteContentTypeArgs = {
+  limit?: Scalars['Int'];
+  value: Scalars['String'];
+};
+
+
+export type ContentAutocompleteRelativePathArgs = {
+  limit?: Scalars['Int'];
+  value: Scalars['String'];
+};
+
+
+export type ContentAutocompleteRouteSegmentArgs = {
+  limit?: Scalars['Int'];
+  value: Scalars['String'];
+};
+
+
+export type ContentAutocompleteStatusArgs = {
+  limit?: Scalars['Int'];
+  value: Scalars['String'];
+};
+
+
+export type ContentAutocompleteUrlArgs = {
+  limit?: Scalars['Int'];
+  value: Scalars['String'];
+};
+
 export type ContentBlock = IContent & {
   __typename?: 'ContentBlock';
   Ancestors?: Maybe<Array<Maybe<Scalars['String']>>>;
@@ -961,6 +1275,86 @@ export type ContentBlock = IContent & {
   _children?: Maybe<QueryRef>;
   _fulltext?: Maybe<Array<Maybe<Scalars['String']>>>;
   _score?: Maybe<Scalars['Float']>;
+};
+
+export type ContentBlockAutocomplete = {
+  __typename?: 'ContentBlockAutocomplete';
+  Ancestors?: Maybe<Array<Maybe<Scalars['String']>>>;
+  Category?: Maybe<CategoryModelAutocomplete>;
+  Content?: Maybe<Array<Maybe<Scalars['String']>>>;
+  ContentLink?: Maybe<ContentModelReferenceAutocomplete>;
+  ContentType?: Maybe<Array<Maybe<Scalars['String']>>>;
+  ExistingLanguages?: Maybe<ContentLanguageModelAutocomplete>;
+  Image?: Maybe<Array<Maybe<Scalars['String']>>>;
+  ImageAlignment?: Maybe<Array<Maybe<Scalars['String']>>>;
+  Language?: Maybe<ContentLanguageModelAutocomplete>;
+  MasterLanguage?: Maybe<ContentLanguageModelAutocomplete>;
+  ParentLink?: Maybe<ContentModelReferenceAutocomplete>;
+  RelativePath?: Maybe<Array<Maybe<Scalars['String']>>>;
+  RouteSegment?: Maybe<Array<Maybe<Scalars['String']>>>;
+  Status?: Maybe<Array<Maybe<Scalars['String']>>>;
+  Title?: Maybe<Array<Maybe<Scalars['String']>>>;
+  Url?: Maybe<Array<Maybe<Scalars['String']>>>;
+};
+
+
+export type ContentBlockAutocompleteAncestorsArgs = {
+  limit?: Scalars['Int'];
+  value: Scalars['String'];
+};
+
+
+export type ContentBlockAutocompleteContentArgs = {
+  limit?: Scalars['Int'];
+  value: Scalars['String'];
+};
+
+
+export type ContentBlockAutocompleteContentTypeArgs = {
+  limit?: Scalars['Int'];
+  value: Scalars['String'];
+};
+
+
+export type ContentBlockAutocompleteImageArgs = {
+  limit?: Scalars['Int'];
+  value: Scalars['String'];
+};
+
+
+export type ContentBlockAutocompleteImageAlignmentArgs = {
+  limit?: Scalars['Int'];
+  value: Scalars['String'];
+};
+
+
+export type ContentBlockAutocompleteRelativePathArgs = {
+  limit?: Scalars['Int'];
+  value: Scalars['String'];
+};
+
+
+export type ContentBlockAutocompleteRouteSegmentArgs = {
+  limit?: Scalars['Int'];
+  value: Scalars['String'];
+};
+
+
+export type ContentBlockAutocompleteStatusArgs = {
+  limit?: Scalars['Int'];
+  value: Scalars['String'];
+};
+
+
+export type ContentBlockAutocompleteTitleArgs = {
+  limit?: Scalars['Int'];
+  value: Scalars['String'];
+};
+
+
+export type ContentBlockAutocompleteUrlArgs = {
+  limit?: Scalars['Int'];
+  value: Scalars['String'];
 };
 
 export type ContentBlockFacet = {
@@ -1145,6 +1539,7 @@ export type ContentBlockOrderByInput = {
 
 export type ContentBlockOutput = {
   __typename?: 'ContentBlockOutput';
+  autocomplete?: Maybe<ContentBlockAutocomplete>;
   cursor?: Maybe<Scalars['String']>;
   facets?: Maybe<ContentBlockFacet>;
   items?: Maybe<Array<Maybe<ContentBlock>>>;
@@ -1310,6 +1705,31 @@ export type ContentLanguageModel = {
   Name?: Maybe<Scalars['String']>;
 };
 
+export type ContentLanguageModelAutocomplete = {
+  __typename?: 'ContentLanguageModelAutocomplete';
+  DisplayName?: Maybe<Array<Maybe<Scalars['String']>>>;
+  Link?: Maybe<Array<Maybe<Scalars['String']>>>;
+  Name?: Maybe<Array<Maybe<Scalars['String']>>>;
+};
+
+
+export type ContentLanguageModelAutocompleteDisplayNameArgs = {
+  limit?: Scalars['Int'];
+  value: Scalars['String'];
+};
+
+
+export type ContentLanguageModelAutocompleteLinkArgs = {
+  limit?: Scalars['Int'];
+  value: Scalars['String'];
+};
+
+
+export type ContentLanguageModelAutocompleteNameArgs = {
+  limit?: Scalars['Int'];
+  value: Scalars['String'];
+};
+
 export type ContentLanguageModelFacet = {
   __typename?: 'ContentLanguageModelFacet';
   DisplayName?: Maybe<Array<Maybe<StringFacet>>>;
@@ -1362,6 +1782,32 @@ export type ContentModelReference = {
   ProviderName?: Maybe<Scalars['String']>;
   Url?: Maybe<Scalars['String']>;
   WorkId?: Maybe<Scalars['Int']>;
+};
+
+export type ContentModelReferenceAutocomplete = {
+  __typename?: 'ContentModelReferenceAutocomplete';
+  GuidValue?: Maybe<Array<Maybe<Scalars['String']>>>;
+  Language?: Maybe<ContentLanguageModelAutocomplete>;
+  ProviderName?: Maybe<Array<Maybe<Scalars['String']>>>;
+  Url?: Maybe<Array<Maybe<Scalars['String']>>>;
+};
+
+
+export type ContentModelReferenceAutocompleteGuidValueArgs = {
+  limit?: Scalars['Int'];
+  value: Scalars['String'];
+};
+
+
+export type ContentModelReferenceAutocompleteProviderNameArgs = {
+  limit?: Scalars['Int'];
+  value: Scalars['String'];
+};
+
+
+export type ContentModelReferenceAutocompleteUrlArgs = {
+  limit?: Scalars['Int'];
+  value: Scalars['String'];
 };
 
 export type ContentModelReferenceFacet = {
@@ -1450,6 +1896,7 @@ export type ContentOrderByInput = {
 
 export type ContentOutput = {
   __typename?: 'ContentOutput';
+  autocomplete?: Maybe<ContentAutocomplete>;
   cursor?: Maybe<Scalars['String']>;
   facets?: Maybe<ContentFacet>;
   items?: Maybe<Array<Maybe<IContent>>>;
@@ -1469,6 +1916,16 @@ export type ContentRootsModel = {
   SiteAssetsRoot?: Maybe<ContentModelReference>;
   StartPage?: Maybe<ContentModelReference>;
   WasteBasket?: Maybe<ContentModelReference>;
+};
+
+export type ContentRootsModelAutocomplete = {
+  __typename?: 'ContentRootsModelAutocomplete';
+  ContentAssetsRoot?: Maybe<ContentModelReferenceAutocomplete>;
+  GlobalAssetsRoot?: Maybe<ContentModelReferenceAutocomplete>;
+  RootPage?: Maybe<ContentModelReferenceAutocomplete>;
+  SiteAssetsRoot?: Maybe<ContentModelReferenceAutocomplete>;
+  StartPage?: Maybe<ContentModelReferenceAutocomplete>;
+  WasteBasket?: Maybe<ContentModelReferenceAutocomplete>;
 };
 
 export type ContentRootsModelFacet = {
@@ -1564,6 +2021,25 @@ export type HostDefinitionModel = {
   Type?: Maybe<Scalars['String']>;
 };
 
+export type HostDefinitionModelAutocomplete = {
+  __typename?: 'HostDefinitionModelAutocomplete';
+  Language?: Maybe<ContentLanguageModelAutocomplete>;
+  Name?: Maybe<Array<Maybe<Scalars['String']>>>;
+  Type?: Maybe<Array<Maybe<Scalars['String']>>>;
+};
+
+
+export type HostDefinitionModelAutocompleteNameArgs = {
+  limit?: Scalars['Int'];
+  value: Scalars['String'];
+};
+
+
+export type HostDefinitionModelAutocompleteTypeArgs = {
+  limit?: Scalars['Int'];
+  value: Scalars['String'];
+};
+
 export type HostDefinitionModelFacet = {
   __typename?: 'HostDefinitionModelFacet';
   Language?: Maybe<ContentLanguageModelFacet>;
@@ -1650,6 +2126,66 @@ export type ImageFile = IContent & {
   _children?: Maybe<QueryRef>;
   _fulltext?: Maybe<Array<Maybe<Scalars['String']>>>;
   _score?: Maybe<Scalars['Float']>;
+};
+
+export type ImageFileAutocomplete = {
+  __typename?: 'ImageFileAutocomplete';
+  Ancestors?: Maybe<Array<Maybe<Scalars['String']>>>;
+  Category?: Maybe<CategoryModelAutocomplete>;
+  ContentLink?: Maybe<ContentModelReferenceAutocomplete>;
+  ContentType?: Maybe<Array<Maybe<Scalars['String']>>>;
+  ExistingLanguages?: Maybe<ContentLanguageModelAutocomplete>;
+  Language?: Maybe<ContentLanguageModelAutocomplete>;
+  MasterLanguage?: Maybe<ContentLanguageModelAutocomplete>;
+  MimeType?: Maybe<Array<Maybe<Scalars['String']>>>;
+  ParentLink?: Maybe<ContentModelReferenceAutocomplete>;
+  RelativePath?: Maybe<Array<Maybe<Scalars['String']>>>;
+  RouteSegment?: Maybe<Array<Maybe<Scalars['String']>>>;
+  Status?: Maybe<Array<Maybe<Scalars['String']>>>;
+  Thumbnail?: Maybe<BlobModelAutocomplete>;
+  Url?: Maybe<Array<Maybe<Scalars['String']>>>;
+};
+
+
+export type ImageFileAutocompleteAncestorsArgs = {
+  limit?: Scalars['Int'];
+  value: Scalars['String'];
+};
+
+
+export type ImageFileAutocompleteContentTypeArgs = {
+  limit?: Scalars['Int'];
+  value: Scalars['String'];
+};
+
+
+export type ImageFileAutocompleteMimeTypeArgs = {
+  limit?: Scalars['Int'];
+  value: Scalars['String'];
+};
+
+
+export type ImageFileAutocompleteRelativePathArgs = {
+  limit?: Scalars['Int'];
+  value: Scalars['String'];
+};
+
+
+export type ImageFileAutocompleteRouteSegmentArgs = {
+  limit?: Scalars['Int'];
+  value: Scalars['String'];
+};
+
+
+export type ImageFileAutocompleteStatusArgs = {
+  limit?: Scalars['Int'];
+  value: Scalars['String'];
+};
+
+
+export type ImageFileAutocompleteUrlArgs = {
+  limit?: Scalars['Int'];
+  value: Scalars['String'];
 };
 
 export type ImageFileFacet = {
@@ -1816,6 +2352,7 @@ export type ImageFileOrderByInput = {
 
 export type ImageFileOutput = {
   __typename?: 'ImageFileOutput';
+  autocomplete?: Maybe<ImageFileAutocomplete>;
   cursor?: Maybe<Scalars['String']>;
   facets?: Maybe<ImageFileFacet>;
   items?: Maybe<Array<Maybe<ImageFile>>>;
@@ -1885,6 +2422,66 @@ export type ImagePage = IContent & {
   _children?: Maybe<QueryRef>;
   _fulltext?: Maybe<Array<Maybe<Scalars['String']>>>;
   _score?: Maybe<Scalars['Float']>;
+};
+
+export type ImagePageAutocomplete = {
+  __typename?: 'ImagePageAutocomplete';
+  Ancestors?: Maybe<Array<Maybe<Scalars['String']>>>;
+  Category?: Maybe<CategoryModelAutocomplete>;
+  ContentLink?: Maybe<ContentModelReferenceAutocomplete>;
+  ContentType?: Maybe<Array<Maybe<Scalars['String']>>>;
+  ExistingLanguages?: Maybe<ContentLanguageModelAutocomplete>;
+  Language?: Maybe<ContentLanguageModelAutocomplete>;
+  MasterLanguage?: Maybe<ContentLanguageModelAutocomplete>;
+  MimeType?: Maybe<Array<Maybe<Scalars['String']>>>;
+  ParentLink?: Maybe<ContentModelReferenceAutocomplete>;
+  RelativePath?: Maybe<Array<Maybe<Scalars['String']>>>;
+  RouteSegment?: Maybe<Array<Maybe<Scalars['String']>>>;
+  Status?: Maybe<Array<Maybe<Scalars['String']>>>;
+  Thumbnail?: Maybe<BlobModelAutocomplete>;
+  Url?: Maybe<Array<Maybe<Scalars['String']>>>;
+};
+
+
+export type ImagePageAutocompleteAncestorsArgs = {
+  limit?: Scalars['Int'];
+  value: Scalars['String'];
+};
+
+
+export type ImagePageAutocompleteContentTypeArgs = {
+  limit?: Scalars['Int'];
+  value: Scalars['String'];
+};
+
+
+export type ImagePageAutocompleteMimeTypeArgs = {
+  limit?: Scalars['Int'];
+  value: Scalars['String'];
+};
+
+
+export type ImagePageAutocompleteRelativePathArgs = {
+  limit?: Scalars['Int'];
+  value: Scalars['String'];
+};
+
+
+export type ImagePageAutocompleteRouteSegmentArgs = {
+  limit?: Scalars['Int'];
+  value: Scalars['String'];
+};
+
+
+export type ImagePageAutocompleteStatusArgs = {
+  limit?: Scalars['Int'];
+  value: Scalars['String'];
+};
+
+
+export type ImagePageAutocompleteUrlArgs = {
+  limit?: Scalars['Int'];
+  value: Scalars['String'];
 };
 
 export type ImagePageFacet = {
@@ -2061,6 +2658,7 @@ export type ImagePageOrderByInput = {
 
 export type ImagePageOutput = {
   __typename?: 'ImagePageOutput';
+  autocomplete?: Maybe<ImagePageAutocomplete>;
   cursor?: Maybe<Scalars['String']>;
   facets?: Maybe<ImagePageFacet>;
   items?: Maybe<Array<Maybe<ImagePage>>>;
@@ -2159,10 +2757,105 @@ export type LandingPage = IContent & {
   _score?: Maybe<Scalars['Float']>;
 };
 
+export type LandingPageAutocomplete = {
+  __typename?: 'LandingPageAutocomplete';
+  Ancestors?: Maybe<Array<Maybe<Scalars['String']>>>;
+  ArtistsLink?: Maybe<ContentModelReferenceAutocomplete>;
+  BuyTicketBlock?: Maybe<LandingPageBlockDataAutocomplete>;
+  Category?: Maybe<CategoryModelAutocomplete>;
+  ContentLink?: Maybe<ContentModelReferenceAutocomplete>;
+  ContentType?: Maybe<Array<Maybe<Scalars['String']>>>;
+  ExistingLanguages?: Maybe<ContentLanguageModelAutocomplete>;
+  FooterContentArea?: Maybe<ContentAreaItemModelAutocomplete>;
+  HeroImage?: Maybe<Array<Maybe<Scalars['String']>>>;
+  Language?: Maybe<ContentLanguageModelAutocomplete>;
+  MainContentArea?: Maybe<ContentAreaItemModelAutocomplete>;
+  MasterLanguage?: Maybe<ContentLanguageModelAutocomplete>;
+  ParentLink?: Maybe<ContentModelReferenceAutocomplete>;
+  RelativePath?: Maybe<Array<Maybe<Scalars['String']>>>;
+  RouteSegment?: Maybe<Array<Maybe<Scalars['String']>>>;
+  Status?: Maybe<Array<Maybe<Scalars['String']>>>;
+  Subtitle?: Maybe<Array<Maybe<Scalars['String']>>>;
+  Title?: Maybe<Array<Maybe<Scalars['String']>>>;
+  Url?: Maybe<Array<Maybe<Scalars['String']>>>;
+};
+
+
+export type LandingPageAutocompleteAncestorsArgs = {
+  limit?: Scalars['Int'];
+  value: Scalars['String'];
+};
+
+
+export type LandingPageAutocompleteContentTypeArgs = {
+  limit?: Scalars['Int'];
+  value: Scalars['String'];
+};
+
+
+export type LandingPageAutocompleteHeroImageArgs = {
+  limit?: Scalars['Int'];
+  value: Scalars['String'];
+};
+
+
+export type LandingPageAutocompleteRelativePathArgs = {
+  limit?: Scalars['Int'];
+  value: Scalars['String'];
+};
+
+
+export type LandingPageAutocompleteRouteSegmentArgs = {
+  limit?: Scalars['Int'];
+  value: Scalars['String'];
+};
+
+
+export type LandingPageAutocompleteStatusArgs = {
+  limit?: Scalars['Int'];
+  value: Scalars['String'];
+};
+
+
+export type LandingPageAutocompleteSubtitleArgs = {
+  limit?: Scalars['Int'];
+  value: Scalars['String'];
+};
+
+
+export type LandingPageAutocompleteTitleArgs = {
+  limit?: Scalars['Int'];
+  value: Scalars['String'];
+};
+
+
+export type LandingPageAutocompleteUrlArgs = {
+  limit?: Scalars['Int'];
+  value: Scalars['String'];
+};
+
 export type LandingPageBlockData = {
   __typename?: 'LandingPageBlockData';
   Heading?: Maybe<Scalars['String']>;
   Message?: Maybe<Scalars['String']>;
+};
+
+export type LandingPageBlockDataAutocomplete = {
+  __typename?: 'LandingPageBlockDataAutocomplete';
+  Heading?: Maybe<Array<Maybe<Scalars['String']>>>;
+  Message?: Maybe<Array<Maybe<Scalars['String']>>>;
+};
+
+
+export type LandingPageBlockDataAutocompleteHeadingArgs = {
+  limit?: Scalars['Int'];
+  value: Scalars['String'];
+};
+
+
+export type LandingPageBlockDataAutocompleteMessageArgs = {
+  limit?: Scalars['Int'];
+  value: Scalars['String'];
 };
 
 export type LandingPageBlockDataFacet = {
@@ -2377,6 +3070,7 @@ export type LandingPageOrderByInput = {
 
 export type LandingPageOutput = {
   __typename?: 'LandingPageOutput';
+  autocomplete?: Maybe<LandingPageAutocomplete>;
   cursor?: Maybe<Scalars['String']>;
   facets?: Maybe<LandingPageFacet>;
   items?: Maybe<Array<Maybe<LandingPage>>>;
@@ -2423,6 +3117,7 @@ export type LandingPageWhereInput = {
 };
 
 export enum Locales {
+  All = 'ALL',
   En = 'en',
   Sv = 'sv'
 }
@@ -2673,6 +3368,7 @@ export type RangeFacetsInput = {
 };
 
 export enum Ranking {
+  BoostOnly = 'BOOST_ONLY',
   Doc = 'DOC',
   Relevance = 'RELEVANCE'
 }
@@ -2686,18 +3382,10 @@ export type SearchableStringFilterInput = {
   eq?: InputMaybe<Scalars['String']>;
   /** `exist` matches results that have this field. */
   exist?: InputMaybe<Scalars['Boolean']>;
-  /** `gt` retrieves results with matches that have a value which is `greater than` it. */
-  gt?: InputMaybe<Scalars['String']>;
-  /** `gte` retrieves results with matches that have a value which is `greater than or equal to` it. */
-  gte?: InputMaybe<Scalars['String']>;
   /** `in` matches with 1 or more exact values in a list. Example: `in: ["word1", "word2", "this is a phrase"]` */
   in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
   /** `like` matches on substrings with wildcard support: `%` to match on 0 or more characters, `_` to match on any character.  */
   like?: InputMaybe<Scalars['String']>;
-  /** `lt` retrieves results with matches that have a value which is `lower than` it. */
-  lt?: InputMaybe<Scalars['String']>;
-  /** `lte` retrieves results with matches that have a value which is `lower than or equal to` it. */
-  lte?: InputMaybe<Scalars['String']>;
   /** `not_eq` retrieves results not matching with an exact (but case-insensitive) value. */
   notEq?: InputMaybe<Scalars['String']>;
   /** `not_in` returns results that do not match with 1 or more exact values in a list. Example: `not_in: ["word1", "word2", "this is a phrase"]` */
@@ -2722,6 +3410,42 @@ export type SiteDefinition = {
   _children?: Maybe<QueryRef>;
   _fulltext?: Maybe<Array<Maybe<Scalars['String']>>>;
   _score?: Maybe<Scalars['Float']>;
+};
+
+export type SiteDefinitionAutocomplete = {
+  __typename?: 'SiteDefinitionAutocomplete';
+  ContentLink?: Maybe<ContentModelReferenceAutocomplete>;
+  ContentRoots?: Maybe<ContentRootsModelAutocomplete>;
+  ContentType?: Maybe<Array<Maybe<Scalars['String']>>>;
+  EditLocation?: Maybe<Array<Maybe<Scalars['String']>>>;
+  Hosts?: Maybe<HostDefinitionModelAutocomplete>;
+  Id?: Maybe<Array<Maybe<Scalars['String']>>>;
+  Languages?: Maybe<SiteDefinitionLanguageModelAutocomplete>;
+  Status?: Maybe<Array<Maybe<Scalars['String']>>>;
+};
+
+
+export type SiteDefinitionAutocompleteContentTypeArgs = {
+  limit?: Scalars['Int'];
+  value: Scalars['String'];
+};
+
+
+export type SiteDefinitionAutocompleteEditLocationArgs = {
+  limit?: Scalars['Int'];
+  value: Scalars['String'];
+};
+
+
+export type SiteDefinitionAutocompleteIdArgs = {
+  limit?: Scalars['Int'];
+  value: Scalars['String'];
+};
+
+
+export type SiteDefinitionAutocompleteStatusArgs = {
+  limit?: Scalars['Int'];
+  value: Scalars['String'];
 };
 
 export type SiteDefinitionFacet = {
@@ -2784,6 +3508,38 @@ export type SiteDefinitionLanguageModel = {
   Name?: Maybe<Scalars['String']>;
   Url?: Maybe<Scalars['String']>;
   UrlSegment?: Maybe<Scalars['String']>;
+};
+
+export type SiteDefinitionLanguageModelAutocomplete = {
+  __typename?: 'SiteDefinitionLanguageModelAutocomplete';
+  DisplayName?: Maybe<Array<Maybe<Scalars['String']>>>;
+  Name?: Maybe<Array<Maybe<Scalars['String']>>>;
+  Url?: Maybe<Array<Maybe<Scalars['String']>>>;
+  UrlSegment?: Maybe<Array<Maybe<Scalars['String']>>>;
+};
+
+
+export type SiteDefinitionLanguageModelAutocompleteDisplayNameArgs = {
+  limit?: Scalars['Int'];
+  value: Scalars['String'];
+};
+
+
+export type SiteDefinitionLanguageModelAutocompleteNameArgs = {
+  limit?: Scalars['Int'];
+  value: Scalars['String'];
+};
+
+
+export type SiteDefinitionLanguageModelAutocompleteUrlArgs = {
+  limit?: Scalars['Int'];
+  value: Scalars['String'];
+};
+
+
+export type SiteDefinitionLanguageModelAutocompleteUrlSegmentArgs = {
+  limit?: Scalars['Int'];
+  value: Scalars['String'];
 };
 
 export type SiteDefinitionLanguageModelFacet = {
@@ -2866,6 +3622,7 @@ export type SiteDefinitionOrderByInput = {
 
 export type SiteDefinitionOutput = {
   __typename?: 'SiteDefinitionOutput';
+  autocomplete?: Maybe<SiteDefinitionAutocomplete>;
   cursor?: Maybe<Scalars['String']>;
   facets?: Maybe<SiteDefinitionFacet>;
   items?: Maybe<Array<Maybe<SiteDefinition>>>;
@@ -2930,14 +3687,24 @@ export enum SynonymSlot {
   Two = 'TWO'
 }
 
-export type ArtistDetailsQueryVariables = Exact<{
+export type ArtistContainerPageQueryVariables = Exact<{
   locales?: InputMaybe<Locales>;
-  stageName?: InputMaybe<Scalars['String']>;
-  artistGenre?: InputMaybe<Scalars['String']>;
+  language?: InputMaybe<Scalars['String']>;
+  statusEqual?: InputMaybe<Scalars['String']>;
 }>;
 
 
-export type ArtistDetailsQuery = { __typename?: 'Query', ArtistDetailsPage?: { __typename?: 'ArtistDetailsPageOutput', items?: Array<{ __typename?: 'ArtistDetailsPage', PerformanceStartTime?: any | null, PerformanceEndTime?: any | null, StageName?: string | null, ArtistName?: string | null, ArtistPhoto?: string | null, ArtistGenre?: string | null, ArtistDescription?: string | null, ArtistIsHeadliner?: any | null, Name?: string | null, RelativePath?: string | null, ParentLink?: { __typename?: 'ContentModelReference', Url?: string | null } | null } | null> | null, facets?: { __typename?: 'ArtistDetailsPageFacet', ArtistGenre?: Array<{ __typename?: 'StringFacet', name?: string | null, count?: number | null } | null> | null, StageName?: Array<{ __typename?: 'StringFacet', name?: string | null, count?: number | null } | null> | null } | null } | null };
+export type ArtistContainerPageQuery = { __typename?: 'Query', ArtistContainerPage?: { __typename?: 'ArtistContainerPageOutput', items?: Array<{ __typename: 'ArtistContainerPage', Name?: string | null, Url?: string | null, RelativePath?: string | null, ParentLink?: { __typename?: 'ContentModelReference', Url?: string | null } | null, artists?: { __typename?: 'QueryRef', ArtistDetailsPage?: { __typename?: 'ArtistDetailsPageOutput', items?: Array<{ __typename?: 'ArtistDetailsPage', PerformanceStartTime?: any | null, PerformanceEndTime?: any | null, StageName?: string | null, ArtistName?: string | null, ArtistPhoto?: string | null, ArtistGenre?: string | null, ArtistDescription?: string | null, ArtistIsHeadliner?: any | null, Name?: string | null, RelativePath?: string | null, ParentLink?: { __typename?: 'ContentModelReference', Url?: string | null } | null } | null> | null, facets?: { __typename?: 'ArtistDetailsPageFacet', ArtistGenre?: Array<{ __typename?: 'StringFacet', name?: string | null, count?: number | null } | null> | null, StageName?: Array<{ __typename?: 'StringFacet', name?: string | null, count?: number | null } | null> | null } | null } | null } | null } | null> | null } | null };
+
+export type ArtistDetailsPageFragment = { __typename?: 'ArtistDetailsPage', PerformanceStartTime?: any | null, PerformanceEndTime?: any | null, StageName?: string | null, ArtistName?: string | null, ArtistPhoto?: string | null, ArtistGenre?: string | null, ArtistDescription?: string | null, ArtistIsHeadliner?: any | null, Name?: string | null, RelativePath?: string | null, ParentLink?: { __typename?: 'ContentModelReference', Url?: string | null } | null };
+
+export type ArtistDetailsPageQueryVariables = Exact<{
+  locales?: InputMaybe<Locales>;
+  relativePath?: InputMaybe<Scalars['String']>;
+}>;
+
+
+export type ArtistDetailsPageQuery = { __typename?: 'Query', ArtistDetailsPage?: { __typename?: 'ArtistDetailsPageOutput', items?: Array<{ __typename?: 'ArtistDetailsPage', PerformanceStartTime?: any | null, PerformanceEndTime?: any | null, StageName?: string | null, ArtistName?: string | null, ArtistPhoto?: string | null, ArtistGenre?: string | null, ArtistDescription?: string | null, ArtistIsHeadliner?: any | null, Name?: string | null, RelativePath?: string | null, ParentLink?: { __typename?: 'ContentModelReference', Url?: string | null } | null } | null> | null, facets?: { __typename?: 'ArtistDetailsPageFacet', ArtistGenre?: Array<{ __typename?: 'StringFacet', name?: string | null, count?: number | null } | null> | null, StageName?: Array<{ __typename?: 'StringFacet', name?: string | null, count?: number | null } | null> | null } | null } | null };
 
 export type StartQueryVariables = Exact<{
   relativePath?: InputMaybe<Scalars['String']>;
@@ -2953,8 +3720,6 @@ export type StartQueryVariables = Exact<{
 
 
 export type StartQuery = { __typename?: 'Query', Content?: { __typename?: 'ContentOutput', items?: Array<{ __typename: 'ArtistContainerPage', Name?: string | null, RelativePath?: string | null, Url?: string | null, artists?: { __typename?: 'QueryRef', ArtistDetailsPage?: { __typename?: 'ArtistDetailsPageOutput', items?: Array<{ __typename?: 'ArtistDetailsPage', PerformanceStartTime?: any | null, PerformanceEndTime?: any | null, StageName?: string | null, ArtistName?: string | null, ArtistPhoto?: string | null, ArtistGenre?: string | null, ArtistDescription?: string | null, ArtistIsHeadliner?: any | null, Name?: string | null, RelativePath?: string | null, ParentLink?: { __typename?: 'ContentModelReference', Url?: string | null } | null } | null> | null, facets?: { __typename?: 'ArtistDetailsPageFacet', ArtistGenre?: Array<{ __typename?: 'StringFacet', name?: string | null, count?: number | null } | null> | null, StageName?: Array<{ __typename?: 'StringFacet', name?: string | null, count?: number | null } | null> | null } | null } | null } | null, ParentLink?: { __typename?: 'ContentModelReference', Url?: string | null } | null } | { __typename: 'ArtistDetailsPage', Name?: string | null, Url?: string | null, RelativePath?: string | null, PerformanceStartTime?: any | null, PerformanceEndTime?: any | null, StageName?: string | null, ArtistName?: string | null, ArtistPhoto?: string | null, ArtistGenre?: string | null, ArtistDescription?: string | null, ArtistIsHeadliner?: any | null, ParentLink?: { __typename?: 'ContentModelReference', Url?: string | null } | null } | { __typename: 'BuyTicketBlock', Name?: string | null, Url?: string | null, RelativePath?: string | null, ParentLink?: { __typename?: 'ContentModelReference', Url?: string | null } | null } | { __typename: 'Content', Name?: string | null, Url?: string | null, RelativePath?: string | null, ParentLink?: { __typename?: 'ContentModelReference', Url?: string | null } | null } | { __typename: 'ContentBlock', Title?: string | null, Image?: string | null, ImageAlignment?: string | null, Content?: string | null, Name?: string | null, Url?: string | null, RelativePath?: string | null, ParentLink?: { __typename?: 'ContentModelReference', Url?: string | null } | null } | { __typename: 'ImageFile', Name?: string | null, Url?: string | null, RelativePath?: string | null, ParentLink?: { __typename?: 'ContentModelReference', Url?: string | null } | null } | { __typename: 'ImagePage', Name?: string | null, Url?: string | null, RelativePath?: string | null, ParentLink?: { __typename?: 'ContentModelReference', Url?: string | null } | null } | { __typename: 'LandingPage', Name?: string | null, Url?: string | null, RelativePath?: string | null, Title?: string | null, Subtitle?: string | null, HeroImage?: string | null, _children?: { __typename?: 'QueryRef', ArtistContainerPage?: { __typename?: 'ArtistContainerPageOutput', items?: Array<{ __typename?: 'ArtistContainerPage', Name?: string | null, RelativePath?: string | null, headlines?: { __typename?: 'QueryRef', ArtistDetailsPage?: { __typename?: 'ArtistDetailsPageOutput', items?: Array<{ __typename?: 'ArtistDetailsPage', PerformanceStartTime?: any | null, PerformanceEndTime?: any | null, StageName?: string | null, ArtistName?: string | null, ArtistPhoto?: string | null, ArtistGenre?: string | null, ArtistDescription?: string | null, ArtistIsHeadliner?: any | null, Name?: string | null, RelativePath?: string | null, ParentLink?: { __typename?: 'ContentModelReference', Url?: string | null } | null } | null> | null } | null } | null } | null> | null } | null } | null, ParentLink?: { __typename?: 'ContentModelReference', Url?: string | null } | null, BuyTicketBlock?: { __typename?: 'LandingPageBlockData', Heading?: string | null, Message?: string | null } | null, ArtistsLink?: { __typename?: 'ContentModelReference', Expanded?: { __typename?: 'ArtistContainerPage', Name?: string | null, RelativePath?: string | null } | { __typename?: 'ArtistDetailsPage', Name?: string | null, RelativePath?: string | null } | { __typename?: 'BuyTicketBlock', Name?: string | null, RelativePath?: string | null } | { __typename?: 'Content', Name?: string | null, RelativePath?: string | null } | { __typename?: 'ContentBlock', Name?: string | null, RelativePath?: string | null } | { __typename?: 'ImageFile', Name?: string | null, RelativePath?: string | null } | { __typename?: 'ImagePage', Name?: string | null, RelativePath?: string | null } | { __typename?: 'LandingPage', Name?: string | null, RelativePath?: string | null } | null } | null, MainContentArea?: Array<{ __typename?: 'ContentAreaItemModel', ContentLink?: { __typename?: 'ContentModelReference', Expanded?: { __typename: 'ArtistContainerPage' } | { __typename: 'ArtistDetailsPage' } | { __typename: 'BuyTicketBlock' } | { __typename: 'Content' } | { __typename: 'ContentBlock', Title?: string | null, Image?: string | null, ImageAlignment?: string | null, Content?: string | null } | { __typename: 'ImageFile', Content?: string | null, Url?: string | null, Thumbnail?: { __typename?: 'BlobModel', Url?: string | null } | null } | { __typename: 'ImagePage' } | { __typename: 'LandingPage' } | null } | null } | null> | null, FooterContentArea?: Array<{ __typename?: 'ContentAreaItemModel', ContentLink?: { __typename?: 'ContentModelReference', Expanded?: { __typename: 'ArtistContainerPage' } | { __typename: 'ArtistDetailsPage' } | { __typename: 'BuyTicketBlock' } | { __typename: 'Content' } | { __typename: 'ContentBlock', Title?: string | null, Image?: string | null, ImageAlignment?: string | null, Content?: string | null } | { __typename: 'ImageFile', Content?: string | null, Url?: string | null, Thumbnail?: { __typename?: 'BlobModel', Url?: string | null } | null } | { __typename: 'ImagePage' } | { __typename: 'LandingPage' } | null } | null } | null> | null } | null> | null } | null };
-
-export type ArtistDetailsPageFragment = { __typename?: 'ArtistDetailsPage', PerformanceStartTime?: any | null, PerformanceEndTime?: any | null, StageName?: string | null, ArtistName?: string | null, ArtistPhoto?: string | null, ArtistGenre?: string | null, ArtistDescription?: string | null, ArtistIsHeadliner?: any | null, Name?: string | null, RelativePath?: string | null, ParentLink?: { __typename?: 'ContentModelReference', Url?: string | null } | null };
 
 export type ContentBlockFragment = { __typename?: 'ContentBlock', Title?: string | null, Image?: string | null, ImageAlignment?: string | null, Content?: string | null };
 
@@ -3065,16 +3830,82 @@ export const LandingPageFragmentDoc = `
 }
     ${LandingPageBlockDataFragmentDoc}
 ${ItemsInContentAreaFragmentDoc}`;
-export const ArtistDetailsDocument = `
-    query ArtistDetails($locales: Locales, $stageName: String, $artistGenre: String) {
-  ArtistDetailsPage(
+export const ArtistContainerPageDocument = `
+    query ArtistContainerPage($locales: Locales, $language: String, $statusEqual: String) {
+  ArtistContainerPage(
     locale: [$locales]
-    where: {StageName: {eq: $stageName}, ArtistGenre: {eq: $artistGenre}, Status: {eq: "Published"}}
-    orderBy: {Name: ASC, ArtistIsHeadliner: ASC, PerformanceStartTime: ASC, StageName: ASC}
-    limit: 100
+    where: {Language: {Name: {eq: $language}}, Status: {eq: $statusEqual}}
+    orderBy: {Saved: DESC}
+    limit: 1
   ) {
     items {
-      ...ArtistDetailsPage
+      Name
+      ParentLink {
+        Url
+      }
+      Url
+      __typename
+      RelativePath
+      artists: _children {
+        ArtistDetailsPage(
+          where: {Status: {eq: "Published"}}
+          orderBy: {Name: ASC, ArtistIsHeadliner: ASC, PerformanceStartTime: ASC, StageName: ASC}
+          limit: 100
+        ) {
+          items {
+            ...ArtistDetailsPage
+          }
+          facets {
+            ArtistGenre(orderType: VALUE, orderBy: ASC, limit: 10) {
+              name
+              count
+            }
+            StageName(orderType: VALUE, orderBy: ASC, limit: 10) {
+              name
+              count
+            }
+          }
+        }
+      }
+    }
+  }
+}
+    ${ArtistDetailsPageFragmentDoc}`;
+export const useArtistContainerPageQuery = <
+      TData = ArtistContainerPageQuery,
+      TError = unknown
+    >(
+      dataSource: { endpoint: string, fetchParams?: RequestInit },
+      variables?: ArtistContainerPageQueryVariables,
+      options?: UseQueryOptions<ArtistContainerPageQuery, TError, TData>
+    ) =>
+    useQuery<ArtistContainerPageQuery, TError, TData>(
+      variables === undefined ? ['ArtistContainerPage'] : ['ArtistContainerPage', variables],
+      fetcher<ArtistContainerPageQuery, ArtistContainerPageQueryVariables>(dataSource.endpoint, dataSource.fetchParams || {}, ArtistContainerPageDocument, variables),
+      options
+    );
+export const ArtistDetailsPageDocument = `
+    query ArtistDetailsPage($locales: Locales, $relativePath: String) {
+  ArtistDetailsPage(
+    locale: [$locales]
+    where: {RelativePath: {eq: $relativePath}, Status: {eq: "Published"}}
+    orderBy: {Name: ASC, ArtistIsHeadliner: ASC, PerformanceStartTime: ASC, StageName: ASC}
+    limit: 1
+  ) {
+    items {
+      PerformanceStartTime
+      PerformanceEndTime
+      StageName
+      ArtistName
+      ArtistPhoto
+      ArtistGenre
+      ArtistDescription
+      ArtistIsHeadliner
+      Name
+      RelativePath
+      ParentLink {
+        Url
+      }
     }
     facets {
       ArtistGenre(orderType: VALUE, orderBy: ASC, limit: 10) {
@@ -3088,18 +3919,18 @@ export const ArtistDetailsDocument = `
     }
   }
 }
-    ${ArtistDetailsPageFragmentDoc}`;
-export const useArtistDetailsQuery = <
-      TData = ArtistDetailsQuery,
+    `;
+export const useArtistDetailsPageQuery = <
+      TData = ArtistDetailsPageQuery,
       TError = unknown
     >(
       dataSource: { endpoint: string, fetchParams?: RequestInit },
-      variables?: ArtistDetailsQueryVariables,
-      options?: UseQueryOptions<ArtistDetailsQuery, TError, TData>
+      variables?: ArtistDetailsPageQueryVariables,
+      options?: UseQueryOptions<ArtistDetailsPageQuery, TError, TData>
     ) =>
-    useQuery<ArtistDetailsQuery, TError, TData>(
-      variables === undefined ? ['ArtistDetails'] : ['ArtistDetails', variables],
-      fetcher<ArtistDetailsQuery, ArtistDetailsQueryVariables>(dataSource.endpoint, dataSource.fetchParams || {}, ArtistDetailsDocument, variables),
+    useQuery<ArtistDetailsPageQuery, TError, TData>(
+      variables === undefined ? ['ArtistDetailsPage'] : ['ArtistDetailsPage', variables],
+      fetcher<ArtistDetailsPageQuery, ArtistDetailsPageQueryVariables>(dataSource.endpoint, dataSource.fetchParams || {}, ArtistDetailsPageDocument, variables),
       options
     );
 export const StartDocument = `

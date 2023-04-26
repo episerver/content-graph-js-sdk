@@ -16,7 +16,7 @@ This project uses:
 
 1. Run `setup.cmd`. You can re-run `setup.cmd` at any time to reset the backend with a fresh database.
 2. Config the Content Graph keys:   
-    * ./backend/appsettings.json
+    * ./backend/appsettings.json  
     * ./frontend/.env
 
 3. Open terminal for `./backend` and run `dotnet run`.
@@ -33,7 +33,7 @@ This project uses:
         ```
     * Run the job `Content Graph content synchronization job` to index whole contents into the Content Graph for the first time  
     
-4. Open terminal for `./frontend` and run `npm install` (only needed first run).
+4. Open terminal for `./frontend` and run `npm install` or `yarn` (only needed first run).
     * Run `npm start`.
     * Navigate to http://localhost:3000/.
 

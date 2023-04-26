@@ -1,13 +1,12 @@
-import ContentBlock from '../components/blocks/ContentBlock'
-import { getImageUrl } from '../helpers/urlHelper'
-import { GetBlockComponent } from './BlockPage'
+import ContentBlock from '../blocks/ContentBlock'
+import { getImageUrl } from '../../lib/urlHelper'
+import { GetBlockComponent } from './BlockPageComponent'
 
 type LandingPageProps = {
     content: any,
 }
 
 function LandingPage({ content }: LandingPageProps) {
-    console.log('landingPage', 'content', content)
     return (
         <div>
             <nav className="Page-container PageHeader NavBar">
@@ -26,7 +25,6 @@ function LandingPage({ content }: LandingPageProps) {
                 <div>
                     <section data-epi-edit="MainContentArea" className='Grid Grid--alignMiddle Grid--gutterA ContentArea'>
                         {content?.MainContentArea?.map((mainContentAreaItem: any, mainContentAreaItemIdx: number) => {
-                            console.log('mainContentAreaItem', mainContentAreaItem)
                             return (
                                 (() => {
                                     const contentItem = mainContentAreaItem?.ContentLink?.Expanded
@@ -44,7 +42,6 @@ function LandingPage({ content }: LandingPageProps) {
                                             </div>
                                         )
                                     }
-                                    console.log('mainCOntentAreaItem', GetBlockComponent(contentItem))
                                     return (
                                         <div key={mainContentAreaItemIdx}>
                                             {GetBlockComponent(contentItem)}

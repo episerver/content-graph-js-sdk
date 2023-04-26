@@ -2,16 +2,14 @@ import { useStartQuery } from "@/generated/graphql"
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { NextPage } from 'next'
 import { useState } from "react"
-import Footer from "./components/Footer"
-import Header from "./components/Header"
-import { subcribeContentSavedEvent } from "./helpers/contentSavedEvent"
-import { generateGQLQueryVars, updateStartQueryCache } from "./helpers/queryCacheHelper"
-import { isEditOrPreviewMode } from "./helpers/urlHelper"
-import { ContentSavedMessage } from "./models/ContentSavedMessage"
-import ArtistContainerPage from "./pages/ArtistContainerPage"
-import ArtistDetailsPage from "./pages/ArtistDetailsPage"
-import { BlockPage } from "./pages/BlockPage"
-import LandingPage from "./pages/LandingPage"
+import Footer from "../components/Footer"
+import Header from "../components/Header"
+import { subcribeContentSavedEvent } from "../lib/contentSavedEvent"
+import { generateGQLQueryVars, updateStartQueryCache } from "../lib/queryCacheHelper"
+import { isEditOrPreviewMode } from "../lib/urlHelper"
+import { ContentSavedMessage } from "../models/ContentSavedMessage"
+import BlockPage from "../components/PageComponent/BlockPageComponent"
+import LandingPage from "../components/PageComponent/LandingPageComponent"
 import { useRouter } from 'next/router'
 
 let previousSavedMessage: any = null;
@@ -64,16 +62,16 @@ const Home: NextPage = () => {
                                 </div>
                             )
                         }
-                        else if (content?.__typename === 'ArtistContainerPage') {
-                            return (
-                                <ArtistContainerPage content={content} key={idx} />
-                            )
-                        }
-                        else if (content?.__typename === 'ArtistDetailsPage') {
-                            return (
-                                <ArtistDetailsPage content={content} key={idx} />
-                            )
-                        }
+                        // else if (content?.__typename === 'ArtistContainerPage') {
+                        //     return (
+                        //         <ArtistContainerPage content={content} key={idx} />
+                        //     )
+                        // }
+                        // else if (content?.__typename === 'ArtistDetailsPage') {
+                        //     return (
+                        //         <ArtistDetailsPage content={content} key={idx} />
+                        //     )
+                        // }
                         return <BlockPage content={content} key={idx} />
                     })
                 }

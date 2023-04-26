@@ -62,6 +62,8 @@ public class Startup
                     .Add("narrow", "Narrow", "u-md-size1of3", string.Empty, "epi-icon__layout--one-third");
             });
 
+        // services.AddOpenIddict();
+
         Console.WriteLine("Adding OpenID Connect");
         services.AddOpenIDConnect<ApplicationUser>(
             useDevelopmentCertificate: true,
@@ -72,6 +74,8 @@ public class Startup
             {
                 var baseUri = new Uri(_frontendUri);
                 options.RequireHttps = !_webHostingEnvironment.IsDevelopment();
+                options.DisableTokenPruning = true;
+                options.DisableSlidingRefreshTokenExpiration = true;
 
                 options.Applications.Add(new OpenIDConnectApplication
                 {
@@ -102,6 +106,20 @@ public class Startup
         services.AddContentDefinitionsApi(OpenIDConnectOptionsDefaults.AuthenticationScheme);
 
         services.AddContentDeliveryApi(OpenIDConnectOptionsDefaults.AuthenticationScheme);
+
+        services.AddContentManagementApi(OpenIDConnectOptionsDefaults.AuthenticationScheme, options =>
+        {
+            options.DisableScopeValidation = false;
+            options.RequiredRole = "WebAdmins";
+        });
+        // services.AddContentManagementApi(string.Empty);
+
+        services.AddOpenIddict()
+            .AddServer(options =>
+            {
+                options.DisableAccessTokenEncryption();
+            });
+
         services.ConfigureForContentDeliveryClient();
 
         services.ConfigureContentApiOptions(o =>

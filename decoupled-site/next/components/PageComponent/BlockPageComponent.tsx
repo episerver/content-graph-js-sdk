@@ -1,12 +1,12 @@
-import BuyTicketBlock from '../components/blocks/BuyTicketBlock'
-import ContentBlock from '../components/blocks/ContentBlock'
-import GenericBlock from '../components/blocks/GenericBlock'
+import BuyTicketBlock from '../blocks/BuyTicketBlock'
+import ContentBlock from '../blocks/ContentBlock'
+import GenericBlock from '../blocks/GenericBlock'
 
 type ArtistDetailsPageProps = {
     content: any
 }
 
-function GetBlockComponent(content: any) {
+export function GetBlockComponent(content: any) {
     if (content?.__typename == "ContentBlock") {
         return <ContentBlock content={content} />
     }
@@ -22,7 +22,7 @@ function GetBlockComponent(content: any) {
     return <GenericBlock content={content} />
 }
 
-function BlockPage({ content }: ArtistDetailsPageProps) {
+export default function BlockPage({ content }: ArtistDetailsPageProps) {
     return (
         <div className="preview-wrapper">
             <section className="Grid Preview" v-if="modelLoaded">
@@ -57,5 +57,3 @@ function BlockPage({ content }: ArtistDetailsPageProps) {
         </div>
     )
 }
-
-export { GetBlockComponent, BlockPage };

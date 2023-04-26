@@ -1,5 +1,5 @@
 import parse from 'html-react-parser'
-import { getImageUrl } from '../../helpers/urlHelper'
+import { getImageUrl } from '../../lib/urlHelper'
 
 type BlockProps = {
     content: any

@@ -1,57 +1,65 @@
-import { useStartQuery } from '@/generated/graphql'
-import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { useRouter } from 'next/router'
-import { useState } from 'react'
-import Header from '../components/Header'
-import { subcribeContentSavedEvent } from '../helpers/contentSavedEvent'
-import { generateGQLQueryVars, updateStartQueryCache } from '../helpers/queryCacheHelper'
-import { isEditOrPreviewMode } from '../helpers/urlHelper'
-import { ContentSavedMessage } from '../models/ContentSavedMessage'
-import ArtistContainerPage from '../pages/ArtistContainerPage'
+import Header from '../../components/Header'
+import { getImageUrl } from '../../lib/urlHelper'
+import { getArtistContainerPage } from '@/lib/getArtistContainerPage'
+import { ArtistContainerPageProps } from '@/models/Props'
+import Link from 'next/link'
 
-
-let previousSavedMessage: any = null;
-const singleKeyUrl = process.env.NEXT_PUBLIC_CONTENT_GRAPH_ENDPOINT as string
-const hmacKeyUrl = process.env.NEXT_PUBLIC_CG_PROXY_URL as string
-
-export default function Artists() {
-    const router = useRouter()
-    const { pathname } = router
-    const queryClient = useQueryClient()
-    const [token, setToken] = useState('')
-    const modeEdit = isEditOrPreviewMode()
-    let headers = {}
-    let url = singleKeyUrl
-
-    const { mutate } = useMutation((obj: any) => obj, {
-        onSuccess: (message: ContentSavedMessage) => {
-            if (previousSavedMessage !== message) {
-                previousSavedMessage = message;
-                updateStartQueryCache(queryClient, data, variables, message)
-            }
-        }
-    });
-
-    if (modeEdit) {
-        if (token) {
-            headers = { 'Authorization': 'Bearer ' + token };
-        }
-        url = hmacKeyUrl
-        subcribeContentSavedEvent((message: any) => mutate(message))
+export const getStaticProps = async () => {
+    const { error, content } = await getArtistContainerPage('', '/en/artists');
+    return {
+        props: { error, content }
     }
-    
-    const variables = generateGQLQueryVars(token, pathname)
+}
 
-    const { error, data } = useStartQuery({ endpoint: url, fetchParams: { headers: headers } }, variables);
-
-    if (error) return <p>Error</p>
+export default function Artists(props: ArtistContainerPageProps) {
+    const { error, content } = props
+    if (error) return <pre>{JSON.stringify(error)}</pre>
     return (
         <div className="App">
             <Header />
             {
-                data?.Content?.items?.map((content, idx) => {
+                content.ArtistContainerPage?.items?.map((content: any, artistContainerPageIdx: number) => {
                     return (
-                        <ArtistContainerPage content={content} key={idx} />
+                        <div className="ArtistContainerPage" key={artistContainerPageIdx}>
+                            <nav className="Page-container PageHeader NavBar">
+                                <div className="backButton">
+                                    <a href={content.ParentLink?.Url} className="EPiLink">
+                                        <span></span>
+                                    </a>
+                                </div>
+                            </nav>
+                            <div className="Page-container">
+                                <div className="top gutter">
+                                    <h1 data-epi-edit="Name">{content?.Name}</h1>
+                                </div>
+                                <div className="list">
+                                    <h3>&nbsp;</h3>
+                                    {content.artists?.ArtistDetailsPage?.items?.map((artistDetailsPage: any, artistDetailsPageIdx: number) => {
+                                        return (
+                                            <div key={artistDetailsPageIdx}>
+                                                <Link href={artistDetailsPage?.RelativePath ?? ''} className="EPiLink">
+                                                    <div className="card">
+                                                        <div className="round"><img className="ConditionalImage"
+                                                            src={getImageUrl(artistDetailsPage?.ArtistPhoto)}
+                                                            alt={artistDetailsPage?.ArtistName ?? ''} />
+                                                        </div>
+                                                        <div className="info">
+                                                            <p>{artistDetailsPage?.ArtistName}</p>
+                                                        </div>
+                                                    </div>
+                                                </Link>
+                                            </div>
+                                        )
+                                    })}
+                                    <h3>&nbsp;</h3>
+                                </div>
+                            </div >
+                            <footer>
+                                <div className="FooterBottom">
+                                    <h6>&copy; Music Festival 2020</h6>
+                                </div>
+                            </footer>
+                        </div >
                     )
                 })
             }
