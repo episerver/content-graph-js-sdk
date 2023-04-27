@@ -1,7 +1,0 @@
-fragment ImageFile on ImageFile {
-    Thumbnail {
-        Url
-    }
-    Content
-    Url
-}

@@ -1,4 +1,4 @@
-import { ArtistContainerPageQuery, ArtistDetailsPageQuery } from "@/generated/graphql"
+import { ArtistContainerPageQuery, ArtistDetailsPageQuery, StartQuery } from "@/generated/graphql"
 
 export type ArtistContainerPageProps = {
     error: any,
@@ -8,4 +8,9 @@ export type ArtistContainerPageProps = {
 export type ArtistDetailsPageProps = {
     error: any,
     content: ArtistDetailsPageQuery
+}
+
+export type StartPageProps = {
+    error: any,
+    content: StartQuery
 }

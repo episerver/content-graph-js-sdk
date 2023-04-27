@@ -121,3 +121,78 @@ query Start(
         }
     }
 }
+
+fragment ArtistDetailsPage on ArtistDetailsPage {
+    PerformanceStartTime
+    PerformanceEndTime
+    StageName
+    ArtistName
+    ArtistPhoto
+    ArtistGenre
+    ArtistDescription
+    ArtistIsHeadliner
+    Name
+    RelativePath
+    ParentLink {
+        Url
+    }
+}
+
+fragment ContentBlock on ContentBlock {
+    Title
+    Image
+    ImageAlignment
+    Content
+}
+
+fragment ImageFile on ImageFile {
+    Thumbnail {
+        Url
+    }
+    Content
+    Url
+}
+
+fragment ItemsInContentArea on IContent {
+    __typename
+    ...on ContentBlock {
+        ...ContentBlock
+    }
+    ...on ImageFile {
+        ...ImageFile
+    }
+}
+
+fragment LandingPage on LandingPage {
+    Title
+    Subtitle
+    BuyTicketBlock {
+        ...LandingPageBlockData
+    }
+    HeroImage
+    ArtistsLink {
+        Expanded {
+            Name
+            RelativePath
+        }
+    }
+    MainContentArea {
+        ContentLink {
+            Expanded {
+                ...ItemsInContentArea
+            }
+        }
+    }
+    FooterContentArea {
+        ContentLink {
+            Expanded {
+                ...ItemsInContentArea
+            }
+        }
+    }
+}
+
+fragment LandingPageBlockData on LandingPageBlockData {
+    Heading
+    Message
+}
