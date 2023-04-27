@@ -3694,7 +3694,7 @@ export type ArtistContainerPageQueryVariables = Exact<{
 }>;
 
 
-export type ArtistContainerPageQuery = { __typename?: 'Query', ArtistContainerPage?: { __typename?: 'ArtistContainerPageOutput', items?: Array<{ __typename: 'ArtistContainerPage', Name?: string | null, Url?: string | null, RelativePath?: string | null, ParentLink?: { __typename?: 'ContentModelReference', Url?: string | null } | null, artists?: { __typename?: 'QueryRef', ArtistDetailsPage?: { __typename?: 'ArtistDetailsPageOutput', items?: Array<{ __typename?: 'ArtistDetailsPage', PerformanceStartTime?: any | null, PerformanceEndTime?: any | null, StageName?: string | null, ArtistName?: string | null, ArtistPhoto?: string | null, ArtistGenre?: string | null, ArtistDescription?: string | null, ArtistIsHeadliner?: any | null, Name?: string | null, RelativePath?: string | null, ParentLink?: { __typename?: 'ContentModelReference', Url?: string | null } | null } | null> | null, facets?: { __typename?: 'ArtistDetailsPageFacet', ArtistGenre?: Array<{ __typename?: 'StringFacet', name?: string | null, count?: number | null } | null> | null, StageName?: Array<{ __typename?: 'StringFacet', name?: string | null, count?: number | null } | null> | null } | null } | null } | null } | null> | null } | null };
+export type ArtistContainerPageQuery = { __typename?: 'Query', ArtistContainerPage?: { __typename?: 'ArtistContainerPageOutput', items?: Array<{ __typename: 'ArtistContainerPage', Name?: string | null, Url?: string | null, RelativePath?: string | null, Language?: { __typename?: 'ContentLanguageModel', Link?: string | null, DisplayName?: string | null, Name?: string | null } | null, ParentLink?: { __typename?: 'ContentModelReference', Url?: string | null } | null, artists?: { __typename?: 'QueryRef', ArtistDetailsPage?: { __typename?: 'ArtistDetailsPageOutput', items?: Array<{ __typename?: 'ArtistDetailsPage', PerformanceStartTime?: any | null, PerformanceEndTime?: any | null, StageName?: string | null, ArtistName?: string | null, ArtistPhoto?: string | null, ArtistGenre?: string | null, ArtistDescription?: string | null, ArtistIsHeadliner?: any | null, Name?: string | null, RelativePath?: string | null, ParentLink?: { __typename?: 'ContentModelReference', Url?: string | null } | null } | null> | null, facets?: { __typename?: 'ArtistDetailsPageFacet', ArtistGenre?: Array<{ __typename?: 'StringFacet', name?: string | null, count?: number | null } | null> | null, StageName?: Array<{ __typename?: 'StringFacet', name?: string | null, count?: number | null } | null> | null } | null } | null } | null } | null> | null } | null };
 
 export type ArtistDetailsPageFragment = { __typename?: 'ArtistDetailsPage', PerformanceStartTime?: any | null, PerformanceEndTime?: any | null, StageName?: string | null, ArtistName?: string | null, ArtistPhoto?: string | null, ArtistGenre?: string | null, ArtistDescription?: string | null, ArtistIsHeadliner?: any | null, Name?: string | null, RelativePath?: string | null, ParentLink?: { __typename?: 'ContentModelReference', Url?: string | null } | null };
 
@@ -3840,6 +3840,11 @@ export const ArtistContainerPageDocument = `
   ) {
     items {
       Name
+      Language {
+        Link
+        DisplayName
+        Name
+      }
       ParentLink {
         Url
       }

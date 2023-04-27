@@ -1,9 +1,0 @@
-fragment ItemsInContentArea on IContent {
-    __typename
-    ...on ContentBlock {
-        ...ContentBlock
-    }
-    ...on ImageFile {
-        ...ImageFile
-    }
-}

@@ -1,5 +1,3 @@
-#import "./fragments/ArtistDetailsPage.graphql"
-
 query ArtistDetailsPage(
     $locales: Locales
     $relativePath: String

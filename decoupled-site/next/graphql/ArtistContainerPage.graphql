@@ -20,6 +20,11 @@ query ArtistContainerPage(
     ) {
         items {
             Name
+            Language {
+          	  Link
+          	  DisplayName
+          	  Name
+          	}
             ParentLink {
                 Url
             }

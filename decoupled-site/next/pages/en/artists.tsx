@@ -19,11 +19,13 @@ export default function Artists(props: ArtistContainerPageProps) {
             <Header />
             {
                 content.ArtistContainerPage?.items?.map((content: any, artistContainerPageIdx: number) => {
+                    const locale: string = content.Language?.Name
+                    const backUrl: string = content.ParentLink?.Url
                     return (
                         <div className="ArtistContainerPage" key={artistContainerPageIdx}>
                             <nav className="Page-container PageHeader NavBar">
                                 <div className="backButton">
-                                    <a href={content.ParentLink?.Url} className="EPiLink">
+                                    <a href={backUrl.substring(0, backUrl.length - locale.length - 1)} className="EPiLink">
                                         <span></span>
                                     </a>
                                 </div>
