@@ -1,4 +1,4 @@
-query Search($searchParam: String, $locales: Locales, $order: OrderBy) {
+query Search($searchParam: String, $locales: Locales!, $order: OrderBy) {
   ArtistDetailsPage(
     locale: [$locales]
     orderBy: { ArtistName: $order }

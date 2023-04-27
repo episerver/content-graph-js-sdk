@@ -3117,6 +3117,8 @@ export type LandingPageWhereInput = {
 };
 
 export enum Locales {
+  All = 'ALL',
+  Invariant = 'INVARIANT',
   En = 'en',
   Sv = 'sv'
 }
@@ -3155,7 +3157,7 @@ export type QueryArtistContainerPageArgs = {
   cursor?: InputMaybe<Scalars['String']>;
   ids?: InputMaybe<Array<Scalars['String']>>;
   limit?: InputMaybe<Scalars['Int']>;
-  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
+  locale?: InputMaybe<Array<Locales>>;
   orderBy?: InputMaybe<ArtistContainerPageOrderByInput>;
   skip?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<ArtistContainerPageWhereInput>;
@@ -3166,7 +3168,7 @@ export type QueryArtistDetailsPageArgs = {
   cursor?: InputMaybe<Scalars['String']>;
   ids?: InputMaybe<Array<Scalars['String']>>;
   limit?: InputMaybe<Scalars['Int']>;
-  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
+  locale?: InputMaybe<Array<Locales>>;
   orderBy?: InputMaybe<ArtistDetailsPageOrderByInput>;
   skip?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<ArtistDetailsPageWhereInput>;
@@ -3177,7 +3179,7 @@ export type QueryBuyTicketBlockArgs = {
   cursor?: InputMaybe<Scalars['String']>;
   ids?: InputMaybe<Array<Scalars['String']>>;
   limit?: InputMaybe<Scalars['Int']>;
-  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
+  locale?: InputMaybe<Array<Locales>>;
   orderBy?: InputMaybe<BuyTicketBlockOrderByInput>;
   skip?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<BuyTicketBlockWhereInput>;
@@ -3188,7 +3190,7 @@ export type QueryContentArgs = {
   cursor?: InputMaybe<Scalars['String']>;
   ids?: InputMaybe<Array<Scalars['String']>>;
   limit?: InputMaybe<Scalars['Int']>;
-  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
+  locale?: InputMaybe<Array<Locales>>;
   orderBy?: InputMaybe<ContentOrderByInput>;
   skip?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<ContentWhereInput>;
@@ -3199,7 +3201,7 @@ export type QueryContentBlockArgs = {
   cursor?: InputMaybe<Scalars['String']>;
   ids?: InputMaybe<Array<Scalars['String']>>;
   limit?: InputMaybe<Scalars['Int']>;
-  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
+  locale?: InputMaybe<Array<Locales>>;
   orderBy?: InputMaybe<ContentBlockOrderByInput>;
   skip?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<ContentBlockWhereInput>;
@@ -3210,7 +3212,7 @@ export type QueryImageFileArgs = {
   cursor?: InputMaybe<Scalars['String']>;
   ids?: InputMaybe<Array<Scalars['String']>>;
   limit?: InputMaybe<Scalars['Int']>;
-  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
+  locale?: InputMaybe<Array<Locales>>;
   orderBy?: InputMaybe<ImageFileOrderByInput>;
   skip?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<ImageFileWhereInput>;
@@ -3221,7 +3223,7 @@ export type QueryImagePageArgs = {
   cursor?: InputMaybe<Scalars['String']>;
   ids?: InputMaybe<Array<Scalars['String']>>;
   limit?: InputMaybe<Scalars['Int']>;
-  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
+  locale?: InputMaybe<Array<Locales>>;
   orderBy?: InputMaybe<ImagePageOrderByInput>;
   skip?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<ImagePageWhereInput>;
@@ -3232,7 +3234,7 @@ export type QueryLandingPageArgs = {
   cursor?: InputMaybe<Scalars['String']>;
   ids?: InputMaybe<Array<Scalars['String']>>;
   limit?: InputMaybe<Scalars['Int']>;
-  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
+  locale?: InputMaybe<Array<Locales>>;
   orderBy?: InputMaybe<LandingPageOrderByInput>;
   skip?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<LandingPageWhereInput>;
@@ -3243,7 +3245,7 @@ export type QuerySiteDefinitionArgs = {
   cursor?: InputMaybe<Scalars['String']>;
   ids?: InputMaybe<Array<Scalars['String']>>;
   limit?: InputMaybe<Scalars['Int']>;
-  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
+  locale?: InputMaybe<Array<Locales>>;
   orderBy?: InputMaybe<SiteDefinitionOrderByInput>;
   skip?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<SiteDefinitionWhereInput>;
@@ -3267,7 +3269,7 @@ export type QueryRefArtistContainerPageArgs = {
   cursor?: InputMaybe<Scalars['String']>;
   ids?: InputMaybe<Array<Scalars['String']>>;
   limit?: InputMaybe<Scalars['Int']>;
-  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
+  locale?: InputMaybe<Array<Locales>>;
   orderBy?: InputMaybe<ArtistContainerPageOrderByInput>;
   skip?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<ArtistContainerPageWhereInput>;
@@ -3278,7 +3280,7 @@ export type QueryRefArtistDetailsPageArgs = {
   cursor?: InputMaybe<Scalars['String']>;
   ids?: InputMaybe<Array<Scalars['String']>>;
   limit?: InputMaybe<Scalars['Int']>;
-  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
+  locale?: InputMaybe<Array<Locales>>;
   orderBy?: InputMaybe<ArtistDetailsPageOrderByInput>;
   skip?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<ArtistDetailsPageWhereInput>;
@@ -3289,7 +3291,7 @@ export type QueryRefBuyTicketBlockArgs = {
   cursor?: InputMaybe<Scalars['String']>;
   ids?: InputMaybe<Array<Scalars['String']>>;
   limit?: InputMaybe<Scalars['Int']>;
-  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
+  locale?: InputMaybe<Array<Locales>>;
   orderBy?: InputMaybe<BuyTicketBlockOrderByInput>;
   skip?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<BuyTicketBlockWhereInput>;
@@ -3300,7 +3302,7 @@ export type QueryRefContentArgs = {
   cursor?: InputMaybe<Scalars['String']>;
   ids?: InputMaybe<Array<Scalars['String']>>;
   limit?: InputMaybe<Scalars['Int']>;
-  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
+  locale?: InputMaybe<Array<Locales>>;
   orderBy?: InputMaybe<ContentOrderByInput>;
   skip?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<ContentWhereInput>;
@@ -3311,7 +3313,7 @@ export type QueryRefContentBlockArgs = {
   cursor?: InputMaybe<Scalars['String']>;
   ids?: InputMaybe<Array<Scalars['String']>>;
   limit?: InputMaybe<Scalars['Int']>;
-  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
+  locale?: InputMaybe<Array<Locales>>;
   orderBy?: InputMaybe<ContentBlockOrderByInput>;
   skip?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<ContentBlockWhereInput>;
@@ -3322,7 +3324,7 @@ export type QueryRefImageFileArgs = {
   cursor?: InputMaybe<Scalars['String']>;
   ids?: InputMaybe<Array<Scalars['String']>>;
   limit?: InputMaybe<Scalars['Int']>;
-  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
+  locale?: InputMaybe<Array<Locales>>;
   orderBy?: InputMaybe<ImageFileOrderByInput>;
   skip?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<ImageFileWhereInput>;
@@ -3333,7 +3335,7 @@ export type QueryRefImagePageArgs = {
   cursor?: InputMaybe<Scalars['String']>;
   ids?: InputMaybe<Array<Scalars['String']>>;
   limit?: InputMaybe<Scalars['Int']>;
-  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
+  locale?: InputMaybe<Array<Locales>>;
   orderBy?: InputMaybe<ImagePageOrderByInput>;
   skip?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<ImagePageWhereInput>;
@@ -3344,7 +3346,7 @@ export type QueryRefLandingPageArgs = {
   cursor?: InputMaybe<Scalars['String']>;
   ids?: InputMaybe<Array<Scalars['String']>>;
   limit?: InputMaybe<Scalars['Int']>;
-  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
+  locale?: InputMaybe<Array<Locales>>;
   orderBy?: InputMaybe<LandingPageOrderByInput>;
   skip?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<LandingPageWhereInput>;
@@ -3355,7 +3357,7 @@ export type QueryRefSiteDefinitionArgs = {
   cursor?: InputMaybe<Scalars['String']>;
   ids?: InputMaybe<Array<Scalars['String']>>;
   limit?: InputMaybe<Scalars['Int']>;
-  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
+  locale?: InputMaybe<Array<Locales>>;
   orderBy?: InputMaybe<SiteDefinitionOrderByInput>;
   skip?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<SiteDefinitionWhereInput>;
@@ -3367,6 +3369,7 @@ export type RangeFacetsInput = {
 };
 
 export enum Ranking {
+  BoostOnly = 'BOOST_ONLY',
   Doc = 'DOC',
   Relevance = 'RELEVANCE'
 }
@@ -3687,7 +3690,7 @@ export enum SynonymSlot {
 
 export type SearchQueryVariables = Exact<{
   searchParam?: InputMaybe<Scalars['String']>;
-  locales?: InputMaybe<Locales>;
+  locales: Locales;
   order?: InputMaybe<OrderBy>;
 }>;
 
@@ -3696,7 +3699,7 @@ export type SearchQuery = { __typename?: 'Query', ArtistDetailsPage?: { __typena
 
 export type StartQueryVariables = Exact<{
   relativePath?: InputMaybe<Scalars['String']>;
-  locales?: InputMaybe<Locales>;
+  locales: Locales;
   language?: InputMaybe<Scalars['String']>;
   stageName?: InputMaybe<Scalars['String']>;
   artistGenre?: InputMaybe<Scalars['String']>;
@@ -3821,7 +3824,7 @@ export const LandingPageFragmentDoc = `
     ${LandingPageBlockDataFragmentDoc}
 ${ItemsInContentAreaFragmentDoc}`;
 export const SearchDocument = `
-    query Search($searchParam: String, $locales: Locales, $order: OrderBy) {
+    query Search($searchParam: String, $locales: Locales!, $order: OrderBy) {
   ArtistDetailsPage(
     locale: [$locales]
     orderBy: {ArtistName: $order}
@@ -3850,16 +3853,16 @@ export const useSearchQuery = <
       TError = unknown
     >(
       dataSource: { endpoint: string, fetchParams?: RequestInit },
-      variables?: SearchQueryVariables,
+      variables: SearchQueryVariables,
       options?: UseQueryOptions<SearchQuery, TError, TData>
     ) =>
     useQuery<SearchQuery, TError, TData>(
-      variables === undefined ? ['Search'] : ['Search', variables],
+      ['Search', variables],
       fetcher<SearchQuery, SearchQueryVariables>(dataSource.endpoint, dataSource.fetchParams || {}, SearchDocument, variables),
       options
     );
 export const StartDocument = `
-    query Start($relativePath: String, $locales: Locales, $language: String, $stageName: String, $artistGenre: String, $contentId: Int, $workId: Int, $statusEqual: String, $isCommonDraft: Boolean) {
+    query Start($relativePath: String, $locales: Locales!, $language: String, $stageName: String, $artistGenre: String, $contentId: Int, $workId: Int, $statusEqual: String, $isCommonDraft: Boolean) {
   Content(
     locale: [$locales]
     where: {ContentLink: {WorkId: {eq: $workId}, Id: {eq: $contentId}}, RelativePath: {eq: $relativePath}, Language: {Name: {eq: $language}}, Status: {eq: $statusEqual}, IsCommonDraft: {eq: $isCommonDraft}}
@@ -3939,11 +3942,11 @@ export const useStartQuery = <
       TError = unknown
     >(
       dataSource: { endpoint: string, fetchParams?: RequestInit },
-      variables?: StartQueryVariables,
+      variables: StartQueryVariables,
       options?: UseQueryOptions<StartQuery, TError, TData>
     ) =>
     useQuery<StartQuery, TError, TData>(
-      variables === undefined ? ['Start'] : ['Start', variables],
+      ['Start', variables],
       fetcher<StartQuery, StartQueryVariables>(dataSource.endpoint, dataSource.fetchParams || {}, StartDocument, variables),
       options
     );
