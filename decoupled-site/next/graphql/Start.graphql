@@ -1,9 +1,7 @@
 query Start(
     $relativePath: String
-    $locales: Locales
+    $locales: Locales!
     $language: String
-    $stageName: String
-    $artistGenre: String
     $contentId: Int
     $workId: Int
     $statusEqual: String
@@ -29,8 +27,6 @@ query Start(
             }
         },
         orderBy: {Saved: DESC},
-        # need to sort by Saved time in descending order
-        # otherwise sometimes you may get Published version instead of primary draft version.
         limit: 1
     ) {
         items {
@@ -43,74 +39,6 @@ query Start(
             RelativePath
             ... on LandingPage {
                 ...LandingPage
-                _children {
-                    ArtistContainerPage {
-                        items {
-                            Name
-                            RelativePath
-                            headlines: _children {
-                                ArtistDetailsPage(
-                                    where: {
-                                        ArtistIsHeadliner: {
-                                            eq: true
-                                        }
-                                    }
-                                    orderBy: {
-                                        PerformanceStartTime: ASC,
-                                        Name: ASC
-                                    }
-                                ) {
-                                    items {
-                                        ...ArtistDetailsPage
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-            ... on ArtistContainerPage {
-                Name
-                RelativePath
-                artists: _children {
-                    ArtistDetailsPage(
-                        where: {
-                            StageName: {
-                                eq: $stageName
-                            }
-                            ArtistGenre: {
-                                eq: $artistGenre
-                            }
-                            Status: {
-                                eq: "Published"
-                            }
-                        }
-                        orderBy: {
-                            Name: ASC,
-                            ArtistIsHeadliner: ASC,
-                            PerformanceStartTime: ASC,
-                            StageName: ASC
-                        }
-                        limit: 100
-                    ) {
-                        items {
-                            ...ArtistDetailsPage
-                        }
-                        facets {
-                            ArtistGenre(orderType: VALUE, orderBy: ASC, limit: 10) {
-                                name
-                                count
-                            }
-                            StageName(orderType: VALUE, orderBy: ASC, limit: 10) {
-                                name
-                                count
-                            }
-                        }
-                    }
-                }
-            }
-            ... on ArtistDetailsPage {
-                ...ArtistDetailsPage
             }
             ... on ContentBlock {
                 Title
@@ -119,22 +47,6 @@ query Start(
                 Content
             }
         }
-    }
-}
-
-fragment ArtistDetailsPage on ArtistDetailsPage {
-    PerformanceStartTime
-    PerformanceEndTime
-    StageName
-    ArtistName
-    ArtistPhoto
-    ArtistGenre
-    ArtistDescription
-    ArtistIsHeadliner
-    Name
-    RelativePath
-    ParentLink {
-        Url
     }
 }
 
