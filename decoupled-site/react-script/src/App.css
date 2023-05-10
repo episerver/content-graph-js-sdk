@@ -1,4 +1,5 @@
 @import url(https://fonts.googleapis.com/css?family=Barlow:400,700|Ubuntu:400,700);
+@import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css);
 
 .LoginBar {
   position: absolute;
@@ -3888,8 +3889,12 @@ footer .ContentArea.Grid--gutterA {
   margin-top: 1em;
 }
 
-.buy-ticket-button {
+.buy-ticket-button, .search-button {
   margin-top: 11px;
+}
+
+.search-button{
+  text-transform: none;
 }
 
 main {
@@ -3937,4 +3942,123 @@ main {
   margin: 0.55em 0;
   font: 12px "barlow-bold";
   text-transform: uppercase;
+}
+
+.nav-table{
+  width: 100%; 
+  display: table;
+}
+
+.nav-table-row{
+  display: table-row;
+  float: left;
+}
+
+.nav-table-cell{
+  display: table-cell;
+  padding-right: 10px;
+}
+
+input.search-input{
+  background-color: #41FFF5;
+  color: #1A237E;
+}
+
+input.search-input::placeholder {
+  color: #1A237E;
+  opacity: 1;
+}
+
+/* .search-button-block{
+  padding-left: 30px;
+} */
+
+.search-container{
+  padding: 50px;
+  height: 100%;
+}
+
+.search-panel{
+  width: 15%;
+}
+
+.search-icon{
+  position: relative;
+  bottom: 43px;
+  left: 80%;
+  color: #1A237E;
+}
+
+.search-icon:hover{
+  cursor: pointer;
+}
+
+.search-description h6{
+  text-transform: none;
+  margin-top: 20px;
+}
+
+.search-term{
+  font-style: italic;
+}
+
+.result-block{
+  width: 40%;
+}
+
+.search-results{
+  margin-top: 30px;
+}
+
+.search-sorting{
+  color:#000;
+  float: right;
+}
+
+.result{
+  border-bottom: #fff solid 0.5px;
+  border: 20%;
+  padding-top: 20px;
+}
+
+.result .card{
+  padding: 0;
+}
+
+.result-name{
+  color: #41FFF5;
+}
+
+.result-description{
+  width: 80%;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  font: 14px/20px "barlow";
+}
+
+.back-button{
+  margin-bottom: 30px;
+}
+
+.home-link{
+  font-weight: 600;
+  color: #41FFF5;
+}
+
+.search-pagination-block{
+  margin-top: 30px;
+}
+
+.search-pagination{
+  text-align: right;
+}
+
+.search-pagination-block ul li{
+  display: inline;
+  margin-left: 25px;
+  cursor: pointer;
+  font-weight: bold;
+  color: #41FFF5;
+
 }

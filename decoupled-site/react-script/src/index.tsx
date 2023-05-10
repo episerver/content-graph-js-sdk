@@ -11,6 +11,7 @@ import reportWebVitals from './reportWebVitals';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import LoginCallbackPage from './pages/LoginCallbackPage';
 import { isEditOrPreviewMode } from './helpers/urlHelper';
+import SearchPage from './pages/SearchPage';
 
 const queryClient = new QueryClient();
 const backendUrl = process.env.REACT_APP_LOGIN_AUTHORITY as string
@@ -29,6 +30,7 @@ export default function WrapApp() {
       <div>
         <Routes>
           <Route path="/login-callback" element={<LoginCallbackPage />} />
+          <Route path="/search" element={<SearchPage />} />
           <Route path="*" element={<App />} />
         </Routes>
       </div>
