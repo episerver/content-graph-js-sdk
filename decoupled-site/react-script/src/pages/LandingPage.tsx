@@ -7,7 +7,6 @@ type LandingPageProps = {
 }
 
 function LandingPage({ content }: LandingPageProps) {
-    console.log('content', content)
     return (
         <div>
             <nav className="Page-container PageHeader NavBar">
@@ -39,7 +38,6 @@ function LandingPage({ content }: LandingPageProps) {
                                 (() => {
                                     const contentItem = mainContentAreaItem?.ContentLink?.Expanded
                                     if (contentItem?.__typename === "ImageFile") {
-                                        console.log('contentItem', contentItem?.Url)
                                         return (
                                             <div className="Grid-cell u-md-size1of2" key={mainContentAreaItemIdx}>
                                                 <div className="Page-container ImageFile">

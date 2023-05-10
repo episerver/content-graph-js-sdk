@@ -5,7 +5,6 @@ import { extractParams, isEditOrPreviewMode } from "./urlHelper";
 
 const generateGQLQueryVars = (token: string, pathname: string): any => {
     const { relativePath, locales, language, contentId, workId } = extractParams(pathname)
-    console.log('relativePath', relativePath)
     let variables: any = { relativePath, locales: locales as Locales, language, statusEqual: "Published" };
     if (isEditOrPreviewMode() && token) {
         variables = workId === undefined 

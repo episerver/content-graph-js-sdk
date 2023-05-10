@@ -3688,14 +3688,23 @@ export enum SynonymSlot {
   Two = 'TWO'
 }
 
-export type SearchQueryVariables = Exact<{
+export type ArtistSearchQueryVariables = Exact<{
   searchParam?: InputMaybe<Scalars['String']>;
   locales: Locales;
   order?: InputMaybe<OrderBy>;
 }>;
 
 
-export type SearchQuery = { __typename?: 'Query', ArtistDetailsPage?: { __typename?: 'ArtistDetailsPageOutput', items?: Array<{ __typename?: 'ArtistDetailsPage', PerformanceStartTime?: any | null, PerformanceEndTime?: any | null, StageName?: string | null, ArtistName?: string | null, ArtistPhoto?: string | null, ArtistGenre?: string | null, ArtistDescription?: string | null, ArtistIsHeadliner?: any | null, RelativePath?: string | null, _fulltext?: Array<string | null> | null, ParentLink?: { __typename?: 'ContentModelReference', Url?: string | null } | null } | null> | null } | null };
+export type ArtistSearchQuery = { __typename?: 'Query', ArtistDetailsPage?: { __typename?: 'ArtistDetailsPageOutput', items?: Array<{ __typename?: 'ArtistDetailsPage', PerformanceStartTime?: any | null, PerformanceEndTime?: any | null, StageName?: string | null, ArtistName?: string | null, ArtistPhoto?: string | null, ArtistGenre?: string | null, ArtistDescription?: string | null, ArtistIsHeadliner?: any | null, RelativePath?: string | null, _fulltext?: Array<string | null> | null, ParentLink?: { __typename?: 'ContentModelReference', Url?: string | null } | null } | null> | null } | null };
+
+export type OtherContentSearchQueryVariables = Exact<{
+  searchParam?: InputMaybe<Scalars['String']>;
+  locales: Locales;
+  order?: InputMaybe<OrderBy>;
+}>;
+
+
+export type OtherContentSearchQuery = { __typename?: 'Query', Content?: { __typename?: 'ContentOutput', items?: Array<{ __typename?: 'ArtistContainerPage', Name?: string | null, RelativePath?: string | null, _fulltext?: Array<string | null> | null, ContentType?: Array<string | null> | null, ParentLink?: { __typename?: 'ContentModelReference', Url?: string | null } | null } | { __typename?: 'ArtistDetailsPage', Name?: string | null, RelativePath?: string | null, _fulltext?: Array<string | null> | null, ContentType?: Array<string | null> | null, ParentLink?: { __typename?: 'ContentModelReference', Url?: string | null } | null } | { __typename?: 'BuyTicketBlock', Name?: string | null, RelativePath?: string | null, _fulltext?: Array<string | null> | null, ContentType?: Array<string | null> | null, ParentLink?: { __typename?: 'ContentModelReference', Url?: string | null } | null } | { __typename?: 'Content', Name?: string | null, RelativePath?: string | null, _fulltext?: Array<string | null> | null, ContentType?: Array<string | null> | null, ParentLink?: { __typename?: 'ContentModelReference', Url?: string | null } | null } | { __typename?: 'ContentBlock', Name?: string | null, RelativePath?: string | null, _fulltext?: Array<string | null> | null, ContentType?: Array<string | null> | null, ParentLink?: { __typename?: 'ContentModelReference', Url?: string | null } | null } | { __typename?: 'ImageFile', Name?: string | null, RelativePath?: string | null, _fulltext?: Array<string | null> | null, ContentType?: Array<string | null> | null, ParentLink?: { __typename?: 'ContentModelReference', Url?: string | null } | null } | { __typename?: 'ImagePage', Name?: string | null, RelativePath?: string | null, _fulltext?: Array<string | null> | null, ContentType?: Array<string | null> | null, ParentLink?: { __typename?: 'ContentModelReference', Url?: string | null } | null } | { __typename?: 'LandingPage', Name?: string | null, RelativePath?: string | null, _fulltext?: Array<string | null> | null, ContentType?: Array<string | null> | null, ParentLink?: { __typename?: 'ContentModelReference', Url?: string | null } | null } | null> | null } | null };
 
 export type StartQueryVariables = Exact<{
   relativePath?: InputMaybe<Scalars['String']>;
@@ -3823,8 +3832,8 @@ export const LandingPageFragmentDoc = `
 }
     ${LandingPageBlockDataFragmentDoc}
 ${ItemsInContentAreaFragmentDoc}`;
-export const SearchDocument = `
-    query Search($searchParam: String, $locales: Locales!, $order: OrderBy) {
+export const ArtistSearchDocument = `
+    query ArtistSearch($searchParam: String, $locales: Locales!, $order: OrderBy) {
   ArtistDetailsPage(
     locale: [$locales]
     orderBy: {ArtistName: $order}
@@ -3848,17 +3857,49 @@ export const SearchDocument = `
   }
 }
     `;
-export const useSearchQuery = <
-      TData = SearchQuery,
+export const useArtistSearchQuery = <
+      TData = ArtistSearchQuery,
       TError = unknown
     >(
       dataSource: { endpoint: string, fetchParams?: RequestInit },
-      variables: SearchQueryVariables,
-      options?: UseQueryOptions<SearchQuery, TError, TData>
+      variables: ArtistSearchQueryVariables,
+      options?: UseQueryOptions<ArtistSearchQuery, TError, TData>
     ) =>
-    useQuery<SearchQuery, TError, TData>(
-      ['Search', variables],
-      fetcher<SearchQuery, SearchQueryVariables>(dataSource.endpoint, dataSource.fetchParams || {}, SearchDocument, variables),
+    useQuery<ArtistSearchQuery, TError, TData>(
+      ['ArtistSearch', variables],
+      fetcher<ArtistSearchQuery, ArtistSearchQueryVariables>(dataSource.endpoint, dataSource.fetchParams || {}, ArtistSearchDocument, variables),
+      options
+    );
+export const OtherContentSearchDocument = `
+    query OtherContentSearch($searchParam: String, $locales: Locales!, $order: OrderBy) {
+  Content(
+    locale: [$locales]
+    orderBy: {Name: $order}
+    where: {_or: [{Name: {contains: $searchParam, boost: 10}}, {Name: {startsWith: $searchParam, boost: 10}}], _and: {ContentType: {notEq: "ArtistDetailsPage"}}}
+  ) {
+    items {
+      Name
+      RelativePath
+      ParentLink {
+        Url
+      }
+      _fulltext
+      ContentType
+    }
+  }
+}
+    `;
+export const useOtherContentSearchQuery = <
+      TData = OtherContentSearchQuery,
+      TError = unknown
+    >(
+      dataSource: { endpoint: string, fetchParams?: RequestInit },
+      variables: OtherContentSearchQueryVariables,
+      options?: UseQueryOptions<OtherContentSearchQuery, TError, TData>
+    ) =>
+    useQuery<OtherContentSearchQuery, TError, TData>(
+      ['OtherContentSearch', variables],
+      fetcher<OtherContentSearchQuery, OtherContentSearchQueryVariables>(dataSource.endpoint, dataSource.fetchParams || {}, OtherContentSearchDocument, variables),
       options
     );
 export const StartDocument = `

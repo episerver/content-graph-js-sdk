@@ -1,0 +1,26 @@
+query OtherContentSearch($searchParam: String, $locales: Locales!, $order: OrderBy) {
+  Content(
+    locale: [$locales]
+    orderBy: { Name: $order }
+    where: { _or: [
+      { Name: { contains: $searchParam, boost: 10 } }, 
+      { Name: { startsWith: $searchParam, boost: 10 } }
+    ],
+      _and:{
+        ContentType:{
+          notEq: "ArtistDetailsPage"
+        }
+      }
+    }
+  ) {
+    items {
+      Name
+      RelativePath
+      ParentLink {
+        Url
+      }
+      _fulltext
+      ContentType
+    }
+  }
+}
