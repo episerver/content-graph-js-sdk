@@ -1,7 +1,7 @@
-query Search($searchParam: String, $locales: Locales!, $order: OrderBy) {
+query ArtistSearch($searchParam: String, $locales: Locales!, $order: OrderBy) {
   ArtistDetailsPage(
     locale: [$locales]
-    orderBy: { ArtistName: $order }
+    orderBy: { _ranking: RELEVANCE, ArtistName: $order }
     where: { _or: [{ Name: { contains: $searchParam, boost: 10 } }, { Name: { startsWith: $searchParam, boost: 10 } }, { StageName: { startsWith: $searchParam } }] }
   ) {
     items {
