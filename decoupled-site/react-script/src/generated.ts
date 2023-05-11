@@ -3118,7 +3118,7 @@ export type LandingPageWhereInput = {
 
 export enum Locales {
   All = 'ALL',
-  Invariant = 'INVARIANT',
+  Neutral = 'NEUTRAL',
   En = 'en',
   Sv = 'sv'
 }
@@ -3836,7 +3836,7 @@ export const ArtistSearchDocument = `
     query ArtistSearch($searchParam: String, $locales: Locales!, $order: OrderBy) {
   ArtistDetailsPage(
     locale: [$locales]
-    orderBy: {ArtistName: $order}
+    orderBy: {_ranking: RELEVANCE, ArtistName: $order}
     where: {_or: [{Name: {contains: $searchParam, boost: 10}}, {Name: {startsWith: $searchParam, boost: 10}}, {StageName: {startsWith: $searchParam}}]}
   ) {
     items {
@@ -3874,7 +3874,7 @@ export const OtherContentSearchDocument = `
     query OtherContentSearch($searchParam: String, $locales: Locales!, $order: OrderBy) {
   Content(
     locale: [$locales]
-    orderBy: {Name: $order}
+    orderBy: {_ranking: RELEVANCE, Name: $order}
     where: {_or: [{Name: {contains: $searchParam, boost: 10}}, {Name: {startsWith: $searchParam, boost: 10}}], _and: {ContentType: {notEq: "ArtistDetailsPage"}}}
   ) {
     items {

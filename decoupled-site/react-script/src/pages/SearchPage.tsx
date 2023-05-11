@@ -13,12 +13,13 @@ const singleKeyUrl = process.env.REACT_APP_CONTENT_GRAPH_GATEWAY_URL as string
 function SearchPage() {
     const [token, setToken] = useState("")
     const [itemOffset, setItemOffset] = useState(0)
+    const [otherItemOffset, setOtherItemOffset] = useState(0)
     const [itemsPerPage, setItemsPerPage] = useState(10)
     const [otherItemsPerPage, setOtherItemsPerPage] = useState(10)
     const [filterBy, setFilterBy] = useState("Artist")
     const [searchParams] = useSearchParams()
     const endOffset = itemOffset + itemsPerPage;
-    const endOffsetOther = itemOffset + otherItemsPerPage;
+    const endOffsetOther = otherItemOffset + otherItemsPerPage;
     const modeEdit = isEditOrPreviewMode()
     let data: ArtistSearchQuery | undefined = undefined
     let otherData: OtherContentSearchQuery | undefined = undefined
@@ -56,7 +57,7 @@ function SearchPage() {
     const { data : otherContentSearchQueryData } = useOtherContentSearchQuery({ endpoint: singleKeyUrl }, variables, { staleTime: 2000, enabled: !modeEdit || !!token });
     otherData = otherContentSearchQueryData
     otherResultNumber = otherData?.Content?.items?.length ?? 0
-    const currentOtherItems = otherData?.Content?.items?.slice(itemOffset, endOffsetOther);
+    const currentOtherItems = otherData?.Content?.items?.slice(otherItemOffset, endOffsetOther);
     const pageOtherCount = Math.ceil(otherResultNumber / itemsPerPage);
 
     const handlePageClick = (event: any) => {
@@ -70,7 +71,7 @@ function SearchPage() {
 
     const handleOtherPageClick = (event: any) => {
         const newOffset = (event.selected * itemsPerPage) % otherResultNumber;
-        setItemOffset(newOffset);
+        setOtherItemOffset(newOffset);
     };
 
     const handleOtherItemsChange = (event: any) => {
@@ -188,6 +189,8 @@ function SearchPage() {
                                     return (
                                         <div className="result" key={idx}>
                                             <div className="card">
+                                                <i className="fa fa-file"></i>
+                                                &nbsp;
                                                 <div className="info">
                                                     <a href={content?.RelativePath ?? ''} className="EPiLink">
                                                         <p className="result-name">{content?.Name}</p>
