@@ -3976,11 +3976,12 @@ input.search-input::placeholder {
 .search-container{
   padding: 50px;
   height: 100%;
+  width: 60%;
 }
 
 .search-panel{
-  width: 30%;
   display: inline-block;
+  width: 55%;
 }
 
 .search-icon{
@@ -4003,16 +4004,11 @@ input.search-input::placeholder {
   font-style: italic;
 }
 
-.result-block{
-  width: 40%;
-}
-
 .search-results{
   margin-top: 30px;
 }
 
 .search-sorting{
-  color:#000;
   float: right;
 }
 
