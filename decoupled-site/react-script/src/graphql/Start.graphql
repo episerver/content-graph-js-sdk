@@ -1,6 +1,6 @@
 query Start(
     $relativePath: String
-    $locales: Locales
+    $locales: Locales!
     $language: String
     $stageName: String
     $artistGenre: String
