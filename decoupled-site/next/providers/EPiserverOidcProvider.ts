@@ -1,3 +1,4 @@
+const prod = process.env.NODE_ENV === 'production'
 export default function EPiserverOidcProvider (options: Record<string, any>) {
       return {
         id: "optimizely_cms",
@@ -18,8 +19,8 @@ export default function EPiserverOidcProvider (options: Record<string, any>) {
         protection: "state",
         checks: ["pkce", "state", "nonce"],
         style: {
-            logo: `${process.env.NEXTAUTH_URL}/optimizely.png`,
-            logoDark: `${process.env.NEXTAUTH_URL}/optimizely.png`,
+            logo: `${prod ? process.env.NEXTAUTH_URL : process.env.VERCEL_URL}/optimizely.png`,
+            logoDark: `${prod ? process.env.NEXTAUTH_URL : process.env.VERCEL_URL}/optimizely.png`,
         },
         profile(profile: any, tokens: any) {
             return {

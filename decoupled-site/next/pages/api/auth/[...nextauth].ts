@@ -3,7 +3,7 @@ import OktaProvider from 'next-auth/providers/okta'
 import AzureADProvider from "next-auth/providers/azure-ad";
 import { JWT } from "next-auth/jwt";
 import EPiserverOidcProvider from "@/providers/EPiserverOidcProvider";
-
+const prod = process.env.NODE_ENV === 'production'
 export const authOptions: any = {
   providers: [
     OktaProvider({
@@ -16,8 +16,8 @@ export const authOptions: any = {
           token_endpoint_auth_method: 'none'
         },
         style: {
-          logo: `${process.env.NEXTAUTH_URL}/optimizely.png`,
-          logoDark: `${process.env.NEXTAUTH_URL}/optimizely.png`,
+          logo: `${prod ? process.env.NEXTAUTH_URL : process.env.VERCEL_URL}/optimizely.png`,
+          logoDark: `${prod ? process.env.NEXTAUTH_URL : process.env.VERCEL_URL}/optimizely.png`,
           bg: "#fff",
           text: "#000",
           bgDark: "#000",
