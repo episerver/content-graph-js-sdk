@@ -1,6 +1,7 @@
 import '@/styles/globals.css'
 import NextApp from 'next/app'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { SessionProvider } from "next-auth/react"
 import { withApplicationInsights } from 'next-applicationinsights';
 
 
@@ -11,9 +12,11 @@ class App extends NextApp {
     const { Component, pageProps: { session, ...pageProps } } = this.props
 
     return (
-      <QueryClientProvider {...session} client={client}>
+      <SessionProvider session={session}>
+        {/* <QueryClientProvider client={client}> */}
         <Component {...pageProps} />
-      </QueryClientProvider>
+        {/* </QueryClientProvider> */}
+      </SessionProvider>
     )
   }
 }

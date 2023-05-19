@@ -1,8 +1,8 @@
-import { useSession } from "next-auth/client"
+import { useSession } from "next-auth/react"  
 import { authOptions } from "./auth/[...nextauth]"
 
 export default async (req: any, res: any) => {
-  const [session] = useSession();
+  const {data: session} = useSession();
 
   if (session) {
     res.send({

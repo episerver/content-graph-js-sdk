@@ -1,4 +1,4 @@
-import ContentBlock from '../components/blocks/ContentBlock'
+import SearchButton from '../components/SearchButton'
 import { getImageUrl } from '../helpers/urlHelper'
 import { GetBlockComponent } from './BlockPage'
 
@@ -7,11 +7,19 @@ type LandingPageProps = {
 }
 
 function LandingPage({ content }: LandingPageProps) {
-    console.log('content', content)
     return (
         <div>
             <nav className="Page-container PageHeader NavBar">
-                <button className="Button buy-ticket-button">{content?.BuyTicketBlock?.Heading}</button>
+                <div className="nav-table">
+                    <div className="nav-table-row">
+                        <div className="nav-table-cell">
+                            <button className="Button buy-ticket-button">{content?.BuyTicketBlock?.Heading}</button>
+                        </div>
+                        <div className="nav-table-cell search-button-block">
+                            <SearchButton />
+                        </div>
+                    </div>
+                </div>               
             </nav>
             <section className="Hero">
                 <div className="Hero-content Page-container">
@@ -30,7 +38,6 @@ function LandingPage({ content }: LandingPageProps) {
                                 (() => {
                                     const contentItem = mainContentAreaItem?.ContentLink?.Expanded
                                     if (contentItem?.__typename === "ImageFile") {
-                                        console.log('contentItem', contentItem?.Url)
                                         return (
                                             <div className="Grid-cell u-md-size1of2" key={mainContentAreaItemIdx}>
                                                 <div className="Page-container ImageFile">

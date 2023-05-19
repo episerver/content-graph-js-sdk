@@ -5,12 +5,21 @@ import { extractParams, isEditOrPreviewMode } from "./urlHelper";
 
 const generateGQLQueryVars = (token: string, pathname: string): any => {
     const { relativePath, locales, language, contentId, workId } = extractParams(pathname)
-    console.log('relativePath', relativePath)
     let variables: any = { relativePath, locales: locales as Locales, language, statusEqual: "Published" };
     if (isEditOrPreviewMode() && token) {
         variables = workId === undefined 
                     ? { contentId, isCommonDraft: true, locales: locales as Locales, language } 
                     : { contentId, workId, locales: locales as Locales, language };
+    }
+
+    return variables
+}
+
+const generateGQLSearchQueryVars = (token: string, pathname: string, searchParam: string | null, sortOption: string): any => {
+    const { locales } = extractParams(pathname)
+    let variables: any = { locales: locales as Locales, searchParam: searchParam, order: sortOption };
+    if (isEditOrPreviewMode() && token) {
+        variables = { locales: locales as Locales, searchParam, sortOption };
     }
 
     return variables
@@ -58,4 +67,4 @@ function isSimpleProperty(propValue: any) {
 }
 
 
-export { generateGQLQueryVars, updateStartQueryCache }
+export { generateGQLQueryVars, updateStartQueryCache, generateGQLSearchQueryVars }
