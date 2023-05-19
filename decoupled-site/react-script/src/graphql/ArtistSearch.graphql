@@ -1,0 +1,23 @@
+query ArtistSearch($searchParam: String, $locales: Locales!, $order: OrderBy) {
+  ArtistDetailsPage(
+    locale: [$locales]
+    orderBy: { _ranking: RELEVANCE, ArtistName: $order }
+    where: { _or: [{ Name: { contains: $searchParam, boost: 10 } }, { Name: { startsWith: $searchParam, boost: 10 } }, { StageName: { startsWith: $searchParam } }] }
+  ) {
+    items {
+      PerformanceStartTime
+      PerformanceEndTime
+      StageName
+      ArtistName
+      ArtistPhoto
+      ArtistGenre
+      ArtistDescription
+      ArtistIsHeadliner
+      RelativePath
+      ParentLink {
+        Url
+      }
+      _fulltext
+    }
+  }
+}

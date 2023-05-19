@@ -8,7 +8,6 @@ function LoginCallback() {
   };
 
   new UserManager(settings).signinRedirectCallback().then((user) => {
-    console.log('UserManager', user)
     if (user && user.state) {
       window.location.href = user.state;
     } else {

@@ -52,7 +52,7 @@ const App = () => {
 
     const { data: queryData } = useStartQuery({ endpoint: url, fetchParams: { headers: headers } }, variables, { staleTime: 2000, enabled: !modeEdit || !!token });
     data = queryData
-
+    
     if (!data) {
         return (
             <div className="App">
