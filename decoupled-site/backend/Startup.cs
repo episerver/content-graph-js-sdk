@@ -84,7 +84,7 @@ public class Startup
                     PostLogoutRedirectUris = { baseUri },
                     RedirectUris =
                     {
-                        new Uri(baseUri, "/login-callback"),
+                        new Uri(baseUri, "/"),
                         new Uri(baseUri, "/login-renewal"),
                     },
                 });

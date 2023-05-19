@@ -3118,7 +3118,7 @@ export type LandingPageWhereInput = {
 
 export enum Locales {
   All = 'ALL',
-  Invariant = 'INVARIANT',
+  Neutral = 'NEUTRAL',
   En = 'en',
   Sv = 'sv'
 }
@@ -3711,8 +3711,6 @@ export type StartQueryVariables = Exact<{
   relativePath?: InputMaybe<Scalars['String']>;
   locales: Locales;
   language?: InputMaybe<Scalars['String']>;
-  stageName?: InputMaybe<Scalars['String']>;
-  artistGenre?: InputMaybe<Scalars['String']>;
   contentId?: InputMaybe<Scalars['Int']>;
   workId?: InputMaybe<Scalars['Int']>;
   statusEqual?: InputMaybe<Scalars['String']>;
@@ -3940,7 +3938,7 @@ export const useArtistDetailsPageQuery = <
       options
     );
 export const StartDocument = `
-    query Start($relativePath: String, $locales: Locales!, $language: String, $stageName: String, $artistGenre: String, $contentId: Int, $workId: Int, $statusEqual: String, $isCommonDraft: Boolean) {
+    query Start($relativePath: String, $locales: Locales!, $language: String, $contentId: Int, $workId: Int, $statusEqual: String, $isCommonDraft: Boolean) {
   Content(
     locale: [$locales]
     where: {ContentLink: {WorkId: {eq: $workId}, Id: {eq: $contentId}}, RelativePath: {eq: $relativePath}, Language: {Name: {eq: $language}}, Status: {eq: $statusEqual}, IsCommonDraft: {eq: $isCommonDraft}}
