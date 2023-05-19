@@ -1,5 +1,5 @@
 query ArtistContainerPage(
-    $locales: Locales
+    $locales: Locales!
     $language: String
     $statusEqual: String
 ) {

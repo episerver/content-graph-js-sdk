@@ -1,7 +1,7 @@
-import { useSession } from "next-auth/client"
+import { useSession } from "next-auth/react"
 
 export default function Component() {
-  const [session] = useSession()
+  const { data: session } = useSession()
   const { accessToken }: any = session || {}
 
   return <div>Access Token: {accessToken}</div>
