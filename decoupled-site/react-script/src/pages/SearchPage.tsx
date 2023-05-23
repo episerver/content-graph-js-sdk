@@ -17,13 +17,13 @@ function SearchPage() {
     const [itemsPerPage, setItemsPerPage] = useState(10)
     const [otherItemsPerPage, setOtherItemsPerPage] = useState(10)
     const [filterBy, setFilterBy] = useState("Artist")
+    const [orderBy, setOrderBy] = useState("ASC")
     const [searchParams] = useSearchParams()
     const endOffset = itemOffset + itemsPerPage;
     const endOffsetOther = otherItemOffset + otherItemsPerPage;
     const modeEdit = isEditOrPreviewMode()
     let data: ArtistSearchQuery | undefined = undefined
     let otherData: OtherContentSearchQuery | undefined = undefined
-    let sortOption: string = "ASC"
     let queryString: string | null
     let resultNumber : number
     let otherResultNumber : number
@@ -46,7 +46,7 @@ function SearchPage() {
         queryString = ""
     }
 
-    variables = generateGQLSearchQueryVars(token, window.location.pathname, queryString, sortOption);
+    variables = generateGQLSearchQueryVars(token, window.location.pathname, queryString, orderBy);
 
     const { data : searchQueryData } = useArtistSearchQuery({ endpoint: singleKeyUrl }, variables, { staleTime: 2000, enabled: !modeEdit || !!token });
     data = searchQueryData
@@ -82,6 +82,10 @@ function SearchPage() {
         setFilterBy(event.target.value);
     };
 
+    const handleChange = (event: any) => {
+        setOrderBy(event.target.value);
+    }
+
     return (
         <div>
             <Header />
@@ -111,8 +115,8 @@ function SearchPage() {
                 <div className="search-description">
                     <h6>Your search for <span className="search-term">{queryString}</span> resulted in <span className="search-term">{filterBy == "Artist" ? resultNumber : otherResultNumber}</span> hits</h6>
                 </div>
-                {/* <div className="search-sorting">
-                    <span></span>
+                <div className="search-sorting">
+                    <span>Sort: </span>
                     <select onChange={e => handleChange(e)} className="Button">
                         {
                             options.map((option) => {
@@ -122,7 +126,7 @@ function SearchPage() {
                             })
                         }
                     </select>
-                </div> */}
+                </div>
                 <div className="result-block">
                     <div style={filterBy == "Artist" ? {display: "initial"}: {display: "none"}}>
                         <div className="search-results">
