@@ -3,3 +3,4 @@
 **/*/obj
 **/*/node_modules
 **/*/App_Data/blobs
+**/*/*.development.json
