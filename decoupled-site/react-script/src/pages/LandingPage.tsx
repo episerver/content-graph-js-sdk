@@ -26,10 +26,6 @@ function LandingPage({ content }: LandingPageProps) {
                     <h1 data-epi-edit="Title">{content?.Title}</h1>
                     <h5 data-epi-edit="Subtitle">{content?.Subtitle}</h5>
                 </div>
-                <div className="Hero-content Page-container">
-                    <h1 data-epi-edit="Title">{content?.Title}</h1>
-                    <h5 data-epi-edit="Subtitle">{content?.Subtitle}</h5>
-                </div>
                 <div className="Hero-image" style={{ backgroundImage: `url(${getImageUrl(content?.HeroImage)})` }}>
                 </div>
             </section>

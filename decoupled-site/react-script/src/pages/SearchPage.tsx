@@ -86,6 +86,10 @@ function SearchPage() {
         setOrderBy(event.target.value);
     }
 
+    const handleFacetClick = (event: any) => {
+        window.location.href = `${window.location.origin}/search?q=${event.target.innerText}`
+    }
+
     return (
         <div>
             <Header />
@@ -95,12 +99,12 @@ function SearchPage() {
                         <span>Back to Landing page</span>
                     </a>
                 </div>
-                <div className="search-panel">
+                <div className="search-zone">
                     <div style={{float: "left"}}>
                         <SearchButton />
                     </div>
                     <div style={{float: "right"}}>
-                        <span>Filter by: </span>
+                        <span>Search by: </span>
                         <select className="Button" onChange={handleFilterByChange}>
                             {
                                 filterByOption.map((option) => {
@@ -112,133 +116,188 @@ function SearchPage() {
                         </select>
                     </div>
                 </div>
-                <div className="search-description">
-                    <h6>Your search for <span className="search-term">{queryString}</span> resulted in <span className="search-term">{filterBy == "Artist" ? resultNumber : otherResultNumber}</span> hits</h6>
-                </div>
-                <div className="search-sorting">
-                    <span>Sort: </span>
-                    <select onChange={e => handleChange(e)} className="Button">
-                        {
-                            options.map((option) => {
-                                return (
-                                    <option key={option.key} value={option.key}>{option.value}</option>
-                                )
-                            })
-                        }
-                    </select>
-                </div>
-                <div className="result-block">
-                    <div style={filterBy == "Artist" ? {display: "initial"}: {display: "none"}}>
-                        <div className="search-results">
+                <div className="search-panel">
+                    <div className="left-panel">
+                        <b>Filter by: </b>
+                        <div className="facets" style={filterBy == "Artist" ? {display: "inherit"}: {display: "none"}}>
+                            <b>Artist Name: </b>
                             {
-                                currentItems?.map((content, idx) => {
+                                data?.ArtistDetailsPage?.facets?.ArtistName?.map((artist) => {
                                     return (
-                                        <div className="result" key={idx}>
-                                            <div className="card">
-                                                <div className="round">
-                                                    <img className="ConditionalImage"
-                                                        src={getImageUrl(content?.ArtistPhoto ?? '')}
-                                                        alt={content?.ArtistName ?? ''} />
-                                                </div>
-                                                <div className="info">
-                                                    <a href={content?.RelativePath ?? ''} className="EPiLink">
-                                                        <p className="result-name">{content?.ArtistName}</p>
-                                                    </a>
-                                                </div>
-                                            </div>                             
-                                            <div>
-                                                <p className="result-description">{content?.ArtistDescription}</p>
-                                            </div>
+                                        <div>
+                                            <a key={artist?.name} onClick={(event) => handleFacetClick(event)}>
+                                                <span>{artist?.name}</span>
+                                                &nbsp;
+                                                <b>({artist?.count})</b>
+                                            </a>
                                         </div>
                                     )
                                 })
                             }
                         </div>
-                        <div className="search-pagination-block">
-                            <table>
-                                <tbody>
-                                <tr>
-                                    <td>
-                                        <span>Items per page: </span>
-                                        <select className="Button" onChange={handleItemsChange}>
-                                            {
-                                                itemsPerPageOptions.map((option) => {
-                                                    return (
-                                                        <option key={option.key} value={option.key}>{option.value}</option>
-                                                    )
-                                                })
-                                            }
-                                        </select>
-                                    </td>
-                                    <td className="search-pagination">
-                                        <ReactPaginate
-                                            breakLabel="..."
-                                            nextLabel=">"
-                                            onPageChange={handlePageClick}
-                                            pageRangeDisplayed={5}
-                                            pageCount={pageCount}
-                                            previousLabel="<"
-                                            renderOnZeroPageCount={null}
-                                        />
-                                    </td>
-                                </tr>
-                                </tbody>
-                            </table>
+                        <div className="facets" style={filterBy == "Artist" ? {display: "inherit"}: {display: "none"}}>
+                            <b>Stage Name: </b>
+                            {
+                                data?.ArtistDetailsPage?.facets?.StageName?.map((artist) => {
+                                    return (
+                                        <div>
+                                            <a key={artist?.name} onClick={(event) => handleFacetClick(event)}>
+                                                <span>{artist?.name}</span>
+                                                &nbsp;
+                                                <b>({artist?.count})</b>
+                                            </a>
+                                        </div>
+                                    )
+                                })
+                            }
+                        </div>
+                        <div className="facets" style={filterBy == "OtherContent" ? {display: "inherit"}: {display: "none"}}>
+                            <b>Content: </b>
+                            {
+                                otherData?.Content?.facets?.Name?.map((content) => {
+                                    return (
+                                        <div>
+                                            <a key={content?.name} onClick={(event) => handleFacetClick(event)}>
+                                                <span>{content?.name}</span>
+                                                &nbsp;
+                                                <b>({content?.count})</b>
+                                            </a>
+                                        </div>
+                                    )
+                                })
+                            }
                         </div>
                     </div>
-                    <div style={filterBy == "OtherContent" ? {display: "initial"}: {display: "none"}}>
-                        <div className="search-results">
-                            {
-                                currentOtherItems?.map((content, idx) => {
-                                    return (
-                                        <div className="result" key={idx}>
-                                            <div className="card">
-                                                <i className="fa fa-file"></i>
-                                                &nbsp;
-                                                <div className="info">
-                                                    <a href={content?.RelativePath ?? ''} className="EPiLink">
-                                                        <p className="result-name">{content?.Name}</p>
-                                                    </a>
-                                                </div>
-                                            </div>                             
-                                            <div>
-                                                <p className="result-description">{content?.RelativePath}</p>
-                                            </div>
-                                        </div>
-                                    )
-                                })
-                            }
+                    <div className="right-panel">
+                        <div className="search-description">
+                            <h6>Your search for <span className="search-term">{queryString}</span> resulted in <span className="search-term">{filterBy == "Artist" ? resultNumber : otherResultNumber}</span> hits</h6>
                         </div>
-                        <div className="search-pagination-block">
-                            <table>
-                                <tbody>
-                                <tr>
-                                    <td>
-                                        <span>Items per page: </span>
-                                        <select className="Button" onChange={handleOtherItemsChange}>
-                                            {
-                                                itemsPerPageOptions.map((option) => {
-                                                    return (
-                                                        <option key={option.key} value={option.key}>{option.value}</option>
-                                                    )
-                                                })
-                                            }
-                                        </select>
-                                    </td>
-                                    <td className="search-pagination">
-                                        <ReactPaginate
-                                            breakLabel="..."
-                                            nextLabel=">"
-                                            onPageChange={handleOtherPageClick}
-                                            pageRangeDisplayed={5}
-                                            pageCount={pageOtherCount}
-                                            previousLabel="<"
-                                            renderOnZeroPageCount={null}
-                                        />
-                                    </td>
-                                </tr>
-                                </tbody>
-                            </table>
+                        <div className="search-sorting">
+                            <span>Sort: </span>
+                            <select onChange={e => handleChange(e)} className="Button">
+                                {
+                                    options.map((option) => {
+                                        return (
+                                            <option key={option.key} value={option.key}>{option.value}</option>
+                                        )
+                                    })
+                                }
+                            </select>
+                        </div>
+                        <div className="result-block">
+                            <div style={filterBy == "Artist" ? {display: "initial"}: {display: "none"}}>
+                                <div className="search-results">
+                                    {
+                                        currentItems?.map((content, idx) => {
+                                            return (
+                                                <div className="result" key={idx}>
+                                                    <div className="card">
+                                                        <div className="round">
+                                                            <img className="ConditionalImage"
+                                                                src={getImageUrl(content?.ArtistPhoto ?? '')}
+                                                                alt={content?.ArtistName ?? ''} />
+                                                        </div>
+                                                        <div className="info">
+                                                            <a href={content?.RelativePath ?? ''} className="EPiLink">
+                                                                <p className="result-name">{content?.ArtistName}</p>
+                                                            </a>
+                                                        </div>
+                                                    </div>                             
+                                                    <div>
+                                                        <p className="result-description">{content?.ArtistDescription}</p>
+                                                    </div>
+                                                </div>
+                                            )
+                                        })
+                                    }
+                                </div>
+                                <div className="search-pagination-block">
+                                    <table>
+                                        <tbody>
+                                        <tr>
+                                            <td>
+                                                <span>Items per page: </span>
+                                                <select className="Button" onChange={handleItemsChange}>
+                                                    {
+                                                        itemsPerPageOptions.map((option) => {
+                                                            return (
+                                                                <option key={option.key} value={option.key}>{option.value}</option>
+                                                            )
+                                                        })
+                                                    }
+                                                </select>
+                                            </td>
+                                            <td className="search-pagination">
+                                                <ReactPaginate
+                                                    breakLabel="..."
+                                                    nextLabel=">"
+                                                    onPageChange={handlePageClick}
+                                                    pageRangeDisplayed={5}
+                                                    pageCount={pageCount}
+                                                    previousLabel="<"
+                                                    renderOnZeroPageCount={null}
+                                                />
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div style={filterBy == "OtherContent" ? {display: "initial"}: {display: "none"}}>
+                                <div className="search-results">
+                                    {
+                                        currentOtherItems?.map((content, idx) => {
+                                            return (
+                                                <div className="result" key={idx}>
+                                                    <div className="card">
+                                                        <i className="fa fa-file"></i>
+                                                        &nbsp;
+                                                        <div className="info">
+                                                            <a href={content?.RelativePath ?? ''} className="EPiLink">
+                                                                <p className="result-name">{content?.Name}</p>
+                                                            </a>
+                                                        </div>
+                                                    </div>                             
+                                                    <div>
+                                                        <p className="result-description">{content?.RelativePath}</p>
+                                                    </div>
+                                                </div>
+                                            )
+                                        })
+                                    }
+                                </div>
+                                <div className="search-pagination-block">
+                                    <table>
+                                        <tbody>
+                                        <tr>
+                                            <td>
+                                                <span>Items per page: </span>
+                                                <select className="Button" onChange={handleOtherItemsChange}>
+                                                    {
+                                                        itemsPerPageOptions.map((option) => {
+                                                            return (
+                                                                <option key={option.key} value={option.key}>{option.value}</option>
+                                                            )
+                                                        })
+                                                    }
+                                                </select>
+                                            </td>
+                                            <td className="search-pagination">
+                                                <ReactPaginate
+                                                    breakLabel="..."
+                                                    nextLabel=">"
+                                                    onPageChange={handleOtherPageClick}
+                                                    pageRangeDisplayed={5}
+                                                    pageCount={pageOtherCount}
+                                                    previousLabel="<"
+                                                    renderOnZeroPageCount={null}
+                                                />
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

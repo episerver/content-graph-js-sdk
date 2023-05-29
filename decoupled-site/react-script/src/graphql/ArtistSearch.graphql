@@ -19,5 +19,15 @@ query ArtistSearch($searchParam: String, $locales: Locales!, $order: OrderBy) {
       }
       _fulltext
     }
+    facets {
+      ArtistName(orderBy: ASC, orderType: VALUE, limit: 100){
+        name
+        count
+      }
+      StageName(orderBy: ASC, orderType: VALUE, limit: 100){
+        name
+        count
+      }
+    }
   }
 }

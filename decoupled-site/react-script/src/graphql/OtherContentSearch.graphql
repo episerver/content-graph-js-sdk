@@ -22,5 +22,11 @@ query OtherContentSearch($searchParam: String, $locales: Locales!, $order: Order
       _fulltext
       ContentType
     }
+    facets{
+      Name(orderBy: ASC, orderType: VALUE, limit: 100){
+        name
+        count
+      }
+    }
   }
 }

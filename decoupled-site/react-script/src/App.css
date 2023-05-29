@@ -3976,10 +3976,39 @@ input.search-input::placeholder {
 .search-container{
   padding: 50px;
   height: 100%;
-  width: 60%;
+  /* width: 60%; */
+}
+
+.left-panel, .right-panel{
+  height: 100%;
+  padding: 0 20px;
+}
+
+.left-panel{
+  width: 15%;
+  color: #fff;
+}
+
+.right-panel{
+  width: 50%;
+  border-left: solid 1px #fff;
 }
 
 .search-panel{
+  display: flex;
+  height: 100%;
+}
+
+.facets{
+  padding: 20px 0;
+  border-top: solid 0.5px #fff;;
+}
+
+.facets a{
+  cursor: pointer;
+}
+
+.search-zone{
   display: inline-block;
   width: 55%;
 }
