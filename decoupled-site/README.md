@@ -17,7 +17,7 @@ This project uses:
 1. Run `setup.cmd`. You can re-run `setup.cmd` at any time to reset the backend with a fresh database.
 2. Config the Content Graph keys:   
     * ./backend/appsettings.json  
-    * ./frontend/.env
+    * ./react-script/.env
 
 3. Open terminal for `./backend` and run `dotnet run`.
     * Navigate to http://localhost:8082/.
@@ -33,7 +33,9 @@ This project uses:
         ```
     * Run the job `Content Graph content synchronization job` to index whole contents into the Content Graph for the first time  
     
-4. Open terminal for `./frontend` and run `npm install` or `yarn` (only needed first run).
+4. Open terminal for `./react-script`.
+    * Run `npm install` or `yarn` (only needed in first run) to install dependencies.  
+    * Run `npm run generate:local` to generate typescript code from GraphQL queries.
     * Run `npm start`.
     * Navigate to http://localhost:3000/.
 
@@ -41,10 +43,10 @@ This project uses:
 
 ### Frontend structures
 
-* `frontend/src`
+* `react-script/src`
     - `...`
     - `components/`   contains common components.
-    - `graphql/` contains queries using to retrieve contents from Content Graph. After updating queries, re-generate the code gen by command `npm run generate:local` at `frontend` folder
+    - `graphql/` contains queries using to retrieve contents from Content Graph. After updating queries, re-generate the code gen by command `npm run generate:local` at `react-script` folder
     - `helpers/`
         - `contentSavedEvent.ts` function that subcribes changes from CMS
         - `...`
@@ -87,10 +89,10 @@ Use two convenient commands (in `package.json`) to work with the SDK.
 
 To use more options of the SDK, please click [here](https://www.npmjs.com/package/@episerver/content-definitions).  
 
->*Note: When running the commands, please update the folder permission if you face with Permission denied issue on folder `[RootPath]/decoupled-site/frontend/node_modules/.bin/content-definitions`*  
+>*Note: When running the commands, please update the folder permission if you face with Permission denied issue on folder `[RootPath]/decoupled-site/react-script/node_modules/.bin/content-definitions`*  
 
 After updating contentTypes, we need to  
 1. Wait until the contentTypes would be synced into Content Graph (By checking schema at the [address](http://localhost:8082/EPiServer/ContentGraph/GraphiQL)).  
 2. Update graphql queries (at `graphql/` folder) matching with the changes we made to content types, as neccessary.  
-3. Run `npm run generate:local` at `frontend` root folder to re-generate types in file `generated.ts`.  
+3. Run `npm run generate:local` at `react-script` root folder to re-generate types in file `generated.ts`.  
 4. Finally, we could update the views in `.tsx` files to match with the changes to the schema.  
