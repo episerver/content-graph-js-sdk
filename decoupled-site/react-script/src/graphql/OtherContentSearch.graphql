@@ -1,4 +1,4 @@
-query OtherContentSearch($searchParam: String, $locales: Locales!, $order: OrderBy) {
+query OtherContentSearch($searchParam: String!, $locales: Locales!, $order: OrderBy) {
   Content(
     locale: [$locales]
     orderBy: { _ranking: RELEVANCE, Name: $order }

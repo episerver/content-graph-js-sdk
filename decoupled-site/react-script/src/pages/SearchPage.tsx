@@ -3,7 +3,7 @@ import { useSearchParams } from "react-router-dom";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import SearchButton from "../components/SearchButton";
-import { ArtistSearchQuery, OtherContentSearchQuery, useArtistSearchQuery, useOtherContentSearchQuery } from "../generated";
+import { ArtisAutocompleteQuery, ArtistSearchQuery, OtherContentSearchQuery, useArtisAutocompleteQuery, useArtistSearchQuery, useOtherContentSearchQuery } from "../generated";
 import { generateGQLSearchQueryVars } from "../helpers/queryCacheHelper";
 import { getImageUrl, isEditOrPreviewMode } from "../helpers/urlHelper";
 import ReactPaginate from 'react-paginate';
@@ -24,6 +24,7 @@ function SearchPage() {
     const modeEdit = isEditOrPreviewMode()
     let data: ArtistSearchQuery | undefined = undefined
     let otherData: OtherContentSearchQuery | undefined = undefined
+    let autocompleteData : ArtisAutocompleteQuery | undefined = undefined
     let queryString: string | null
     let resultNumber : number
     let otherResultNumber : number
@@ -59,6 +60,9 @@ function SearchPage() {
     otherResultNumber = otherData?.Content?.items?.length ?? 0
     const currentOtherItems = otherData?.Content?.items?.slice(otherItemOffset, endOffsetOther);
     const pageOtherCount = Math.ceil(otherResultNumber / itemsPerPage);
+
+    const { data : artistAutocompleteData } = useArtisAutocompleteQuery({ endpoint: singleKeyUrl }, variables, { staleTime: 2000, enabled: !modeEdit || !!token })
+    autocompleteData = artistAutocompleteData
 
     const handlePageClick = (event: any) => {
         const newOffset = (event.selected * itemsPerPage) % resultNumber;
@@ -170,7 +174,7 @@ function SearchPage() {
                     </div>
                     <div className="right-panel">
                         <div className="search-description">
-                            <h6>Your search for <span className="search-term">{queryString}</span> resulted in <span className="search-term">{filterBy == "Artist" ? resultNumber : otherResultNumber}</span> hits</h6>
+                            <h6>Your search for <span className="search-term">{queryString}</span> resulted in <span className="search-term">{filterBy == "Artist" ? resultNumber : otherResultNumber}</span> hits</h6>                            
                         </div>
                         <div className="search-sorting">
                             <span>Sort: </span>
@@ -206,6 +210,32 @@ function SearchPage() {
                                                     <div>
                                                         <p className="result-description">{content?.ArtistDescription}</p>
                                                     </div>
+                                                </div>
+                                            )
+                                        })
+                                    }
+                                </div>
+                                <div className="search-description">
+                                    <h6>People also search for: </h6>
+                                    <br></br>
+                                    {
+                                        autocompleteData?.ArtistDetailsPage?.autocomplete?.ArtistName?.map((name) => {
+                                            return (
+                                                <div>
+                                                    <a key={name} onClick={(event) => handleFacetClick(event)}>                                                    
+                                                        <i>{name}</i>
+                                                    </a>
+                                                </div>
+                                            )
+                                        })
+                                    }
+                                    {
+                                        autocompleteData?.ArtistDetailsPage?.autocomplete?.StageName?.map((name) => {
+                                            return (
+                                                <div>
+                                                    <a key={name} onClick={(event) => handleFacetClick(event)}>                                                    
+                                                        <i>{name}</i>
+                                                    </a>
                                                 </div>
                                             )
                                         })

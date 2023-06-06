@@ -4004,7 +4004,7 @@ input.search-input::placeholder {
   border-top: solid 0.5px #fff;;
 }
 
-.facets a{
+.facets a, .search-description a{
   cursor: pointer;
 }
 
@@ -4026,7 +4026,7 @@ input.search-input::placeholder {
 
 .search-description h6{
   text-transform: none;
-  margin-top: 20px;
+  margin-top: 5px;
 }
 
 .search-term{
@@ -4035,6 +4035,7 @@ input.search-input::placeholder {
 
 .search-results{
   margin-top: 30px;
+  margin-bottom: 30px;
 }
 
 .search-sorting{
@@ -4086,4 +4087,23 @@ input.search-input::placeholder {
   cursor: pointer;
   font-weight: bold;
   color: #41FFF5;
+}
+
+.autocomplete-block{
+  position: relative;
+  bottom: 2.1em;
+  left: 1em;
+  background-color: #fff;
+  height: auto;
+  color: #000;
+  min-width: 9em;
+}
+
+.autocomplete-block div{
+  padding: 10px;
+  cursor: pointer;
+}
+
+.autocomplete-block div:hover{
+  background-color: #aaa;
 }
