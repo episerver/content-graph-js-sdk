@@ -1,6 +1,7 @@
 # Music Festival backend site
 This is the backend site used to demonstrate On Page Editing feature with decoupled delivery site built with create-react-app script.  
 The backend site is built using Optimizely CMS 12 with ContentGraph integration packages installed.  
+You also need to run the react-script version of the frontend site in order to try out the on page editing feature.  
 
 ## Prerequisites
 This project uses:
