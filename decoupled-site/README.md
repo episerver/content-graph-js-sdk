@@ -32,8 +32,8 @@ This project uses:
     
 4. Open terminal for `./react-script`.
     * Run `npm install` or `yarn` (only needed in first run) to install dependencies.  
-    * Run `npm run generate:local` to generate typescript code from GraphQL queries.
-    * Run `npm start`.
+    * Run `npm run generate:local` or `yarn generate:local` to generate typescript code from GraphQL queries.
+    * Run `npm start` or `yarn start`.
     * Navigate to http://localhost:3000/ to browse the site as a public visitor.
 
 5. From backend site, navigate to CMS UI at http://localhost:8082/episerver/cms , login if prompted.
