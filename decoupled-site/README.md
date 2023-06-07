@@ -6,7 +6,14 @@ The frontend app uses [React Js](https://reactjs.org/) to create and generate Gr
 
 Content is fetched from Optimizely using the Content Graph: https://docs.developers.optimizely.com/digital-experience-platform/v1.4.0-content-graph/docs  
 
-The react-script version of the frontend site demonstrates the on page editing (OPE) feature, with OIDC integration using Optimizely OpenIDConnect server hosted in the same host as the CMS site.  
+## Features demonstrated in this sample code
+
+- On page editing (OPE) feature, with OIDC integration using Optimizely OpenIDConnect server hosted in the same host as the CMS site.  
+- Search feature using ContentGraph.
+    - Full text search of contents.
+    - Filter by content type (artist or others).
+    - Pagination.
+    - Sorting.
 
 ## Prerequisites
 
