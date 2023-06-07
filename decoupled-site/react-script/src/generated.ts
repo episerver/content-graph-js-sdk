@@ -4017,12 +4017,12 @@ export enum SynonymSlot {
   Two = 'TWO'
 }
 
-export type ArtisAutocompleteQueryVariables = Exact<{
+export type ArtistAutocompleteQueryVariables = Exact<{
   searchParam: Scalars['String'];
 }>;
 
 
-export type ArtisAutocompleteQuery = { __typename?: 'Query', ArtistDetailsPage?: { __typename?: 'ArtistDetailsPageOutput', autocomplete?: { __typename?: 'ArtistDetailsPageAutocomplete', StageName?: Array<string | null> | null, ArtistName?: Array<string | null> | null } | null } | null };
+export type ArtistAutocompleteQuery = { __typename?: 'Query', ArtistDetailsPage?: { __typename?: 'ArtistDetailsPageOutput', autocomplete?: { __typename?: 'ArtistDetailsPageAutocomplete', StageName?: Array<string | null> | null, ArtistName?: Array<string | null> | null } | null } | null };
 
 export type ArtistSearchQueryVariables = Exact<{
   searchParam: Scalars['String'];
@@ -4170,8 +4170,8 @@ export const LandingPageFragmentDoc = `
 }
     ${LandingPageBlockDataFragmentDoc}
 ${ItemsInContentAreaFragmentDoc}`;
-export const ArtisAutocompleteDocument = `
-    query ArtisAutocomplete($searchParam: String!) {
+export const ArtistAutocompleteDocument = `
+    query ArtistAutocomplete($searchParam: String!) {
   ArtistDetailsPage {
     autocomplete {
       StageName(value: $searchParam)
@@ -4180,17 +4180,17 @@ export const ArtisAutocompleteDocument = `
   }
 }
     `;
-export const useArtisAutocompleteQuery = <
-      TData = ArtisAutocompleteQuery,
+export const useArtistAutocompleteQuery = <
+      TData = ArtistAutocompleteQuery,
       TError = unknown
     >(
       dataSource: { endpoint: string, fetchParams?: RequestInit },
-      variables: ArtisAutocompleteQueryVariables,
-      options?: UseQueryOptions<ArtisAutocompleteQuery, TError, TData>
+      variables: ArtistAutocompleteQueryVariables,
+      options?: UseQueryOptions<ArtistAutocompleteQuery, TError, TData>
     ) =>
-    useQuery<ArtisAutocompleteQuery, TError, TData>(
-      ['ArtisAutocomplete', variables],
-      fetcher<ArtisAutocompleteQuery, ArtisAutocompleteQueryVariables>(dataSource.endpoint, dataSource.fetchParams || {}, ArtisAutocompleteDocument, variables),
+    useQuery<ArtistAutocompleteQuery, TError, TData>(
+      ['ArtistAutocomplete', variables],
+      fetcher<ArtistAutocompleteQuery, ArtistAutocompleteQueryVariables>(dataSource.endpoint, dataSource.fetchParams || {}, ArtistAutocompleteDocument, variables),
       options
     );
 export const ArtistSearchDocument = `

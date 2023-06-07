@@ -3,7 +3,7 @@ import { useSearchParams } from "react-router-dom";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import SearchButton from "../components/SearchButton";
-import { ArtisAutocompleteQuery, ArtistSearchQuery, OtherContentSearchQuery, useArtisAutocompleteQuery, useArtistSearchQuery, useOtherContentSearchQuery } from "../generated";
+import { ArtistAutocompleteQuery, ArtistSearchQuery, OtherContentSearchQuery, useArtistAutocompleteQuery, useArtistSearchQuery, useOtherContentSearchQuery } from "../generated";
 import { generateGQLSearchQueryVars } from "../helpers/queryCacheHelper";
 import { getImageUrl, isEditOrPreviewMode } from "../helpers/urlHelper";
 import ReactPaginate from 'react-paginate';
@@ -24,7 +24,7 @@ function SearchPage() {
     const modeEdit = isEditOrPreviewMode()
     let data: ArtistSearchQuery | undefined = undefined
     let otherData: OtherContentSearchQuery | undefined = undefined
-    let autocompleteData : ArtisAutocompleteQuery | undefined = undefined
+    let autocompleteData : ArtistAutocompleteQuery | undefined = undefined
     let queryString: string | null
     let resultNumber : number
     let otherResultNumber : number
@@ -61,7 +61,7 @@ function SearchPage() {
     const currentOtherItems = otherData?.Content?.items?.slice(otherItemOffset, endOffsetOther);
     const pageOtherCount = Math.ceil(otherResultNumber / itemsPerPage);
 
-    const { data : artistAutocompleteData } = useArtisAutocompleteQuery({ endpoint: singleKeyUrl }, variables, { staleTime: 2000, enabled: !modeEdit || !!token })
+    const { data : artistAutocompleteData } = useArtistAutocompleteQuery({ endpoint: singleKeyUrl }, variables, { staleTime: 2000, enabled: !modeEdit || !!token })
     autocompleteData = artistAutocompleteData
 
     const handlePageClick = (event: any) => {

@@ -1,7 +1,7 @@
 import { Autocomplete, TextField } from "@mui/material";
 import { useState } from "react";
 import { useSearchParams } from "react-router-dom";
-import { ArtisAutocompleteQuery, useArtisAutocompleteQuery } from "../generated";
+import { ArtistAutocompleteQuery, useArtistAutocompleteQuery } from "../generated";
 import { generateGQLSearchQueryVars } from "../helpers/queryCacheHelper";
 import { isEditOrPreviewMode } from "../helpers/urlHelper";
 
@@ -19,8 +19,8 @@ function SearchButton(): JSX.Element {
     const modeEdit = isEditOrPreviewMode()
     let stringArr: (string | null)[] = []
 
-    let autocompleteData : ArtisAutocompleteQuery | undefined = undefined
-    const { data : artistAutocompleteData } = useArtisAutocompleteQuery({ endpoint: singleKeyUrl }, variables, { staleTime: 2000, enabled: !modeEdit || !!token })
+    let autocompleteData : ArtistAutocompleteQuery | undefined = undefined
+    const { data : artistAutocompleteData } = useArtistAutocompleteQuery({ endpoint: singleKeyUrl }, variables, { staleTime: 2000, enabled: !modeEdit || !!token })
     autocompleteData = artistAutocompleteData
     
     function search(event: any, action: string){

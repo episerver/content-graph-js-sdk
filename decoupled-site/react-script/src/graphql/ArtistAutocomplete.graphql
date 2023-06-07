@@ -1,4 +1,4 @@
-query ArtisAutocomplete($searchParam: String!) {
+query ArtistAutocomplete($searchParam: String!) {
   ArtistDetailsPage {
     autocomplete {
       StageName(value: $searchParam)
