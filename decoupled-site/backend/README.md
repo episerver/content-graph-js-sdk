@@ -13,6 +13,7 @@ This project uses:
 1. Run `setup.cmd`. You can re-run `setup.cmd` at any time to reset the backend with a fresh database.
 2. Config the Content Graph keys:   
     * ./backend/appsettings.json  
+    * Set "FRONT_END_URI" to "http://localhost:3000" which is the frontend site you will run later.  
 
 3. Setup your database server, on Windows you can use LocalDB and no setup is required, on MacOS, please refer to the section below to setup the DB in MacOS.   
 
