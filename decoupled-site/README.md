@@ -14,6 +14,7 @@ Content is fetched from Optimizely using the Content Graph: https://docs.develop
     - Filter by content type (artist or others).
     - Pagination.
     - Sorting.
+    - Boosting.
 
 ## Prerequisites
 
