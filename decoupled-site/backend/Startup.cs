@@ -85,6 +85,7 @@ public class Startup
                     RedirectUris =
                     {
                         new Uri(baseUri, "/"),
+                        new Uri(baseUri, "/login-callback"),
                         new Uri(baseUri, "/login-renewal"),
                     },
                 });

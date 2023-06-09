@@ -8,9 +8,13 @@ This repository contains the samples for the Content Graph.
 
 ## Samples
 
-The samples are using ReactJS
-
-* [React JS - Decoupled](decoupled-site)
+We have the following samples code, please check the README file of each sample for more details.
+* [Music Festival backend site](decoupled-site/backend/)
+  * The site is used as backend for two other Music Festival frontend site.
+* [React JS - Decoupled frontend site](decoupled-site/react-script/)
+  * Demonstrates on page editing feature and multiple search functions.
+* [Next JS - Decoupled frontend site](decoupled-site/next/)
+  * Demonstrates implementation using Next.js with deployment on the Vercel platform.  
 
 ## Prerequisites for building and running the samples
 

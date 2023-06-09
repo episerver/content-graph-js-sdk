@@ -1,22 +1,36 @@
+## Music Festival frontend site Next.js version  
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+
+This sample site use the same Music Festival backend site implemented with Optimizely CMS 12. Please refer to the README file of the backend site project and setup the backend site.  
+
+This sample site demonstrates how the frontend site can be implemented using next.js and deployed to Vercel. This site also demonstrates how the frontend site can integrate with OIDC providers like OptiID, Azure AD, or Optmizely CMS OpenIDConnect server.  
+
+**Note**: on page editing does not work for the Next.js version of the Music Festival frontend site, you can edit the pages using property view in CMS UI instead.  
 
 ## Getting Started
 
-First, run the development server:
+First make sure you are running the Music Festival Backend site. Please refer to the README for the backend site.  
+Make sure you have run the ContentGraph content synchronization job if you have not already to sync initial data from the backend site to ContentGraph.  
+
+Install dependencies  
+```bash
+npm install
+# or
+yarn
+```
+
+Then run the development server:
 
 ```bash
 npm run dev
 # or
 yarn dev
 # or
-pnpm dev
+npm dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
-
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.  
 
 The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
 
