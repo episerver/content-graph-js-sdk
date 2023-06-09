@@ -1,6 +1,7 @@
-**/*/bin
-**/*/modules
-**/*/obj
-**/*/node_modules
-**/*/App_Data/blobs
-**/*/*.development.json
+**/bin
+**/modules
+**/obj
+**/node_modules
+**/App_Data/blobs
+**/*.development.json
+**/packages
