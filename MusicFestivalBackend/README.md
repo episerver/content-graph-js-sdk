@@ -14,12 +14,12 @@ This project uses:
     * On Mac OS or linux, run `setup.sh` to setup blobs for backend site.
     * If you are on MacOS, follow the guide below to setup database in an Azure SQL Edge container.  
 2. Config the Content Graph keys:   
-    * ./backend/appsettings.json  
+    * ./appsettings.json  
     * Set "FRONT_END_URI" to "http://localhost:3000" which is the frontend site you will run later.  
 
 3. Setup your database server, on Windows you can use LocalDB and no setup is required, on MacOS, please refer to the section below to setup the DB in MacOS.   
 
-4. Open terminal for `./backend` and run `dotnet run`.
+4. Open terminal for `./MusicFestivalBackend` and run `dotnet run`.
     * Navigate to http://localhost:8082/.
     * Create an admin user. If the UI is not displayed automatically, navigate to http://localhost:8082/util/register.
     * Add the following config site if it doesn't exist
@@ -38,8 +38,8 @@ This project uses:
 ## DB configurations
 
 ### Database connection string
-* backend/startup.cs is designed so that the site can start right away on both Windows and MacOS.
-* You can also update your database connection string in backend/appsettings.json.
+* startup.cs is designed so that the site can start right away on both Windows and MacOS.
+* You can also update your database connection string in appsettings.json.
 * The backend is quite the same with the backend of the [content-delivery-js-sk](https://github.com/episerver/content-delivery-js-sdk/tree/master/samples/music-festival-vue-decoupled) except using Content Graph `services.AddContentGraph(_configuration, OpenIDConnectOptionsDefaults.AuthenticationScheme);`.
 
 ### Create database on MacOS using Azure SQL Edge on Docker
@@ -49,7 +49,7 @@ On MacOS, you cannot run SQL Server, an alternative is to run an Azure SQL Edge 
 ```
 docker run -e 'ACCEPT_EULA=1'-e 'MSSQL_SA_PASSWORD=Admin123! -p 1433:1433 --name azuresqledge -d mcr.microsoft.com/azure-sql-edge  
 ```
-* Run `docker cp db.mdf azuresqledge:/var/opt/mssql/data/musicfestival.mdf` at `backend/App_Data` folder to copy the database file to the container.  
+* Run `docker cp db.mdf azuresqledge:/var/opt/mssql/data/musicfestival.mdf` at `App_Data` folder to copy the database file to the container.  
 * Update the file permission in the container  
 Run a terminal inside the AzureSQLEdge container
 ```
