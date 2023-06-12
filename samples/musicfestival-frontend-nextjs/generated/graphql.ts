@@ -57,7 +57,9 @@ export type ArtistContainerPage = IContent & {
   StopPublish?: Maybe<Scalars['Date']>;
   Url?: Maybe<Scalars['String']>;
   _children?: Maybe<QueryRef>;
+  _deleted?: Maybe<Scalars['Bool']>;
   _fulltext?: Maybe<Array<Maybe<Scalars['String']>>>;
+  _modified?: Maybe<Scalars['Date']>;
   _score?: Maybe<Scalars['Float']>;
 };
 
@@ -325,7 +327,9 @@ export type ArtistDetailsPage = IContent & {
   StopPublish?: Maybe<Scalars['Date']>;
   Url?: Maybe<Scalars['String']>;
   _children?: Maybe<QueryRef>;
+  _deleted?: Maybe<Scalars['Bool']>;
   _fulltext?: Maybe<Array<Maybe<Scalars['String']>>>;
+  _modified?: Maybe<Scalars['Date']>;
   _score?: Maybe<Scalars['Float']>;
 };
 
@@ -772,7 +776,9 @@ export type BuyTicketBlock = IContent & {
   StopPublish?: Maybe<Scalars['Date']>;
   Url?: Maybe<Scalars['String']>;
   _children?: Maybe<QueryRef>;
+  _deleted?: Maybe<Scalars['Bool']>;
   _fulltext?: Maybe<Array<Maybe<Scalars['String']>>>;
+  _modified?: Maybe<Scalars['Date']>;
   _score?: Maybe<Scalars['Float']>;
 };
 
@@ -1131,7 +1137,9 @@ export type Content = IContent & {
   StopPublish?: Maybe<Scalars['Date']>;
   Url?: Maybe<Scalars['String']>;
   _children?: Maybe<QueryRef>;
+  _deleted?: Maybe<Scalars['Bool']>;
   _fulltext?: Maybe<Array<Maybe<Scalars['String']>>>;
+  _modified?: Maybe<Scalars['Date']>;
   _score?: Maybe<Scalars['Float']>;
 };
 
@@ -1139,6 +1147,7 @@ export type ContentAreaItemModel = {
   __typename?: 'ContentAreaItemModel';
   ContentLink?: Maybe<ContentModelReference>;
   DisplayOption?: Maybe<Scalars['String']>;
+  InlineBlock?: Maybe<InlineBlockPropertyModel>;
   Tag?: Maybe<Scalars['String']>;
 };
 
@@ -1146,6 +1155,7 @@ export type ContentAreaItemModelAutocomplete = {
   __typename?: 'ContentAreaItemModelAutocomplete';
   ContentLink?: Maybe<ContentModelReferenceAutocomplete>;
   DisplayOption?: Maybe<Array<Maybe<Scalars['String']>>>;
+  InlineBlock?: Maybe<InlineBlockPropertyModelAutocomplete>;
   Tag?: Maybe<Array<Maybe<Scalars['String']>>>;
 };
 
@@ -1165,6 +1175,7 @@ export type ContentAreaItemModelFacet = {
   __typename?: 'ContentAreaItemModelFacet';
   ContentLink?: Maybe<ContentModelReferenceFacet>;
   DisplayOption?: Maybe<Array<Maybe<StringFacet>>>;
+  InlineBlock?: Maybe<InlineBlockPropertyModelFacet>;
   Tag?: Maybe<Array<Maybe<StringFacet>>>;
 };
 
@@ -1187,12 +1198,14 @@ export type ContentAreaItemModelFacetTagArgs = {
 export type ContentAreaItemModelOrderByInput = {
   ContentLink?: InputMaybe<ContentModelReferenceOrderByInput>;
   DisplayOption?: InputMaybe<OrderBy>;
+  InlineBlock?: InputMaybe<InlineBlockPropertyModelOrderByInput>;
   Tag?: InputMaybe<OrderBy>;
 };
 
 export type ContentAreaItemModelWhereInput = {
   ContentLink?: InputMaybe<ContentModelReferenceWhereInput>;
   DisplayOption?: InputMaybe<StringFilterInput>;
+  InlineBlock?: InputMaybe<InlineBlockPropertyModelWhereInput>;
   Tag?: InputMaybe<StringFilterInput>;
 };
 
@@ -1273,7 +1286,9 @@ export type ContentBlock = IContent & {
   Title?: Maybe<Scalars['String']>;
   Url?: Maybe<Scalars['String']>;
   _children?: Maybe<QueryRef>;
+  _deleted?: Maybe<Scalars['Bool']>;
   _fulltext?: Maybe<Array<Maybe<Scalars['String']>>>;
+  _modified?: Maybe<Scalars['Date']>;
   _score?: Maybe<Scalars['Float']>;
 };
 
@@ -2095,7 +2110,9 @@ export type IContent = {
   StopPublish?: Maybe<Scalars['Date']>;
   Url?: Maybe<Scalars['String']>;
   _children?: Maybe<QueryRef>;
+  _deleted?: Maybe<Scalars['Bool']>;
   _fulltext?: Maybe<Array<Maybe<Scalars['String']>>>;
+  _modified?: Maybe<Scalars['Date']>;
   _score?: Maybe<Scalars['Float']>;
 };
 
@@ -2124,7 +2141,9 @@ export type ImageFile = IContent & {
   Thumbnail?: Maybe<BlobModel>;
   Url?: Maybe<Scalars['String']>;
   _children?: Maybe<QueryRef>;
+  _deleted?: Maybe<Scalars['Bool']>;
   _fulltext?: Maybe<Array<Maybe<Scalars['String']>>>;
+  _modified?: Maybe<Scalars['Date']>;
   _score?: Maybe<Scalars['Float']>;
 };
 
@@ -2420,7 +2439,9 @@ export type ImagePage = IContent & {
   Thumbnail?: Maybe<BlobModel>;
   Url?: Maybe<Scalars['String']>;
   _children?: Maybe<QueryRef>;
+  _deleted?: Maybe<Scalars['Bool']>;
   _fulltext?: Maybe<Array<Maybe<Scalars['String']>>>;
+  _modified?: Maybe<Scalars['Date']>;
   _score?: Maybe<Scalars['Float']>;
 };
 
@@ -2701,6 +2722,43 @@ export type ImagePageWhereInput = {
   _or?: InputMaybe<Array<InputMaybe<ImagePageWhereInput>>>;
 };
 
+export type InlineBlockPropertyModel = {
+  __typename?: 'InlineBlockPropertyModel';
+  ContentType?: Maybe<Array<Maybe<Scalars['String']>>>;
+};
+
+export type InlineBlockPropertyModelAutocomplete = {
+  __typename?: 'InlineBlockPropertyModelAutocomplete';
+  ContentType?: Maybe<Array<Maybe<Scalars['String']>>>;
+};
+
+
+export type InlineBlockPropertyModelAutocompleteContentTypeArgs = {
+  limit?: Scalars['Int'];
+  value: Scalars['String'];
+};
+
+export type InlineBlockPropertyModelFacet = {
+  __typename?: 'InlineBlockPropertyModelFacet';
+  ContentType?: Maybe<Array<Maybe<StringFacet>>>;
+};
+
+
+export type InlineBlockPropertyModelFacetContentTypeArgs = {
+  filters?: InputMaybe<Array<Scalars['String']>>;
+  limit?: Scalars['Int'];
+  orderBy?: InputMaybe<OrderBy>;
+  orderType?: InputMaybe<OrderByFacetType>;
+};
+
+export type InlineBlockPropertyModelOrderByInput = {
+  ContentType?: InputMaybe<OrderBy>;
+};
+
+export type InlineBlockPropertyModelWhereInput = {
+  ContentType?: InputMaybe<StringFilterInput>;
+};
+
 export type IntFilterInput = {
   /** `boost` influences the weight of a field by boosting a match with a number (default: 1) — counts more towards the eventual relevance score which can be projected with `_score` — at query time. Note that `boost` cannot be a negative number. */
   boost?: InputMaybe<Scalars['Int']>;
@@ -2753,7 +2811,9 @@ export type LandingPage = IContent & {
   Title?: Maybe<Scalars['String']>;
   Url?: Maybe<Scalars['String']>;
   _children?: Maybe<QueryRef>;
+  _deleted?: Maybe<Scalars['Bool']>;
   _fulltext?: Maybe<Array<Maybe<Scalars['String']>>>;
+  _modified?: Maybe<Scalars['Date']>;
   _score?: Maybe<Scalars['Float']>;
 };
 
@@ -3155,9 +3215,9 @@ export type Query = {
 
 export type QueryArtistContainerPageArgs = {
   cursor?: InputMaybe<Scalars['String']>;
-  ids?: InputMaybe<Array<Scalars['String']>>;
+  ids?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
   limit?: InputMaybe<Scalars['Int']>;
-  locale?: InputMaybe<Array<Locales>>;
+  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<ArtistContainerPageOrderByInput>;
   skip?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<ArtistContainerPageWhereInput>;
@@ -3166,9 +3226,9 @@ export type QueryArtistContainerPageArgs = {
 
 export type QueryArtistDetailsPageArgs = {
   cursor?: InputMaybe<Scalars['String']>;
-  ids?: InputMaybe<Array<Scalars['String']>>;
+  ids?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
   limit?: InputMaybe<Scalars['Int']>;
-  locale?: InputMaybe<Array<Locales>>;
+  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<ArtistDetailsPageOrderByInput>;
   skip?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<ArtistDetailsPageWhereInput>;
@@ -3177,9 +3237,9 @@ export type QueryArtistDetailsPageArgs = {
 
 export type QueryBuyTicketBlockArgs = {
   cursor?: InputMaybe<Scalars['String']>;
-  ids?: InputMaybe<Array<Scalars['String']>>;
+  ids?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
   limit?: InputMaybe<Scalars['Int']>;
-  locale?: InputMaybe<Array<Locales>>;
+  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<BuyTicketBlockOrderByInput>;
   skip?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<BuyTicketBlockWhereInput>;
@@ -3188,9 +3248,9 @@ export type QueryBuyTicketBlockArgs = {
 
 export type QueryContentArgs = {
   cursor?: InputMaybe<Scalars['String']>;
-  ids?: InputMaybe<Array<Scalars['String']>>;
+  ids?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
   limit?: InputMaybe<Scalars['Int']>;
-  locale?: InputMaybe<Array<Locales>>;
+  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<ContentOrderByInput>;
   skip?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<ContentWhereInput>;
@@ -3199,9 +3259,9 @@ export type QueryContentArgs = {
 
 export type QueryContentBlockArgs = {
   cursor?: InputMaybe<Scalars['String']>;
-  ids?: InputMaybe<Array<Scalars['String']>>;
+  ids?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
   limit?: InputMaybe<Scalars['Int']>;
-  locale?: InputMaybe<Array<Locales>>;
+  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<ContentBlockOrderByInput>;
   skip?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<ContentBlockWhereInput>;
@@ -3210,9 +3270,9 @@ export type QueryContentBlockArgs = {
 
 export type QueryImageFileArgs = {
   cursor?: InputMaybe<Scalars['String']>;
-  ids?: InputMaybe<Array<Scalars['String']>>;
+  ids?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
   limit?: InputMaybe<Scalars['Int']>;
-  locale?: InputMaybe<Array<Locales>>;
+  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<ImageFileOrderByInput>;
   skip?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<ImageFileWhereInput>;
@@ -3221,9 +3281,9 @@ export type QueryImageFileArgs = {
 
 export type QueryImagePageArgs = {
   cursor?: InputMaybe<Scalars['String']>;
-  ids?: InputMaybe<Array<Scalars['String']>>;
+  ids?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
   limit?: InputMaybe<Scalars['Int']>;
-  locale?: InputMaybe<Array<Locales>>;
+  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<ImagePageOrderByInput>;
   skip?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<ImagePageWhereInput>;
@@ -3232,9 +3292,9 @@ export type QueryImagePageArgs = {
 
 export type QueryLandingPageArgs = {
   cursor?: InputMaybe<Scalars['String']>;
-  ids?: InputMaybe<Array<Scalars['String']>>;
+  ids?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
   limit?: InputMaybe<Scalars['Int']>;
-  locale?: InputMaybe<Array<Locales>>;
+  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<LandingPageOrderByInput>;
   skip?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<LandingPageWhereInput>;
@@ -3243,9 +3303,9 @@ export type QueryLandingPageArgs = {
 
 export type QuerySiteDefinitionArgs = {
   cursor?: InputMaybe<Scalars['String']>;
-  ids?: InputMaybe<Array<Scalars['String']>>;
+  ids?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
   limit?: InputMaybe<Scalars['Int']>;
-  locale?: InputMaybe<Array<Locales>>;
+  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<SiteDefinitionOrderByInput>;
   skip?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<SiteDefinitionWhereInput>;
@@ -3267,9 +3327,9 @@ export type QueryRef = {
 
 export type QueryRefArtistContainerPageArgs = {
   cursor?: InputMaybe<Scalars['String']>;
-  ids?: InputMaybe<Array<Scalars['String']>>;
+  ids?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
   limit?: InputMaybe<Scalars['Int']>;
-  locale?: InputMaybe<Array<Locales>>;
+  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<ArtistContainerPageOrderByInput>;
   skip?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<ArtistContainerPageWhereInput>;
@@ -3278,9 +3338,9 @@ export type QueryRefArtistContainerPageArgs = {
 
 export type QueryRefArtistDetailsPageArgs = {
   cursor?: InputMaybe<Scalars['String']>;
-  ids?: InputMaybe<Array<Scalars['String']>>;
+  ids?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
   limit?: InputMaybe<Scalars['Int']>;
-  locale?: InputMaybe<Array<Locales>>;
+  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<ArtistDetailsPageOrderByInput>;
   skip?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<ArtistDetailsPageWhereInput>;
@@ -3289,9 +3349,9 @@ export type QueryRefArtistDetailsPageArgs = {
 
 export type QueryRefBuyTicketBlockArgs = {
   cursor?: InputMaybe<Scalars['String']>;
-  ids?: InputMaybe<Array<Scalars['String']>>;
+  ids?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
   limit?: InputMaybe<Scalars['Int']>;
-  locale?: InputMaybe<Array<Locales>>;
+  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<BuyTicketBlockOrderByInput>;
   skip?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<BuyTicketBlockWhereInput>;
@@ -3300,9 +3360,9 @@ export type QueryRefBuyTicketBlockArgs = {
 
 export type QueryRefContentArgs = {
   cursor?: InputMaybe<Scalars['String']>;
-  ids?: InputMaybe<Array<Scalars['String']>>;
+  ids?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
   limit?: InputMaybe<Scalars['Int']>;
-  locale?: InputMaybe<Array<Locales>>;
+  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<ContentOrderByInput>;
   skip?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<ContentWhereInput>;
@@ -3311,9 +3371,9 @@ export type QueryRefContentArgs = {
 
 export type QueryRefContentBlockArgs = {
   cursor?: InputMaybe<Scalars['String']>;
-  ids?: InputMaybe<Array<Scalars['String']>>;
+  ids?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
   limit?: InputMaybe<Scalars['Int']>;
-  locale?: InputMaybe<Array<Locales>>;
+  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<ContentBlockOrderByInput>;
   skip?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<ContentBlockWhereInput>;
@@ -3322,9 +3382,9 @@ export type QueryRefContentBlockArgs = {
 
 export type QueryRefImageFileArgs = {
   cursor?: InputMaybe<Scalars['String']>;
-  ids?: InputMaybe<Array<Scalars['String']>>;
+  ids?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
   limit?: InputMaybe<Scalars['Int']>;
-  locale?: InputMaybe<Array<Locales>>;
+  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<ImageFileOrderByInput>;
   skip?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<ImageFileWhereInput>;
@@ -3333,9 +3393,9 @@ export type QueryRefImageFileArgs = {
 
 export type QueryRefImagePageArgs = {
   cursor?: InputMaybe<Scalars['String']>;
-  ids?: InputMaybe<Array<Scalars['String']>>;
+  ids?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
   limit?: InputMaybe<Scalars['Int']>;
-  locale?: InputMaybe<Array<Locales>>;
+  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<ImagePageOrderByInput>;
   skip?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<ImagePageWhereInput>;
@@ -3344,9 +3404,9 @@ export type QueryRefImagePageArgs = {
 
 export type QueryRefLandingPageArgs = {
   cursor?: InputMaybe<Scalars['String']>;
-  ids?: InputMaybe<Array<Scalars['String']>>;
+  ids?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
   limit?: InputMaybe<Scalars['Int']>;
-  locale?: InputMaybe<Array<Locales>>;
+  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<LandingPageOrderByInput>;
   skip?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<LandingPageWhereInput>;
@@ -3355,9 +3415,9 @@ export type QueryRefLandingPageArgs = {
 
 export type QueryRefSiteDefinitionArgs = {
   cursor?: InputMaybe<Scalars['String']>;
-  ids?: InputMaybe<Array<Scalars['String']>>;
+  ids?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
   limit?: InputMaybe<Scalars['Int']>;
-  locale?: InputMaybe<Array<Locales>>;
+  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<SiteDefinitionOrderByInput>;
   skip?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<SiteDefinitionWhereInput>;
@@ -3409,7 +3469,9 @@ export type SiteDefinition = {
   Name?: Maybe<Scalars['String']>;
   Status?: Maybe<Scalars['String']>;
   _children?: Maybe<QueryRef>;
+  _deleted?: Maybe<Scalars['Bool']>;
   _fulltext?: Maybe<Array<Maybe<Scalars['String']>>>;
+  _modified?: Maybe<Scalars['Date']>;
   _score?: Maybe<Scalars['Float']>;
 };
 

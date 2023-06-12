@@ -25,7 +25,7 @@ This project uses:
 
 1. Follow the README file to setup the Music Festival backend site and run the site on port 8082.  
 2. Config the Content Graph key:   
-    * ./react-script/.env
+    * ./.env
 
 3. In the backend site, configure the React site as another host on port 3000 if you have not done so.
         ```
@@ -38,7 +38,7 @@ This project uses:
         ```
     * Run the job `Content Graph content synchronization job` to index whole contents into the Content Graph for the first time if you have not done so.  
     
-4. Open terminal for `./react-script`.
+4. Open terminal for `./samples/musicfestival-frontend-react`.
     * Run `npm install` or `yarn` (only needed in first run) to install dependencies.  
     * Run `npm run generate:local` or `yarn generate:local` to generate typescript code from GraphQL queries.
     * Run `npm start` or `yarn start`.
@@ -52,10 +52,10 @@ This project uses:
 
 ### Frontend structures
 
-* `react-script/src`
+* `samples/musicfestival-frontend-react/src`
     - `...`
     - `components/`   contains common components.
-    - `graphql/` contains queries using to retrieve contents from Content Graph. After updating queries, re-generate the code gen by command `npm run generate:local` at `react-script` folder
+    - `graphql/` contains queries using to retrieve contents from Content Graph. After updating queries, re-generate the code gen by command `npm run generate:local` at `samples/musicfestival-frontend-react` folder
     - `helpers/`
         - `contentSavedEvent.ts` function that subcribes changes from CMS
         - `...`
@@ -77,12 +77,12 @@ Use two convenient commands (in `package.json`) to work with the SDK.
 
 To use more options of the SDK, please click [here](https://www.npmjs.com/package/@episerver/content-definitions).  
 
->*Note: When running the commands, please update the folder permission if you face with Permission denied issue on folder `[RootPath]/decoupled-site/react-script/node_modules/.bin/content-definitions`*  
+>*Note: When running the commands, please update the folder permission if you face with Permission denied issue on folder `[RootPath]/samples/musicfestival-frontend-react/node_modules/.bin/content-definitions`*  
 
 After updating contentTypes, we need to  
 1. Wait until the contentTypes would be synced into Content Graph (By checking schema at the [address](http://localhost:8082/EPiServer/ContentGraph/GraphiQL)).  
 2. Update graphql queries (at `graphql/` folder) matching with the changes we made to content types, as neccessary.  
-3. Run `npm run generate:local` at `react-script` root folder to re-generate types in file `generated.ts`.  
+3. Run `npm run generate:local` at `samples/musicfestival-frontend-react` root folder to re-generate types in file `generated.ts`.  
 4. Finally, we could update the views in `.tsx` files to match with the changes to the schema.  
 
 ### More information on OPE

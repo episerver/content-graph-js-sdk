@@ -13,6 +13,10 @@ This sample site demonstrates how the frontend site can be implemented using nex
 First make sure you are running the Music Festival Backend site. Please refer to the README for the backend site.  
 Make sure you have run the ContentGraph content synchronization job if you have not already to sync initial data from the backend site to ContentGraph.  
 
+First, configure ContentGraph endpoint and key in .env.local file.
+- Replace the hostname with ContentGraph endpoint (e.g.: cg.optimizely.com).
+- Replace the value of auth parameter with you HMAC single key, if neccessary.
+
 Install dependencies  
 ```bash
 npm install
