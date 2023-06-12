@@ -13,7 +13,7 @@ jobs:
       uses: actions/checkout@v3
 
     - name: Build the Docker image
-      working-directory: MusicFestivalBackend
+      working-directory: samples/musicfestival-backend-dotnet
       run: docker build . --file Dockerfile --tag musicfestival:latest
 
     - name: Login to ACR
@@ -33,5 +33,5 @@ jobs:
         username: ${{ steps.ecr.outputs.username }}
         password: ${{ steps.ecr.outputs.password }}
         registry: musicfestivalacr.azurecr.io
-        workdir: MusicFestivalBackend
+        workdir: samples/musicfestival-backend-dotnet
         tags: "latest"
