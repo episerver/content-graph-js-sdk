@@ -77,7 +77,7 @@ Use two convenient commands (in `package.json`) to work with the SDK.
 
 To use more options of the SDK, please click [here](https://www.npmjs.com/package/@episerver/content-definitions).  
 
->*Note: When running the commands, please update the folder permission if you face with Permission denied issue on folder `[RootPath]/decoupled-site/MusicFestivalReactScriptFrontend/node_modules/.bin/content-definitions`*  
+>*Note: When running the commands, please update the folder permission if you face with Permission denied issue on folder `[RootPath]/MusicFestivalReactScriptFrontend/node_modules/.bin/content-definitions`*  
 
 After updating contentTypes, we need to  
 1. Wait until the contentTypes would be synced into Content Graph (By checking schema at the [address](http://localhost:8082/EPiServer/ContentGraph/GraphiQL)).  
