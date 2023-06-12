@@ -19,7 +19,7 @@ This project uses:
 
 3. Setup your database server, on Windows you can use LocalDB and no setup is required, on MacOS, please refer to the section below to setup the DB in MacOS.   
 
-4. Open terminal for `./MusicFestivalBackend` and run `dotnet run`.
+4. Open terminal for `./samples/musicfestival-backend-dotnet` and run `dotnet run`.
     * Navigate to http://localhost:8082/.
     * Create an admin user. If the UI is not displayed automatically, navigate to http://localhost:8082/util/register.
     * Add the following config site if it doesn't exist
