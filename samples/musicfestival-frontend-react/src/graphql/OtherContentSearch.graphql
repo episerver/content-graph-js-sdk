@@ -1,4 +1,4 @@
-query OtherContentSearch($searchParam: String, $locales: Locales!, $order: OrderBy) {
+query OtherContentSearch($searchParam: String!, $locales: Locales!, $order: OrderBy) {
   Content(
     locale: [$locales]
     orderBy: { _ranking: RELEVANCE, Name: $order }
@@ -21,6 +21,12 @@ query OtherContentSearch($searchParam: String, $locales: Locales!, $order: Order
       }
       _fulltext
       ContentType
+    }
+    facets{
+      Name(orderBy: ASC, orderType: VALUE, limit: 100){
+        name
+        count
+      }
     }
   }
 }

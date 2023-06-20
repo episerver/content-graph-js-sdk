@@ -3976,10 +3976,39 @@ input.search-input::placeholder {
 .search-container{
   padding: 50px;
   height: 100%;
-  width: 60%;
+  /* width: 60%; */
+}
+
+.left-panel, .right-panel{
+  height: 100%;
+  padding: 0 20px;
+}
+
+.left-panel{
+  width: 15%;
+  color: #fff;
+}
+
+.right-panel{
+  width: 50%;
+  border-left: solid 1px #fff;
 }
 
 .search-panel{
+  display: flex;
+  height: 100%;
+}
+
+.facets{
+  padding: 20px 0;
+  border-top: solid 0.5px #fff;;
+}
+
+.facets a, .search-description a{
+  cursor: pointer;
+}
+
+.search-zone{
   display: inline-block;
   width: 55%;
 }
@@ -3997,7 +4026,7 @@ input.search-input::placeholder {
 
 .search-description h6{
   text-transform: none;
-  margin-top: 20px;
+  margin-top: 5px;
 }
 
 .search-term{
@@ -4006,6 +4035,7 @@ input.search-input::placeholder {
 
 .search-results{
   margin-top: 30px;
+  margin-bottom: 30px;
 }
 
 .search-sorting{
@@ -4057,4 +4087,23 @@ input.search-input::placeholder {
   cursor: pointer;
   font-weight: bold;
   color: #41FFF5;
+}
+
+.autocomplete-block{
+  position: relative;
+  bottom: 2.1em;
+  left: 1em;
+  background-color: #fff;
+  height: auto;
+  color: #000;
+  min-width: 9em;
+}
+
+.autocomplete-block div{
+  padding: 10px;
+  cursor: pointer;
+}
+
+.autocomplete-block div:hover{
+  background-color: #aaa;
 }

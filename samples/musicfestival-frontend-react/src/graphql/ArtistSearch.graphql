@@ -1,4 +1,4 @@
-query ArtistSearch($searchParam: String, $locales: Locales!, $order: OrderBy) {
+query ArtistSearch($searchParam: String!, $locales: Locales!, $order: OrderBy) {
   ArtistDetailsPage(
     locale: [$locales]
     orderBy: { _ranking: RELEVANCE, ArtistName: $order }
@@ -18,6 +18,16 @@ query ArtistSearch($searchParam: String, $locales: Locales!, $order: OrderBy) {
         Url
       }
       _fulltext
+    }
+    facets {
+      ArtistName(orderBy: ASC, orderType: VALUE, limit: 100){
+        name
+        count
+      }
+      StageName(orderBy: ASC, orderType: VALUE, limit: 100){
+        name
+        count
+      }
     }
   }
 }

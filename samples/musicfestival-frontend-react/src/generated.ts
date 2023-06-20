@@ -1147,7 +1147,6 @@ export type ContentAreaItemModel = {
   __typename?: 'ContentAreaItemModel';
   ContentLink?: Maybe<ContentModelReference>;
   DisplayOption?: Maybe<Scalars['String']>;
-  InlineBlock?: Maybe<InlineBlockPropertyModel>;
   Tag?: Maybe<Scalars['String']>;
 };
 
@@ -1155,7 +1154,6 @@ export type ContentAreaItemModelAutocomplete = {
   __typename?: 'ContentAreaItemModelAutocomplete';
   ContentLink?: Maybe<ContentModelReferenceAutocomplete>;
   DisplayOption?: Maybe<Array<Maybe<Scalars['String']>>>;
-  InlineBlock?: Maybe<InlineBlockPropertyModelAutocomplete>;
   Tag?: Maybe<Array<Maybe<Scalars['String']>>>;
 };
 
@@ -1175,7 +1173,6 @@ export type ContentAreaItemModelFacet = {
   __typename?: 'ContentAreaItemModelFacet';
   ContentLink?: Maybe<ContentModelReferenceFacet>;
   DisplayOption?: Maybe<Array<Maybe<StringFacet>>>;
-  InlineBlock?: Maybe<InlineBlockPropertyModelFacet>;
   Tag?: Maybe<Array<Maybe<StringFacet>>>;
 };
 
@@ -1198,14 +1195,12 @@ export type ContentAreaItemModelFacetTagArgs = {
 export type ContentAreaItemModelOrderByInput = {
   ContentLink?: InputMaybe<ContentModelReferenceOrderByInput>;
   DisplayOption?: InputMaybe<OrderBy>;
-  InlineBlock?: InputMaybe<InlineBlockPropertyModelOrderByInput>;
   Tag?: InputMaybe<OrderBy>;
 };
 
 export type ContentAreaItemModelWhereInput = {
   ContentLink?: InputMaybe<ContentModelReferenceWhereInput>;
   DisplayOption?: InputMaybe<StringFilterInput>;
-  InlineBlock?: InputMaybe<InlineBlockPropertyModelWhereInput>;
   Tag?: InputMaybe<StringFilterInput>;
 };
 
@@ -2722,43 +2717,6 @@ export type ImagePageWhereInput = {
   _or?: InputMaybe<Array<InputMaybe<ImagePageWhereInput>>>;
 };
 
-export type InlineBlockPropertyModel = {
-  __typename?: 'InlineBlockPropertyModel';
-  ContentType?: Maybe<Array<Maybe<Scalars['String']>>>;
-};
-
-export type InlineBlockPropertyModelAutocomplete = {
-  __typename?: 'InlineBlockPropertyModelAutocomplete';
-  ContentType?: Maybe<Array<Maybe<Scalars['String']>>>;
-};
-
-
-export type InlineBlockPropertyModelAutocompleteContentTypeArgs = {
-  limit?: Scalars['Int'];
-  value: Scalars['String'];
-};
-
-export type InlineBlockPropertyModelFacet = {
-  __typename?: 'InlineBlockPropertyModelFacet';
-  ContentType?: Maybe<Array<Maybe<StringFacet>>>;
-};
-
-
-export type InlineBlockPropertyModelFacetContentTypeArgs = {
-  filters?: InputMaybe<Array<Scalars['String']>>;
-  limit?: Scalars['Int'];
-  orderBy?: InputMaybe<OrderBy>;
-  orderType?: InputMaybe<OrderByFacetType>;
-};
-
-export type InlineBlockPropertyModelOrderByInput = {
-  ContentType?: InputMaybe<OrderBy>;
-};
-
-export type InlineBlockPropertyModelWhereInput = {
-  ContentType?: InputMaybe<StringFilterInput>;
-};
-
 export type IntFilterInput = {
   /** `boost` influences the weight of a field by boosting a match with a number (default: 1) — counts more towards the eventual relevance score which can be projected with `_score` — at query time. Note that `boost` cannot be a negative number. */
   boost?: InputMaybe<Scalars['Int']>;
@@ -3750,23 +3708,30 @@ export enum SynonymSlot {
   Two = 'TWO'
 }
 
+export type ArtistAutocompleteQueryVariables = Exact<{
+  searchParam: Scalars['String'];
+}>;
+
+
+export type ArtistAutocompleteQuery = { __typename?: 'Query', ArtistDetailsPage?: { __typename?: 'ArtistDetailsPageOutput', autocomplete?: { __typename?: 'ArtistDetailsPageAutocomplete', StageName?: Array<string | null> | null, ArtistName?: Array<string | null> | null } | null } | null };
+
 export type ArtistSearchQueryVariables = Exact<{
-  searchParam?: InputMaybe<Scalars['String']>;
+  searchParam: Scalars['String'];
   locales: Locales;
   order?: InputMaybe<OrderBy>;
 }>;
 
 
-export type ArtistSearchQuery = { __typename?: 'Query', ArtistDetailsPage?: { __typename?: 'ArtistDetailsPageOutput', items?: Array<{ __typename?: 'ArtistDetailsPage', PerformanceStartTime?: any | null, PerformanceEndTime?: any | null, StageName?: string | null, ArtistName?: string | null, ArtistPhoto?: string | null, ArtistGenre?: string | null, ArtistDescription?: string | null, ArtistIsHeadliner?: any | null, RelativePath?: string | null, _fulltext?: Array<string | null> | null, ParentLink?: { __typename?: 'ContentModelReference', Url?: string | null } | null } | null> | null } | null };
+export type ArtistSearchQuery = { __typename?: 'Query', ArtistDetailsPage?: { __typename?: 'ArtistDetailsPageOutput', items?: Array<{ __typename?: 'ArtistDetailsPage', PerformanceStartTime?: any | null, PerformanceEndTime?: any | null, StageName?: string | null, ArtistName?: string | null, ArtistPhoto?: string | null, ArtistGenre?: string | null, ArtistDescription?: string | null, ArtistIsHeadliner?: any | null, RelativePath?: string | null, _fulltext?: Array<string | null> | null, ParentLink?: { __typename?: 'ContentModelReference', Url?: string | null } | null } | null> | null, facets?: { __typename?: 'ArtistDetailsPageFacet', ArtistName?: Array<{ __typename?: 'StringFacet', name?: string | null, count?: number | null } | null> | null, StageName?: Array<{ __typename?: 'StringFacet', name?: string | null, count?: number | null } | null> | null } | null } | null };
 
 export type OtherContentSearchQueryVariables = Exact<{
-  searchParam?: InputMaybe<Scalars['String']>;
+  searchParam: Scalars['String'];
   locales: Locales;
   order?: InputMaybe<OrderBy>;
 }>;
 
 
-export type OtherContentSearchQuery = { __typename?: 'Query', Content?: { __typename?: 'ContentOutput', items?: Array<{ __typename?: 'ArtistContainerPage', Name?: string | null, RelativePath?: string | null, _fulltext?: Array<string | null> | null, ContentType?: Array<string | null> | null, ParentLink?: { __typename?: 'ContentModelReference', Url?: string | null } | null } | { __typename?: 'ArtistDetailsPage', Name?: string | null, RelativePath?: string | null, _fulltext?: Array<string | null> | null, ContentType?: Array<string | null> | null, ParentLink?: { __typename?: 'ContentModelReference', Url?: string | null } | null } | { __typename?: 'BuyTicketBlock', Name?: string | null, RelativePath?: string | null, _fulltext?: Array<string | null> | null, ContentType?: Array<string | null> | null, ParentLink?: { __typename?: 'ContentModelReference', Url?: string | null } | null } | { __typename?: 'Content', Name?: string | null, RelativePath?: string | null, _fulltext?: Array<string | null> | null, ContentType?: Array<string | null> | null, ParentLink?: { __typename?: 'ContentModelReference', Url?: string | null } | null } | { __typename?: 'ContentBlock', Name?: string | null, RelativePath?: string | null, _fulltext?: Array<string | null> | null, ContentType?: Array<string | null> | null, ParentLink?: { __typename?: 'ContentModelReference', Url?: string | null } | null } | { __typename?: 'ImageFile', Name?: string | null, RelativePath?: string | null, _fulltext?: Array<string | null> | null, ContentType?: Array<string | null> | null, ParentLink?: { __typename?: 'ContentModelReference', Url?: string | null } | null } | { __typename?: 'ImagePage', Name?: string | null, RelativePath?: string | null, _fulltext?: Array<string | null> | null, ContentType?: Array<string | null> | null, ParentLink?: { __typename?: 'ContentModelReference', Url?: string | null } | null } | { __typename?: 'LandingPage', Name?: string | null, RelativePath?: string | null, _fulltext?: Array<string | null> | null, ContentType?: Array<string | null> | null, ParentLink?: { __typename?: 'ContentModelReference', Url?: string | null } | null } | null> | null } | null };
+export type OtherContentSearchQuery = { __typename?: 'Query', Content?: { __typename?: 'ContentOutput', items?: Array<{ __typename?: 'ArtistContainerPage', Name?: string | null, RelativePath?: string | null, _fulltext?: Array<string | null> | null, ContentType?: Array<string | null> | null, ParentLink?: { __typename?: 'ContentModelReference', Url?: string | null } | null } | { __typename?: 'ArtistDetailsPage', Name?: string | null, RelativePath?: string | null, _fulltext?: Array<string | null> | null, ContentType?: Array<string | null> | null, ParentLink?: { __typename?: 'ContentModelReference', Url?: string | null } | null } | { __typename?: 'BuyTicketBlock', Name?: string | null, RelativePath?: string | null, _fulltext?: Array<string | null> | null, ContentType?: Array<string | null> | null, ParentLink?: { __typename?: 'ContentModelReference', Url?: string | null } | null } | { __typename?: 'Content', Name?: string | null, RelativePath?: string | null, _fulltext?: Array<string | null> | null, ContentType?: Array<string | null> | null, ParentLink?: { __typename?: 'ContentModelReference', Url?: string | null } | null } | { __typename?: 'ContentBlock', Name?: string | null, RelativePath?: string | null, _fulltext?: Array<string | null> | null, ContentType?: Array<string | null> | null, ParentLink?: { __typename?: 'ContentModelReference', Url?: string | null } | null } | { __typename?: 'ImageFile', Name?: string | null, RelativePath?: string | null, _fulltext?: Array<string | null> | null, ContentType?: Array<string | null> | null, ParentLink?: { __typename?: 'ContentModelReference', Url?: string | null } | null } | { __typename?: 'ImagePage', Name?: string | null, RelativePath?: string | null, _fulltext?: Array<string | null> | null, ContentType?: Array<string | null> | null, ParentLink?: { __typename?: 'ContentModelReference', Url?: string | null } | null } | { __typename?: 'LandingPage', Name?: string | null, RelativePath?: string | null, _fulltext?: Array<string | null> | null, ContentType?: Array<string | null> | null, ParentLink?: { __typename?: 'ContentModelReference', Url?: string | null } | null } | null> | null, facets?: { __typename?: 'ContentFacet', Name?: Array<{ __typename?: 'StringFacet', name?: string | null, count?: number | null } | null> | null } | null } | null };
 
 export type StartQueryVariables = Exact<{
   relativePath?: InputMaybe<Scalars['String']>;
@@ -3894,8 +3859,31 @@ export const LandingPageFragmentDoc = `
 }
     ${LandingPageBlockDataFragmentDoc}
 ${ItemsInContentAreaFragmentDoc}`;
+export const ArtistAutocompleteDocument = `
+    query ArtistAutocomplete($searchParam: String!) {
+  ArtistDetailsPage {
+    autocomplete {
+      StageName(value: $searchParam)
+      ArtistName(value: $searchParam, limit: 3)
+    }
+  }
+}
+    `;
+export const useArtistAutocompleteQuery = <
+      TData = ArtistAutocompleteQuery,
+      TError = unknown
+    >(
+      dataSource: { endpoint: string, fetchParams?: RequestInit },
+      variables: ArtistAutocompleteQueryVariables,
+      options?: UseQueryOptions<ArtistAutocompleteQuery, TError, TData>
+    ) =>
+    useQuery<ArtistAutocompleteQuery, TError, TData>(
+      ['ArtistAutocomplete', variables],
+      fetcher<ArtistAutocompleteQuery, ArtistAutocompleteQueryVariables>(dataSource.endpoint, dataSource.fetchParams || {}, ArtistAutocompleteDocument, variables),
+      options
+    );
 export const ArtistSearchDocument = `
-    query ArtistSearch($searchParam: String, $locales: Locales!, $order: OrderBy) {
+    query ArtistSearch($searchParam: String!, $locales: Locales!, $order: OrderBy) {
   ArtistDetailsPage(
     locale: [$locales]
     orderBy: {_ranking: RELEVANCE, ArtistName: $order}
@@ -3916,6 +3904,16 @@ export const ArtistSearchDocument = `
       }
       _fulltext
     }
+    facets {
+      ArtistName(orderBy: ASC, orderType: VALUE, limit: 100) {
+        name
+        count
+      }
+      StageName(orderBy: ASC, orderType: VALUE, limit: 100) {
+        name
+        count
+      }
+    }
   }
 }
     `;
@@ -3933,7 +3931,7 @@ export const useArtistSearchQuery = <
       options
     );
 export const OtherContentSearchDocument = `
-    query OtherContentSearch($searchParam: String, $locales: Locales!, $order: OrderBy) {
+    query OtherContentSearch($searchParam: String!, $locales: Locales!, $order: OrderBy) {
   Content(
     locale: [$locales]
     orderBy: {_ranking: RELEVANCE, Name: $order}
@@ -3947,6 +3945,12 @@ export const OtherContentSearchDocument = `
       }
       _fulltext
       ContentType
+    }
+    facets {
+      Name(orderBy: ASC, orderType: VALUE, limit: 100) {
+        name
+        count
+      }
     }
   }
 }
