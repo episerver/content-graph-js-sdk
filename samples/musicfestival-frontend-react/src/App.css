@@ -4089,14 +4089,18 @@ input.search-input::placeholder {
   color: #41FFF5;
 }
 
-.autocomplete-block{
+.autocomplete{
   position: relative;
-  bottom: 2.1em;
-  left: 1em;
+}
+
+.autocomplete-block{
+  position: absolute;
   background-color: #fff;
   height: auto;
   color: #000;
   min-width: 9em;
+  top: 40px;
+  right: 26px;
 }
 
 .autocomplete-block div{
