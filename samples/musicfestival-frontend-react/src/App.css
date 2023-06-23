@@ -4008,6 +4008,14 @@ input.search-input::placeholder {
   cursor: pointer;
 }
 
+.facet-item{
+  margin-bottom: 5px;
+}
+
+.facet-item b{
+  float: right;
+}
+
 .search-zone{
   display: inline-block;
   width: 55%;

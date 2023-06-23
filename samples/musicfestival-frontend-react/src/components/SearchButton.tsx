@@ -4,21 +4,19 @@ import { ArtistAutocompleteQuery, useArtistAutocompleteQuery } from "../generate
 import { generateGQLSearchQueryVars } from "../helpers/queryCacheHelper";
 import { isEditOrPreviewMode } from "../helpers/urlHelper";
 
-const singleKeyUrl = process.env.REACT_APP_CONTENT_GRAPH_GATEWAY_URL as string
-
 type CustomString = string | number | readonly string[] | undefined
 
 function SearchButton(): JSX.Element {
+    const singleKeyUrl = process.env.REACT_APP_CONTENT_GRAPH_GATEWAY_URL as string
     const [searchParams] = useSearchParams()
     const [token, setToken] = useState("")
     const [isShown, setIsShown] = useState(false)
-    const [searchValue, setSearchValue] = useState<CustomString>(searchParams.get("q")?.toString())
-    const [orderBy, setOrderBy] = useState("ASC")
-    let variables: any = generateGQLSearchQueryVars(token, window.location.pathname, searchValue as string | null, orderBy);
-    const modeEdit = isEditOrPreviewMode()
-    let stringArr: (string | null)[] = []
-
+    const [searchValue, setSearchValue] = useState<CustomString>(searchParams.get("q")?.toString() ?? "")
+    const [orderBy] = useState("ASC")
     let autocompleteData : ArtistAutocompleteQuery | undefined = undefined
+    
+    let modeEdit = isEditOrPreviewMode()
+    let variables = generateGQLSearchQueryVars(token, window.location.pathname, searchValue as string | null, orderBy);
     const { data : artistAutocompleteData } = useArtistAutocompleteQuery({ endpoint: singleKeyUrl }, variables, { staleTime: 2000, enabled: !modeEdit || !!token })
     autocompleteData = artistAutocompleteData
     
