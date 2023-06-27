@@ -7,11 +7,13 @@ import { isEditOrPreviewMode } from "../helpers/urlHelper";
 type CustomString = string | number | readonly string[] | undefined
 
 function SearchButton(): JSX.Element {
+    const ARTIST = "Artist"
     const singleKeyUrl = process.env.REACT_APP_CONTENT_GRAPH_GATEWAY_URL as string
     const [searchParams] = useSearchParams()
     const [token, setToken] = useState("")
     const [isShown, setIsShown] = useState(false)
     const [searchValue, setSearchValue] = useState<CustomString>(searchParams.get("q")?.toString() ?? "")
+    const [filterValue] = useState<CustomString>(searchParams.get("f")?.toString() ?? ARTIST)
     const [orderBy] = useState("ASC")
     let autocompleteData : ArtistAutocompleteQuery | undefined = undefined
     
@@ -22,7 +24,7 @@ function SearchButton(): JSX.Element {
     
     function search(event: any, action: string){
         if ((action == "keypress" && event.charCode === 13) || action == "buttonclick") {
-            window.location.href = `${window.location.origin}/search?q=${searchValue}`
+            window.location.href = `${window.location.origin}/search?q=${searchValue}&f=${filterValue}`
         }
     }
 

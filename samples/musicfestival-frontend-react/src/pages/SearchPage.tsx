@@ -30,9 +30,11 @@ function SearchPage() {
     const [otherItemOffset, setOtherItemOffset] = useState(0)
     const [itemsPerPage, setItemsPerPage] = useState(10)
     const [otherItemsPerPage, setOtherItemsPerPage] = useState(10)
-    const [filterBy, setFilterBy] = useState(ARTIST)
     const [orderBy, setOrderBy] = useState("ASC")
     const [searchParams] = useSearchParams()
+    let queryString = searchParams.get("q") ?? ""
+    let filterQueryString = searchParams.get("f") ?? ""
+    const [filterBy, setFilterBy] = useState(filterQueryString ?? ARTIST)
     
     let artistData: ArtistSearchQuery | undefined = undefined
     let otherData: OtherContentSearchQuery | undefined = undefined
@@ -41,7 +43,6 @@ function SearchPage() {
     let otherResultNumber : number
     
     let modeEdit = isEditOrPreviewMode()
-    let queryString = searchParams.get("q") ?? ""
     let variables = generateGQLSearchQueryVars(token, window.location.pathname, queryString, orderBy);
     let endOffset = itemOffset + itemsPerPage
     let endOffsetOther = otherItemOffset + otherItemsPerPage
@@ -79,8 +80,8 @@ function SearchPage() {
         setOtherItemsPerPage(event.target.value);
     };
 
-    const handleFilterByChange = (event: any) => {
-        setFilterBy(event.target.value);
+    const handleFilterByChange = (event : any) => {
+        setFilterBy(event.target.value)
     };
 
     const handleChange = (event: any) => {
@@ -88,7 +89,7 @@ function SearchPage() {
     }
 
     const handleFacetClick = (event: any) => {
-        window.location.href = `${window.location.origin}/search?q=${event.target.innerText}`
+        window.location.href = `${window.location.origin}/search?q=${event.target.innerText}&f=${filterBy}`
     }
 
     return (
@@ -106,7 +107,7 @@ function SearchPage() {
                     </div>
                     <div style={{float: "right"}}>
                         <span>Search by: </span>
-                        <select className="Button" onChange={handleFilterByChange}>
+                        <select value={filterBy} className="Button" onChange={handleFilterByChange}>
                             {
                                 filterByOption.map((option) => {
                                     return (
@@ -115,6 +116,7 @@ function SearchPage() {
                                 })
                             }
                         </select>
+                        {/* <FilterByButton onHandleFilterByChange={handleFilterByChange}/> */}
                     </div>
                 </div>
                 <div className="search-panel">
