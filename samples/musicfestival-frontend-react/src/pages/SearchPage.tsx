@@ -12,14 +12,8 @@ function SearchPage() {
     const singleKeyUrl = process.env.REACT_APP_CONTENT_GRAPH_GATEWAY_URL as string
     const ARTIST = "Artist"
     const OTHERCONTENT = "OtherContent"
-    const options: {value: string; key: string}[] = [
-        {value: "ASC", key: "ASC"},
-        {value: "DESC", key: "DESC"}
-    ]
-    const itemsPerPageOptions: {value: number; key: string}[] = [
-        {value: 10, key: "10"},
-        {value: 15, key: "15"}
-    ]
+    const options: string[] = ["ASC", "DESC"]
+    const itemsPerPageOptions: number[] = [10, 15]
     const filterByOption: {value: string; key: string}[] = [
         {value: "Artists", key: ARTIST},
         {value: "Other Content", key: OTHERCONTENT}
@@ -176,9 +170,9 @@ function SearchPage() {
                             <span>Sort: </span>
                             <select onChange={e => handleChange(e)} className="Button">
                                 {
-                                    options.map((option) => {
+                                    options.map((value, idx) => {
                                         return (
-                                            <option key={option.key} value={option.key}>{option.value}</option>
+                                            <option key={idx} value={value}>{value}</option>
                                         )
                                     })
                                 }
@@ -245,9 +239,9 @@ function SearchPage() {
                                                 <span>Items per page: </span>
                                                 <select className="Button" onChange={handleItemsChange}>
                                                     {
-                                                        itemsPerPageOptions.map((option) => {
+                                                        itemsPerPageOptions.map((option, idx) => {
                                                             return (
-                                                                <option key={option.key} value={option.key}>{option.value}</option>
+                                                                <option key={idx} value={option}>{option}</option>
                                                             )
                                                         })
                                                     }
@@ -300,9 +294,9 @@ function SearchPage() {
                                                 <span>Items per page: </span>
                                                 <select className="Button" onChange={handleOtherItemsChange}>
                                                     {
-                                                        itemsPerPageOptions.map((option) => {
+                                                        itemsPerPageOptions.map((option, idx) => {
                                                             return (
-                                                                <option key={option.key} value={option.key}>{option.value}</option>
+                                                                <option key={idx} value={option}>{option}</option>
                                                             )
                                                         })
                                                     }
