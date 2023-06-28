@@ -6,14 +6,13 @@ import { isEditOrPreviewMode } from "../helpers/urlHelper";
 
 type CustomString = string | number | readonly string[] | undefined
 
-function SearchButton(): JSX.Element {
-    const ARTIST = "Artist"
+function SearchButton({filterValue}: any): JSX.Element {
     const singleKeyUrl = process.env.REACT_APP_CONTENT_GRAPH_GATEWAY_URL as string
+    const ARTIST = "Artist"
     const [searchParams] = useSearchParams()
     const [token, setToken] = useState("")
     const [isShown, setIsShown] = useState(false)
     const [searchValue, setSearchValue] = useState<CustomString>(searchParams.get("q")?.toString() ?? "")
-    const [filterValue] = useState<CustomString>(searchParams.get("f")?.toString() ?? ARTIST)
     const [orderBy] = useState("ASC")
     let autocompleteData : ArtistAutocompleteQuery | undefined = undefined
     
@@ -24,7 +23,7 @@ function SearchButton(): JSX.Element {
     
     function search(event: any, action: string){
         if ((action == "keypress" && event.charCode === 13) || action == "buttonclick") {
-            window.location.href = `${window.location.origin}/search?q=${searchValue}&f=${filterValue}`
+            window.location.href = `${window.location.origin}/search?q=${searchValue}&f=${filterValue ?? ARTIST}`
         }
     }
 
@@ -35,7 +34,7 @@ function SearchButton(): JSX.Element {
 
     function onAutoClick(event: any){
         setSearchValue(event.target.textContent);
-        window.location.href = `${window.location.origin}/search?q=${event.target.textContent}`
+        window.location.href = `${window.location.origin}/search?q=${event.target.textContent}&f=${filterValue ?? ARTIST}`
     }
 
     return (
@@ -59,16 +58,16 @@ function SearchButton(): JSX.Element {
                     </a>
                 <div className="autocomplete-block" style={isShown ? {display: "inherit"}: {display: "none"}}>
                     {
-                        autocompleteData?.ArtistDetailsPage?.autocomplete?.ArtistName?.map((name) => {
+                        autocompleteData?.ArtistDetailsPage?.autocomplete?.ArtistName?.map((name, idx) => {
                             return(
-                                <div key={name} onClick={(event) => onAutoClick(event)}>{name}</div>
+                                <div key={idx} onClick={(event) => onAutoClick(event)}>{name}</div>
                             )
                         })                    
                     }
                     {
-                        autocompleteData?.ArtistDetailsPage?.autocomplete?.StageName?.map((name) => {
+                        autocompleteData?.ArtistDetailsPage?.autocomplete?.StageName?.map((name, idx) => {
                             return(
-                                <div key={name} onClick={(event) => onAutoClick(event)}>{name}</div>
+                                <div key={idx} onClick={(event) => onAutoClick(event)}>{name}</div>
                             )
                         })
                     }

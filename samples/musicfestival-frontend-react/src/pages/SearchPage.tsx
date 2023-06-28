@@ -97,7 +97,7 @@ function SearchPage() {
                 </div>
                 <div className="search-zone">
                     <div style={{float: "left"}}>
-                        <SearchButton />
+                        <SearchButton filterValue={filterBy}/>
                     </div>
                     <div style={{float: "right"}}>
                         <span>Search by: </span>
@@ -110,7 +110,6 @@ function SearchPage() {
                                 })
                             }
                         </select>
-                        {/* <FilterByButton onHandleFilterByChange={handleFilterByChange}/> */}
                     </div>
                 </div>
                 <div className="search-panel">
