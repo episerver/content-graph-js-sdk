@@ -4,13 +4,21 @@ import Footer from "../components/Footer";
 import Header from "../components/Header";
 import SearchButton from "../components/SearchButton";
 import { ArtistAutocompleteQuery, ArtistSearchQuery, OtherContentSearchQuery, useArtistAutocompleteQuery, useArtistSearchQuery, useOtherContentSearchQuery } from "../generated";
-import { generateGQLSearchQueryVars } from "../helpers/queryCacheHelper";
+import { generateGQLSearchQueryVars, updateSearchQueryCache } from "../helpers/queryCacheHelper";
 import { getImageUrl, isEditOrPreviewMode } from "../helpers/urlHelper";
 import ReactPaginate from 'react-paginate';
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { ContentSavedMessage } from "../models/ContentSavedMessage";
+import authService from "../authService";
+import { subcribeContentSavedEvent } from "../helpers/contentSavedEvent";
 
+let previousSavedMessage: any = null;
 const singleKeyUrl = process.env.REACT_APP_CONTENT_GRAPH_GATEWAY_URL as string
+const hmacKeyUrl = process.env.REACT_APP_CG_PROXY_URL as string
 
 function SearchPage() {
+    console.log("Start")
+    const queryClient = useQueryClient();
     const [token, setToken] = useState("")
     const [itemOffset, setItemOffset] = useState(0)
     const [otherItemOffset, setOtherItemOffset] = useState(0)
@@ -47,9 +55,33 @@ function SearchPage() {
         queryString = ""
     }
 
-    variables = generateGQLSearchQueryVars(token, window.location.pathname, queryString, orderBy);
+    const { mutate } = useMutation((obj: any) => obj, {
+        onSuccess: (message: ContentSavedMessage) => {
+            if (previousSavedMessage !== message) {
+                previousSavedMessage = message;
+                updateSearchQueryCache(queryClient, data, variables, message)
+            }
+        }
+    });
 
-    const { data : searchQueryData } = useArtistSearchQuery({ endpoint: singleKeyUrl }, variables, { staleTime: 2000, enabled: !modeEdit || !!token });
+    let headers = {}
+    let url = singleKeyUrl
+
+    authService.getAccessToken().then((_token) => {
+        _token && setToken(_token)
+        modeEdit && !_token && !data && authService.login()
+    })
+
+    variables = generateGQLSearchQueryVars(token, window.location.pathname, queryString, orderBy);
+    if (modeEdit) {
+        if (token) {
+            headers = { 'Authorization': 'Bearer ' + token };
+        }
+        url = hmacKeyUrl
+        subcribeContentSavedEvent((message: any) => mutate(message))
+    }
+
+    const { data : searchQueryData } = useArtistSearchQuery({ endpoint: url, fetchParams: { headers: headers } }, variables, { staleTime: 2000, enabled: !modeEdit || !!token });
     data = searchQueryData
     resultNumber = data?.ArtistDetailsPage?.items?.length ?? 0
     const currentItems = data?.ArtistDetailsPage?.items?.slice(itemOffset, endOffset);
@@ -93,6 +125,8 @@ function SearchPage() {
     const handleFacetClick = (event: any) => {
         window.location.href = `${window.location.origin}/search?q=${event.target.innerText}`
     }
+
+    console.log("End")
 
     return (
         <div>
