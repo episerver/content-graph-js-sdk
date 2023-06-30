@@ -4,27 +4,26 @@ import { ArtistAutocompleteQuery, useArtistAutocompleteQuery } from "../generate
 import { generateGQLSearchQueryVars } from "../helpers/queryCacheHelper";
 import { isEditOrPreviewMode } from "../helpers/urlHelper";
 
-const singleKeyUrl = process.env.REACT_APP_CONTENT_GRAPH_GATEWAY_URL as string
-
 type CustomString = string | number | readonly string[] | undefined
 
-function SearchButton(): JSX.Element {
+function SearchButton({filterValue}: any): JSX.Element {
+    const singleKeyUrl = process.env.REACT_APP_CONTENT_GRAPH_GATEWAY_URL as string
+    const ARTIST = "Artist"
     const [searchParams] = useSearchParams()
     const [token, setToken] = useState("")
     const [isShown, setIsShown] = useState(false)
-    const [searchValue, setSearchValue] = useState<CustomString>(searchParams.get("q")?.toString())
-    const [orderBy, setOrderBy] = useState("ASC")
-    let variables: any = generateGQLSearchQueryVars(token, window.location.pathname, searchValue as string | null, orderBy);
-    const modeEdit = isEditOrPreviewMode()
-    let stringArr: (string | null)[] = []
-
+    const [searchValue, setSearchValue] = useState<CustomString>(searchParams.get("q")?.toString() ?? "")
+    const [orderBy] = useState("ASC")
     let autocompleteData : ArtistAutocompleteQuery | undefined = undefined
+    
+    let modeEdit = isEditOrPreviewMode()
+    let variables = generateGQLSearchQueryVars(token, window.location.pathname, searchValue as string | null, orderBy);
     const { data : artistAutocompleteData } = useArtistAutocompleteQuery({ endpoint: singleKeyUrl }, variables, { staleTime: 2000, enabled: !modeEdit || !!token })
     autocompleteData = artistAutocompleteData
     
     function search(event: any, action: string){
         if ((action == "keypress" && event.charCode === 13) || action == "buttonclick") {
-            window.location.href = `${window.location.origin}/search?q=${searchValue}`
+            window.location.href = `${window.location.origin}/search?q=${searchValue}&f=${filterValue ?? ARTIST}`
         }
     }
 
@@ -35,7 +34,7 @@ function SearchButton(): JSX.Element {
 
     function onAutoClick(event: any){
         setSearchValue(event.target.textContent);
-        window.location.href = `${window.location.origin}/search?q=${event.target.textContent}`
+        window.location.href = `${window.location.origin}/search?q=${event.target.textContent}&f=${filterValue ?? ARTIST}`
     }
 
     return (
@@ -59,16 +58,16 @@ function SearchButton(): JSX.Element {
                     </a>
                 <div className="autocomplete-block" style={isShown ? {display: "inherit"}: {display: "none"}}>
                     {
-                        autocompleteData?.ArtistDetailsPage?.autocomplete?.ArtistName?.map((name) => {
+                        autocompleteData?.ArtistDetailsPage?.autocomplete?.ArtistName?.map((name, idx) => {
                             return(
-                                <div key={name} onClick={(event) => onAutoClick(event)}>{name}</div>
+                                <div key={idx} onClick={(event) => onAutoClick(event)}>{name}</div>
                             )
                         })                    
                     }
                     {
-                        autocompleteData?.ArtistDetailsPage?.autocomplete?.StageName?.map((name) => {
+                        autocompleteData?.ArtistDetailsPage?.autocomplete?.StageName?.map((name, idx) => {
                             return(
-                                <div key={name} onClick={(event) => onAutoClick(event)}>{name}</div>
+                                <div key={idx} onClick={(event) => onAutoClick(event)}>{name}</div>
                             )
                         })
                     }
