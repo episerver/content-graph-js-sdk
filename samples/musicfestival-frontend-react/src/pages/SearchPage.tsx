@@ -19,38 +19,36 @@ const hmacKeyUrl = process.env.REACT_APP_CG_PROXY_URL as string
 function SearchPage() {
     console.log("Start")
     const queryClient = useQueryClient();
+    const ARTIST = "Artist"
+    const OTHERCONTENT = "OtherContent"
+
     const [token, setToken] = useState("")
     const [itemOffset, setItemOffset] = useState(0)
     const [otherItemOffset, setOtherItemOffset] = useState(0)
     const [itemsPerPage, setItemsPerPage] = useState(10)
     const [otherItemsPerPage, setOtherItemsPerPage] = useState(10)
-    const [filterBy, setFilterBy] = useState("Artist")
     const [orderBy, setOrderBy] = useState("ASC")
     const [searchParams] = useSearchParams()
     const endOffset = itemOffset + itemsPerPage;
     const endOffsetOther = otherItemOffset + otherItemsPerPage;
     const modeEdit = isEditOrPreviewMode()
-    let data: ArtistSearchQuery | undefined = undefined
+    let queryString = searchParams.get("q") ?? ""
+    let filterQueryString = searchParams.get("f") ?? ""
+    const [filterBy, setFilterBy] = useState(filterQueryString ?? ARTIST)
+    
+    let artistData: ArtistSearchQuery | undefined = undefined
     let otherData: OtherContentSearchQuery | undefined = undefined
     let autocompleteData : ArtistAutocompleteQuery | undefined = undefined
-    let queryString: string | null
     let resultNumber : number
     let otherResultNumber : number
     let variables: any
-    let options: {value: string; key: string}[] = [
-        {value: "ASC", key: "ASC"},
-        {value: "DESC", key: "DESC"}
-    ]
-    let itemsPerPageOptions: {value: number; key: string}[] = [
-        {value: 10, key: "10"},
-        {value: 15, key: "15"}
-    ]
+    let options: string[] = ["ASC", "DESC"]
+    let itemsPerPageOptions: number[] = [10, 15]
     let filterByOption: {value: string; key: string}[] = [
         {value: "Artists", key: "Artist"},
         {value: "Other Content", key: "OtherContent"}
     ]
 
-    queryString = searchParams.get("q")
     if(queryString === undefined || queryString == 'undefined'){
         queryString = ""
     }
@@ -59,7 +57,7 @@ function SearchPage() {
         onSuccess: (message: ContentSavedMessage) => {
             if (previousSavedMessage !== message) {
                 previousSavedMessage = message;
-                updateSearchQueryCache(queryClient, data, variables, message)
+                updateSearchQueryCache(queryClient, artistData, variables, message)
             }
         }
     });
@@ -69,7 +67,7 @@ function SearchPage() {
 
     authService.getAccessToken().then((_token) => {
         _token && setToken(_token)
-        modeEdit && !_token && !data && authService.login()
+        modeEdit && !_token && !artistData && authService.login()
     })
 
     variables = generateGQLSearchQueryVars(token, window.location.pathname, queryString, orderBy);
@@ -82,9 +80,9 @@ function SearchPage() {
     }
 
     const { data : searchQueryData } = useArtistSearchQuery({ endpoint: url, fetchParams: { headers: headers } }, variables, { staleTime: 2000, enabled: !modeEdit || !!token });
-    data = searchQueryData
-    resultNumber = data?.ArtistDetailsPage?.items?.length ?? 0
-    const currentItems = data?.ArtistDetailsPage?.items?.slice(itemOffset, endOffset);
+    artistData = searchQueryData
+    resultNumber = artistData?.ArtistDetailsPage?.items?.length ?? 0
+    const currentItems = artistData?.ArtistDetailsPage?.items?.slice(itemOffset, endOffset);
     const pageCount = Math.ceil(resultNumber / itemsPerPage);
 
     const { data : otherContentSearchQueryData } = useOtherContentSearchQuery({ endpoint: singleKeyUrl }, variables, { staleTime: 2000, enabled: !modeEdit || !!token });
@@ -114,8 +112,8 @@ function SearchPage() {
         setOtherItemsPerPage(event.target.value);
     };
 
-    const handleFilterByChange = (event: any) => {
-        setFilterBy(event.target.value);
+    const handleFilterByChange = (event : any) => {
+        setFilterBy(event.target.value)
     };
 
     const handleChange = (event: any) => {
@@ -123,7 +121,7 @@ function SearchPage() {
     }
 
     const handleFacetClick = (event: any) => {
-        window.location.href = `${window.location.origin}/search?q=${event.target.innerText}`
+        window.location.href = `${window.location.origin}/search?q=${event.target.innerText}&f=${filterBy}`
     }
 
     console.log("End")
@@ -139,11 +137,11 @@ function SearchPage() {
                 </div>
                 <div className="search-zone">
                     <div style={{float: "left"}}>
-                        <SearchButton />
+                        <SearchButton filterValue={filterBy}/>
                     </div>
                     <div style={{float: "right"}}>
                         <span>Search by: </span>
-                        <select className="Button" onChange={handleFilterByChange}>
+                        <select value={filterBy} className="Button" onChange={handleFilterByChange}>
                             {
                                 filterByOption.map((option) => {
                                     return (
@@ -157,49 +155,46 @@ function SearchPage() {
                 <div className="search-panel">
                     <div className="left-panel">
                         <b>Filter by: </b>
-                        <div className="facets" style={filterBy == "Artist" ? {display: "inherit"}: {display: "none"}}>
+                        <div className="facets" style={filterBy == ARTIST ? {display: "inherit"}: {display: "none"}}>
                             <b>Artist Name: </b>
                             {
-                                data?.ArtistDetailsPage?.facets?.ArtistName?.map((artist) => {
+                                artistData?.ArtistDetailsPage?.facets?.ArtistName?.map((artist, idx) => {
                                     return (
-                                        <div>
+                                        <div key={idx} className="facet-item">
                                             <a key={artist?.name} onClick={(event) => handleFacetClick(event)}>
-                                                <span>{artist?.name}</span>
-                                                &nbsp;
-                                                <b>({artist?.count})</b>
+                                                <span>{artist?.name}</span>                                                                         
                                             </a>
+                                            <b>{artist?.count}</b>
                                         </div>
                                     )
                                 })
                             }
                         </div>
-                        <div className="facets" style={filterBy == "Artist" ? {display: "inherit"}: {display: "none"}}>
+                        <div className="facets" style={filterBy == ARTIST ? {display: "inherit"}: {display: "none"}}>
                             <b>Stage Name: </b>
                             {
-                                data?.ArtistDetailsPage?.facets?.StageName?.map((artist) => {
+                                artistData?.ArtistDetailsPage?.facets?.StageName?.map((artist, idx) => {
                                     return (
-                                        <div>
+                                        <div key={idx} className="facet-item">
                                             <a key={artist?.name} onClick={(event) => handleFacetClick(event)}>
-                                                <span>{artist?.name}</span>
-                                                &nbsp;
-                                                <b>({artist?.count})</b>
+                                                <span>{artist?.name}</span>                                            
                                             </a>
+                                            <b>{artist?.count}</b>
                                         </div>
                                     )
                                 })
                             }
                         </div>
-                        <div className="facets" style={filterBy == "OtherContent" ? {display: "inherit"}: {display: "none"}}>
+                        <div className="facets" style={filterBy == OTHERCONTENT ? {display: "inherit"}: {display: "none"}}>
                             <b>Content: </b>
                             {
-                                otherData?.Content?.facets?.Name?.map((content) => {
+                                otherData?.Content?.facets?.Name?.map((content, idx) => {
                                     return (
-                                        <div>
+                                        <div key={idx} className="facet-item">
                                             <a key={content?.name} onClick={(event) => handleFacetClick(event)}>
                                                 <span>{content?.name}</span>
-                                                &nbsp;
-                                                <b>({content?.count})</b>
                                             </a>
+                                            <b>{content?.count}</b>
                                         </div>
                                     )
                                 })
@@ -208,22 +203,22 @@ function SearchPage() {
                     </div>
                     <div className="right-panel">
                         <div className="search-description">
-                            <h6>Your search for <span className="search-term">{queryString}</span> resulted in <span className="search-term">{filterBy == "Artist" ? resultNumber : otherResultNumber}</span> hits</h6>                            
+                            <h6>Your search for <span className="search-term">{queryString}</span> resulted in <span className="search-term">{filterBy == ARTIST ? resultNumber : otherResultNumber}</span> hits</h6>                            
                         </div>
                         <div className="search-sorting">
                             <span>Sort: </span>
                             <select onChange={e => handleChange(e)} className="Button">
                                 {
-                                    options.map((option) => {
+                                    options.map((value, idx) => {
                                         return (
-                                            <option key={option.key} value={option.key}>{option.value}</option>
+                                            <option key={idx} value={value}>{value}</option>
                                         )
                                     })
                                 }
                             </select>
                         </div>
                         <div className="result-block">
-                            <div style={filterBy == "Artist" ? {display: "initial"}: {display: "none"}}>
+                            <div style={filterBy == ARTIST ? {display: "initial"}: {display: "none"}}>
                                 <div className="search-results">
                                     {
                                         currentItems?.map((content, idx) => {
@@ -283,9 +278,9 @@ function SearchPage() {
                                                 <span>Items per page: </span>
                                                 <select className="Button" onChange={handleItemsChange}>
                                                     {
-                                                        itemsPerPageOptions.map((option) => {
+                                                        itemsPerPageOptions.map((option, idx) => {
                                                             return (
-                                                                <option key={option.key} value={option.key}>{option.value}</option>
+                                                                <option key={idx} value={option}>{option}</option>
                                                             )
                                                         })
                                                     }
@@ -307,7 +302,7 @@ function SearchPage() {
                                     </table>
                                 </div>
                             </div>
-                            <div style={filterBy == "OtherContent" ? {display: "initial"}: {display: "none"}}>
+                            <div style={filterBy == OTHERCONTENT ? {display: "initial"}: {display: "none"}}>
                                 <div className="search-results">
                                     {
                                         currentOtherItems?.map((content, idx) => {
@@ -338,9 +333,9 @@ function SearchPage() {
                                                 <span>Items per page: </span>
                                                 <select className="Button" onChange={handleOtherItemsChange}>
                                                     {
-                                                        itemsPerPageOptions.map((option) => {
+                                                        itemsPerPageOptions.map((option, idx) => {
                                                             return (
-                                                                <option key={option.key} value={option.key}>{option.value}</option>
+                                                                <option key={idx} value={option}>{option}</option>
                                                             )
                                                         })
                                                     }
