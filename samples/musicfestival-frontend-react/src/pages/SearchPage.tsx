@@ -29,8 +29,8 @@ function SearchPage() {
     const [otherItemsPerPage, setOtherItemsPerPage] = useState(10)
     const [orderBy, setOrderBy] = useState("ASC")
     const [searchParams] = useSearchParams()
-    const endOffset = itemOffset + itemsPerPage;
-    const endOffsetOther = otherItemOffset + otherItemsPerPage;
+    const endOffset = itemOffset + itemsPerPage
+    const endOffsetOther = otherItemOffset + otherItemsPerPage
     const modeEdit = isEditOrPreviewMode()
     let queryString = searchParams.get("q") ?? ""
     let filterQueryString = searchParams.get("f") ?? ""
@@ -49,9 +49,9 @@ function SearchPage() {
         {value: "Other Content", key: "OtherContent"}
     ]
 
-    if(queryString === undefined || queryString == 'undefined'){
-        queryString = ""
-    }
+    
+    let headers = {}
+    let url = singleKeyUrl
 
     const { mutate } = useMutation((obj: any) => obj, {
         onSuccess: (message: ContentSavedMessage) => {
@@ -62,69 +62,67 @@ function SearchPage() {
         }
     });
 
-    let headers = {}
-    let url = singleKeyUrl
-
     authService.getAccessToken().then((_token) => {
         _token && setToken(_token)
         modeEdit && !_token && !artistData && authService.login()
     })
 
-    variables = generateGQLSearchQueryVars(token, window.location.pathname, queryString, orderBy);
     if (modeEdit) {
         if (token) {
-            headers = { 'Authorization': 'Bearer ' + token };
+            headers = { 'Authorization': 'Bearer ' + token }
         }
         url = hmacKeyUrl
         subcribeContentSavedEvent((message: any) => mutate(message))
     }
 
-    const { data : searchQueryData } = useArtistSearchQuery({ endpoint: url, fetchParams: { headers: headers } }, variables, { staleTime: 2000, enabled: !modeEdit || !!token });
+    variables = generateGQLSearchQueryVars(token, window.location.pathname, queryString, orderBy)
+
+    const { data : searchQueryData } = useArtistSearchQuery({ endpoint: url, fetchParams: { headers: headers } }, variables, { staleTime: 2000, enabled: !modeEdit || !!token })
     artistData = searchQueryData
     resultNumber = artistData?.ArtistDetailsPage?.items?.length ?? 0
-    const currentItems = artistData?.ArtistDetailsPage?.items?.slice(itemOffset, endOffset);
-    const pageCount = Math.ceil(resultNumber / itemsPerPage);
+    const currentItems = artistData?.ArtistDetailsPage?.items?.slice(itemOffset, endOffset)
+    const pageCount = Math.ceil(resultNumber / itemsPerPage)
 
-    const { data : otherContentSearchQueryData } = useOtherContentSearchQuery({ endpoint: singleKeyUrl }, variables, { staleTime: 2000, enabled: !modeEdit || !!token });
+    const { data : otherContentSearchQueryData } = useOtherContentSearchQuery({ endpoint: singleKeyUrl }, variables, { staleTime: 2000, enabled: !modeEdit || !!token })
     otherData = otherContentSearchQueryData
     otherResultNumber = otherData?.Content?.items?.length ?? 0
-    const currentOtherItems = otherData?.Content?.items?.slice(otherItemOffset, endOffsetOther);
-    const pageOtherCount = Math.ceil(otherResultNumber / itemsPerPage);
+    const currentOtherItems = otherData?.Content?.items?.slice(otherItemOffset, endOffsetOther)
+    const pageOtherCount = Math.ceil(otherResultNumber / itemsPerPage)
 
     const { data : artistAutocompleteData } = useArtistAutocompleteQuery({ endpoint: singleKeyUrl }, variables, { staleTime: 2000, enabled: !modeEdit || !!token })
     autocompleteData = artistAutocompleteData
 
     const handlePageClick = (event: any) => {
-        const newOffset = (event.selected * itemsPerPage) % resultNumber;
-        setItemOffset(newOffset);
+        const newOffset = (event.selected * itemsPerPage) % resultNumber
+        setItemOffset(newOffset)
     };
 
     const handleItemsChange = (event: any) => {
-        setItemsPerPage(event.target.value);
+        setItemsPerPage(event.target.value)
     };
 
     const handleOtherPageClick = (event: any) => {
-        const newOffset = (event.selected * itemsPerPage) % otherResultNumber;
-        setOtherItemOffset(newOffset);
+        const newOffset = (event.selected * itemsPerPage) % otherResultNumber
+        setOtherItemOffset(newOffset)
     };
 
     const handleOtherItemsChange = (event: any) => {
-        setOtherItemsPerPage(event.target.value);
-    };
-
-    const handleFilterByChange = (event : any) => {
-        setFilterBy(event.target.value)
+        setOtherItemsPerPage(event.target.value)
     };
 
     const handleChange = (event: any) => {
-        setOrderBy(event.target.value);
+        setOrderBy(event.target.value)
     }
 
     const handleFacetClick = (event: any) => {
         window.location.href = `${window.location.origin}/search?q=${event.target.innerText}&f=${filterBy}`
     }
 
-    console.log("End")
+    const handleFilterByChange = (event : any) => {
+        setFilterBy(event.target.value)
+        setOtherItemsPerPage(event.target.value)
+    };
+
 
     return (
         <div>
@@ -176,7 +174,7 @@ function SearchPage() {
                                 artistData?.ArtistDetailsPage?.facets?.StageName?.map((artist, idx) => {
                                     return (
                                         <div key={idx} className="facet-item">
-                                            <a key={artist?.name} onClick={(event) => handleFacetClick(event)}>
+                                            <a onClick={(event) => handleFacetClick(event)}>
                                                 <span>{artist?.name}</span>                                            
                                             </a>
                                             <b>{artist?.count}</b>
@@ -191,7 +189,7 @@ function SearchPage() {
                                 otherData?.Content?.facets?.Name?.map((content, idx) => {
                                     return (
                                         <div key={idx} className="facet-item">
-                                            <a key={content?.name} onClick={(event) => handleFacetClick(event)}>
+                                            <a onClick={(event) => handleFacetClick(event)}>
                                                 <span>{content?.name}</span>
                                             </a>
                                             <b>{content?.count}</b>
@@ -248,10 +246,10 @@ function SearchPage() {
                                     <h6>People also search for: </h6>
                                     <br></br>
                                     {
-                                        autocompleteData?.ArtistDetailsPage?.autocomplete?.ArtistName?.map((name) => {
+                                        autocompleteData?.ArtistDetailsPage?.autocomplete?.ArtistName?.map((name, idx) => {
                                             return (
-                                                <div>
-                                                    <a key={name} onClick={(event) => handleFacetClick(event)}>                                                    
+                                                <div key={idx}>
+                                                    <a onClick={(event) => handleFacetClick(event)}>                                                    
                                                         <i>{name}</i>
                                                     </a>
                                                 </div>
@@ -259,10 +257,10 @@ function SearchPage() {
                                         })
                                     }
                                     {
-                                        autocompleteData?.ArtistDetailsPage?.autocomplete?.StageName?.map((name) => {
+                                        autocompleteData?.ArtistDetailsPage?.autocomplete?.StageName?.map((name, idx) => {
                                             return (
-                                                <div>
-                                                    <a key={name} onClick={(event) => handleFacetClick(event)}>                                                    
+                                                <div key={idx}>
+                                                    <a onClick={(event) => handleFacetClick(event)}>                                                    
                                                         <i>{name}</i>
                                                     </a>
                                                 </div>
