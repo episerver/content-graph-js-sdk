@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { memo, useCallback, useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
@@ -18,7 +18,7 @@ const hmacKeyUrl = process.env.REACT_APP_CG_PROXY_URL as string
 
 function SearchPage() {
     console.log("Start")
-    const queryClient = useQueryClient();
+    const queryClient = useQueryClient()
     const ARTIST = "Artist"
     const OTHERCONTENT = "OtherContent"
 
@@ -48,7 +48,6 @@ function SearchPage() {
         {value: "Artists", key: "Artist"},
         {value: "Other Content", key: "OtherContent"}
     ]
-
     
     let headers = {}
     let url = singleKeyUrl
@@ -60,12 +59,14 @@ function SearchPage() {
                 updateSearchQueryCache(queryClient, artistData, variables, message)
             }
         }
-    });
-
-    authService.getAccessToken().then((_token) => {
-        _token && setToken(_token)
-        modeEdit && !_token && !artistData && authService.login()
     })
+
+    useEffect(() => {
+        authService.getAccessToken().then((_token) => {
+            _token && setToken(_token)
+            modeEdit && !_token && !artistData && authService.login()
+        })
+    }, [])
 
     if (modeEdit) {
         if (token) {
@@ -83,32 +84,32 @@ function SearchPage() {
     const currentItems = artistData?.ArtistDetailsPage?.items?.slice(itemOffset, endOffset)
     const pageCount = Math.ceil(resultNumber / itemsPerPage)
 
-    const { data : otherContentSearchQueryData } = useOtherContentSearchQuery({ endpoint: singleKeyUrl }, variables, { staleTime: 2000, enabled: !modeEdit || !!token })
+    const { data : otherContentSearchQueryData } = useOtherContentSearchQuery({ endpoint: url, fetchParams: { headers: headers } }, variables, { staleTime: 2000, enabled: !modeEdit || !!token })
     otherData = otherContentSearchQueryData
     otherResultNumber = otherData?.Content?.items?.length ?? 0
     const currentOtherItems = otherData?.Content?.items?.slice(otherItemOffset, endOffsetOther)
     const pageOtherCount = Math.ceil(otherResultNumber / itemsPerPage)
 
-    const { data : artistAutocompleteData } = useArtistAutocompleteQuery({ endpoint: singleKeyUrl }, variables, { staleTime: 2000, enabled: !modeEdit || !!token })
+    const { data : artistAutocompleteData } = useArtistAutocompleteQuery({ endpoint: url, fetchParams: { headers: headers } }, variables, { staleTime: 2000, enabled: !modeEdit || !!token })
     autocompleteData = artistAutocompleteData
 
     const handlePageClick = (event: any) => {
         const newOffset = (event.selected * itemsPerPage) % resultNumber
         setItemOffset(newOffset)
-    };
+    }
 
     const handleItemsChange = (event: any) => {
         setItemsPerPage(event.target.value)
-    };
+    }
 
     const handleOtherPageClick = (event: any) => {
         const newOffset = (event.selected * itemsPerPage) % otherResultNumber
         setOtherItemOffset(newOffset)
-    };
+    }
 
     const handleOtherItemsChange = (event: any) => {
         setOtherItemsPerPage(event.target.value)
-    };
+    }
 
     const handleChange = (event: any) => {
         setOrderBy(event.target.value)
@@ -120,8 +121,8 @@ function SearchPage() {
 
     const handleFilterByChange = (event : any) => {
         setFilterBy(event.target.value)
-        setOtherItemsPerPage(event.target.value)
-    };
+        //setOtherItemsPerPage(event.target.value)
+    }
 
 
     return (
@@ -364,4 +365,4 @@ function SearchPage() {
     );
 }
 
-export default SearchPage;
+export default memo(SearchPage);

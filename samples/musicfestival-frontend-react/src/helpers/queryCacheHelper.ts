@@ -21,7 +21,7 @@ const generateGQLSearchQueryVars = (token: string, pathname: string, searchParam
     if (isEditOrPreviewMode() && token) {
         variables = { locales: locales as Locales, searchParam, sortOption };
     }
-
+    
     return variables
 }
 
