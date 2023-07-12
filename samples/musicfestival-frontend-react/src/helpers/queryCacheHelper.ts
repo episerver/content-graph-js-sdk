@@ -1,5 +1,5 @@
 import { QueryClient } from "@tanstack/react-query";
-import { Locales, StartQuery } from "../generated";
+import { ArtistSearchQuery, Locales, StartQuery } from "../generated";
 import { ContentSavedMessage } from "../models/ContentSavedMessage";
 import { extractParams, isEditOrPreviewMode } from "./urlHelper";
 
@@ -21,8 +21,27 @@ const generateGQLSearchQueryVars = (token: string, pathname: string, searchParam
     if (isEditOrPreviewMode() && token) {
         variables = { locales: locales as Locales, searchParam, sortOption };
     }
-
+    
     return variables
+}
+
+const updateSearchQueryCache = (queryClient: QueryClient, data: StartQuery | undefined, variables: any, message: ContentSavedMessage) => {
+    const hasComplexProperty = message.properties.find(p => !isSimpleProperty(p.value)) !== undefined
+    if (hasComplexProperty) {
+        queryClient.invalidateQueries(['ArtistSearch', variables]);
+        return;
+    }
+
+    const newContent = updateSearchQueryData({ ...data }, message);
+    queryClient.setQueryData(['ArtistSearch', variables], newContent);
+}
+
+function updateSearchQueryData(data: ArtistSearchQuery, message: ContentSavedMessage) {
+    if (!data.ArtistDetailsPage?.items || !data.ArtistDetailsPage?.items || data.ArtistDetailsPage?.items?.length === 0) { return; }
+    const content = data.ArtistDetailsPage?.items[0];
+    message.properties.forEach((prop) => updateContentProperty(content, prop.name, prop.value));
+
+    return data;
 }
 
 const updateStartQueryCache = (queryClient: QueryClient, data: StartQuery | undefined, variables: any, message: ContentSavedMessage) => {
@@ -67,4 +86,4 @@ function isSimpleProperty(propValue: any) {
 }
 
 
-export { generateGQLQueryVars, updateStartQueryCache, generateGQLSearchQueryVars }
+export { generateGQLQueryVars, updateStartQueryCache, generateGQLSearchQueryVars, updateSearchQueryCache }
