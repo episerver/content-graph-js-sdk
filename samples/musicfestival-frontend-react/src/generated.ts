@@ -3389,7 +3389,8 @@ export type RangeFacetsInput = {
 export enum Ranking {
   BoostOnly = 'BOOST_ONLY',
   Doc = 'DOC',
-  Relevance = 'RELEVANCE'
+  Relevance = 'RELEVANCE',
+  Semantic = "SEMANTIC",
 }
 
 export type SearchableStringFilterInput = {
@@ -3883,10 +3884,10 @@ export const useArtistAutocompleteQuery = <
       options
     );
 export const ArtistSearchDocument = `
-    query ArtistSearch($searchParam: String!, $locales: Locales!, $order: OrderBy) {
+    query ArtistSearch($searchParam: String!, $locales: Locales!, $order: OrderBy, $ranking: Ranking) {
   ArtistDetailsPage(
     locale: [$locales]
-    orderBy: {_ranking: RELEVANCE, ArtistName: $order}
+    orderBy: {_ranking: $ranking, ArtistName: $order}
     where: {_or: [{Name: {contains: $searchParam, boost: 10}}, {Name: {startsWith: $searchParam, boost: 10}}, {StageName: {startsWith: $searchParam}}]}
   ) {
     items {
@@ -3931,10 +3932,10 @@ export const useArtistSearchQuery = <
       options
     );
 export const OtherContentSearchDocument = `
-    query OtherContentSearch($searchParam: String!, $locales: Locales!, $order: OrderBy) {
+    query OtherContentSearch($searchParam: String!, $locales: Locales!, $order: OrderBy, $ranking: Ranking) {
   Content(
     locale: [$locales]
-    orderBy: {_ranking: RELEVANCE, Name: $order}
+    orderBy: {_ranking: $ranking, Name: $order}
     where: {_or: [{Name: {contains: $searchParam, boost: 10}}, {Name: {startsWith: $searchParam, boost: 10}}], _and: {ContentType: {notEq: "ArtistDetailsPage"}}}
   ) {
     items {

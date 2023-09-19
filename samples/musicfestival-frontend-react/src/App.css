@@ -2785,6 +2785,7 @@ button {
   box-shadow: 0 0 12px 0 rgba(0, 0, 0, 0.36);
   border: 0;
   transition: all 300ms;
+  max-height: 40px;
 }
 
 .Button:hover,
@@ -3458,6 +3459,7 @@ Component for the navigation bar.
 */
 .NavBar {
   padding: 10px 5px 0;
+  margin-top: 11px;
 }
 
 @media (min-width: 425px) {
@@ -3889,10 +3891,6 @@ footer .ContentArea.Grid--gutterA {
   margin-top: 1em;
 }
 
-.buy-ticket-button, .search-button {
-  margin-top: 11px;
-}
-
 .search-button{
   text-transform: none;
 }
@@ -3944,19 +3942,22 @@ main {
   text-transform: uppercase;
 }
 
-.nav-table{
-  width: 100%; 
-  display: table;
-}
+/*.nav-table{*/
+/*  width: 100%; */
+/*  display: table;*/
+/*}*/
 
 .nav-table-row{
-  display: table-row;
-  float: left;
+  /*display: table-row;*/
+  /*float: left;*/
+  display: flex;
+  gap: 10px;
 }
 
 .nav-table-cell{
-  display: table-cell;
-  padding-right: 10px;
+  /*display: table-cell;*/
+  /*padding-right: 10px;*/
+  max-height: 40px;
 }
 
 input.search-input{
@@ -4118,4 +4119,163 @@ input.search-input::placeholder {
 
 .autocomplete-block div:hover{
   background-color: #aaa;
+}
+
+.switch_box{
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+}
+
+.switch_box:has(input[type="checkbox"].switch_input:checked) label {
+  color: #41FFF5;
+}
+
+input[type="checkbox"].switch_input{
+  font-size: 30px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 1.5em;
+  height: 0.75em;
+  background: #808080;
+  border-radius: 3em;
+  position: relative;
+  cursor: pointer;
+  outline: none;
+  -webkit-transition: all .2s ease-in-out;
+  transition: all .2s ease-in-out;
+}
+
+input[type="checkbox"].switch_input:checked{
+  background: #41FFF5;
+}
+
+input[type="checkbox"].switch_input:after{
+  position: absolute;
+  content: "";
+  width: 0.75em;
+  height: 0.75em;
+  border-radius: 50%;
+  background: #fff;
+  -webkit-box-shadow: 0 0 .25em rgba(0,0,0,.3);
+  box-shadow: 0 0 .25em rgba(0,0,0,.3);
+  -webkit-transform: scale(.7);
+  transform: scale(.7);
+  left: 0;
+  -webkit-transition: all .2s ease-in-out;
+  transition: all .2s ease-in-out;
+}
+
+input[type="checkbox"].switch_input:checked:after{
+  left: calc(100% - 0.8em);
+}
+
+.d-flex {
+  display: flex !important;
+}
+
+.me-0 {
+  margin-right: 0 !important;
+}
+
+.me-1 {
+  margin-right: 0.25rem !important;
+}
+
+.me-2 {
+  margin-right: 0.5rem !important;
+}
+
+.me-3 {
+  margin-right: 1rem !important;
+}
+
+.me-4 {
+  margin-right: 1.5rem !important;
+}
+
+.me-5 {
+  margin-right: 3rem !important;
+}
+
+.ms-0 {
+  margin-left: 0 !important;
+}
+
+.ms-1 {
+  margin-left: 0.25rem !important;
+}
+
+.ms-2 {
+  margin-left: 0.5rem !important;
+}
+
+.ms-3 {
+  margin-left: 1rem !important;
+}
+
+.ms-4 {
+  margin-left: 1.5rem !important;
+}
+
+.ms-5 {
+  margin-left: 3rem !important;
+}
+
+.mb-0 {
+  margin-bottom: 0 !important;
+}
+
+.mb-1 {
+  margin-bottom: 0.25rem !important;
+}
+
+.mb-2 {
+  margin-bottom: 0.5rem !important;
+}
+
+.mb-3 {
+  margin-bottom: 1rem !important;
+}
+
+.mb-4 {
+  margin-bottom: 1.5rem !important;
+}
+
+.mb-5 {
+  margin-bottom: 3rem !important;
+}
+
+.fw-lighter {
+  font-weight: lighter !important;
+}
+
+.fw-light {
+  font-weight: 300 !important;
+}
+
+.fw-normal {
+  font-weight: 400 !important;
+}
+
+.fw-medium {
+  font-weight: 500 !important;
+}
+
+.fw-semibold {
+  font-weight: 600 !important;
+}
+
+.fw-bold {
+  font-weight: 700 !important;
 }
