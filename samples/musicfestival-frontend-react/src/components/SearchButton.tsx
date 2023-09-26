@@ -2,8 +2,7 @@ import {useEffect, useRef, useState} from "react";
 import {useSearchParams} from "react-router-dom";
 import {ArtistAutocompleteQuery, Ranking, useArtistAutocompleteQuery} from "../generated";
 import {generateGQLSearchQueryVars} from "../helpers/queryCacheHelper";
-import {isEditOrPreviewMode} from "../helpers/urlHelper";
-import {capitalize} from "../helpers/string.utils";
+import {getRankingFromSearchParams, isEditOrPreviewMode} from "../helpers/urlHelper";
 
 type CustomString = string | number | readonly string[] | undefined
 
@@ -15,17 +14,15 @@ function SearchButton({filterValue}: any): JSX.Element {
     const [token, setToken] = useState("")
     const [isShown, setIsShown] = useState(false)
     const [searchValue, setSearchValue] = useState<CustomString>(searchParams.get("q")?.toString() ?? "")
-    const [ranking, setRanking] = useState<Ranking>(Ranking[capitalize(searchParams.get("r")?.toString().toLowerCase() || "") as keyof typeof Ranking] || Ranking.Relevance)
+    const [ranking, setRanking] = useState<Ranking>(getRankingFromSearchParams(searchParams))
     const [orderBy] = useState("ASC")
-    let autocompleteData: ArtistAutocompleteQuery | undefined = undefined
 
     let modeEdit = isEditOrPreviewMode()
     let variables = generateGQLSearchQueryVars(token, window.location.pathname, searchValue as string | null, orderBy, ranking);
-    const {data: artistAutocompleteData} = useArtistAutocompleteQuery({endpoint: singleKeyUrl}, variables, {
+    const autocompleteData = useArtistAutocompleteQuery({endpoint: singleKeyUrl}, variables, {
         staleTime: 2000,
         enabled: !modeEdit || !!token
-    })
-    autocompleteData = artistAutocompleteData
+    }).data;
 
     const onSearch = (event: any) => {
         window.location.href = `${window.location.origin}/search?q=${searchValue}&f=${filterValue ?? ARTIST}&r=${ranking}`;
@@ -105,7 +102,7 @@ function SearchButton({filterValue}: any): JSX.Element {
                 <div className="switch_box">
                     <input type="checkbox" className="switch_input" onChange={onChangeSearchType}
                            checked={ranking === Ranking.Semantic}></input>
-                    <label className="fw-semibold mb-0 ms-2">Neural Search</label>
+                    <label className="fw-semibold mb-0 ms-2">Semantic Search</label>
                 </div>
             </div>
         </div>

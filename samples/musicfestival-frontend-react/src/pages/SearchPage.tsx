@@ -7,19 +7,17 @@ import {
     ArtistAutocompleteQuery,
     ArtistSearchQuery,
     OtherContentSearchQuery,
-    Ranking,
     useArtistAutocompleteQuery,
     useArtistSearchQuery,
     useOtherContentSearchQuery
 } from "../generated";
 import { generateGQLSearchQueryVars, updateSearchQueryCache } from "../helpers/queryCacheHelper";
-import { getImageUrl, isEditOrPreviewMode } from "../helpers/urlHelper";
+import {getImageUrl, getRankingFromSearchParams, isEditOrPreviewMode} from "../helpers/urlHelper";
 import ReactPaginate from 'react-paginate';
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { ContentSavedMessage } from "../models/ContentSavedMessage";
 import authService from "../authService";
 import { subcribeContentSavedEvent } from "../helpers/contentSavedEvent";
-import {capitalize} from "../helpers/string.utils";
 
 let previousSavedMessage: any = null;
 const singleKeyUrl = process.env.REACT_APP_CONTENT_GRAPH_GATEWAY_URL as string
@@ -44,7 +42,7 @@ function SearchPage() {
     let queryString = searchParams.get("q") ?? ""
     let filterQueryString = searchParams.get("f") ?? ""
     const [filterBy, setFilterBy] = useState(filterQueryString ?? ARTIST)
-    const ranking = Ranking[capitalize(searchParams.get("r")?.toString().toLowerCase() || "") as keyof typeof Ranking] || Ranking.Relevance;
+    const ranking = getRankingFromSearchParams(searchParams);
     
     let artistData: ArtistSearchQuery | undefined = undefined
     let otherData: OtherContentSearchQuery | undefined = undefined
