@@ -1,3 +1,5 @@
+import {Ranking} from "../generated";
+
 const isEditOrPreviewMode = () => {
     const params = window.location.search.split(/[&?]+/);
     return params.includes("epieditmode=true") || params.includes("epieditmode=false");
@@ -8,8 +10,8 @@ const getImageUrl = (path = "") => {
     if (!path) {
         return ""
     }
-    
-    return path.startsWith("http") ?  path : siteUrl + path
+
+    return path.startsWith("http") ? path : siteUrl + path
 }
 
 const extractParams = (urlPath: string) => {
@@ -25,7 +27,7 @@ const extractParams = (urlPath: string) => {
     if (relativePath.endsWith('/')) {
         relativePath = relativePath.slice(0, -1)
     }
-    
+
     if (relativePath.includes(",")) {
         const [, , idString] = relativePath.split(",")
         if (idString.includes("_")) {
@@ -44,7 +46,17 @@ const extractParams = (urlPath: string) => {
     const urlSegments = relativePath.split('/')
     const language = urlSegments.length ? urlSegments.find(s => s.length === 2) : "en"
 
-    return { relativePath, locales: language, language, contentId, workId }
+    return {relativePath, locales: language, language, contentId, workId}
 }
 
-export { isEditOrPreviewMode, extractParams, getImageUrl }
+const getRankingFromSearchParams = (searchParams: URLSearchParams): Ranking => {
+    for (const [key, value] of Object.entries(Ranking)) {
+        if (key.toLowerCase() === searchParams.get("r")?.toString().toLowerCase()) {
+            return value;
+        }
+    }
+
+    return Ranking.Relevance;
+}
+
+export {isEditOrPreviewMode, extractParams, getImageUrl, getRankingFromSearchParams}

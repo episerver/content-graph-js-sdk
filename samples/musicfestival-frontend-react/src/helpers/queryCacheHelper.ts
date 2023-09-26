@@ -1,5 +1,5 @@
 import { QueryClient } from "@tanstack/react-query";
-import { ArtistSearchQuery, Locales, StartQuery } from "../generated";
+import {ArtistSearchQuery, Locales, Ranking, StartQuery} from "../generated";
 import { ContentSavedMessage } from "../models/ContentSavedMessage";
 import { extractParams, isEditOrPreviewMode } from "./urlHelper";
 
@@ -15,11 +15,11 @@ const generateGQLQueryVars = (token: string, pathname: string): any => {
     return variables
 }
 
-const generateGQLSearchQueryVars = (token: string, pathname: string, searchParam: string | null, sortOption: string): any => {
+const generateGQLSearchQueryVars = (token: string, pathname: string, searchParam: string | null, sortOption: string, ranking: Ranking = Ranking.Relevance): any => {
     const { locales } = extractParams(pathname)
-    let variables: any = { locales: locales as Locales, searchParam: searchParam, order: sortOption };
+    let variables: any = { locales: locales as Locales, searchParam: searchParam, order: sortOption, ranking: ranking };
     if (isEditOrPreviewMode() && token) {
-        variables = { locales: locales as Locales, searchParam, sortOption };
+        variables = { locales: locales as Locales, searchParam, sortOption, ranking };
     }
     
     return variables

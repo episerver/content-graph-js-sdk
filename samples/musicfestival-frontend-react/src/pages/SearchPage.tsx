@@ -3,9 +3,16 @@ import { useSearchParams } from "react-router-dom";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import SearchButton from "../components/SearchButton";
-import { ArtistAutocompleteQuery, ArtistSearchQuery, OtherContentSearchQuery, useArtistAutocompleteQuery, useArtistSearchQuery, useOtherContentSearchQuery } from "../generated";
+import {
+    ArtistAutocompleteQuery,
+    ArtistSearchQuery,
+    OtherContentSearchQuery,
+    useArtistAutocompleteQuery,
+    useArtistSearchQuery,
+    useOtherContentSearchQuery
+} from "../generated";
 import { generateGQLSearchQueryVars, updateSearchQueryCache } from "../helpers/queryCacheHelper";
-import { getImageUrl, isEditOrPreviewMode } from "../helpers/urlHelper";
+import {getImageUrl, getRankingFromSearchParams, isEditOrPreviewMode} from "../helpers/urlHelper";
 import ReactPaginate from 'react-paginate';
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { ContentSavedMessage } from "../models/ContentSavedMessage";
@@ -35,6 +42,7 @@ function SearchPage() {
     let queryString = searchParams.get("q") ?? ""
     let filterQueryString = searchParams.get("f") ?? ""
     const [filterBy, setFilterBy] = useState(filterQueryString ?? ARTIST)
+    const ranking = getRankingFromSearchParams(searchParams);
     
     let artistData: ArtistSearchQuery | undefined = undefined
     let otherData: OtherContentSearchQuery | undefined = undefined
@@ -76,7 +84,7 @@ function SearchPage() {
         subcribeContentSavedEvent((message: any) => mutate(message))
     }
 
-    variables = generateGQLSearchQueryVars(token, window.location.pathname, queryString, orderBy)
+    variables = generateGQLSearchQueryVars(token, window.location.pathname, queryString, orderBy, ranking)
 
     const { data : searchQueryData } = useArtistSearchQuery({ endpoint: url, fetchParams: { headers: headers } }, variables, { staleTime: 2000, enabled: !modeEdit || !!token })
     artistData = searchQueryData
@@ -116,14 +124,13 @@ function SearchPage() {
     }
 
     const handleFacetClick = (event: any) => {
-        window.location.href = `${window.location.origin}/search?q=${event.target.innerText}&f=${filterBy}`
+        window.location.href = `${window.location.origin}/search?q=${event.target.innerText}&f=${filterBy}&r=${ranking}`
     }
 
     const handleFilterByChange = (event : any) => {
         setFilterBy(event.target.value)
         //setOtherItemsPerPage(event.target.value)
     }
-
 
     return (
         <div>
@@ -161,7 +168,7 @@ function SearchPage() {
                                     return (
                                         <div key={idx} className="facet-item">
                                             <a key={artist?.name} onClick={(event) => handleFacetClick(event)}>
-                                                <span>{artist?.name}</span>                                                                         
+                                                <span>{artist?.name}</span>
                                             </a>
                                             <b>{artist?.count}</b>
                                         </div>
@@ -176,7 +183,7 @@ function SearchPage() {
                                     return (
                                         <div key={idx} className="facet-item">
                                             <a onClick={(event) => handleFacetClick(event)}>
-                                                <span>{artist?.name}</span>                                            
+                                                <span>{artist?.name}</span>
                                             </a>
                                             <b>{artist?.count}</b>
                                         </div>
@@ -202,7 +209,7 @@ function SearchPage() {
                     </div>
                     <div className="right-panel">
                         <div className="search-description">
-                            <h6>Your search for <span className="search-term">{queryString}</span> resulted in <span className="search-term">{filterBy == ARTIST ? resultNumber : otherResultNumber}</span> hits</h6>                            
+                            <h6>Your search for <span className="search-term">{queryString}</span> resulted in <span className="search-term">{filterBy == ARTIST ? resultNumber : otherResultNumber}</span> hits</h6>
                         </div>
                         <div className="search-sorting">
                             <span>Sort: </span>
@@ -234,7 +241,7 @@ function SearchPage() {
                                                                 <p className="result-name">{content?.ArtistName}</p>
                                                             </a>
                                                         </div>
-                                                    </div>                             
+                                                    </div>
                                                     <div>
                                                         <p className="result-description">{content?.ArtistDescription}</p>
                                                     </div>
@@ -250,7 +257,7 @@ function SearchPage() {
                                         autocompleteData?.ArtistDetailsPage?.autocomplete?.ArtistName?.map((name, idx) => {
                                             return (
                                                 <div key={idx}>
-                                                    <a onClick={(event) => handleFacetClick(event)}>                                                    
+                                                    <a onClick={(event) => handleFacetClick(event)}>
                                                         <i>{name}</i>
                                                     </a>
                                                 </div>
@@ -261,7 +268,7 @@ function SearchPage() {
                                         autocompleteData?.ArtistDetailsPage?.autocomplete?.StageName?.map((name, idx) => {
                                             return (
                                                 <div key={idx}>
-                                                    <a onClick={(event) => handleFacetClick(event)}>                                                    
+                                                    <a onClick={(event) => handleFacetClick(event)}>
                                                         <i>{name}</i>
                                                     </a>
                                                 </div>
@@ -315,7 +322,7 @@ function SearchPage() {
                                                                 <p className="result-name">{content?.Name}</p>
                                                             </a>
                                                         </div>
-                                                    </div>                             
+                                                    </div>
                                                     <div>
                                                         <p className="result-description">{content?.RelativePath}</p>
                                                     </div>
