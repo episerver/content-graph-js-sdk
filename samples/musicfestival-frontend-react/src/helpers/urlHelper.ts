@@ -1,4 +1,7 @@
 import {Ranking} from "../generated";
+import { Buffer } from "buffer";
+import { Payload } from "../models/Payload";
+
 
 const isEditOrPreviewMode = () => {
     const params = window.location.search.split(/[&?]+/);
@@ -14,10 +17,11 @@ const getImageUrl = (path = "") => {
     return path.startsWith("http") ? path : siteUrl + path
 }
 
-const extractParams = (urlPath: string) => {
+const extractParams = (token: string, urlPath: string) => {
+    const base64String = token.substring(token.indexOf('.') + 1, token.lastIndexOf('.'));
+    const payload: Payload = JSON.parse(Buffer.from(base64String, 'base64').toString());
+
     let relativePath = (urlPath.length > 1 && urlPath != "/search") ? urlPath : '/en'
-    let contentId
-    let workId = undefined
 
     const epiContentPrefix = "/EPiServer/CMS/Content/";
     if (relativePath.startsWith(epiContentPrefix)) {
@@ -29,13 +33,6 @@ const extractParams = (urlPath: string) => {
     }
 
     if (relativePath.includes(",")) {
-        const [, , idString] = relativePath.split(",")
-        if (idString.includes("_")) {
-            [contentId, workId] = idString.split("_").map(x => parseInt(x));
-
-        } else {
-            contentId = parseInt(idString)
-        }
         relativePath = relativePath.substring(0, relativePath.indexOf(','));
     }
 
@@ -46,7 +43,7 @@ const extractParams = (urlPath: string) => {
     const urlSegments = relativePath.split('/')
     const language = urlSegments.length ? urlSegments.find(s => s.length === 2) : "en"
 
-    return {relativePath, locales: language, language, contentId, workId}
+    return { relativePath, locales: language, language, contentId: parseInt(payload.c_id.toString()) , workId: parseInt(payload.c_ver.toString()) }
 }
 
 const getRankingFromSearchParams = (searchParams: URLSearchParams): Ranking => {

@@ -8,12 +8,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="EPiServer.CMS" Version="12.20.0" />
-    <PackageReference Include="EPiServer.ContentDefinitionsApi" Version="3.8.0" />
-    <PackageReference Include="EPiServer.ContentDeliveryApi.Cms" Version="3.8.0" />
-    <PackageReference Include="EPiServer.ContentManagementApi" Version="3.8.0" />
+    <PackageReference Include="EPiServer.CMS" Version="12.22.4" />
+    <PackageReference Include="EPiServer.ContentDefinitionsApi" Version="3.9.0" />
+    <PackageReference Include="EPiServer.ContentDeliveryApi.Cms" Version="3.9.0" />
+    <PackageReference Include="EPiServer.ContentManagementApi" Version="3.9.0" />
     <PackageReference Include="EPiServer.OpenIDConnect" Version="3.8.0" />
     <PackageReference Include="EPiServer.OpenIDConnect.UI" Version="3.8.0" />
-    <PackageReference Include="Optimizely.ContentGraph.Cms" Version="3.0.0" />
+    <PackageReference Include="Optimizely.ContentGraph.Cms" Version="3.4.0-pre-69547" />
   </ItemGroup>
 </Project>

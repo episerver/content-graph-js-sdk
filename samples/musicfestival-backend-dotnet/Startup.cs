@@ -62,64 +62,13 @@ public class Startup
                     .Add("narrow", "Narrow", "u-md-size1of3", string.Empty, "epi-icon__layout--one-third");
             });
 
-        // services.AddOpenIddict();
-
-        Console.WriteLine("Adding OpenID Connect");
-        services.AddOpenIDConnect<ApplicationUser>(
-            useDevelopmentCertificate: true,
-            signingCertificate: null,
-            encryptionCertificate: null,
-            createSchema: true,
-            options =>
-            {
-                var baseUri = new Uri(_frontendUri);
-                options.RequireHttps = !_webHostingEnvironment.IsDevelopment();
-                options.DisableTokenPruning = true;
-                options.DisableSlidingRefreshTokenExpiration = true;
-
-                options.Applications.Add(new OpenIDConnectApplication
-                {
-                    ClientId = "frontend",
-                    Scopes = { "openid", "offline_access", "profile", "email", "roles", ContentDeliveryApiOptionsDefaults.Scope },
-                    PostLogoutRedirectUris = { baseUri },
-                    RedirectUris =
-                    {
-                        new Uri(baseUri, "/"),
-                        new Uri(baseUri, "/login-callback"),
-                        new Uri(baseUri, "/login-renewal"),
-                    },
-                });
-
-                options.Applications.Add(new OpenIDConnectApplication
-                {
-                    ClientId = "cli",
-                    ClientSecret = "cli",
-                    Scopes = { ContentDefinitionsApiOptionsDefaults.Scope },
-                });
-            });
-
-        services.AddOpenIDConnectUI();
-
-        // No encrypt the token so it's easier to debug, not recommend for production.
-        services.AddOpenIddict()
-            .AddServer(options => options.DisableAccessTokenEncryption());
-
-        services.AddContentDefinitionsApi(OpenIDConnectOptionsDefaults.AuthenticationScheme);
-
-        services.AddContentDeliveryApi(OpenIDConnectOptionsDefaults.AuthenticationScheme);
-
-        services.AddContentManagementApi(OpenIDConnectOptionsDefaults.AuthenticationScheme, options =>
+        services.AddContentDefinitionsApi();
+        services.AddContentDeliveryApi();
+        services.AddContentManagementApi(options =>
         {
             options.DisableScopeValidation = false;
             options.RequiredRole = "WebAdmins";
         });
-        // services.AddContentManagementApi(string.Empty);
-
-        services.AddOpenIddict()
-            .AddServer(options =>
-            {
-                options.DisableAccessTokenEncryption();
-            });
 
         services.ConfigureForContentDeliveryClient();
 
@@ -133,7 +82,10 @@ public class Startup
             o.IncludeNumericContentIdentifier = true;
         });
 
-        services.AddContentGraph(_configuration, OpenIDConnectOptionsDefaults.AuthenticationScheme);
+        services.AddContentGraph(options =>
+        {
+            options.EnablePreviewTokens = true;
+        });
         services.AddHostedService<ProvisionDatabase>();
     }
 

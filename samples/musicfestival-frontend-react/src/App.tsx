@@ -16,7 +16,7 @@ import { BlockPage } from './pages/BlockPage';
 
 let previousSavedMessage: any = null;
 const singleKeyUrl = process.env.REACT_APP_CONTENT_GRAPH_GATEWAY_URL as string
-const hmacKeyUrl = process.env.REACT_APP_CG_PROXY_URL as string
+const hmacKeyUrl = process.env.REACT_APP_CG_CONTENT_URL as string
 
 const App = () => {
     const queryClient = useQueryClient();
@@ -36,21 +36,19 @@ const App = () => {
         }
     });
 
-    authService.getAccessToken().then((_token) => {
-        _token && setToken(_token)
-        modeEdit && !_token && !data && authService.login()
-    })
+    const urlParams = new URLSearchParams(window.location.search);
+    const previewToken = urlParams.get('preview_token') ?? "";
 
-    variables = generateGQLQueryVars(token, window.location.pathname)
+    variables = generateGQLQueryVars(previewToken, window.location.pathname)
     if (modeEdit) {
-        if (token) {
-            headers = { 'Authorization': 'Bearer ' + token };
+        if (previewToken) {
+            headers = { 'Authorization': 'Bearer ' + previewToken };
         }
         url = hmacKeyUrl
         subcribeContentSavedEvent((message: any) => mutate(message))
     }
 
-    const { data: queryData } = useStartQuery({ endpoint: url, fetchParams: { headers: headers } }, variables, { staleTime: 2000, enabled: !modeEdit || !!token });
+    const { data: queryData } = useStartQuery({ endpoint: url, fetchParams: { headers: headers } }, variables, { staleTime: 2000, enabled: !modeEdit || !!previewToken });
     data = queryData
     
     if (!data) {
