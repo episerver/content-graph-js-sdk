@@ -1,4 +1,4 @@
 export interface Payload {
-    c_id: number;
-    c_ver: number;
+    c_id?: number;
+    c_ver?: number;
 }

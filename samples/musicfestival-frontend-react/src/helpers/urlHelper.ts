@@ -18,9 +18,16 @@ const getImageUrl = (path = "") => {
 }
 
 const extractParams = (token: string, urlPath: string) => {
-    const base64String = token.substring(token.indexOf('.') + 1, token.lastIndexOf('.'));
-    const payload: Payload = JSON.parse(Buffer.from(base64String, 'base64').toString());
+    var payload: Payload = {
+        c_id: undefined,
+        c_ver: undefined
+    };
 
+    if (token) {
+        const base64String = token.substring(token.indexOf('.') + 1, token.lastIndexOf('.'));
+        payload = JSON.parse(Buffer.from(base64String, 'base64').toString());
+    }
+    
     let relativePath = (urlPath.length > 1 && urlPath != "/search") ? urlPath : '/en'
 
     const epiContentPrefix = "/EPiServer/CMS/Content/";
@@ -43,7 +50,10 @@ const extractParams = (token: string, urlPath: string) => {
     const urlSegments = relativePath.split('/')
     const language = urlSegments.length ? urlSegments.find(s => s.length === 2) : "en"
 
-    return { relativePath, locales: language, language, contentId: parseInt(payload.c_id.toString()) , workId: parseInt(payload.c_ver.toString()) }
+    const contentId = payload.c_id && parseInt(payload.c_id!.toString());
+    const workId = payload.c_ver && parseInt(payload.c_ver!.toString());
+
+    return { relativePath, locales: language, language, contentId: contentId, workId: workId }
 }
 
 const getRankingFromSearchParams = (searchParams: URLSearchParams): Ranking => {

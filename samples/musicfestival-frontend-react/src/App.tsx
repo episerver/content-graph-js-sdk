@@ -16,7 +16,7 @@ import { BlockPage } from './pages/BlockPage';
 
 let previousSavedMessage: any = null;
 const singleKeyUrl = process.env.REACT_APP_CONTENT_GRAPH_GATEWAY_URL as string
-const hmacKeyUrl = process.env.REACT_APP_CG_CONTENT_URL as string
+const hmacKeyUrl = process.env.REACT_APP_CG_PREVIEW_URL as string
 
 const App = () => {
     const queryClient = useQueryClient();
