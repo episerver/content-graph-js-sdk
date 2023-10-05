@@ -5,7 +5,7 @@ import ArtistContainerPage from './pages/ArtistContainerPage';
 import ArtistDetailsPage from './pages/ArtistDetailsPage';
 import authService from './authService';
 import { useState } from 'react';
-import { isEditOrPreviewMode } from './helpers/urlHelper'
+import { isEditOrPreviewMode, getPreviewTokenFromUrl } from './helpers/urlHelper'
 import './App.css';
 import Footer from './components/Footer';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
@@ -36,8 +36,7 @@ const App = () => {
         }
     });
 
-    const urlParams = new URLSearchParams(window.location.search);
-    const previewToken = urlParams.get('preview_token') ?? "";
+    const previewToken = getPreviewTokenFromUrl(window.location.search);
 
     variables = generateGQLQueryVars(previewToken, window.location.pathname)
     if (modeEdit) {

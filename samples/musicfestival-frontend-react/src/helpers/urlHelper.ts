@@ -66,4 +66,12 @@ const getRankingFromSearchParams = (searchParams: URLSearchParams): Ranking => {
     return Ranking.Relevance;
 }
 
-export {isEditOrPreviewMode, extractParams, getImageUrl, getRankingFromSearchParams}
+const getPreviewTokenFromUrl = (queryString: string) => {
+    const urlParams = new URLSearchParams(queryString);
+    const previewToken = urlParams.get('preview_token') ?? "";
+
+    return previewToken;
+}
+
+
+export {isEditOrPreviewMode, extractParams, getImageUrl, getRankingFromSearchParams, getPreviewTokenFromUrl}

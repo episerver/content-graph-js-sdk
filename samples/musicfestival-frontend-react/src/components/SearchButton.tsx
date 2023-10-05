@@ -2,7 +2,7 @@ import {useEffect, useRef, useState} from "react";
 import {useSearchParams} from "react-router-dom";
 import {ArtistAutocompleteQuery, Ranking, useArtistAutocompleteQuery} from "../generated";
 import {generateGQLSearchQueryVars} from "../helpers/queryCacheHelper";
-import {getRankingFromSearchParams, isEditOrPreviewMode} from "../helpers/urlHelper";
+import {getRankingFromSearchParams, isEditOrPreviewMode, getPreviewTokenFromUrl } from "../helpers/urlHelper";
 
 type CustomString = string | number | readonly string[] | undefined
 
@@ -18,8 +18,7 @@ function SearchButton({filterValue}: any): JSX.Element {
     const [orderBy] = useState("ASC")
 
     let modeEdit = isEditOrPreviewMode()
-    const urlParams = new URLSearchParams(window.location.search);
-    const previewToken = urlParams.get('preview_token') ?? "";
+    const previewToken = getPreviewTokenFromUrl(window.location.search);
 
     let variables = generateGQLSearchQueryVars(previewToken, window.location.pathname, searchValue as string | null, orderBy, ranking);
     const autocompleteData = useArtistAutocompleteQuery({endpoint: singleKeyUrl}, variables, {

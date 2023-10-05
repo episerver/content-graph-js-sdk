@@ -1,13 +1,10 @@
 using System.Runtime.InteropServices;
 using EPiServer.Cms.Shell;
 using EPiServer.Cms.UI.AspNetIdentity;
-using EPiServer.ContentApi.Cms;
 using EPiServer.ContentApi.Core.DependencyInjection;
-using EPiServer.ContentDefinitionsApi;
 using EPiServer.Core;
 using EPiServer.Data;
 using EPiServer.DependencyInjection;
-using EPiServer.OpenIDConnect;
 using EPiServer.Web;
 using EPiServer.Web.Routing;
 
