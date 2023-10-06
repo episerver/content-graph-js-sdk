@@ -1,10 +1,13 @@
 using System.Runtime.InteropServices;
 using EPiServer.Cms.Shell;
 using EPiServer.Cms.UI.AspNetIdentity;
+using EPiServer.ContentApi.Cms;
 using EPiServer.ContentApi.Core.DependencyInjection;
+using EPiServer.ContentDefinitionsApi;
 using EPiServer.Core;
 using EPiServer.Data;
 using EPiServer.DependencyInjection;
+using EPiServer.OpenIDConnect;
 using EPiServer.Web;
 using EPiServer.Web.Routing;
 
@@ -36,7 +39,7 @@ public class Startup
                                 User=sa;Password=Admin123!;
                                 Trust Server Certificate=True;Connect Timeout=30";
         var connectionstring = _configuration.GetConnectionString("EPiServerDB")
-                                ?? (isMacOs? macOsConnString: localDBConnString);
+                                ?? (isMacOs ? macOsConnString : localDBConnString);
         services.Configure<DataAccessOptions>(o =>
         {
             o.SetConnectionString(connectionstring);
@@ -59,13 +62,64 @@ public class Startup
                     .Add("narrow", "Narrow", "u-md-size1of3", string.Empty, "epi-icon__layout--one-third");
             });
 
-        services.AddContentDefinitionsApi();
-        services.AddContentDeliveryApi();
-        services.AddContentManagementApi(options =>
+        // services.AddOpenIddict();
+
+        Console.WriteLine("Adding OpenID Connect");
+        services.AddOpenIDConnect<ApplicationUser>(
+            useDevelopmentCertificate: true,
+            signingCertificate: null,
+            encryptionCertificate: null,
+            createSchema: true,
+            options =>
+            {
+                var baseUri = new Uri(_frontendUri);
+                options.RequireHttps = !_webHostingEnvironment.IsDevelopment();
+                options.DisableTokenPruning = true;
+                options.DisableSlidingRefreshTokenExpiration = true;
+
+                options.Applications.Add(new OpenIDConnectApplication
+                {
+                    ClientId = "frontend",
+                    Scopes = { "openid", "offline_access", "profile", "email", "roles", ContentDeliveryApiOptionsDefaults.Scope },
+                    PostLogoutRedirectUris = { baseUri },
+                    RedirectUris =
+                    {
+                        new Uri(baseUri, "/"),
+                        new Uri(baseUri, "/login-callback"),
+                        new Uri(baseUri, "/login-renewal"),
+                    },
+                });
+
+                options.Applications.Add(new OpenIDConnectApplication
+                {
+                    ClientId = "cli",
+                    ClientSecret = "cli",
+                    Scopes = { ContentDefinitionsApiOptionsDefaults.Scope },
+                });
+            });
+
+        services.AddOpenIDConnectUI();
+
+        // No encrypt the token so it's easier to debug, not recommend for production.
+        services.AddOpenIddict()
+            .AddServer(options => options.DisableAccessTokenEncryption());
+
+        services.AddContentDefinitionsApi(OpenIDConnectOptionsDefaults.AuthenticationScheme);
+
+        services.AddContentDeliveryApi(OpenIDConnectOptionsDefaults.AuthenticationScheme);
+
+        services.AddContentManagementApi(OpenIDConnectOptionsDefaults.AuthenticationScheme, options =>
         {
             options.DisableScopeValidation = false;
             options.RequiredRole = "WebAdmins";
         });
+        // services.AddContentManagementApi(string.Empty);
+
+        services.AddOpenIddict()
+            .AddServer(options =>
+            {
+                options.DisableAccessTokenEncryption();
+            });
 
         services.ConfigureForContentDeliveryClient();
 
@@ -79,7 +133,7 @@ public class Startup
             o.IncludeNumericContentIdentifier = true;
         });
 
-        services.AddContentGraph(options =>
+        services.AddContentGraph(OpenIDConnectOptionsDefaults.AuthenticationScheme, options =>
         {
             options.EnablePreviewTokens = true;
         });
@@ -96,7 +150,7 @@ public class Startup
         app.UseStaticFiles();
         app.UseRouting();
         app.UseCors(b => b
-            .WithOrigins(new[] { $"{_frontendUri}"})
+            .WithOrigins(new[] { $"{_frontendUri}" })
             .WithExposedContentDeliveryApiHeaders()
             .WithExposedContentDefinitionApiHeaders()
             .WithHeaders("Authorization")
