@@ -14,6 +14,6 @@
     <PackageReference Include="EPiServer.ContentManagementApi" Version="3.9.0" />
     <PackageReference Include="EPiServer.OpenIDConnect" Version="3.8.0" />
     <PackageReference Include="EPiServer.OpenIDConnect.UI" Version="3.8.0" />
-    <PackageReference Include="Optimizely.ContentGraph.Cms" Version="3.4.0-pre-69547" />
+    <PackageReference Include="Optimizely.ContentGraph.Cms" Version="3.4.0" />
   </ItemGroup>
 </Project>
