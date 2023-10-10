@@ -18,13 +18,10 @@ const getImageUrl = (path = "") => {
 }
 
 const extractParams = (token: string, urlPath: string) => {
-    var payload: Payload = {
-        c_id: undefined,
-        c_ver: undefined
-    };
+    var payload: Payload = {};
 
     if (token) {
-        const base64String = token.substring(token.indexOf('.') + 1, token.lastIndexOf('.'));
+        const base64String = token.split('.')[1]
         payload = JSON.parse(Buffer.from(base64String, 'base64').toString());
     }
     

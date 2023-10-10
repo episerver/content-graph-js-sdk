@@ -16,7 +16,7 @@ import { BlockPage } from './pages/BlockPage';
 
 let previousSavedMessage: any = null;
 const singleKeyUrl = process.env.REACT_APP_CONTENT_GRAPH_GATEWAY_URL as string
-const hmacKeyUrl = process.env.REACT_APP_CG_PREVIEW_URL as string
+const previewUrl = process.env.REACT_APP_CG_PREVIEW_URL as string
 
 const App = () => {
     const queryClient = useQueryClient();
@@ -43,7 +43,7 @@ const App = () => {
         if (previewToken) {
             headers = { 'Authorization': 'Bearer ' + previewToken };
         }
-        url = hmacKeyUrl
+        url = previewUrl
         subcribeContentSavedEvent((message: any) => mutate(message))
     }
 
