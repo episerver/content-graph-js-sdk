@@ -1,4 +1,7 @@
 import {Ranking} from "../generated";
+import { Buffer } from "buffer";
+import { Payload } from "../models/Payload";
+
 
 const isEditOrPreviewMode = () => {
     const params = window.location.search.split(/[&?]+/);
@@ -14,10 +17,15 @@ const getImageUrl = (path = "") => {
     return path.startsWith("http") ? path : siteUrl + path
 }
 
-const extractParams = (urlPath: string) => {
+const extractParams = (token: string, urlPath: string) => {
+    var payload: Payload = {};
+
+    if (token) {
+        const base64String = token.split('.')[1]
+        payload = JSON.parse(Buffer.from(base64String, 'base64').toString());
+    }
+    
     let relativePath = (urlPath.length > 1 && urlPath != "/search") ? urlPath : '/en'
-    let contentId
-    let workId = undefined
 
     const epiContentPrefix = "/EPiServer/CMS/Content/";
     if (relativePath.startsWith(epiContentPrefix)) {
@@ -29,13 +37,6 @@ const extractParams = (urlPath: string) => {
     }
 
     if (relativePath.includes(",")) {
-        const [, , idString] = relativePath.split(",")
-        if (idString.includes("_")) {
-            [contentId, workId] = idString.split("_").map(x => parseInt(x));
-
-        } else {
-            contentId = parseInt(idString)
-        }
         relativePath = relativePath.substring(0, relativePath.indexOf(','));
     }
 
@@ -46,7 +47,10 @@ const extractParams = (urlPath: string) => {
     const urlSegments = relativePath.split('/')
     const language = urlSegments.length ? urlSegments.find(s => s.length === 2) : "en"
 
-    return {relativePath, locales: language, language, contentId, workId}
+    const contentId = payload.c_id && parseInt(payload.c_id!.toString());
+    const workId = payload.c_ver && parseInt(payload.c_ver!.toString());
+
+    return { relativePath, locales: language, language, contentId: contentId, workId: workId }
 }
 
 const getRankingFromSearchParams = (searchParams: URLSearchParams): Ranking => {
@@ -59,4 +63,12 @@ const getRankingFromSearchParams = (searchParams: URLSearchParams): Ranking => {
     return Ranking.Relevance;
 }
 
-export {isEditOrPreviewMode, extractParams, getImageUrl, getRankingFromSearchParams}
+const getPreviewTokenFromUrl = (queryString: string) => {
+    const urlParams = new URLSearchParams(queryString);
+    const previewToken = urlParams.get('preview_token') ?? "";
+
+    return previewToken;
+}
+
+
+export {isEditOrPreviewMode, extractParams, getImageUrl, getRankingFromSearchParams, getPreviewTokenFromUrl}

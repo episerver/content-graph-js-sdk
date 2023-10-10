@@ -4,7 +4,7 @@ import { ContentSavedMessage } from "../models/ContentSavedMessage";
 import { extractParams, isEditOrPreviewMode } from "./urlHelper";
 
 const generateGQLQueryVars = (token: string, pathname: string): any => {
-    const { relativePath, locales, language, contentId, workId } = extractParams(pathname)
+    const { relativePath, locales, language, contentId, workId } = extractParams(token, pathname)
     let variables: any = { relativePath, locales: locales as Locales, language, statusEqual: "Published" };
     if (isEditOrPreviewMode() && token) {
         variables = workId === undefined 
@@ -16,7 +16,7 @@ const generateGQLQueryVars = (token: string, pathname: string): any => {
 }
 
 const generateGQLSearchQueryVars = (token: string, pathname: string, searchParam: string | null, sortOption: string, ranking: Ranking = Ranking.Relevance): any => {
-    const { locales } = extractParams(pathname)
+    const { locales } = extractParams(token, pathname)
     let variables: any = { locales: locales as Locales, searchParam: searchParam, order: sortOption, ranking: ranking };
     if (isEditOrPreviewMode() && token) {
         variables = { locales: locales as Locales, searchParam, sortOption, ranking };

@@ -39,7 +39,7 @@ public class Startup
                                 User=sa;Password=Admin123!;
                                 Trust Server Certificate=True;Connect Timeout=30";
         var connectionstring = _configuration.GetConnectionString("EPiServerDB")
-                                ?? (isMacOs? macOsConnString: localDBConnString);
+                                ?? (isMacOs ? macOsConnString : localDBConnString);
         services.Configure<DataAccessOptions>(o =>
         {
             o.SetConnectionString(connectionstring);
@@ -133,7 +133,10 @@ public class Startup
             o.IncludeNumericContentIdentifier = true;
         });
 
-        services.AddContentGraph(_configuration, OpenIDConnectOptionsDefaults.AuthenticationScheme);
+        services.AddContentGraph(OpenIDConnectOptionsDefaults.AuthenticationScheme, options =>
+        {
+            options.EnablePreviewTokens = true;
+        });
         services.AddHostedService<ProvisionDatabase>();
     }
 
@@ -147,7 +150,7 @@ public class Startup
         app.UseStaticFiles();
         app.UseRouting();
         app.UseCors(b => b
-            .WithOrigins(new[] { $"{_frontendUri}"})
+            .WithOrigins(new[] { $"{_frontendUri}" })
             .WithExposedContentDeliveryApiHeaders()
             .WithExposedContentDefinitionApiHeaders()
             .WithHeaders("Authorization")
