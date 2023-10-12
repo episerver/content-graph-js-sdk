@@ -133,10 +133,7 @@ public class Startup
             o.IncludeNumericContentIdentifier = true;
         });
 
-        services.AddContentGraph(OpenIDConnectOptionsDefaults.AuthenticationScheme, options =>
-        {
-            options.EnablePreviewTokens = true;
-        });
+        services.AddContentGraph(OpenIDConnectOptionsDefaults.AuthenticationScheme);
         services.AddHostedService<ProvisionDatabase>();
     }
 
