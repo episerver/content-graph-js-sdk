@@ -1,7 +1,6 @@
 import { useRouter } from 'next/router';
 import { useSession } from "next-auth/react"
 import { ExtendedSession } from '@/components/LoginBtn';
-import { redirect } from 'next/navigation'
 import { GetServerSideProps } from 'next';
 import { ContextProps } from '@/models/Props';
 
@@ -15,7 +14,7 @@ export default function LoginCallbackPage(props: ContextProps) {
     const {code} = query;
 
     const handleGetAccessToken = async (context: ContextProps) => {
-        const originalUrl = context.context.host;
+        const originalUrl = "http://" + context.context.host;
         const redirect_uri = originalUrl + '/login-callback';
         const response = await fetch(`${process.env.NEXT_PUBLIC_LOGIN_AUTHORITY}/api/episerver/connect/token`, {
             method: 'POST',
@@ -36,13 +35,15 @@ export default function LoginCallbackPage(props: ContextProps) {
         if (response.status == 200) {
             update({...data, token: {accessToken: data.access_token, refreshToken: data.refresh_token}} as ExtendedSession)
             console.log('data: ', data);
-            sessionStorage.setItem('accessToken', data.access_token); // save accessToken to sessionStorage   
+            // sessionStorage.setItem('accessToken', data.access_token); // save accessToken to sessionStorage   
         }        
     };
 
-    handleGetAccessToken(props).then(() => {
-        router.push('/');
-    });
+    if (code) {
+        handleGetAccessToken(props).then(() => {
+            router.push('/');
+        });
+    }
 
     return <></>;
 };
