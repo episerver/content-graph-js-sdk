@@ -15,6 +15,7 @@ export const authOptions: any = {
         client: {
           token_endpoint_auth_method: 'none'
         },
+        // authorization: { params: { scope: "openid profile email offline_access idx_instancepermissions" } },
         style: {
           logo: `${prod ? process.env.NEXTAUTH_URL : process.env.VERCEL_URL}/optimizely.png`,
           logoDark: `${prod ? process.env.NEXTAUTH_URL : process.env.VERCEL_URL}/optimizely.png`,
@@ -34,10 +35,23 @@ export const authOptions: any = {
     }),
   ],
   callbacks: {
-    async jwt(token: JWT ){
+    async signIn({ user, account, profile, email, credentials }: any) {
+      console.log('signIn', user, account, profile, email, credentials)
+      return true
+    },
+    async redirect({ url, baseUrl }: any) {
+      return baseUrl
+    },
+    async jwt({token, account}: any ){
+        console.log('jwt', token)
+        if (account) {
+          token.accessToken = account.access_token
+        }
         return token
     },
-    async session(session: Session){
+    async session({session, token}: any){
+        console.log('session', session)
+        session.accessToken = token.accessToken
         return session
       }
   }
