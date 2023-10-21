@@ -1,11 +1,10 @@
 import { useRouter } from 'next/router';
 import { useSession } from "next-auth/react"
 import { ExtendedSession } from '@/components/LoginBtn';
-import { GetServerSideProps } from 'next';
+import { GetStaticProps } from 'next';
 import { ContextProps } from '@/models/Props';
 
-export const getServerSideProps: GetServerSideProps<ContextProps> =
-  async context => ({ props: { context: {host: context.req.headers.host || ''} } });
+export const getStaticProps: GetStaticProps =async () => ({ props: { context: {host: process.env.NEXTAUTH_URL || ''} } });
 
 export default function LoginCallbackPage(props: ContextProps) {
     const { update } = useSession()
@@ -13,9 +12,9 @@ export default function LoginCallbackPage(props: ContextProps) {
     const { query } = router;
     const {code} = query;
 
-    const handleGetAccessToken = async (context: ContextProps) => {
-        const originalUrl = "http://" + context.context.host;
-        const redirect_uri = originalUrl + '/login-callback';
+    const handleGetAccessToken = async (props: ContextProps) => {
+        const originalUrl = props.context.host;
+        const redirect_uri = originalUrl + 'login-callback';
         const response = await fetch(`${process.env.NEXT_PUBLIC_LOGIN_AUTHORITY}/api/episerver/connect/token`, {
             method: 'POST',
             headers: {

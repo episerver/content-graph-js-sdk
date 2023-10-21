@@ -1,7 +1,6 @@
 import NextAuth, { Session } from "next-auth"
 import OktaProvider from 'next-auth/providers/okta'
 import AzureADProvider from "next-auth/providers/azure-ad";
-import { JWT } from "next-auth/jwt";
 import EPiserverOidcProvider from "@/providers/EPiserverOidcProvider";
 const prod = process.env.NODE_ENV === 'production'
 export const authOptions: any = {
