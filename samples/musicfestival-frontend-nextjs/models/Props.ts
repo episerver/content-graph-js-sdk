@@ -14,7 +14,3 @@ export type StartPageProps = {
     error: any,
     content: StartQuery,
 }
-
-export type ContextProps = {
-    context: any
-}

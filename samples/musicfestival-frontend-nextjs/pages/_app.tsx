@@ -9,9 +9,7 @@ class App extends NextApp {
 
     return (
       <SessionProvider session={session}>
-        {/* <QueryClientProvider client={client}> */}
         <Component {...pageProps} />
-        {/* </QueryClientProvider> */}
       </SessionProvider>
     )
   }
