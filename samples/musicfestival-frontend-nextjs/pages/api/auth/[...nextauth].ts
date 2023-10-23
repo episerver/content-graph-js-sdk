@@ -30,15 +30,24 @@ export const authOptions: any = {
       tenantId: `${process.env.AZURE_AD_TENANT_ID}`,
     }),
     EPiserverOidcProvider({
-      clientId: `frontend`,
+      clientId: 'frontend',
+      clientSecret: '',
+      client: {
+        token_endpoint_auth_method: 'client_secret_post'
+      },
+      code_verifier: '123',
     }),
   ],
   callbacks: {
+    authorized({ req , token }:any) {
+      if(token) return true // If there is a token, the user is authenticated
+    },
     async signIn({ user, account, profile, email, credentials }: any) {
       console.log('signIn', user, account, profile, email, credentials)
       return true
     },
     async redirect({ url, baseUrl }: any) {
+      console.log('redirect', url, baseUrl)
       return baseUrl
     },
     async jwt({token, account}: any ){
