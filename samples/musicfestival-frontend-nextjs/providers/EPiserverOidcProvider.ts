@@ -23,13 +23,11 @@ export default function EPiserverOidcProvider (options: Record<string, any>) {
             logo: `${prod ? process.env.NEXTAUTH_URL : process.env.VERCEL_URL}/optimizely.png`,
             logoDark: `${prod ? process.env.NEXTAUTH_URL : process.env.VERCEL_URL}/optimizely.png`,
         },
-        profile(profile: any, tokens: any) {
-            return {
-                    id: profile.id,
-                    name: profile.name,
-                    email: profile.email
-                   };
-           },
+        profile(profile: any) {
+            console.log('profile', profile)
+            profile.id = profile.sub
+            return profile
+        },
         options,
       }
 }
