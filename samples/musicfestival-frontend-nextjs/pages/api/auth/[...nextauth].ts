@@ -31,7 +31,7 @@ export const authOptions: any = {
       tenantId: `${process.env.AZURE_AD_TENANT_ID}`,
     }),
     EPiserverOidcProvider({
-      clientId: 'frontend',
+      clientId: `${process.env.NEXT_PUBLIC_EPISERVER_CLIENT_ID}`,
       authorization: { params: { scope: "openid profile offline_access email roles epi_content_delivery" } },
       clientSecret: '',
       checks: ['pkce', 'state', 'nonce'],
