@@ -2,6 +2,8 @@ import NextAuth, { Session } from "next-auth"
 import OktaProvider from 'next-auth/providers/okta'
 import AzureADProvider from "next-auth/providers/azure-ad";
 import EPiserverOidcProvider from "@/providers/EPiserverOidcProvider";
+import { JWT } from "next-auth/jwt";
+
 const prod = process.env.NODE_ENV === 'production'
 export const authOptions: any = {
   providers: [
@@ -14,7 +16,6 @@ export const authOptions: any = {
         client: {
           token_endpoint_auth_method: 'none'
         },
-        // authorization: { params: { scope: "openid profile email offline_access idx_instancepermissions" } },
         style: {
           logo: `${prod ? process.env.NEXTAUTH_URL : process.env.VERCEL_URL}/optimizely.png`,
           logoDark: `${prod ? process.env.NEXTAUTH_URL : process.env.VERCEL_URL}/optimizely.png`,
@@ -31,6 +32,7 @@ export const authOptions: any = {
     }),
     EPiserverOidcProvider({
       clientId: 'frontend',
+      authorization: { params: { scope: "openid profile offline_access email roles epi_content_delivery" } },
       clientSecret: '',
       checks: ['pkce', 'state', 'nonce'],
       client: {
@@ -38,28 +40,16 @@ export const authOptions: any = {
       },
     }),
   ],
-  // cookies: {
-  //   pkceCodeVerifier: {
-  //     name: 'next-auth.pkce.code_verifier',
-  //     options: {
-  //       httpOnly: true,
-  //       sameSite: 'none',
-  //       path: '/',
-  //       secure: process.env.NODE_ENV === 'production',
-  //     },
-  //   },
-  // },
   callbacks: {
-    async jwt({token, account}: any ){
-        console.log('jwt', token)
+    async jwt({token, account}: any){
         if (account) {
-          token.accessToken = account.access_token
+          const accessTokenParsed = JSON.parse(Buffer.from(account.access_token.split('.')[1], 'base64').toString());
+          token.user = accessTokenParsed
         }
         return token
     },
-    async session({session, token}: any){
-        console.log('session', session)
-        session.accessToken = token.accessToken
+    async session(session: Session, token: JWT){
+        session = {...token, ...session}
         return session
       }
   }

@@ -6,14 +6,13 @@ export type ExtendedSession = Session & {
 }
 
 export default function Component() {
-  const { data: session } = useSession()
-  console.log('LoginBtn', session)
+  const { data: session, status } = useSession()
   const extendedSession: ExtendedSession = session as ExtendedSession
-  if (extendedSession) {
-    console.log('LoginBtn', extendedSession)
+  if (extendedSession && status === "authenticated") {
+    const userName = extendedSession.token?.user?.name || extendedSession.token?.name
     return (
       <div className="btn">
-        <button onClick={() => signOut()}>{extendedSession.token?.token?.user?.name}</button>
+        <button onClick={() => signOut()}>{userName}</button>
       </div>
     )
   }
