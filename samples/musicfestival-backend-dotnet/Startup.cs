@@ -80,6 +80,7 @@ public class Startup
                 options.Applications.Add(new OpenIDConnectApplication
                 {
                     ClientId = "frontend",
+                    // ClientSecret = "frontend",
                     Scopes = { "openid", "offline_access", "profile", "email", "roles", ContentDeliveryApiOptionsDefaults.Scope },
                     PostLogoutRedirectUris = { baseUri },
                     RedirectUris =
@@ -87,6 +88,7 @@ public class Startup
                         new Uri(baseUri, "/"),
                         new Uri(baseUri, "/login-callback"),
                         new Uri(baseUri, "/login-renewal"),
+                        new Uri(baseUri, "/api/auth/callback/optimizely_cms"),
                     },
                 });
 
@@ -147,7 +149,7 @@ public class Startup
         app.UseStaticFiles();
         app.UseRouting();
         app.UseCors(b => b
-            .WithOrigins(new[] { $"{_frontendUri}" })
+            .WithOrigins(new[] { $"{_frontendUri}", "*" })
             .WithExposedContentDeliveryApiHeaders()
             .WithExposedContentDefinitionApiHeaders()
             .WithHeaders("Authorization")
