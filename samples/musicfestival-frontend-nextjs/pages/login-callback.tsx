@@ -1,16 +1,22 @@
 import { useRouter } from 'next/router';
-import { useSession } from "next-auth/react"
+import { getSession, useSession } from "next-auth/react"
 import { ExtendedSession } from '@/components/LoginBtn';
-import { GetStaticProps } from 'next';
+import { GetServerSideProps, GetStaticProps } from 'next';
 import { ContextProps } from '@/models/Props';
+import useStorage from '@/hook/useStorage';
 
-export const getStaticProps: GetStaticProps =async () => ({ props: { context: {host: process.env.NEXTAUTH_URL || ''} } });
+export const getStaticProps: GetStaticProps = async (context) => {
+    console.log('getStaticProps: ', context)
+    return ({ props: { context: {host: process.env.NEXTAUTH_URL || ''} } })
+};
 
 export default function LoginCallbackPage(props: ContextProps) {
-    const { update } = useSession()
+    const { status, update } = useSession()
+    const {getItem, setItem} = useStorage()
     const router = useRouter();
     const { query } = router;
     const {code} = query;
+    console.log('status', status)
 
     const handleGetAccessToken = async (props: ContextProps) => {
         const originalUrl = props.context.host;
@@ -34,7 +40,8 @@ export default function LoginCallbackPage(props: ContextProps) {
         if (response.status == 200) {
             update({...data, token: {accessToken: data.access_token, refreshToken: data.refresh_token}} as ExtendedSession)
             console.log('data: ', data);
-            // sessionStorage.setItem('accessToken', data.access_token); // save accessToken to sessionStorage   
+            const token = getItem('token');
+            token ?? setItem('token', JSON.stringify(data)); 
         }        
     };
 
@@ -43,7 +50,6 @@ export default function LoginCallbackPage(props: ContextProps) {
             router.push('/');
         });
     }
-
     return <></>;
 };
 
