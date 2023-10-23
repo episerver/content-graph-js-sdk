@@ -32,24 +32,24 @@ export const authOptions: any = {
     EPiserverOidcProvider({
       clientId: 'frontend',
       clientSecret: '',
+      checks: ['pkce', 'state', 'nonce'],
       client: {
-        token_endpoint_auth_method: 'client_secret_post'
+        token_endpoint_auth_method: 'none'
       },
-      code_verifier: '123',
     }),
   ],
+  // cookies: {
+  //   pkceCodeVerifier: {
+  //     name: 'next-auth.pkce.code_verifier',
+  //     options: {
+  //       httpOnly: true,
+  //       sameSite: 'none',
+  //       path: '/',
+  //       secure: process.env.NODE_ENV === 'production',
+  //     },
+  //   },
+  // },
   callbacks: {
-    authorized({ req , token }:any) {
-      if(token) return true // If there is a token, the user is authenticated
-    },
-    async signIn({ user, account, profile, email, credentials }: any) {
-      console.log('signIn', user, account, profile, email, credentials)
-      return true
-    },
-    async redirect({ url, baseUrl }: any) {
-      console.log('redirect', url, baseUrl)
-      return baseUrl
-    },
     async jwt({token, account}: any ){
         console.log('jwt', token)
         if (account) {
