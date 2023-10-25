@@ -30,16 +30,6 @@ const Home = (props: StartPageProps) => {
                                 </div>
                             )
                         }
-                        // else if (content?.__typename === 'ArtistContainerPage') {
-                        //     return (
-                        //         <ArtistContainerPage content={content} key={idx} />
-                        //     )
-                        // }
-                        // else if (content?.__typename === 'ArtistDetailsPage') {
-                        //     return (
-                        //         <ArtistDetailsPage content={content} key={idx} />
-                        //     )
-                        // }
                         return <BlockPage content={content} key={idx} />
                     })
                 }

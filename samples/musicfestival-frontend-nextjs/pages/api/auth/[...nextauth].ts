@@ -1,8 +1,9 @@
 import NextAuth, { Session } from "next-auth"
 import OktaProvider from 'next-auth/providers/okta'
 import AzureADProvider from "next-auth/providers/azure-ad";
-import { JWT } from "next-auth/jwt";
 import EPiserverOidcProvider from "@/providers/EPiserverOidcProvider";
+import { JWT } from "next-auth/jwt";
+
 const prod = process.env.NODE_ENV === 'production'
 export const authOptions: any = {
   providers: [
@@ -30,14 +31,25 @@ export const authOptions: any = {
       tenantId: `${process.env.AZURE_AD_TENANT_ID}`,
     }),
     EPiserverOidcProvider({
-      clientId: `frontend`,
+      clientId: `${process.env.NEXT_PUBLIC_EPISERVER_CLIENT_ID}`,
+      authorization: { params: { scope: "openid profile offline_access email roles epi_content_delivery" } },
+      clientSecret: '',
+      checks: ['pkce', 'state', 'nonce'],
+      client: {
+        token_endpoint_auth_method: 'none'
+      },
     }),
   ],
   callbacks: {
-    async jwt(token: JWT ){
+    async jwt({token, account}: any){
+        if (account) {
+          const accessTokenParsed = JSON.parse(Buffer.from(account.access_token.split('.')[1], 'base64').toString());
+          token.user = accessTokenParsed
+        }
         return token
     },
-    async session(session: Session){
+    async session(session: Session, token: JWT){
+        session = {...token, ...session}
         return session
       }
   }

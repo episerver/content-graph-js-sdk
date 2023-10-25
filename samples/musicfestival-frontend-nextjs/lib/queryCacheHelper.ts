@@ -18,7 +18,8 @@ const generateGQLQueryVars = (token: string, pathname: string): any => {
 const updateStartQueryCache = (queryClient: QueryClient, data: StartQuery | undefined, variables: any, message: ContentSavedMessage) => {
     const hasComplexProperty = message.properties.find(p => !isSimpleProperty(p.value)) !== undefined
     if (hasComplexProperty) {
-        queryClient.invalidateQueries(['Start', variables]);
+        // TODO: need to update this invalidation logic to be more specific
+        // queryClient.invalidateQueries(['Start', variables]);
         return;
     }
 

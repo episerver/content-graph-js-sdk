@@ -87,6 +87,7 @@ public class Startup
                         new Uri(baseUri, "/"),
                         new Uri(baseUri, "/login-callback"),
                         new Uri(baseUri, "/login-renewal"),
+                        new Uri(baseUri, "/api/auth/callback/optimizely_cms"),
                     },
                 });
 
@@ -147,7 +148,7 @@ public class Startup
         app.UseStaticFiles();
         app.UseRouting();
         app.UseCors(b => b
-            .WithOrigins(new[] { $"{_frontendUri}" })
+            .WithOrigins(new[] { $"{_frontendUri}", "*" })
             .WithExposedContentDeliveryApiHeaders()
             .WithExposedContentDefinitionApiHeaders()
             .WithHeaders("Authorization")

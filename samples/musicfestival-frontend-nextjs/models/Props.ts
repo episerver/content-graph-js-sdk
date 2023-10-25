@@ -12,5 +12,5 @@ export type ArtistDetailsPageProps = {
 
 export type StartPageProps = {
     error: any,
-    content: StartQuery
+    content: StartQuery,
 }
