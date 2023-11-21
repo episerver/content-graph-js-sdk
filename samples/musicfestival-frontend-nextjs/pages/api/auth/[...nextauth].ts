@@ -12,6 +12,7 @@ export const authOptions: any = {
         clientId: `${process.env.OKTA_CLIENT_ID}`,
         issuer: `${process.env.OKTA_ISSUER}`,
         clientSecret: '',
+        authorization: { params: { scope: "openid email profile offline_access" } },
         checks: ['pkce', 'state', 'nonce'],
         client: {
           token_endpoint_auth_method: 'none'
@@ -29,6 +30,11 @@ export const authOptions: any = {
       clientId: `${process.env.AZURE_AD_CLIENT_ID}`,
       clientSecret: `${process.env.AZURE_AD_CLIENT_SECRET}`,
       tenantId: `${process.env.AZURE_AD_TENANT_ID}`,
+      authorization: {
+        params: {
+          scope: "openid profile email offline_access",
+        },
+      },
     }),
     EPiserverOidcProvider({
       clientId: `${process.env.NEXT_PUBLIC_EPISERVER_CLIENT_ID}`,
