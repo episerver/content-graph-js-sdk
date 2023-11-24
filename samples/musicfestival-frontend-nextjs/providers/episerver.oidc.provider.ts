@@ -1,4 +1,4 @@
-import { baseUrl } from "@/Constants";
+import { baseUrl } from "@/constants";
 
 export default function EPiserverOidcProvider (options: Record<string, any>) {
       return {
