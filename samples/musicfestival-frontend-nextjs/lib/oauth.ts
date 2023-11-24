@@ -1,4 +1,3 @@
-import { Account } from "next-auth";
 
 const providerConfig: { [key: string]: { tokenUrl: string; clientId?: string; clientSecret?: string } } = {
     "azure-ad": {
@@ -16,7 +15,7 @@ const providerConfig: { [key: string]: { tokenUrl: string; clientId?: string; cl
     },
   };
   
- export default async function refreshAccessToken(token: any) {
+ export async function refreshAccessToken(token: any) {
     try {
         if (!token.refreshToken) throw new Error('No refresh token available');
         const { provider } = token;
