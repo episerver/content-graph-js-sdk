@@ -2,7 +2,7 @@ import NextAuth, { Session } from "next-auth"
 import OktaProvider from 'next-auth/providers/okta'
 import AzureADProvider from "next-auth/providers/azure-ad";
 import EPiserverOidcProvider from "@/providers/episerver.oidc.provider";
-import refreshAccessToken from "@/lib/oauth";
+import {refreshAccessToken} from "@/lib/oauth";
 import { baseUrl } from "@/constants";
 
 export const authOptions: any = {
