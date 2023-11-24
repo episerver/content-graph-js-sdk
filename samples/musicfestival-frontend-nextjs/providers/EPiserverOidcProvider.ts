@@ -1,4 +1,5 @@
-const prod = process.env.NODE_ENV === 'production'
+import { baseUrl } from "@/Constants";
+
 export default function EPiserverOidcProvider (options: Record<string, any>) {
       return {
         id: "optimizely_cms",
@@ -11,18 +12,17 @@ export default function EPiserverOidcProvider (options: Record<string, any>) {
             grant_type: "authorization_code",
             redirect_uri: `${process.env.NEXTAUTH_URL}api/auth/callback/optimizely_cms`,
         } },
-        authorizationUrl: `${process.env.NEXT_PUBLIC_LOGIN_AUTHORITY}/api/episerver/connect/authorize?response_type=code`,
-        requestTokenUrl: `${process.env.NEXT_PUBLIC_LOGIN_AUTHORITY}/api/episerver/connect/authorize`,
-        accessTokenUrl: `${process.env.NEXT_PUBLIC_LOGIN_AUTHORITY}/api/episerver/connect/token`,
-        jwks_endpoint: `${process.env.NEXT_PUBLIC_LOGIN_AUTHORITY}/.well-known/jwks`,
-        userinfo: `${process.env.NEXT_PUBLIC_LOGIN_AUTHORITY}/api/episerver/connect/userinfo`,
         checks: ['pcke', 'state', 'none'],
         style: {
-            logo: `${prod ? process.env.NEXTAUTH_URL : process.env.VERCEL_URL}/optimizely.png`,
-            logoDark: `${prod ? process.env.NEXTAUTH_URL : process.env.VERCEL_URL}/optimizely.png`,
+            logo: `${baseUrl}/optimizely.png`,
+            logoDark: `${baseUrl}/optimizely.png`,
         },
-        profile(profile: any) {
+        profile(profile: any, tokens: any) {
+            const accessTokenParsed = JSON.parse(Buffer.from(tokens.access_token.split('.')[1], 'base64').toString());
             profile.id = profile.sub
+            profile.name = profile.name ?? accessTokenParsed.name
+            profile.email = profile.email ?? accessTokenParsed.email
+            profile.role = profile.role ?? accessTokenParsed.role
             return profile
         },
         options,

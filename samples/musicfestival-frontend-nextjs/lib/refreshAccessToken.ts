@@ -1,8 +1,8 @@
 import { Account } from "next-auth";
 
 const providerConfig: { [key: string]: { tokenUrl: string; clientId?: string; clientSecret?: string } } = {
-    "https://sts.windows.net/7c4a1b79-4b8e-4ac7-b7e1-c5c3c5a4c139/": {
-      tokenUrl: "https://sts.windows.net/7c4a1b79-4b8e-4ac7-b7e1-c5c3c5a4c139/oauth2/token",
+    "azure-ad": {
+      tokenUrl: `https://sts.windows.net/${process.env.AZURE_AD_TENANT_ID}/oauth2/v2.0/token`,
       clientId: process.env.AZURE_AD_CLIENT_ID,
       clientSecret: process.env.AZURE_AD_CLIENT_SECRET,
     },
@@ -13,52 +13,45 @@ const providerConfig: { [key: string]: { tokenUrl: string; clientId?: string; cl
     "optimizely_cms": {
       tokenUrl: `${process.env.NEXT_PUBLIC_LOGIN_AUTHORITY}/api/episerver/connect/token`,
       clientId: process.env.NEXT_PUBLIC_EPISERVER_CLIENT_ID,
-      clientSecret: process.env.NEXTAUTH_SECRET,
     },
   };
   
  export default async function refreshAccessToken(token: any) {
-    // console.log('token', token)
     try {
-        // const payload = JSON.parse(Buffer.from(token.accessToken.split('.')[1], 'base64').toString());
-        // const {iss} = payload
-        // console.log('payload', payload)
-        // const provider = payload.provider; // assuming the provider information is stored under 'provider'
-        const { tokenUrl, clientId, clientSecret } = providerConfig["https://sts.windows.net/7c4a1b79-4b8e-4ac7-b7e1-c5c3c5a4c139/"];
+        if (!token.refreshToken) throw new Error('No refresh token available');
+        const { provider } = token;
+        const { tokenUrl, clientId, clientSecret } = providerConfig[provider];
 
-        const url = `${tokenUrl}` +
-                    new URLSearchParams({
-                        client_id: `${clientId}`,
-                        client_secret: `${clientSecret}`,
-                        grant_type: "refresh_token",
-                        refresh_token: token.refreshToken ?? '',
-                    });
+        const data = {
+            client_id: `${clientId}`,
+            client_secret: `${clientSecret ?? ''}`,
+            grant_type: "refresh_token",
+            refresh_token: token.refreshToken,
+        }
     
-        const response = await fetch(url, {method: "POST", headers: {
-            "Content-Type": "application/x-www-form-urlencoded",
-          },});
-          
-          console.log('refreshedTokens', JSON.stringify(response))
+        const response = await fetch(tokenUrl, {
+            method: "POST", 
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: new URLSearchParams(data),
+          },
+        );
+
+        const refreshedTokens = await response.json();
     
         if (!response.ok) {
-            throw new Error('Failed to refresh access token');
+            throw refreshedTokens;
         }
-        const refreshedTokens = await response.json();
-        console.log('refreshedTokens', JSON.stringify(refreshedTokens))
-        const  { access_token, expires_in, refreshToken } = refreshedTokens;
-    
-        // account.access_token = access_token;
-        // account.expires_at = Date.now() + expires_in;
-        // account.refresh_token = refresh_token;
 
-        return {
+        const  { access_token, expires_in, refresh_token } = refreshedTokens;
+
+        token = {
             ...token,
-            access_token: access_token,
-            acessTokenExpires: Date.now() + expires_in * 1000,
-            refresh_token: refreshToken ?? token.refreshToken,
-        };
+            accessToken: access_token,
+            accessTokenExpires: Date.now() + expires_in * 1000,
+            refreshToken: refresh_token ?? token.refreshToken,
+        }
+        return token;
     } catch (error) {
-        console.log(error);
         return {
             ...token,
             error: 'RefreshAccessTokenError',
