@@ -9,6 +9,12 @@ function Header() {
 
     useEffect(() => {
         authService.getUser().then((user) => {
+            if(user && user.expired) {
+                authService.refreshAccessToken().then((_) => {
+                    authService.getUser().then((_user) => { user = _user })
+                })
+            }
+
             if (user && !user.expired) {
                 setIsLoggedIn(true);
                 setUsername(user.profile.name || "");

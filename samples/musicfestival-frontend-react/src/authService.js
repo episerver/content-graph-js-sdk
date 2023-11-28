@@ -38,6 +38,10 @@ class AuthService {
   getAccessToken() {
     return this.userManager.getUser().then((data) => (data ? data.access_token : null));
   }
+
+  refreshAccessToken() {
+    return this.userManager.signinSilent().then((data) => (data ? data.access_token : null))
+  }
 }
 
 const authService = new AuthService();
