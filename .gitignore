@@ -5,3 +5,4 @@
 **/App_Data/blobs
 **/*.development.json
 **/packages
+*.lock
