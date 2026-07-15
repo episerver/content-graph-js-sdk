@@ -68,9 +68,9 @@
     "style-loader": "^3.3.1"
   },
   "overrides": {
-    "shell-quote": "^1.8.4"
+    "shell-quote": "1.8.4"
   },
   "resolutions": {
-    "shell-quote": "^1.8.4"
+    "shell-quote": "1.8.4"
   }
 }
