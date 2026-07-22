@@ -10,12 +10,12 @@ import Link from 'next/link'
 export async function getStaticPaths() {
     const { error, content } = await getArtistContainerPage('', '/en/artists');
 
-    const paths = content?.ArtistContainerPage?.items?.map(item =>
-         item?.artists?.ArtistDetailsPage?.items?.map(artist => {
+    const paths = (content?.ArtistContainerPage?.items ?? []).flatMap(item =>
+        (item?.artists?.ArtistDetailsPage?.items ?? []).map(artist => {
                 return {params: { id: artist?.RelativePath?.substring((item?.RelativePath?.length || 0) + 1, artist.RelativePath.length) ?? '' }}
         })
-    ).flat()
-  
+    ).filter(path => path.params.id)
+
     return { paths, fallback: false }
   }
 
