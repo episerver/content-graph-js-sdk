@@ -21,7 +21,7 @@ We have the following samples code, please check the README file of each sample 
 ## Prerequisites for building and running the samples
 
 This project uses:
-* Node.js 16.8.1
+* Node.js 24
 * NET6.0
 * SQL Server 2016 Express LocalDB ([download here](https://www.microsoft.com/en-us/sql-server/sql-server-downloads))
 
